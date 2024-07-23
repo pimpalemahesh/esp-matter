@@ -20,9 +20,17 @@ set(EXTRA_COMPONENT_DIRS
     "${ESP_MATTER_PATH}/examples/common"
     "${MATTER_SDK_PATH}/config/esp32/components"
     "${ESP_MATTER_PATH}/components"
+    "$ENV{IDF_PATH}/examples/common_components/protocol_examples_common"
+    "$ENV{ESP_AWS_IOT_PATH}/libraries/backoffAlgorithm"
+    "$ENV{ESP_AWS_IOT_PATH}/libraries/coreMQTT"
+    "$ENV{ESP_AWS_IOT_PATH}/libraries/common/posix_compat"
     ${extra_components_dirs_append})
 
 project(light)
+
+target_add_binary_data(${CMAKE_PROJECT_NAME}.elf "main/certs/root_cert_auth.crt" TEXT)
+target_add_binary_data(${CMAKE_PROJECT_NAME}.elf "main/certs/client.crt" TEXT)
+target_add_binary_data(${CMAKE_PROJECT_NAME}.elf "main/certs/client.key" TEXT)
 
 # WARNING: This is just an example for using key for decrypting the encrypted OTA image
 # Please do not use it as is.

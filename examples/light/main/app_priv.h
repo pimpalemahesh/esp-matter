@@ -10,6 +10,7 @@
 
 #include <esp_err.h>
 #include <esp_matter.h>
+#include <esp_system.h>
 
 #if CHIP_DEVICE_CONFIG_ENABLE_THREAD
 #include "esp_openthread_types.h"
@@ -35,6 +36,7 @@
 
 typedef void *app_driver_handle_t;
 
+extern void print_memory_info();
 /** Initialize the light driver
  *
  * This initializes the light driver associated with the selected board.

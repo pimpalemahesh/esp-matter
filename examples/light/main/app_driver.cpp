@@ -5,15 +5,15 @@
    software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
    CONDITIONS OF ANY KIND, either express or implied.
 */
-
 #include <esp_log.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include <esp_matter.h>
 #include "bsp/esp-bsp.h"
-
 #include <app_priv.h>
+#include <esp_http_client.h>
+#include "esp_heap_caps.h"
+#include "mqtt_helper.h"
 
 using namespace chip::app::Clusters;
 using namespace esp_matter;
@@ -112,6 +112,15 @@ esp_err_t app_driver_attribute_update(app_driver_handle_t driver_handle, uint16_
         if (cluster_id == OnOff::Id) {
             if (attribute_id == OnOff::Attributes::OnOff::Id) {
                 err = app_driver_light_set_power(handle, val);
+                printf("Free Heap before mqtt call:\n");
+                print_memory_info();
+                if(val->val.b)
+                    mqtt_helper("ON", sizeof("ON"));
+                else
+                    mqtt_helper("OFF", sizeof("OFF"));
+
+                printf("Free Heap after mqtt call:\n");
+                print_memory_info();
             }
         } else if (cluster_id == LevelControl::Id) {
             if (attribute_id == LevelControl::Attributes::CurrentLevel::Id) {
