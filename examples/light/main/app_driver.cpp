@@ -114,11 +114,17 @@ esp_err_t app_driver_attribute_update(app_driver_handle_t driver_handle, uint16_
                 err = app_driver_light_set_power(handle, val);
                 printf("Free Heap before mqtt call:\n");
                 print_memory_info();
-                if(val->val.b)
-                    mqtt_helper("ON", sizeof("ON"));
-                else
-                    mqtt_helper("OFF", sizeof("OFF"));
-
+                char* message = "";
+                if (val->val.b) {
+                    message = "LED_ON";
+                }
+                else {
+                    message = "LED_OFF";
+                }
+                err = mqtt_publish_to_topic(message, (uint16_t) strlen(message));
+                if (err != ESP_OK) {
+                    ESP_LOGE(TAG, "Failed to publish led state.");
+                }
                 printf("Free Heap after mqtt call:\n");
                 print_memory_info();
             }

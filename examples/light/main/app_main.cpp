@@ -17,6 +17,7 @@
 #include <common_macros.h>
 #include <app_priv.h>
 #include <app_reset.h>
+#include "mqtt_helper.h"
 
 #if CHIP_DEVICE_CONFIG_ENABLE_THREAD
 #include <platform/ESP32/OpenthreadLauncher.h>
@@ -63,6 +64,9 @@ static void app_event_cb(const ChipDeviceEvent *event, intptr_t arg)
 
     case chip::DeviceLayer::DeviceEventType::kCommissioningComplete:
         ESP_LOGI(TAG, "Commissioning complete");
+        printf("Free Heap before mqtt initialization:-------------------------------------\n");
+        print_memory_info();
+        mqtt_init();
         break;
 
     case chip::DeviceLayer::DeviceEventType::kFailSafeTimerExpired:
@@ -129,9 +133,8 @@ static void app_event_cb(const ChipDeviceEvent *event, intptr_t arg)
         break;
 
     case chip::DeviceLayer::DeviceEventType::kBLEDeinitialized:
-        printf("Free Heap after BLE deinitialized:-------------------------------------\n");
-        print_memory_info();
         ESP_LOGI(TAG, "BLE deinitialized and memory reclaimed");
+        
         break;
 
     default:
@@ -168,6 +171,11 @@ static esp_err_t app_attribute_update_cb(attribute::callback_type_t type, uint16
 
 extern "C" void app_main()
 {
+    printf("Fabric count: %u\n", chip::Server::GetInstance().GetFabricTable().FabricCount());
+    if (chip::Server::GetInstance().GetFabricTable().FabricCount() > 0) {
+        mqtt_init();
+    }
+
     esp_err_t err = ESP_OK;
 
     printf("Free memory after bootup:-----------------\n");

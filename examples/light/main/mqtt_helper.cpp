@@ -11,15 +11,11 @@
 #include <stddef.h>
 #include <string.h>
 #include "esp_system.h"
-#include "nvs_flash.h"
-#include "esp_event.h"
-#include "esp_netif.h"
 #include "mqtt_helper.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
-
 
 static const char *TAG = "MQTT_HELPER";
 
@@ -28,33 +24,27 @@ static const char *TAG = "MQTT_HELPER";
  * MQTT demo is not actually started until the network is already.
  */
 
-void aws_iot_demo_main(char* val, uint16_t len);
+esp_err_t mqtt_publish_to_topic(char *message, uint16_t size) 
+{
+    esp_err_t err = ESP_OK;
 
-void mqtt_helper(char* val, uint16_t len)
+    err = publish_message_to_topic(message, size);
+
+    if (err == EXIT_FAILURE) {
+        err = ESP_FAIL;
+    }
+    return err;
+}
+
+void mqtt_init()
 {
     ESP_LOGI(TAG, "[APP] Startup..");
     ESP_LOGI(TAG, "[APP] Free memory: %" PRIu32 " bytes", esp_get_free_heap_size());
     ESP_LOGI(TAG, "[APP] IDF version: %s", esp_get_idf_version());
 
     esp_log_level_set("*", ESP_LOG_INFO);
-    /* Initialize NVS partition */
-    esp_err_t ret = nvs_flash_init();
-    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-        /* NVS partition was truncated
-         * and needs to be erased */
-        ESP_ERROR_CHECK(nvs_flash_erase());
 
-        /* Retry nvs_flash_init */
-        ESP_ERROR_CHECK(nvs_flash_init());
-    }
-
-    /* This helper function configures Wi-Fi or Ethernet, as selected in menuconfig.
-     * Read "Establishing Wi-Fi or Ethernet Connection" section in
-     * examples/protocols/README.md for more information about this function.
-     */
-    // ESP_ERROR_CHECK(example_connect());
-
-    aws_iot_demo_main(val,len);
+    xTaskCreate(aws_iot_demo_main, "MQTT_Task", MQTT_TASK_STACK_SIZE, NULL, MQTT_TASK_PRIORITY, NULL);
 
     const char* taskName = pcTaskGetName(NULL);
     printf("MQTT helper: %s\n", taskName);
