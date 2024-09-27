@@ -112,8 +112,6 @@ esp_err_t app_driver_attribute_update(app_driver_handle_t driver_handle, uint16_
         if (cluster_id == OnOff::Id) {
             if (attribute_id == OnOff::Attributes::OnOff::Id) {
                 err = app_driver_light_set_power(handle, val);
-                printf("Free Heap before mqtt call:\n");
-                print_memory_info();
                 char* message = "";
                 if (val->val.b) {
                     message = "LED_ON";
@@ -125,8 +123,6 @@ esp_err_t app_driver_attribute_update(app_driver_handle_t driver_handle, uint16_
                 if (err != ESP_OK) {
                     ESP_LOGE(TAG, "Failed to publish led state.");
                 }
-                printf("Free Heap after mqtt call:\n");
-                print_memory_info();
             }
         } else if (cluster_id == LevelControl::Id) {
             if (attribute_id == LevelControl::Attributes::CurrentLevel::Id) {

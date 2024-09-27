@@ -9,6 +9,7 @@
 #include <esp_err.h>
 #include <esp_log.h>
 #include <nvs_flash.h>
+#include <esp_heap_caps.h>
 
 #include <esp_matter.h>
 #include <esp_matter_console.h>
@@ -34,17 +35,20 @@ using namespace esp_matter::attribute;
 using namespace esp_matter::endpoint;
 using namespace chip::app::Clusters;
 
+static bool g_mqtt_ble_started = false;
+static bool g_fabric_committed = false;
+
 constexpr auto k_timeout_seconds = 300;
 
 void print_memory_info() {
-    multi_heap_info_t heap_info;
-    heap_caps_get_info(&heap_info, MALLOC_CAP_DEFAULT);
-    ESP_LOGI(TAG, "Total free heap memory: %u bytes", heap_info.total_free_bytes);
-    ESP_LOGI(TAG, "Largest free block: %u bytes", heap_info.largest_free_block);
-    ESP_LOGI(TAG, "Minimum free heap memory: %u bytes", heap_info.minimum_free_bytes);
-    ESP_LOGI(TAG, "Allocated blocks: %u", heap_info.allocated_blocks);
-    ESP_LOGI(TAG, "Free blocks: %u", heap_info.free_blocks);
-    ESP_LOGI(TAG, "Total free blocks: %u", heap_info.total_blocks);
+    printf("\tDescription\tInternal\tSPIRAM\n");
+    printf("Current Free Memory\t%d\t\t%d\n",
+            heap_caps_get_free_size(MALLOC_CAP_8BIT) - heap_caps_get_free_size(MALLOC_CAP_SPIRAM),
+            heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+    printf("Largest Free Block\t%d\t\t%d\n", heap_caps_get_largest_free_block(MALLOC_CAP_8BIT | MALLOC_CAP_INTERNAL),
+            heap_caps_get_largest_free_block(MALLOC_CAP_SPIRAM));
+    printf("Min. Ever Free Size\t%d\t\t%d\n", heap_caps_get_minimum_free_size(MALLOC_CAP_8BIT | MALLOC_CAP_INTERNAL),
+            heap_caps_get_minimum_free_size(MALLOC_CAP_SPIRAM));
 }
 
 #if CONFIG_ENABLE_ENCRYPTED_OTA
@@ -60,13 +64,17 @@ static void app_event_cb(const ChipDeviceEvent *event, intptr_t arg)
     switch (event->Type) {
     case chip::DeviceLayer::DeviceEventType::kInterfaceIpAddressChanged:
         ESP_LOGI(TAG, "Interface IP Address changed");
+
+        if (!g_mqtt_ble_started && g_fabric_committed) {
+            mqtt_init();
+            g_mqtt_ble_started = true;
+        }
+
         break;
 
     case chip::DeviceLayer::DeviceEventType::kCommissioningComplete:
         ESP_LOGI(TAG, "Commissioning complete");
-        printf("Free Heap before mqtt initialization:-------------------------------------\n");
         print_memory_info();
-        mqtt_init();
         break;
 
     case chip::DeviceLayer::DeviceEventType::kFailSafeTimerExpired:
@@ -74,26 +82,18 @@ static void app_event_cb(const ChipDeviceEvent *event, intptr_t arg)
         break;
 
     case chip::DeviceLayer::DeviceEventType::kCommissioningSessionStarted:
-        printf("Free Heap before commissioning:-------------------------------------\n");
-        print_memory_info();
         ESP_LOGI(TAG, "Commissioning session started");
         break;
 
     case chip::DeviceLayer::DeviceEventType::kCommissioningSessionStopped:
-        printf("Free Heap after commissioning:-------------------------\n");
-        print_memory_info();
         ESP_LOGI(TAG, "Commissioning session stopped");
         break;
 
     case chip::DeviceLayer::DeviceEventType::kCommissioningWindowOpened:
-        printf("Free Heap before commissioning window opened:-----------------------------\n");
-        print_memory_info();
         ESP_LOGI(TAG, "Commissioning window opened");
         break;
 
     case chip::DeviceLayer::DeviceEventType::kCommissioningWindowClosed:
-        printf("Free Heap after commissioning window closed:-----------------------------\n");
-        print_memory_info();
         ESP_LOGI(TAG, "Commissioning window closed");
         break;
 
@@ -124,6 +124,9 @@ static void app_event_cb(const ChipDeviceEvent *event, intptr_t arg)
         ESP_LOGI(TAG, "Fabric will be removed");
         break;
 
+    case chip::DeviceLayer::DeviceEventType::kCHIPoBLEConnectionClosed:
+        break;
+
     case chip::DeviceLayer::DeviceEventType::kFabricUpdated:
         ESP_LOGI(TAG, "Fabric is updated");
         break;
@@ -134,12 +137,17 @@ static void app_event_cb(const ChipDeviceEvent *event, intptr_t arg)
 
     case chip::DeviceLayer::DeviceEventType::kBLEDeinitialized:
         ESP_LOGI(TAG, "BLE deinitialized and memory reclaimed");
-        
+        if (!g_mqtt_ble_started) {
+            mqtt_init();
+            g_fabric_committed = true;
+            g_mqtt_ble_started = true;
+        }
         break;
 
     default:
         break;
     }
+    printf("\r\nFree heap: %lu\r\n", esp_get_free_heap_size());
 }
 
 // This callback is invoked when clients interact with the Identify Cluster.
@@ -166,16 +174,13 @@ static esp_err_t app_attribute_update_cb(attribute::callback_type_t type, uint16
 
     }
 
+    print_memory_info();
+
     return err;
 }
 
 extern "C" void app_main()
 {
-    printf("Fabric count: %u\n", chip::Server::GetInstance().GetFabricTable().FabricCount());
-    if (chip::Server::GetInstance().GetFabricTable().FabricCount() > 0) {
-        mqtt_init();
-    }
-
     esp_err_t err = ESP_OK;
 
     printf("Free memory after bootup:-----------------\n");
@@ -183,8 +188,6 @@ extern "C" void app_main()
 
     /* Initialize the ESP NVS layer */
     nvs_flash_init();
-    printf("Free memory after nvs flash init:------------------------\n");
-    print_memory_info();
 
     /* Initialize driver */
     app_driver_handle_t light_handle = app_driver_light_init();
@@ -242,6 +245,10 @@ extern "C" void app_main()
     err = esp_matter::start(app_event_cb);
     ABORT_APP_ON_FAILURE(err == ESP_OK, ESP_LOGE(TAG, "Failed to start Matter, err:%d", err));
 
+    if (chip::Server::GetInstance().GetFabricTable().FabricCount()) {
+        g_fabric_committed = true;
+    }
+
     /* Starting driver with default values */
     app_driver_light_set_defaults(light_endpoint_id);
 
@@ -258,4 +265,11 @@ extern "C" void app_main()
 #endif
     esp_matter::console::init();
 #endif
+
+    while (true) {
+
+       print_memory_info();
+
+        vTaskDelay(10000 / portTICK_PERIOD_MS);
+    }
 }
