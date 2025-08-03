@@ -1,0 +1,242 @@
+// Copyright 2026 Espressif Systems (Shanghai) PTE LTD
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* THIS IS A GENERATED FILE, DO NOT EDIT */
+
+#include <esp_log.h>
+#include <esp_matter_core.h>
+#include <esp_matter.h>
+
+#include <app-common/zap-generated/cluster-enums.h>
+#include <app-common/zap-generated/callback.h>
+#include <app/InteractionModelEngine.h>
+#include <zap_common/app/PluginApplicationCallbacks.h>
+#include <app/clusters/mode-base-server/mode-base-cluster-objects.h>
+#include <esp_matter_delegate_callbacks.h>
+#include <groups.h>
+#include <groups_ids.h>
+#include <binding.h>
+#include <esp_matter_data_model_priv.h>
+
+using namespace chip::app::Clusters;
+using chip::app::CommandHandler;
+using chip::app::DataModel::Decode;
+using chip::TLV::TLVReader;
+using namespace esp_matter;
+using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::delegate_cb;
+
+static const char *TAG = "groups_cluster";
+constexpr uint16_t cluster_revision = 4;
+
+static esp_err_t esp_matter_command_callback_add_group(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
+                                                       void *opaque_ptr)
+{
+    chip::app::Clusters::Groups::Commands::AddGroup::DecodableType command_data;
+    chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
+    CHIP_ERROR error = command_data.Decode(tlv_data, command_obj->GetAccessingFabricIndex());
+    if (error == CHIP_NO_ERROR) {
+        emberAfGroupsClusterAddGroupCallback((CommandHandler *)opaque_ptr, command_path, command_data);
+    }
+    return ESP_OK;
+}
+
+static esp_err_t esp_matter_command_callback_view_group(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
+                                                        void *opaque_ptr)
+{
+    chip::app::Clusters::Groups::Commands::ViewGroup::DecodableType command_data;
+    chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
+    CHIP_ERROR error = command_data.Decode(tlv_data, command_obj->GetAccessingFabricIndex());
+    if (error == CHIP_NO_ERROR) {
+        emberAfGroupsClusterViewGroupCallback((CommandHandler *)opaque_ptr, command_path, command_data);
+    }
+    return ESP_OK;
+}
+
+static esp_err_t esp_matter_command_callback_get_group_membership(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
+                                                                  void *opaque_ptr)
+{
+    chip::app::Clusters::Groups::Commands::GetGroupMembership::DecodableType command_data;
+    chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
+    CHIP_ERROR error = command_data.Decode(tlv_data, command_obj->GetAccessingFabricIndex());
+    if (error == CHIP_NO_ERROR) {
+        emberAfGroupsClusterGetGroupMembershipCallback((CommandHandler *)opaque_ptr, command_path, command_data);
+    }
+    return ESP_OK;
+}
+
+static esp_err_t esp_matter_command_callback_remove_group(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
+                                                          void *opaque_ptr)
+{
+    chip::app::Clusters::Groups::Commands::RemoveGroup::DecodableType command_data;
+    chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
+    CHIP_ERROR error = command_data.Decode(tlv_data, command_obj->GetAccessingFabricIndex());
+    if (error == CHIP_NO_ERROR) {
+        emberAfGroupsClusterRemoveGroupCallback((CommandHandler *)opaque_ptr, command_path, command_data);
+    }
+    return ESP_OK;
+}
+
+static esp_err_t esp_matter_command_callback_remove_all_groups(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
+                                                               void *opaque_ptr)
+{
+    chip::app::Clusters::Groups::Commands::RemoveAllGroups::DecodableType command_data;
+    chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
+    CHIP_ERROR error = command_data.Decode(tlv_data, command_obj->GetAccessingFabricIndex());
+    if (error == CHIP_NO_ERROR) {
+        emberAfGroupsClusterRemoveAllGroupsCallback((CommandHandler *)opaque_ptr, command_path, command_data);
+    }
+    return ESP_OK;
+}
+
+static esp_err_t esp_matter_command_callback_add_group_if_identifying(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
+                                                                      void *opaque_ptr)
+{
+    chip::app::Clusters::Groups::Commands::AddGroupIfIdentifying::DecodableType command_data;
+    chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
+    CHIP_ERROR error = command_data.Decode(tlv_data, command_obj->GetAccessingFabricIndex());
+    if (error == CHIP_NO_ERROR) {
+        emberAfGroupsClusterAddGroupIfIdentifyingCallback((CommandHandler *)opaque_ptr, command_path, command_data);
+    }
+    return ESP_OK;
+}
+
+namespace esp_matter {
+namespace cluster {
+namespace groups {
+
+namespace feature {
+namespace group_names {
+uint32_t get_id()
+{
+    return GroupNames::Id;
+}
+
+esp_err_t add(cluster_t *cluster)
+{
+    VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    update_feature_map(cluster, get_id());
+
+    return ESP_OK;
+}
+} /* group_names */
+
+} /* feature */
+
+namespace attribute {
+attribute_t *create_name_support(cluster_t *cluster, uint8_t value)
+{
+    attribute_t *attribute = esp_matter::attribute::create(cluster, NameSupport::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bitmap8(value));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap8(0), esp_matter_bitmap8(1));
+    return attribute;
+}
+
+} /* attribute */
+namespace command {
+command_t *create_add_group(cluster_t *cluster)
+{
+    return esp_matter::command::create(cluster, AddGroup::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_add_group);
+}
+
+command_t *create_add_group_response(cluster_t *cluster)
+{
+    return esp_matter::command::create(cluster, AddGroupResponse::Id, COMMAND_FLAG_GENERATED, NULL);
+}
+
+command_t *create_view_group(cluster_t *cluster)
+{
+    return esp_matter::command::create(cluster, ViewGroup::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_view_group);
+}
+
+command_t *create_view_group_response(cluster_t *cluster)
+{
+    return esp_matter::command::create(cluster, ViewGroupResponse::Id, COMMAND_FLAG_GENERATED, NULL);
+}
+
+command_t *create_get_group_membership(cluster_t *cluster)
+{
+    return esp_matter::command::create(cluster, GetGroupMembership::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_get_group_membership);
+}
+
+command_t *create_get_group_membership_response(cluster_t *cluster)
+{
+    return esp_matter::command::create(cluster, GetGroupMembershipResponse::Id, COMMAND_FLAG_GENERATED, NULL);
+}
+
+command_t *create_remove_group(cluster_t *cluster)
+{
+    return esp_matter::command::create(cluster, RemoveGroup::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_remove_group);
+}
+
+command_t *create_remove_group_response(cluster_t *cluster)
+{
+    return esp_matter::command::create(cluster, RemoveGroupResponse::Id, COMMAND_FLAG_GENERATED, NULL);
+}
+
+command_t *create_remove_all_groups(cluster_t *cluster)
+{
+    return esp_matter::command::create(cluster, RemoveAllGroups::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_remove_all_groups);
+}
+
+command_t *create_add_group_if_identifying(cluster_t *cluster)
+{
+    return esp_matter::command::create(cluster, AddGroupIfIdentifying::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_add_group_if_identifying);
+}
+
+} /* command */
+
+const function_generic_t function_list[] = {
+    (function_generic_t)emberAfGroupsClusterServerInitCallback,
+};
+
+const int function_flags = CLUSTER_FLAG_INIT_FUNCTION;
+
+cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
+{
+    cluster_t *cluster = esp_matter::cluster::create(endpoint, groups::Id, flags);
+    VerifyOrReturnValue(cluster, NULL, ESP_LOGE(TAG, "Could not create cluster. cluster_id: 0x%08" PRIX32, groups::Id));
+    if (flags & CLUSTER_FLAG_SERVER) {
+        static const auto plugin_server_init_cb = CALL_ONCE(MatterGroupsPluginServerInitCallback);
+        set_plugin_server_init_callback(cluster, plugin_server_init_cb);
+        add_function_list(cluster, function_list, function_flags);
+
+        /* Attributes managed internally */
+        global::attribute::create_feature_map(cluster, 0);
+
+        /* Attributes not managed internally */
+        global::attribute::create_cluster_revision(cluster, cluster_revision);
+
+        if (config) {
+            attribute::create_name_support(cluster, config->name_support);
+        } else {
+            ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
+        }
+        command::create_add_group(cluster);
+        command::create_add_group_response(cluster);
+        command::create_view_group(cluster);
+        command::create_view_group_response(cluster);
+        command::create_get_group_membership(cluster);
+        command::create_get_group_membership_response(cluster);
+        command::create_remove_group(cluster);
+        command::create_remove_group_response(cluster);
+        command::create_remove_all_groups(cluster);
+        command::create_add_group_if_identifying(cluster);
+    }
+
+    return cluster;
+}
+
+} /* groups */
+} /* cluster */
+} /* esp_matter */

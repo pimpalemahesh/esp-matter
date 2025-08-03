@@ -46,6 +46,26 @@ if (CONFIG_ESP_MATTER_ENABLE_MATTER_SERVER)
         list(APPEND INCLUDE_DIRS_LIST "zap_common"
                                       "data_model")
         list(APPEND PRIV_INCLUDE_DIRS_LIST "data_model/private")
+
+        if(CONFIG_ENABLE_GENERATED_DATA_MODEL)
+            # Generated data model paths
+            foreach(PATH "device_types" "clusters")
+                list(APPEND SRC_DIRS_LIST "data_model/generated/${PATH}")
+                list(APPEND INCLUDE_DIRS_LIST "data_model/generated/${PATH}")
+
+                file(GLOB DIRS "data_model/generated/${PATH}/*")
+                foreach(DIR ${DIRS})
+                    if(IS_DIRECTORY ${DIR})
+                        list(APPEND SRC_DIRS_LIST ${DIR})
+                        list(APPEND INCLUDE_DIRS_LIST ${DIR})
+                    endif()
+                endforeach()
+            endforeach()
+        else()
+            list(APPEND SRC_DIRS_LIST "data_model/legacy")
+            list(APPEND INCLUDE_DIRS_LIST "data_model/legacy")
+            list(APPEND EXCLUDE_SRCS_LIST "data_model/esp_matter_generated_data_model_utils.cpp")
+        endif()
     endif(CONFIG_ESP_MATTER_ENABLE_DATA_MODEL)
 else()
     list(APPEND EXCLUDE_SRCS_LIST "esp_matter_identify.cpp"

@@ -1,0 +1,24 @@
+{% if cluster.get_attributes() | length > 0 %}
+namespace attribute {
+{% for attr in cluster.get_attributes() %}
+{% if attr.has_special_config() %}
+#if {{ attr.get_special_config() }}
+{% endif %}
+    {% if attr.type == 'string' %}
+attribute_t *create_{{ attr.func_name }}(cluster_t *cluster, char * value, uint16_t length);
+    {% elif attr.type == 'octstr' %}
+attribute_t *create_{{ attr.func_name }}(cluster_t *cluster, uint8_t * value, uint16_t length);
+    {% elif attr.type == 'list' %}
+attribute_t *create_{{ attr.func_name }}(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
+    {% elif attr.is_nullable %}
+attribute_t *create_{{ attr.func_name }}(cluster_t *cluster, nullable<{{ attr.get_type() }}> value);
+    {% else %}
+attribute_t *create_{{ attr.func_name }}(cluster_t *cluster, {{ attr.get_type() }} value);
+    {% endif %}
+{% if attr.has_special_config() %}
+#endif // {{ attr.get_special_config() }}
+{% endif %}
+{% endfor %}
+} /* attribute */
+
+{% endif %}

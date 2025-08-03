@@ -1,0 +1,62 @@
+{% if cluster.get_events() | length > 0 %}
+
+namespace event {
+{% for event in cluster.get_events() %}
+event_t *create_{{ event.func_name | lower }}(cluster_t *cluster)
+{
+    {% if event.get_conformance_condition() %}
+    {% if "feature" in event.get_conformance_condition()|string %}
+    uint32_t feature_map = get_feature_map_value(cluster);
+    {% endif %}
+    VerifyOrReturnValue({{ event.get_conformance_condition() }}, NULL);
+    {% endif %}
+    return esp_matter::event::create(cluster, {{ event.chip_name }}::Id);
+}
+
+{% endfor %}
+{# Exceptions for switch cluster #}
+{% if cluster.esp_name == "switch_cluster" %}
+esp_err_t send_switch_latched(EndpointId endpoint, uint8_t new_position)
+{
+    SwitchServer::Instance().OnSwitchLatch(endpoint, new_position);
+    return ESP_OK;
+}
+
+esp_err_t send_initial_press(EndpointId endpoint, uint8_t new_position)
+{
+    SwitchServer::Instance().OnInitialPress(endpoint, new_position);
+    return ESP_OK;
+}
+
+esp_err_t send_long_press(EndpointId endpoint, uint8_t new_position)
+{
+    SwitchServer::Instance().OnLongPress(endpoint, new_position);
+    return ESP_OK;
+}
+
+esp_err_t send_short_release(EndpointId endpoint, uint8_t previous_position)
+{
+    SwitchServer::Instance().OnShortRelease(endpoint, previous_position);
+    return ESP_OK;
+}
+
+esp_err_t send_long_release(EndpointId endpoint, uint8_t previous_position)
+{
+    SwitchServer::Instance().OnLongRelease(endpoint, previous_position);
+    return ESP_OK;
+}
+
+esp_err_t send_multi_press_ongoing(EndpointId endpoint, uint8_t new_position, uint8_t count)
+{
+    SwitchServer::Instance().OnMultiPressOngoing(endpoint, new_position, count);
+    return ESP_OK;
+}
+
+esp_err_t send_multi_press_complete(EndpointId endpoint, uint8_t new_position, uint8_t count)
+{
+    SwitchServer::Instance().OnMultiPressComplete(endpoint, new_position, count);
+    return ESP_OK;
+}
+{% endif %}
+} /* event */
+{% endif %}

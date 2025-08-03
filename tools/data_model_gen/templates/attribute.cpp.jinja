@@ -1,0 +1,33 @@
+{% if cluster.get_attributes() | length > 0 %}
+namespace attribute {
+{% for attr in cluster.get_attributes() %}
+{% if attr.has_special_config() %}
+#if {{ attr.get_special_config() }}
+{% endif %}
+{% set has_bounds = attr.type not in ["list", "string", "octstr"] and attr.get_max_value() is not none and attr.get_min_value() is not none and not attr.is_internally_managed %}
+attribute_t *create_{{ attr.func_name }}(cluster_t *cluster{% if attr.type in ["string", "octstr"] %}, {{ "char *" if attr.type == "string" else "uint8_t *" }}value, uint16_t length{% elif attr.type == "list" %}, uint8_t *value, uint16_t length, uint16_t count{% elif attr.is_nullable %}, nullable<{{ attr.get_type() }}> value{% else %}, {{ attr.get_type() }} value{% endif %})
+{
+    {% if attr.get_conformance_condition() %}
+    {% if "feature" in attr.get_conformance_condition()|string %}
+    uint32_t feature_map = get_feature_map_value(cluster);
+    {% endif %}
+    VerifyOrReturnValue({{ attr.get_conformance_condition() }}, NULL);
+    {% endif %}
+    {% if attr.type in ["string", "octstr"] and attr.get_default_value() not in [0, "0", 'null', "NULL"] and not attr.is_internally_managed %}
+    VerifyOrReturnValue(length <= k_max_{{ attr.func_name }}_length + 1, NULL, ESP_LOGE(TAG, "Could not create attribute, string length out of bound"));
+    {% endif %}
+    {% if has_bounds %}
+    attribute_t *attribute = esp_matter::attribute::create(cluster, {{ attr.chip_name }}::Id, {{ attr.get_flag() }}, {% if attr.type == "string" %}esp_matter_char_str(value, length){% if not attr.is_internally_managed %}, k_max_{{ attr.func_name }}_length + 1{% endif %}{% elif attr.type == "octstr" %}esp_matter_octet_str(value, length){% elif attr.type == "list" %}esp_matter_array(value, length, count){% elif attr.is_nullable %}esp_matter_nullable_{{ attr.type }}(value){% else %}esp_matter_{{ attr.type }}(value){% endif %});
+    esp_matter::attribute::add_bounds(attribute, {% if attr.is_nullable %}esp_matter_nullable_{{ attr.type }}({{attr.get_min_value()}}){% else %}esp_matter_{{ attr.type }}({{attr.get_min_value()}}){% endif %}, {% if attr.is_nullable %}esp_matter_nullable_{{ attr.type }}({{attr.get_max_value()}}){% else %}esp_matter_{{ attr.type }}({{attr.get_max_value()}}){% endif %});
+    return attribute;
+    {% else %}
+    return esp_matter::attribute::create(cluster, {{ attr.chip_name }}::Id, {{ attr.get_flag() }}, {% if attr.type == "string" %}esp_matter_char_str(value, length){% if not attr.is_internally_managed %}, k_max_{{ attr.func_name }}_length + 1{% endif %}{% elif attr.type == "octstr" %}esp_matter_octet_str(value, length){% elif attr.type == "list" %}esp_matter_array(value, length, count){% elif attr.is_nullable %}esp_matter_nullable_{{ attr.type }}(value){% else %}esp_matter_{{ attr.type }}(value){% endif %});
+    {% endif %}
+}
+{% if attr.has_special_config() %}
+#endif // {{ attr.get_special_config() }}
+{% endif %}
+
+{% endfor %}
+} /* attribute */
+{% endif %}

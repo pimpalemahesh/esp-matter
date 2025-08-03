@@ -588,6 +588,78 @@ void MeterIdentificationDelegateInitCB(void *delegate, uint16_t endpoint_id)
     LogErrorOnFailure(meter_identification_instance->Init());
 }
 
+void ApplicationLauncherDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void AccountLoginDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void AudioOutputDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void ChannelDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void ContentAppObserverDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void ContentControlDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void DishwasherModeDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void LowPowerDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void MessagesDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void MediaInputDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void MediaPlaybackDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void OvenModeDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void OvenCavityOperationalStateDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void RefrigeratorAndTemperatureControlledCabinetModeDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void RvcOperationalStateDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void TargetNavigatorDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void WakeOnLanDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void OtaSoftwareUpdateRequestorDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
 } // namespace delegate_cb
 } // namespace cluster
 } // namespace esp_matter

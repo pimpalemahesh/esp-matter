@@ -18,7 +18,7 @@ menu "ESP Matter"
         string "ESP Matter NVS partition name"
         default "nvs"
         help
-            The NVS Partition name for ESP Matter to store the NONVOLATILE attribues
+            The NVS Partition name for ESP Matter to store the NONVOLATILE attributes
 
     config ESP_MATTER_DEFERRED_ATTR_PERSISTENCE_TIME_MS
         int "ESP Matter deferred attribute persistence time (ms)"
@@ -254,6 +254,14 @@ menu "ESP Matter"
 
         rsource "utils/cluster_select/Kconfig.in"
 
+    endmenu
+
+    menu "Generated Data Model"
+        config ENABLE_GENERATED_DATA_MODEL
+            bool "Enable Generated Data Model"
+            default n
+            help
+                Enable this option to use the generated data model.
     endmenu
 
 endmenu
