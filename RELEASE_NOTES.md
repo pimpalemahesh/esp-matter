@@ -1,3 +1,11 @@
+# 6-April-2026
+### Generated Data Model (CONFIG_ENABLE_GENERATED_DATA_MODEL)
+- Introduced experimental support for generated data model based on Matter Specification XMLs.
+- Generated code available under `components/esp_matter/data_model/generated/`
+- legacy handwritten data model implementation moved to `components/esp_matter/data_model/legacy/`
+- Enabled via menuconfig (ESP Matter → Generated Data Model).
+- Regenerate using: `python tools/data_model_gen/data_model_gen.py`
+
 # 5-Mar-2026
 ### API Changes
 - In `subscribe_command`, `subscribe_done_cb_t` has been renamed to `subscribe_terminated_cb_t` to align better with the terminology.

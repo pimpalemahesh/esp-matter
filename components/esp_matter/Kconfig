@@ -266,4 +266,16 @@ menu "ESP Matter"
 
     endmenu
 
+    menu "Generated Data Model"
+        config ENABLE_GENERATED_DATA_MODEL
+            bool "Enable Generated Data Model"
+            default n
+            help
+                Use data model generated via automated scripts instead of legacy implementation.
+
+                When enabled:
+                - Generated clusters and endpoints are used.
+                - Legacy data model code is not compiled.
+    endmenu
+
 endmenu

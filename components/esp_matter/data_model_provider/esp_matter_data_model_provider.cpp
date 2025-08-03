@@ -14,6 +14,9 @@
 
 #include <esp_log.h>
 #include <esp_matter_attribute_utils.h>
+#ifdef CONFIG_ENABLE_GENERATED_DATA_MODEL
+#include <esp_matter_data_model_utils.h>
+#endif // CONFIG_ENABLE_GENERATED_DATA_MODEL
 #include <esp_matter_cluster.h>
 #include <esp_matter_data_model.h>
 #include <esp_matter_data_model_priv.h>

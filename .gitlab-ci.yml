@@ -374,6 +374,20 @@ build_esp_matter_examples_pytest_C2:
         python tools/ci/memory_analyzer.py --chip esp32c2 --job_name "build_esp_matter_examples_pytest_C2" --ref_map_file light_mr_base.map --example "light"
       fi
 
+.build_generated_data_model_all_device_types_app_H2: &build_generated_data_model_all_device_types_app_H2
+    - *setup_ot_rcp
+    - cd ${ESP_MATTER_PATH}/examples/all_device_types_app
+    # Enable generated data model for the thread border router example
+    - echo "CONFIG_ENABLE_GENERATED_DATA_MODEL=y" >> sdkconfig.defaults
+    - idf.py set-target esp32h2
+    - idf.py build
+
+.build_generated_data_model_examples_pytest_C3: &build_generated_data_model_examples_pytest_C3
+    - cd ${ESP_MATTER_PATH}
+    # Enable generated data model for the light example
+    - echo "CONFIG_ENABLE_GENERATED_DATA_MODEL=y" >> ${ESP_MATTER_PATH}/examples/light/sdkconfig.defaults
+    - pip install -r tools/ci/requirements-build.txt
+    - python tools/ci/build_apps.py ./examples --pytest_c3
 
 build_override_sdkconfig_examples:
   resource_group: build_override_sdkconfig_examples
@@ -385,6 +399,8 @@ build_override_sdkconfig_examples:
     - *build_esp32c6_wifi_thread_example
     - *build_controller_otbr_example
     - *build_lit_icd_example
+    - *build_generated_data_model_examples_pytest_C3
+    - *build_generated_data_model_all_device_types_app_H2
 
 build_zap_light_example:
   resource_group: build_zap_light_example

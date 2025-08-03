@@ -1,0 +1,107 @@
+uint32_t feature_map = config->feature_flags;
+{# Otherwise choice groups: if parent present add parent + all dependents; else validate choice and add only selected dependents #}
+{% for group in cluster.get_otherwise_choice_groups() %}
+if (feature_map & feature::{{ group.parent_feature.func_name | lower }}::get_id()) {
+    {% if group.parent_feature.get_externally_managed_attributes() | length > 0 %}
+    VerifyOrReturnValue(feature::{{ group.parent_feature.func_name | lower }}::add(cluster, &(config->features.{{ group.parent_feature.func_name | lower }})) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
+    {% else %}
+    VerifyOrReturnValue(feature::{{ group.parent_feature.func_name | lower }}::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
+    {% endif %}
+    {% for dep in group.dependent_features %}
+    {% if dep.get_externally_managed_attributes() | length > 0 %}
+    VerifyOrReturnValue(feature::{{ dep.func_name | lower }}::add(cluster, &(config->features.{{ dep.func_name | lower }})) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
+    {% else %}
+    VerifyOrReturnValue(feature::{{ dep.func_name | lower }}::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
+    {% endif %}
+    {% endfor %}
+} else {
+    {% if group.dependent_features | length > 0 %}
+    {% if group.constraint == 'exact_one' %}
+    VALIDATE_FEATURES_EXACT_ONE("{{ group.dependent_features | map(attribute='name') | join(',') }}",
+                               {{ group.dependent_features | map(attribute='func_name') | map('lower') | map('replace', ' ', '_') | map('format_filter', 'feature::{}::get_id()') | join(', ') }});
+    {% elif group.constraint == 'at_least_one' %}
+    VALIDATE_FEATURES_AT_LEAST_ONE("{{ group.dependent_features | map(attribute='name') | join(',') }}",
+                                {{ group.dependent_features | map(attribute='func_name') | map('lower') | map('replace', ' ', '_') | map('format_filter', 'feature::{}::get_id()') | join(', ') }});
+    {% endif %}
+    {% endif %}
+    {% for dep in group.dependent_features %}
+    {% if dep.conformance.get_mandatory_condition() %}
+    if ((feature_map & feature::{{ dep.func_name | lower }}::get_id()) && {{ dep.conformance.get_mandatory_condition() }}) {
+    {% else %}
+    if (feature_map & feature::{{ dep.func_name | lower }}::get_id()) {
+    {% endif %}
+        {% if dep.get_externally_managed_attributes() | length > 0 %}
+        VerifyOrReturnValue(feature::{{ dep.func_name | lower }}::add(cluster, &(config->features.{{ dep.func_name | lower }})) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
+        {% else %}
+        VerifyOrReturnValue(feature::{{ dep.func_name | lower }}::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
+        {% endif %}
+    }
+    {% endfor %}
+}
+{% endfor %}
+{# Standalone choice groups depends on the optional condition #}
+{% for group in cluster.get_optional_choice_groups() %}
+if (feature_map & feature::{{ group.parent_feature.func_name | lower }}::get_id()) {
+    {% if group.constraint == 'exact_one' %}
+    VALIDATE_FEATURES_EXACT_ONE("{{ group.dependent_features | map(attribute='name') | join(',') }}",
+                               {{ group.dependent_features | map(attribute='func_name') | map('lower') | map('replace', ' ', '_') | map('format_filter', 'feature::{}::get_id()') | join(', ') }});
+    {% elif group.constraint == 'at_least_one' %}
+    VALIDATE_FEATURES_AT_LEAST_ONE("{{ group.dependent_features | map(attribute='name') | join(',') }}",
+                                {{ group.dependent_features | map(attribute='func_name') | map('lower') | map('replace', ' ', '_') | map('format_filter', 'feature::{}::get_id()') | join(', ') }});
+    {% endif %}
+    {% for dep in group.dependent_features %}
+    {% if dep.get_externally_managed_attributes() | length > 0 %}
+    if (feature_map & feature::{{ dep.func_name | lower }}::get_id()) {
+        VerifyOrReturnValue(feature::{{ dep.func_name | lower }}::add(cluster, &(config->features.{{ dep.func_name | lower }})) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
+    }
+    {% else %}
+    if (feature_map & feature::{{ dep.func_name | lower }}::get_id()) {
+        VerifyOrReturnValue(feature::{{ dep.func_name | lower }}::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
+    }
+    {% endif %}
+    {% endfor %}
+}
+{% endfor %}
+{# Standalone choice groups: no mandatory parent #}
+{% for constraint_type, features in cluster.get_standalone_choice_groups() %}
+{% if features | length > 0 %}
+{% set optional_condition = features[0].conformance.get_optional_condition() %}
+{% set indent = '    ' if optional_condition else '' %}
+{% if optional_condition %}
+if ({{ optional_condition }}) {
+{% endif %}
+{% if constraint_type == 'exact_one' %}
+{{ indent }}VALIDATE_FEATURES_EXACT_ONE("{{ features | map(attribute='name') | join(',') }}",
+                           {{ features | map(attribute='func_name') | map('lower') | map('replace', ' ', '_') | map('format_filter', 'feature::{}::get_id()') | join(', ') }});
+{% elif constraint_type == 'at_least_one' %}
+{{ indent }}VALIDATE_FEATURES_AT_LEAST_ONE("{{ features | map(attribute='name') | join(',') }}",
+                            {{ features | map(attribute='func_name') | map('lower') | map('replace', ' ', '_') | map('format_filter', 'feature::{}::get_id()') | join(', ') }});
+{% endif %}
+{% for feature in features %}
+{{ indent }}if (feature_map & feature::{{ feature.func_name | lower }}::get_id()) {
+    {% if feature.get_externally_managed_attributes() | length > 0 %}
+    {{ indent }}VerifyOrReturnValue(feature::{{ feature.func_name | lower }}::add(cluster, &(config->features.{{ feature.func_name | lower }})) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
+    {% else %}
+    {{ indent }}VerifyOrReturnValue(feature::{{ feature.func_name | lower }}::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
+    {% endif %}
+{{ indent }}}
+{% endfor %}
+{% endif %}
+{% if optional_condition %}
+}
+{% endif %}
+{% endfor %}
+{# Independent features: add when selected (and condition if any) #}
+{% for feature in cluster.get_independent_features() %}
+{% if feature.conformance.get_mandatory_condition() %}
+if ((feature_map & feature::{{ feature.func_name | lower }}::get_id()) && {{ feature.conformance.get_mandatory_condition() }}) {
+{% else %}
+if (feature_map & feature::{{ feature.func_name | lower }}::get_id()) {
+{% endif %}
+    {% if feature.get_externally_managed_attributes() | length > 0 %}
+    VerifyOrReturnValue(feature::{{ feature.func_name | lower }}::add(cluster, &(config->features.{{ feature.func_name | lower }})) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
+    {% else %}
+    VerifyOrReturnValue(feature::{{ feature.func_name | lower }}::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
+    {% endif %}
+}
+{% endfor %}

@@ -21,6 +21,9 @@ application.
 #include <sdkconfig.h>
 #ifdef CONFIG_ESP_MATTER_ENABLE_MATTER_SERVER
 #ifdef CONFIG_ESP_MATTER_ENABLE_DATA_MODEL
+#ifdef CONFIG_ENABLE_GENERATED_DATA_MODEL
+#include <generated/esp_matter_data_model_utils.h>
+#endif // CONFIG_ENABLE_GENERATED_DATA_MODEL
 #include <esp_matter_attribute.h>
 #include <esp_matter_attribute_utils.h>
 #include <esp_matter_cluster.h>
@@ -50,7 +53,7 @@ enum {
     kCommissioningSessionStarted  = kRange_PublicPlatformSpecific + 0x1000,
     /** Signals that Commissioning session has stopped */
     kCommissioningSessionStopped,
-    /** Signals that Commissioning window is now opend */
+    /** Signals that Commissioning window is now opened */
     kCommissioningWindowOpened,
     /** Signals that Commissioning window is now closed */
     kCommissioningWindowClosed,

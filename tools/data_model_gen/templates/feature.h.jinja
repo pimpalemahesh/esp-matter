@@ -1,0 +1,43 @@
+{% set features = cluster.get_features() %}
+{% if features | length > 0 %}
+namespace feature {
+{# ---------- Feature Implementations ---------- #}
+{% for feature in features %}
+namespace {{ feature.func_name | lower }} {
+{% set ext_attrs = feature.get_externally_managed_attributes() %}
+{% set has_config = ext_attrs | length > 0 %}
+{% if has_config %}
+typedef struct config {
+    {% for attr in ext_attrs %}
+        {% if attr.type == "string" %}
+    char {{ attr.func_name }}[k_max_{{ attr.func_name }}_length + 1];
+        {% elif attr.type == "octstr" %}
+    uint8_t {{ attr.func_name }}[k_max_{{ attr.func_name }}_length];
+        {% elif attr.type == "list" %}
+        {% elif attr.is_nullable %}
+    nullable<{{ attr.get_type() }}> {{ attr.func_name }};
+        {% else %}
+    {{ attr.get_type() }} {{ attr.func_name }};
+        {% endif %}
+    {% endfor %}
+    {% set init_items = [] %}
+    {% for attr in feature.get_attributes() %}
+        {% if not attr.is_complex and not attr.is_internally_managed %}
+            {% set _ = init_items.append(attr.func_name ~ "(" ~ attr.get_default_value() ~ ")") %}
+        {% endif %}
+    {% endfor %}
+    {% if init_items %}
+    config() : {{ init_items | join(", ") }} {}
+    {% else %}
+    config() {}
+    {% endif %}
+} config_t;
+{% endif %}
+uint32_t get_id();
+esp_err_t add(cluster_t *cluster{% if has_config %}, config_t *config{% endif %});
+} /* {{ feature.func_name | lower }} */
+
+{% endfor %}
+} /* feature */
+
+{% endif %}

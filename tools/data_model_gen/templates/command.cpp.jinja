@@ -1,0 +1,23 @@
+{% if cluster.get_commands() | length > 0 %}
+namespace command {
+{% for command in cluster.get_commands() %}
+{% if command.has_special_config() %}
+#if {{ command.get_special_config() }}
+{% endif %}
+command_t *create_{{ command.func_name | lower }}(cluster_t *cluster)
+{
+    {% if command.get_conformance_condition() %}
+    {% if "feature" in command.get_conformance_condition()|string %}
+    uint32_t feature_map = get_feature_map_value(cluster);
+    {% endif %}
+    VerifyOrReturnValue({{ command.get_conformance_condition() }}, NULL);
+    {% endif %}
+    return esp_matter::command::create(cluster, {{ command.chip_name }}::Id, {{ command.get_flag() }}, {% if command.has_callback %}esp_matter_command_callback_{{ command.func_name | lower }}{% else %}NULL{% endif %});
+}
+{% if command.has_special_config() %}
+#endif // {{ command.get_special_config() }}
+{% endif %}
+
+{% endfor %}
+} /* command */
+{% endif %}

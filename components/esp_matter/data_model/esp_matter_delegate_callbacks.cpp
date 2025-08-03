@@ -42,6 +42,18 @@
 #include <app/clusters/diagnostic-logs-server/diagnostic-logs-server.h>
 #include <app/clusters/closure-control-server/closure-control-server.h>
 #include <app/clusters/closure-dimension-server/closure-dimension-server.h>
+#include <app/clusters/application-launcher-server/application-launcher-server.h>
+#include <app/clusters/account-login-server/account-login-server.h>
+#include <app/clusters/audio-output-server/audio-output-server.h>
+#include <app/clusters/channel-server/channel-server.h>
+#include <app/clusters/content-app-observer/content-app-observer.h>
+#include <app/clusters/content-control-server/content-control-server.h>
+#include <app/clusters/low-power-server/low-power-server.h>
+#include <app/clusters/messages-server/messages-server.h>
+#include <app/clusters/media-input-server/media-input-server.h>
+#include <app/clusters/media-playback-server/media-playback-server.h>
+#include <app/clusters/target-navigator-server/target-navigator-server.h>
+#include <app/clusters/wake-on-lan-server/wake-on-lan-server.h>
 #include <app/clusters/commodity-tariff-server/commodity-tariff-server.h>
 #include <app/clusters/commodity-price-server/commodity-price-server.h>
 #include <app/clusters/electrical-grid-conditions-server/electrical-grid-conditions-server.h>
@@ -588,6 +600,116 @@ void MeterIdentificationDelegateInitCB(void *delegate, uint16_t endpoint_id)
     LogErrorOnFailure(meter_identification_instance->Init());
 }
 
+void ApplicationLauncherDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    ApplicationLauncher::Delegate *application_launcher_delegate = static_cast<ApplicationLauncher::Delegate *>(delegate);
+    ApplicationLauncher::SetDefaultDelegate(endpoint_id, application_launcher_delegate);
+}
+void AccountLoginDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    AccountLogin::Delegate *account_login_delegate = static_cast<AccountLogin::Delegate *>(delegate);
+    AccountLogin::SetDefaultDelegate(endpoint_id, account_login_delegate);
+}
+void AudioOutputDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    AudioOutput::Delegate *audio_output_delegate = static_cast<AudioOutput::Delegate *>(delegate);
+    AudioOutput::SetDefaultDelegate(endpoint_id, audio_output_delegate);
+}
+void ChannelDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    Channel::Delegate *channel_delegate = static_cast<Channel::Delegate *>(delegate);
+    Channel::SetDefaultDelegate(endpoint_id, channel_delegate);
+}
+void ContentAppObserverDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    ContentAppObserver::Delegate *content_app_observer_delegate = static_cast<ContentAppObserver::Delegate *>(delegate);
+    ContentAppObserver::SetDefaultDelegate(endpoint_id, content_app_observer_delegate);
+}
+void ContentControlDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    ContentControl::Delegate *content_control_delegate = static_cast<ContentControl::Delegate *>(delegate);
+    ContentControl::SetDefaultDelegate(endpoint_id, content_control_delegate);
+}
+void DishwasherModeDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    InitModeDelegate(delegate, endpoint_id, DishwasherMode::Id);
+}
+void LowPowerDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    LowPower::Delegate *low_power_delegate = static_cast<LowPower::Delegate *>(delegate);
+    LowPower::SetDefaultDelegate(endpoint_id, low_power_delegate);
+}
+void MessagesDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    Messages::Delegate *messages_delegate = static_cast<Messages::Delegate *>(delegate);
+    Messages::SetDefaultDelegate(endpoint_id, messages_delegate);
+}
+void MediaInputDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    MediaInput::Delegate *media_input_delegate = static_cast<MediaInput::Delegate *>(delegate);
+    MediaInput::SetDefaultDelegate(endpoint_id, media_input_delegate);
+}
+void MediaPlaybackDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    MediaPlayback::Delegate *media_playback_delegate = static_cast<MediaPlayback::Delegate *>(delegate);
+    MediaPlayback::SetDefaultDelegate(endpoint_id, media_playback_delegate);
+}
+void OvenModeDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    InitModeDelegate(delegate, endpoint_id, OvenMode::Id);
+}
+void OvenCavityOperationalStateDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    OperationalState::Delegate *operational_state_delegate = static_cast<OperationalState::Delegate *>(delegate);
+    OvenCavityOperationalState::Instance *instance = nullptr;
+    if (s_operational_state_instances.find(endpoint_id) == s_operational_state_instances.end()) {
+        instance = new OvenCavityOperationalState::Instance(operational_state_delegate, endpoint_id);
+        s_operational_state_instances[endpoint_id] = static_cast<OperationalState::Instance *>(instance);
+    } else {
+        instance = static_cast<OvenCavityOperationalState::Instance *>(s_operational_state_instances[endpoint_id]);
+    }
+    (void) instance->Init();
+}
+void RefrigeratorAndTemperatureControlledCabinetModeDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    InitModeDelegate(delegate, endpoint_id, RefrigeratorAndTemperatureControlledCabinetMode::Id);
+}
+void RvcOperationalStateDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    RvcOperationalState::Delegate *rvc_operational_state_delegate = static_cast<RvcOperationalState::Delegate *>(delegate);
+    RvcOperationalState::Instance *instance = nullptr;
+    if (s_operational_state_instances.find(endpoint_id) == s_operational_state_instances.end()) {
+        instance = new RvcOperationalState::Instance(rvc_operational_state_delegate, endpoint_id);
+        s_operational_state_instances[endpoint_id] = static_cast<OperationalState::Instance *>(instance);
+    } else {
+        instance = static_cast<RvcOperationalState::Instance *>(s_operational_state_instances[endpoint_id]);
+    }
+    (void) instance->Init();
+}
+void TargetNavigatorDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    TargetNavigator::Delegate *target_navigator_delegate = static_cast<TargetNavigator::Delegate *>(delegate);
+    TargetNavigator::SetDefaultDelegate(endpoint_id, target_navigator_delegate);
+}
+void WakeOnLanDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    VerifyOrReturn(delegate != nullptr);
+    WakeOnLan::Delegate *wake_on_lan_delegate = static_cast<WakeOnLan::Delegate *>(delegate);
+    WakeOnLan::SetDefaultDelegate(endpoint_id, wake_on_lan_delegate);
+}
 } // namespace delegate_cb
 } // namespace cluster
 } // namespace esp_matter

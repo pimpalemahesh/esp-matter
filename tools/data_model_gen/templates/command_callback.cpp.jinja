@@ -1,0 +1,24 @@
+{% for command in cluster.get_commands() %}
+{% if command.has_callback %}
+
+static esp_err_t esp_matter_command_callback_{{ command.func_name | lower }}(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
+                                                                             void *opaque_ptr)
+{
+    chip::app::Clusters::{{ cluster.chip_name }}::Commands::{{ command.name }}::DecodableType command_data;
+    {% if command.is_fabric_scoped %}
+    chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
+    CHIP_ERROR error = command_data.Decode(tlv_data, command_obj->GetAccessingFabricIndex());
+    {% else %}
+    CHIP_ERROR error = Decode(tlv_data, command_data);
+    {% endif %}
+    if (error == CHIP_NO_ERROR) {
+        {% if command.direction == 'commandToServer' %}
+        emberAf{{ cluster.chip_name }}Cluster{{ command.name }}Callback((CommandHandler *)opaque_ptr, command_path, command_data);
+        {% else %}
+        NULL;
+        {% endif %}
+    }
+    return ESP_OK;
+}
+{% endif %}
+{% endfor %}
