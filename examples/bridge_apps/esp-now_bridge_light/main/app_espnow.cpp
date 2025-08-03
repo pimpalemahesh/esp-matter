@@ -24,11 +24,13 @@
 
 using namespace chip::app::Clusters;
 using namespace esp_matter;
+using namespace esp_matter::endpoint;
 
 static const char *TAG = "app_espnow";
 static bool light_status = false;
 extern uint16_t light_endpoint_id;
 extern uint16_t aggregator_endpoint_id;
+using namespace esp_matter::endpoint::on_off_light_switch;
 
 static void espnow_ctrl_onoff(espnow_addr_t src_addr, bool status)
 {

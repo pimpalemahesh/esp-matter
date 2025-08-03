@@ -63,6 +63,25 @@ void CommodityTariffDelegateInitCB(void *delegate, uint16_t endpoint_id);
 void CommodityPriceDelegateInitCB(void *delegate, uint16_t endpoint_id);
 void ElectricalGridConditionsDelegateInitCB(void *delegate, uint16_t endpoint_id);
 void MeterIdentificationDelegateInitCB(void *delegate, uint16_t endpoint_id);
+
+void ApplicationLauncherDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void AccountLoginDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void AudioOutputDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void ChannelDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void ContentAppObserverDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void ContentControlDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void DishwasherModeDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void LowPowerDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void MessagesDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void MediaInputDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void MediaPlaybackDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void OvenModeDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void OvenCavityOperationalStateDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void RefrigeratorAndTemperatureControlledCabinetModeDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void RvcOperationalStateDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void TargetNavigatorDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void WakeOnLanDelegateInitCB(void *delegate, uint16_t endpoint_id);
+void OtaSoftwareUpdateRequestorDelegateInitCB(void *delegate, uint16_t endpoint_id);
 } // namespace delegate_cb
 
 } // namespace cluster

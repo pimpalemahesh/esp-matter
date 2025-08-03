@@ -1,0 +1,45 @@
+{# --- Partition attributes into config-based vs default-based --- #}
+{% set config_attrs = [] %}
+{% set default_attrs = [] %}
+{% for a in attrs %}
+    {% set is_config_attr = (
+        not a.is_internally_managed
+        and not (a.type in ["string", "octstr"] and a.get_default_value() in ["null","NULL"])
+        and not (a.type == "list")
+    ) %}
+    {% if is_config_attr %}
+        {% do config_attrs.append(a) %}
+    {% else %}
+        {% do default_attrs.append(a) %}
+    {% endif %}
+{% endfor %}
+{# --- Config-dependent attributes --- #}
+{% if config_attrs | length > 0 %}
+if (config) {
+    {% for a in config_attrs %}
+        {% if a.type in ["string", "octstr"] %}
+    attribute::create_{{ a.func_name }}(cluster, config->{{ a.func_name }}, sizeof(config->{{ a.func_name }}));
+        {% else %}
+    attribute::create_{{ a.func_name }}(cluster, config->{{ a.func_name }});
+        {% endif %}
+    {% endfor %}
+} else {
+    ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
+}
+{% endif %}
+{# --- Default attributes (no config) --- #}
+{% for a in default_attrs %}
+    {% if a.type == "list" %}
+attribute::create_{{ a.func_name }}(cluster, NULL, 0, 0);
+    {% elif a.type in ["string", "octstr"] %}
+        {% if a.get_default_value() not in ["null","NULL"] %}
+            {% if a.is_internally_managed %}
+attribute::create_{{ a.func_name }}(cluster, NULL, 0);
+            {% else %}
+attribute::create_{{ a.func_name }}(cluster, "{{ a.get_default_value() }}", sizeof("{{ a.get_default_value() }}"));
+            {% endif %}
+        {% endif %}
+    {% else %}
+attribute::create_{{ a.func_name }}(cluster, {{ a.get_default_value() }});
+    {% endif %}
+{% endfor %}

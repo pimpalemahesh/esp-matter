@@ -1,0 +1,144 @@
+// Copyright 2025 Espressif Systems (Shanghai) PTE LTD
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* THIS IS A GENERATED FILE, DO NOT EDIT */
+
+#include <esp_log.h>
+#include <esp_matter_core.h>
+#include <esp_matter.h>
+
+#include <app-common/zap-generated/cluster-enums.h>
+#include <app-common/zap-generated/callback.h>
+#include <app/InteractionModelEngine.h>
+#include <zap_common/app/PluginApplicationCallbacks.h>
+#include <app/clusters/mode-base-server/mode-base-cluster-objects.h>
+#include <esp_matter_delegate_callbacks.h>
+#include <administrator_commissioning.h>
+#include <administrator_commissioning_ids.h>
+#include <binding.h>
+#include <esp_matter_data_model_priv.h>
+#include <app/ClusterCallbacks.h>
+
+using namespace chip::app::Clusters;
+using chip::app::CommandHandler;
+using chip::app::DataModel::Decode;
+using chip::TLV::TLVReader;
+using namespace esp_matter;
+using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::delegate_cb;
+
+static const char *TAG = "administrator_commissioning_cluster";
+constexpr uint16_t cluster_revision = 1;
+
+
+namespace esp_matter {
+namespace cluster {
+namespace administrator_commissioning {
+
+namespace feature {
+namespace basic {
+uint32_t get_id()
+{
+    return Basic::Id;
+}
+
+esp_err_t add(cluster_t *cluster)
+{
+    VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    update_feature_map(cluster, get_id());
+    command::create_open_basic_commissioning_window(cluster);
+
+    return ESP_OK;
+}
+} /* basic */
+
+} /* feature */
+
+
+namespace attribute {
+attribute_t *create_window_status(cluster_t *cluster, uint8_t value)
+{
+    return esp_matter::attribute::create(cluster, WindowStatus::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_enum8(value));
+}
+
+attribute_t *create_admin_fabric_index(cluster_t *cluster, nullable<uint16_t> value)
+{
+    return esp_matter::attribute::create(cluster, AdminFabricIndex::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint16(value));
+}
+
+attribute_t *create_admin_vendor_id(cluster_t *cluster, nullable<uint16_t> value)
+{
+    return esp_matter::attribute::create(cluster, AdminVendorId::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint16(value));
+}
+
+} /* attribute */
+
+
+namespace command {
+command_t *create_open_commissioning_window(cluster_t *cluster)
+{
+    return esp_matter::command::create(cluster, OpenCommissioningWindow::Id, COMMAND_FLAG_ACCEPTED, NULL);
+}
+
+command_t *create_open_basic_commissioning_window(cluster_t *cluster)
+{
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnValue(feature_map & feature::basic::get_id(), NULL);
+    return esp_matter::command::create(cluster, OpenBasicCommissioningWindow::Id, COMMAND_FLAG_ACCEPTED, NULL);
+}
+
+command_t *create_revoke_commissioning(cluster_t *cluster)
+{
+    return esp_matter::command::create(cluster, RevokeCommissioning::Id, COMMAND_FLAG_ACCEPTED, NULL);
+}
+
+} /* command */
+
+
+
+const function_generic_t *function_list = NULL;
+
+const int function_flags = CLUSTER_FLAG_NONE;
+
+cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
+{
+    cluster_t *cluster = esp_matter::cluster::create(endpoint, administrator_commissioning::Id, flags);
+    VerifyOrReturnValue(cluster, NULL, ESP_LOGE(TAG, "Could not create cluster. cluster_id: 0x%08" PRIX32, administrator_commissioning::Id));
+    if (flags & CLUSTER_FLAG_SERVER) {
+        static const auto plugin_server_init_cb = CALL_ONCE(MatterAdministratorCommissioningPluginServerInitCallback);
+        set_plugin_server_init_callback(cluster, plugin_server_init_cb);
+        add_function_list(cluster, function_list, function_flags);
+
+        /* Attributes managed internally */
+        global::attribute::create_feature_map(cluster, 0);
+
+        /* Attributes not managed internally */
+        global::attribute::create_cluster_revision(cluster, cluster_revision);
+
+        attribute::create_window_status(cluster, 0);
+        attribute::create_admin_fabric_index(cluster, 0);
+        attribute::create_admin_vendor_id(cluster, 0);
+
+        command::create_open_commissioning_window(cluster);
+        command::create_revoke_commissioning(cluster);
+        cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterAdministratorCommissioningClusterServerInitCallback,
+                                                 ESPMatterAdministratorCommissioningClusterServerShutdownCallback);
+    }
+
+    return cluster;
+}
+
+} /* administrator_commissioning */
+} /* cluster */
+} /* esp_matter */

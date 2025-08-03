@@ -16,7 +16,30 @@
 #include <esp_log.h>
 #include <esp_matter_bridge.h>
 #include <esp_matter_console_bridge.h>
+
+#ifdef CONFIG_ENABLE_GENERATED_DATA_MODEL
+#include <on_off_light_device.h>
+#include <dimmable_light_device.h>
+#include <on_off_light_switch_device.h>
+#include <occupancy_sensor_device.h>
+#include <on_off_plug_in_unit_device.h>
+#include <color_temperature_light_device.h>
+#include <extended_color_light_device.h>
+#include <thermostat_device.h>
+#include <temperature_sensor_device.h>
+using namespace esp_matter::endpoint::on_off_light;
+using namespace esp_matter::endpoint::dimmable_light;
+using namespace esp_matter::endpoint::on_off_light_switch;
+using namespace esp_matter::endpoint::occupancy_sensor;
+using namespace esp_matter::endpoint::on_off_plug_in_unit;
+using namespace esp_matter::endpoint::color_temperature_light;
+using namespace esp_matter::endpoint::extended_color_light;
+using namespace esp_matter::endpoint::thermostat;
+using namespace esp_matter::endpoint::temperature_sensor;
+#else
 #include <esp_matter_endpoint.h>
+#endif // CONFIG_ENABLE_GENERATED_DATA_MODEL
+
 #include <esp_matter_mem.h>
 #include <string.h>
 

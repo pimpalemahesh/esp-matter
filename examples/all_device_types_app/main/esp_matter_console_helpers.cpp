@@ -36,7 +36,6 @@
 #include <clusters/soil_measurement/integration.h>
 #include "electrical_measurement/electrical_measurement.h"
 #include "mock_delegates/mock_chime_delegate.h"
-
 // External variables for electrical sensor initialization
 bool g_electrical_sensor_created = false;
 
@@ -510,8 +509,11 @@ int create(uint8_t device_type_index)
         cluster::energy_evse::feature::charging_preferences::add(energy_evse_cluster);
 
         esp_matter::endpoint::power_source::config_t power_source_config;
+            power_source_config.power_source.feature_flags = esp_matter::cluster::power_source::feature::wired::get_id();
         esp_matter::endpoint_t *ps_endpoint = esp_matter::endpoint::power_source::create(node, &power_source_config, ENDPOINT_FLAG_NONE, NULL);
         esp_matter::endpoint::electrical_sensor::config_t electrical_sensor_config;
+            electrical_sensor_config.power_topology.feature_flags = esp_matter::cluster::power_topology::feature::node_topology::get_id();
+            electrical_sensor_config.electrical_power_measurement.feature_flags = esp_matter::cluster::electrical_power_measurement::feature::alternating_current::get_id();
         esp_matter::endpoint::electrical_sensor::add(ps_endpoint, &electrical_sensor_config);
 
         if (!ps_endpoint) {

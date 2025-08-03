@@ -21,6 +21,12 @@ application.
 #include <sdkconfig.h>
 #ifdef CONFIG_ESP_MATTER_ENABLE_MATTER_SERVER
 #ifdef CONFIG_ESP_MATTER_ENABLE_DATA_MODEL
+#ifdef CONFIG_ENABLE_GENERATED_DATA_MODEL
+// Include only generated data model files
+#include <all_device_type.h>
+#include <all_cluster.h>
+#include <esp_matter_generated_data_model_utils.h>
+#else
 #include <esp_matter_attribute.h>
 #include <esp_matter_attribute_utils.h>
 #include <esp_matter_cluster.h>
@@ -28,6 +34,7 @@ application.
 #include <esp_matter_endpoint.h>
 #include <esp_matter_event.h>
 #include <esp_matter_feature.h>
+#endif // CONFIG_ENABLE_GENERATED_DATA_MODEL
 #include <esp_matter_data_model.h>
 #endif // CONFIG_ESP_MATTER_ENABLE_DATA_MODEL
 #include <app/server/Dnssd.h>
@@ -37,7 +44,6 @@ application.
 #include <esp_matter_core.h>
 #include <platform/CHIPDeviceEvent.h>
 #include <platform/CHIPDeviceLayer.h>
-
 namespace chip {
 namespace DeviceLayer {
 namespace DeviceEventType {

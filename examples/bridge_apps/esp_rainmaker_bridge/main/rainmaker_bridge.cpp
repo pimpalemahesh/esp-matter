@@ -41,6 +41,12 @@ using namespace chip;
 using namespace chip::app::Clusters;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::endpoint::on_off_light;
+using namespace esp_matter::endpoint::dimmable_light;
+using namespace esp_matter::endpoint::extended_color_light;
+using namespace esp_matter::endpoint::color_temperature_light;
+using namespace esp_matter::endpoint::on_off_light_switch;
+using namespace esp_matter::endpoint::bridged_node;
 
 extern uint16_t aggregator_endpoint_id;
 

@@ -256,4 +256,12 @@ menu "ESP Matter"
 
     endmenu
 
+    menu "Generated Data Model"
+        config ENABLE_GENERATED_DATA_MODEL
+            bool "Enable Generated Data Model"
+            default n
+            help
+                Enable this option to use the generated data model.
+    endmenu
+
 endmenu

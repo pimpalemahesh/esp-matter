@@ -1,0 +1,145 @@
+// Copyright 2025 Espressif Systems (Shanghai) PTE LTD
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* This is a Generated File */
+
+#include <esp_log.h>
+#include <esp_matter.h>
+#include <esp_matter_core.h>
+#include <{{ device.filename }}.h>
+
+using namespace esp_matter;
+using namespace esp_matter::cluster;
+using namespace esp_matter::endpoint;
+
+namespace esp_matter {
+namespace endpoint {
+namespace {{ device.esp_name }} {
+uint32_t get_device_type_id()
+{
+    return ESP_MATTER_{{ device.esp_name | upper }}_DEVICE_TYPE_ID;
+}
+
+uint8_t get_device_type_version()
+{
+    return ESP_MATTER_{{ device.esp_name | upper }}_DEVICE_TYPE_VERSION;
+}
+
+endpoint_t *create(node_t *node, config_t *config, uint8_t flags, void *priv_data)
+{
+    endpoint_t *endpoint = esp_matter::endpoint::create(node, flags, priv_data);
+    VerifyOrReturnValue(endpoint != nullptr, NULL, ESP_LOGE("{{ device.esp_name }}", "Failed to create endpoint"));
+
+    cluster_t *descriptor_cluster = descriptor::create(endpoint, &(config->descriptor), CLUSTER_FLAG_SERVER);
+    VerifyOrReturnValue(descriptor_cluster != nullptr, NULL, ESP_LOGE("{{ device.esp_name }}", "Failed to create descriptor cluster"));
+
+    {% if device.binding_cluster_available() %}
+    cluster_t *binding_cluster = binding::create(endpoint, &(config->binding), CLUSTER_FLAG_SERVER);
+    VerifyOrReturnValue(binding_cluster != nullptr, NULL, ESP_LOGE("{{ device.esp_name }}", "Failed to create binding cluster"));
+    {% endif %}
+    VerifyOrReturnValue(add(endpoint, config) == ESP_OK, NULL, ESP_LOGE("{{ device.esp_name }}", "Failed to add device type"));
+    return endpoint;
+}
+
+esp_err_t add(endpoint_t *endpoint, config_t *config)
+{
+    esp_err_t err = add_device_type(endpoint, ESP_MATTER_{{ device.esp_name | upper }}_DEVICE_TYPE_ID, ESP_MATTER_{{ device.esp_name | upper }}_DEVICE_TYPE_VERSION);
+    VerifyOrReturnError(err == ESP_OK, err);
+
+    {% for cluster in device.get_clusters() %}
+    {% if cluster.is_mandatory %}
+    {% if cluster.esp_name == "icd_management"%}
+#if CHIP_CONFIG_ENABLE_ICD_SERVER
+    {% endif %}
+    {% if cluster.esp_name == "network_commissioning" %}
+#if CHIP_DEVICE_CONFIG_ENABLE_WIFI
+    config->network_commissioning.feature_flags = cluster::network_commissioning::feature::wi_fi_network_interface::get_id();
+#elif CHIP_DEVICE_CONFIG_ENABLE_THREAD
+    config->network_commissioning.feature_flags = cluster::network_commissioning::feature::thread_network_interface::get_id();
+#else
+    config->network_commissioning.feature_flags = cluster::network_commissioning::feature::ethernet_network_interface::get_id();
+#endif
+    {% endif %}
+    {% if cluster.server_cluster %}
+    {% set has_mandatory_items = cluster.device_mandatory_attribute or cluster.device_mandatory_commands or cluster.device_mandatory_events or cluster.device_mandatory_features %}
+    {% if has_mandatory_items %}
+    cluster_t *{{ cluster.esp_name }} = cluster::{{ cluster.esp_name }}::create(endpoint, &(config->{{ cluster.esp_name }}), {{ cluster.function_flags }});
+    {% for attr in cluster.device_mandatory_attributes %}
+        {% if not attr.is_internally_managed %}
+            {% if attr.type in ["string", "octstr"] %}
+    cluster::{{ cluster.esp_name }}::attribute::create_{{ attr.func_name }}({{ cluster.esp_name }}, config->{{ attr.func_name }}, sizeof(config->{{ attr.func_name }}));
+            {% else %}
+    cluster::{{ cluster.esp_name }}::attribute::create_{{ attr.func_name }}({{ cluster.esp_name }}, config->{{ attr.func_name }});
+            {% endif %}
+        {% else %}
+            {% if attr.type in ["string", "octstr"] %}
+    cluster::{{ cluster.esp_name }}::attribute::create_{{ attr.func_name }}({{ cluster.esp_name }}, NULL, 0);
+            {% elif attr.type == "list" %}
+    cluster::{{ cluster.esp_name }}::attribute::create_{{ attr.func_name }}({{ cluster.esp_name }}, NULL, NULL, 0);
+            {% else %}
+    cluster::{{ cluster.esp_name }}::attribute::create_{{ attr.func_name }}({{ cluster.esp_name }}, {{ attr.get_default_value() }});
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% if cluster.device_mandatory_features | length > 0 %}
+    {% for mandatory_feature in cluster.device_mandatory_features %}
+    {% if mandatory_feature.get_externally_managed_attributes() | length > 0 %}
+    cluster::{{ cluster.esp_name }}::feature::{{ mandatory_feature.func_name }}::add({{cluster.esp_name}}, &(config->{{ cluster.esp_name}}_{{ mandatory_feature.func_name }}));
+    {% else %}
+    cluster::{{ cluster.esp_name }}::feature::{{ mandatory_feature.func_name }}::add({{cluster.esp_name}});
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% if cluster.device_mandatory_commands | length > 0 %}
+    {% for mandatory_command in cluster.device_mandatory_commands %}
+    cluster::{{ cluster.esp_name }}::command::create_{{ mandatory_command.func_name }}({{cluster.esp_name}});
+    {% endfor %}
+    {% endif %}
+    {% if cluster.device_mandatory_events | length > 0 %}
+    {% for mandatory_event in cluster.device_mandatory_events %}
+    cluster::{{ cluster.esp_name }}::event::create_{{ mandatory_event }}({{cluster.func_name}});
+    {% endfor %}
+    {% endif %}
+    {% else %}
+    cluster::{{ cluster.esp_name }}::create(endpoint, &(config->{{ cluster.esp_name }}), {{ cluster.function_flags }});
+    {% endif %}
+    {% else %}
+    cluster::{{ cluster.esp_name }}::create(endpoint, NULL, {{ cluster.function_flags }});
+    {% endif %}
+    {% if cluster.esp_name == "icd_management"%}
+#endif
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+    return ESP_OK;
+}
+
+{% if device.esp_name == "bridged_node"%}
+endpoint_t *resume(node_t *node, config_t *config, uint8_t flags, uint16_t endpoint_id, void *priv_data)
+{
+    esp_matter::endpoint_t *endpoint = esp_matter::endpoint::resume(node, flags | ENDPOINT_FLAG_DESTROYABLE, endpoint_id, priv_data);
+    VerifyOrReturnValue(endpoint != nullptr, NULL, ESP_LOGE("{{ device.esp_name }}", "Failed to create endpoint"));
+
+    cluster_t *descriptor_cluster = descriptor::create(endpoint, &(config->descriptor), CLUSTER_FLAG_SERVER);
+    VerifyOrReturnValue(descriptor_cluster != nullptr, NULL, ESP_LOGE("{{ device.esp_name }}", "Failed to create descriptor cluster"));
+
+    VerifyOrReturnValue(ESP_OK == add(endpoint, config), NULL, ESP_LOGE("{{ device.esp_name }}", "Failed to add cluster"));
+    return endpoint;
+}
+{% endif %}
+
+} /* {{ device.esp_name }} */
+} /* endpoint */
+} /* esp_matter */

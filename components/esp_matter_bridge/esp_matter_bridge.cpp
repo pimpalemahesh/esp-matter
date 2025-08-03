@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "esp_matter_endpoint.h"
 #include <esp_log.h>
 #include <esp_matter.h>
 #include <nvs.h>
@@ -22,6 +21,15 @@
 #include <esp_matter_bridge.h>
 #include <esp_matter_mem.h>
 #include <nvs_key_allocator.h>
+
+#ifdef CONFIG_ENABLE_GENERATED_DATA_MODEL
+#include <aggregator_device.h>
+#include <bridged_node_device.h>
+using namespace esp_matter::endpoint::aggregator;
+#else
+#include "esp_matter_endpoint.h"
+#endif // CONFIG_ENABLE_GENERATED_DATA_MODEL
+
 #if MAX_BRIDGED_DEVICE_COUNT > 0
 
 static const char *TAG = "esp_matter_bridge";
@@ -373,6 +381,7 @@ device_t *resume_device(node_t *node, uint16_t device_endpoint_id, void *priv_da
     bridged_node::config_t bridged_node_config;
     dev->endpoint = bridged_node::resume(node, &bridged_node_config, ENDPOINT_FLAG_DESTROYABLE | ENDPOINT_FLAG_BRIDGE,
                                          device_endpoint_id, priv_data);
+
     if (!(dev->endpoint)) {
         ESP_LOGE(TAG, "Could not resume esp_matter endpoint for bridged device");
         esp_matter_mem_free(dev);

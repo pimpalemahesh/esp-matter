@@ -24,6 +24,11 @@ static const char *TAG = "app_main";
 using namespace esp_matter;
 using namespace esp_matter::attribute;
 using namespace esp_matter::endpoint;
+using namespace esp_matter::endpoint::on_off_light;
+using namespace esp_matter::endpoint::dimmable_light;
+using namespace esp_matter::endpoint::extended_color_light;
+using namespace esp_matter::endpoint::color_temperature_light;
+using namespace esp_matter::endpoint::on_off_light_switch;
 
 uint16_t aggregator_endpoint_id = chip::kInvalidEndpointId;
 

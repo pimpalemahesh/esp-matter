@@ -19,6 +19,7 @@ static const char *TAG = "zigbee_bridge";
 using namespace chip::app::Clusters;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::endpoint::on_off_light;
 
 extern uint16_t aggregator_endpoint_id;
 

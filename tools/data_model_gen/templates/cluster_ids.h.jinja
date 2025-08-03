@@ -1,0 +1,70 @@
+// Copyright 2025 Espressif Systems (Shanghai) PTE LTD
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* THIS IS A GENERATED FILE, DO NOT EDIT */
+
+#pragma once
+#include <esp_matter_data_model.h>
+
+namespace esp_matter {
+namespace cluster {
+namespace {{ cluster.esp_name }} {
+
+inline constexpr uint32_t Id = {{ cluster.get_id() }};
+
+{% set features = cluster.get_feature_list() %}
+{% if features | length > 0 %}
+namespace feature {
+{# ---------- Feature IDs ---------- #}
+{% for feature in features %}
+namespace {{ feature.chip_name }} {
+inline constexpr uint32_t Id = {{ feature.get_id() }};
+} /* {{ feature.chip_name }} */
+{% endfor %}
+} /* feature */
+{% endif %}
+
+{% if cluster.get_attribute_list() | length > 0 %}
+namespace attribute {
+{% for attr in cluster.get_attribute_list() %}
+namespace {{ attr.chip_name }} {
+inline constexpr uint32_t Id = {{ attr.get_id()}};
+} /* {{ attr.name }} */
+{% endfor %}
+} /* attribute */
+{% endif %}
+
+{% if cluster.get_command_list() | length > 0 %}
+namespace command {
+{% for command in cluster.get_command_list() %}
+namespace {{ command.chip_name }} {
+inline constexpr uint32_t Id = {{ command.get_id()}};
+} /* {{ command.chip_name }} */
+{% endfor %}
+} /* command */
+{% endif %}
+
+{% if cluster.get_event_list() | length > 0 %}
+namespace event {
+{% for event in cluster.get_event_list() %}
+namespace {{ event.chip_name }} {
+inline constexpr uint32_t Id = {{ event.get_id()}};
+} /* {{ event.chip_name }} */
+{% endfor %}
+} /* event */
+{% endif %}
+
+} /* {{ cluster.esp_name }} */
+} /* cluster */
+} /* esp_matter */

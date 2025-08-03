@@ -46,6 +46,39 @@ if (CONFIG_ESP_MATTER_ENABLE_MATTER_SERVER)
         list(APPEND INCLUDE_DIRS_LIST "zap_common"
                                       "data_model")
         list(APPEND PRIV_INCLUDE_DIRS_LIST "data_model/private")
+
+    if(CONFIG_ENABLE_GENERATED_DATA_MODEL)
+        list(APPEND SRC_DIRS_LIST "data_model/device_types")
+        list(APPEND INCLUDE_DIRS_LIST "data_model/device_types")
+        list(APPEND SRC_DIRS_LIST "data_model/clusters")
+        list(APPEND INCLUDE_DIRS_LIST "data_model/clusters")
+        # Automatically include all device_types
+        file(GLOB DEVICE_TYPE_DIRS "data_model/device_types/*")
+        foreach(DIR ${DEVICE_TYPE_DIRS})
+            if(IS_DIRECTORY ${DIR})
+                list(APPEND SRC_DIRS_LIST ${DIR})
+                list(APPEND INCLUDE_DIRS_LIST ${DIR})
+            endif()
+        endforeach()
+
+        # Automatically include all clusters
+        file(GLOB CLUSTER_DIRS "data_model/clusters/*")
+        foreach(DIR ${CLUSTER_DIRS})
+            if(IS_DIRECTORY ${DIR})
+                list(APPEND SRC_DIRS_LIST ${DIR})
+                list(APPEND INCLUDE_DIRS_LIST ${DIR})
+            endif()
+        endforeach()
+
+        list(APPEND EXCLUDE_SRCS_LIST "data_model/esp_matter_attribute.cpp"
+                                     "data_model/esp_matter_cluster.cpp"
+                                     "data_model/esp_matter_command.cpp"
+                                     "data_model/esp_matter_event.cpp"
+                                     "data_model/esp_matter_feature.cpp"
+                                     "data_model/esp_matter_endpoint.cpp")
+    else()
+        list(APPEND EXCLUDE_SRCS_LIST "data_model/esp_matter_generated_data_model_utils.cpp")
+    endif(CONFIG_ENABLE_GENERATED_DATA_MODEL)
     endif(CONFIG_ESP_MATTER_ENABLE_DATA_MODEL)
 else()
     list(APPEND EXCLUDE_SRCS_LIST "esp_matter_identify.cpp"

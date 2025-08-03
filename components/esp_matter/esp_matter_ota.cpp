@@ -32,6 +32,10 @@
 #include <esp_matter_ota.h>
 #include <zap-generated/endpoint_config.h>
 
+#ifdef CONFIG_ENABLE_GENERATED_DATA_MODEL
+#include <ota_requestor_device.h>
+#endif // CONFIG_ENABLE_GENERATED_DATA_MODEL
+
 using chip::BDXDownloader;
 using chip::DefaultOTARequestor;
 using chip::DefaultOTARequestorStorage;

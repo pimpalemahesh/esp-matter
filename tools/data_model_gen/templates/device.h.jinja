@@ -1,0 +1,85 @@
+// Copyright 2025 Espressif Systems (Shanghai) PTE LTD
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* This is a Generated File */
+
+#pragma once
+#include <esp_matter_data_model.h>
+
+#include <descriptor.h>
+{% if device.binding_cluster_available() %}
+#include <binding.h>
+{% endif %}
+{% for cluster in device.get_unique_clusters() %}
+#include <{{ cluster.esp_name }}.h>
+{% endfor %}
+
+#include <esp_matter.h>
+#include <esp_matter_core.h>
+
+using namespace esp_matter;
+
+namespace esp_matter {
+namespace endpoint {
+namespace {{ device.esp_name }} {
+
+constexpr uint32_t ESP_MATTER_{{ device.esp_name | upper }}_DEVICE_TYPE_ID = {{ device.id }};
+constexpr uint8_t ESP_MATTER_{{ device.esp_name | upper }}_DEVICE_TYPE_VERSION = {{device.revision }};
+{% set init_list = [] %}
+
+typedef struct config {
+    cluster::descriptor::config_t descriptor;
+    {% if device.binding_cluster_available() %}
+    cluster::binding::config_t binding;
+    {% endif %}
+    {% for cluster in device.get_unique_mandatory_clusters() %}
+    cluster::{{ cluster.esp_name }}::config_t {{ cluster.esp_name }};
+    {% for attribute in cluster.device_mandatory_attributes %}
+    {% if not attribute.is_complex and not attribute.is_internally_managed %}
+        {% set _ = init_list.append(attribute.func_name ~ "(" ~ attribute.get_default_value() ~ ")") %}
+    {% endif %}
+    {% if not attribute.is_internally_managed %}
+        {% if attribute.type == "string" %}
+    char {{ attribute.func_name }}[k_max_{{ attribute.func_name }}_length + 1];
+        {% elif attribute.type == "octstr" %}
+    uint8_t {{ attribute.func_name }}[k_max_{{ attribute.func_name }}_length];
+        {% elif attribute.type == "list" %}
+        {% elif attribute.is_nullable %}
+    nullable<{{ attribute.get_type() }}> {{ attribute.func_name }};
+        {% else %}
+    {{ attribute.get_type() }} {{ attribute.func_name }};
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+    {% for mandatory_feature in cluster.device_mandatory_features %}
+    {% if mandatory_feature.get_externally_managed_attributes() | length > 0 %}
+    cluster::{{ cluster.esp_name }}::feature::{{ mandatory_feature.func_name }}::config_t {{cluster.esp_name}}_{{ mandatory_feature.func_name }};
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+    {% if init_list %}
+    config() : {{ init_list | join(", ") }} {}
+    {% endif %}
+} config_t;
+
+uint32_t get_device_type_id();
+uint8_t get_device_type_version();
+endpoint_t *create(node_t *node, config_t *config, uint8_t flags, void *priv_data);
+esp_err_t add(endpoint_t *endpoint, config_t *config);
+{% if device.esp_name == "bridged_node"%}
+endpoint_t *resume(node_t *node, config_t *config, uint8_t flags, uint16_t endpoint_id, void *priv_data);
+{% endif %}
+} /* {{ device.esp_name }} */
+} /* endpoint */
+} /* esp_matter */

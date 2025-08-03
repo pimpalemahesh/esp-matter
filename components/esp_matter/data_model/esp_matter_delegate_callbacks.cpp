@@ -15,7 +15,6 @@
 #include <inttypes.h>
 #include <esp_matter_delegate_callbacks.h>
 #include <esp_matter_core.h>
-#include <esp_matter_feature.h>
 #include <esp_matter_data_model_priv.h>
 #include <app/clusters/mode-base-server/mode-base-server.h>
 #include <app/clusters/energy-evse-server/energy-evse-server.h>
@@ -57,6 +56,12 @@
 #include <clusters/time_synchronization/integration.h>
 #include <clusters/resource_monitor/integration.h>
 #include <clusters/chime/integration.h>
+
+#ifdef CONFIG_ENABLE_GENERATED_DATA_MODEL
+#include <thread_border_router_management.h>
+#else
+#include <esp_matter_feature.h>
+#endif // CONFIG_ENABLE_GENERATED_DATA_MODEL
 
 using namespace chip::app::Clusters;
 namespace esp_matter {
@@ -591,6 +596,79 @@ void MeterIdentificationDelegateInitCB(void *delegate, uint16_t endpoint_id)
     meter_identification_instance->Init();
 }
 
+
+void ApplicationLauncherDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void AccountLoginDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void AudioOutputDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void ChannelDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void ContentAppObserverDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void ContentControlDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void DishwasherModeDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void LowPowerDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void MessagesDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void MediaInputDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void MediaPlaybackDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void OvenModeDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void OvenCavityOperationalStateDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void RefrigeratorAndTemperatureControlledCabinetModeDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void RvcOperationalStateDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void TargetNavigatorDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void WakeOnLanDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
+void OtaSoftwareUpdateRequestorDelegateInitCB(void *delegate, uint16_t endpoint_id)
+{
+    // TODO: Implement
+}
 } // namespace delegate_cb
 } // namespace cluster
 } // namespace esp_matter

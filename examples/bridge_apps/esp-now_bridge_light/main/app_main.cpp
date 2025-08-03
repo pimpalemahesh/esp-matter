@@ -27,6 +27,11 @@ using namespace esp_matter;
 using namespace esp_matter::attribute;
 using namespace esp_matter::endpoint;
 using namespace chip::app::Clusters;
+using namespace esp_matter::endpoint::on_off_light;
+using namespace esp_matter::endpoint::dimmable_light;
+using namespace esp_matter::endpoint::color_temperature_light;
+using namespace esp_matter::endpoint::extended_color_light;
+using namespace esp_matter::endpoint::on_off_light_switch;
 
 static void app_event_cb(const ChipDeviceEvent *event, intptr_t arg)
 {

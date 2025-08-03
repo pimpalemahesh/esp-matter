@@ -15,7 +15,9 @@
 
 #include <esp_matter.h>
 #include <esp_matter_console.h>
+#ifndef CONFIG_ENABLE_GENERATED_DATA_MODEL
 #include <esp_matter_feature.h>
+#endif // CONFIG_ENABLE_GENERATED_DATA_MODEL
 
 #include <app_reset.h>
 #include <esp_ot_config.h>
