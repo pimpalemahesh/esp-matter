@@ -1,9 +1,3 @@
-/**
- * Version Persistence Module
- * Handles version selection persistence across page reloads and file uploads
- */
-
-// ============= VERSION PERSISTENCE =============
 export function initializeVersionPersistence(parseId, detectedVersion) {
   const selectEl = document.getElementById("complianceVersion");
   const validateBtn = document.getElementById("validateBtn");
@@ -12,8 +6,6 @@ export function initializeVersionPersistence(parseId, detectedVersion) {
 
   const storageKey = parseId ? `selectedComplianceVersion:${parseId}` : null;
 
-  // If we have a parseId, prefer per-parse selection; otherwise, fall back to
-  // detected
   if (storageKey) {
     try {
       const saved = localStorage.getItem(storageKey);
@@ -32,7 +24,6 @@ export function initializeVersionPersistence(parseId, detectedVersion) {
       console.warn("Failed to access localStorage:", e);
     }
 
-    // Persist the selection scoped to this parseId
     selectEl.addEventListener("change", function () {
       try {
         localStorage.setItem(storageKey, selectEl.value || "");
@@ -41,8 +32,6 @@ export function initializeVersionPersistence(parseId, detectedVersion) {
       }
     });
 
-    // Also store on validate click (in case the user did not trigger change
-    // event)
     if (validateBtn) {
       validateBtn.addEventListener("click", function () {
         try {
@@ -60,7 +49,6 @@ export function initializeVersionPersistence(parseId, detectedVersion) {
   }
 }
 
-// ============= TEMPLATE INTEGRATION =============
 export function createVersionPersistenceScript(parseId, detectedVersion) {
   return `
     import { initializeVersionPersistence } from './static/js/version-persistence.js';

@@ -1,12 +1,6 @@
-/**
- * File Upload Module
- * Handles file uploads, drag-and-drop, and form submission
- */
-
 import { formatFileSize, showError, showLoading, hideLoading } from "./utils.js";
 import { parseDatamodelLogs, detectSpecVersion, getSupportedVersions } from "./pyodide-bridge.js";
 
-// ============= FILE UPLOAD INITIALIZATION =============
 export function initializeFileUpload() {
   const uploadArea = document.getElementById("uploadArea");
   const fileInput = document.getElementById("fileInput");
@@ -54,7 +48,6 @@ export function initializeFileUpload() {
   }
 }
 
-// ============= DRAG AND DROP =============
 export function initializeDragAndDrop() {
   const uploadArea = document.getElementById("uploadArea");
 
@@ -109,7 +102,6 @@ export function initializeDragAndDrop() {
   }
 }
 
-// ============= FILE HANDLING =============
 export function handleFileSelection(file) {
   const uploadText = document.querySelector(".upload-text");
   const uploadSubtext = document.querySelector(".upload-subtext");
@@ -124,7 +116,6 @@ export function handleFileSelection(file) {
       uploadSubtext.style.color = "var(--success-color)";
     }
 
-    // Small delay to ensure file input is properly set, then submit
     setTimeout(() => {
       submitFileForm();
     }, 100);
@@ -138,46 +129,37 @@ export async function submitFileForm() {
   const fileInput = document.getElementById("fileInput");
 
   if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
-    console.error("File input not found or no file selected");
     showError("File input not found or no file selected");
     resetUploadArea();
     return;
   }
 
   const file = fileInput.files[0];
-  console.log("Processing file:", file.name, "Size:", file.size);
 
-  // Clear any stored version selection when uploading a new file
   sessionStorage.removeItem("selectedVersion");
   localStorage.removeItem("currentParsedData");
   localStorage.removeItem("currentValidationData");
   localStorage.removeItem("currentUploadedFilename");
 
-  // Show loading UI
   showLoading();
 
   try {
-    // Read file content
     const fileContent = await file.text();
     
     if (!fileContent.trim()) {
       throw new Error("File appears to be empty");
     }
 
-    // Parse using Pyodide
-    console.log("Parsing file with Pyodide...");
     const parsedData = await parseDatamodelLogs(fileContent);
     
     if (!parsedData || !parsedData.endpoints) {
       throw new Error("Failed to parse file data. Please check file format.");
     }
 
-    // Store parsed data
     localStorage.setItem("currentParsedData", JSON.stringify(parsedData));
     localStorage.setItem("currentUploadedFilename", file.name);
     localStorage.setItem("currentParseId", Date.now().toString());
 
-    // Detect version
     let detectedVersion = null;
     try {
       detectedVersion = await detectSpecVersion(parsedData);
@@ -188,11 +170,8 @@ export async function submitFileForm() {
       console.warn("Version detection failed:", e);
     }
 
-    // Load supported versions and populate dropdown
     const versions = await getSupportedVersions();
     populateVersionDropdown(versions, detectedVersion);
-
-    // Show success section
     showUploadSuccess(file.name, detectedVersion);
     
   } catch (error) {
@@ -209,12 +188,10 @@ function populateVersionDropdown(versions, detectedVersion) {
   const versionSelect = document.getElementById("complianceVersion");
   if (!versionSelect) return;
 
-  // Clear existing options except the first one
   while (versionSelect.options.length > 1) {
     versionSelect.remove(1);
   }
 
-  // Add detected version first if available
   if (detectedVersion && versions.includes(detectedVersion)) {
     const option = document.createElement("option");
     option.value = detectedVersion;
@@ -223,7 +200,6 @@ function populateVersionDropdown(versions, detectedVersion) {
     versionSelect.appendChild(option);
   }
 
-  // Add other versions
   versions.forEach(version => {
     if (version !== detectedVersion) {
       const option = document.createElement("option");
@@ -286,11 +262,9 @@ export function initializeUploadNewButton() {
       if (
         confirm("This will clear all current data and start over. Continue?")
       ) {
-        // Set intentional navigation flag to prevent second popup
         window.isIntentionalNavigation = true;
         window.isValidationInProgress = false;
 
-        // Clear all stored data
         localStorage.removeItem("currentParsedData");
         localStorage.removeItem("currentValidationData");
         localStorage.removeItem("currentUploadedFilename");
@@ -298,13 +272,11 @@ export function initializeUploadNewButton() {
         localStorage.removeItem("detectedVersion");
         sessionStorage.removeItem("selectedVersion");
         
-        // Clear version-specific storage
         const parseId = localStorage.getItem("currentParseId");
         if (parseId) {
           localStorage.removeItem(`selectedComplianceVersion:${parseId}`);
         }
 
-        // Reset UI
         const uploadSection = document.getElementById("uploadSection");
         const uploadSuccessSection = document.getElementById("uploadSuccessSection");
         const resultsSection = document.getElementById("resultsSection");

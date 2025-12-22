@@ -1,13 +1,6 @@
-/**
- * Modal Module
- * Handles cluster details modal functionality and interactive elements
- */
-
 import { copyToClipboard, showCopySuccess } from "./utils.js";
 
-// ============= MODAL INITIALIZATION =============
 export function initializeModal() {
-  // Close modal when pressing Escape key
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
       closeClusterModal();
@@ -15,9 +8,7 @@ export function initializeModal() {
   });
 }
 
-// ============= MODAL FUNCTIONS =============
 export function openClusterModal(clusterId, endpointId) {
-  // Try to get cluster data from cache first (for dynamically rendered content)
   const cacheKey = `${endpointId}_${clusterId}`;
   let clusterData = null;
   let validationData = null;
@@ -26,7 +17,6 @@ export function openClusterModal(clusterId, endpointId) {
     clusterData = window.clusterDataCache[cacheKey].clusterData;
     validationData = window.clusterDataCache[cacheKey].validationData;
   } else {
-    // Fallback: Find the cluster data from script tag (for static content)
     const clusterDataScript = document.querySelector(
       `.cluster-data[data-cluster-id="${clusterId}"][data-endpoint-id="${
         endpointId
@@ -45,7 +35,6 @@ export function openClusterModal(clusterId, endpointId) {
       return;
     }
 
-    // Find validation data from embedded script tag
     const validationDataScript = document.querySelector(
       `.validation-data[data-cluster-id="${clusterId}"][data-endpoint-id="${
         endpointId
@@ -61,13 +50,11 @@ export function openClusterModal(clusterId, endpointId) {
     }
   }
 
-  // Update modal title
   const modalTitle = document.getElementById("modalTitle");
   modalTitle.innerHTML = `<i class="fas fa-network-wired"></i> Cluster ${
     clusterId
   } - Endpoint ${endpointId}`;
 
-  // Build modal content
   const modalBody = document.getElementById("modalBody");
   modalBody.innerHTML = buildClusterContent(
     clusterData,
@@ -75,7 +62,6 @@ export function openClusterModal(clusterId, endpointId) {
     validationData,
   );
 
-  // Show modal
   document.getElementById("clusterModal").style.display = "flex";
   document.getElementById("modalOverlay").style.display = "block";
   document.body.style.overflow = "hidden"; // Prevent background scrolling
@@ -84,10 +70,9 @@ export function openClusterModal(clusterId, endpointId) {
 export function closeClusterModal() {
   document.getElementById("clusterModal").style.display = "none";
   document.getElementById("modalOverlay").style.display = "none";
-  document.body.style.overflow = "auto"; // Restore scrolling
+  document.body.style.overflow = "auto";
 }
 
-// ============= MODAL CONTENT BUILDERS =============
 function buildClusterContent(clusterData, clusterId, validationData) {
   let html = `
         <div class="cluster-summary">
@@ -100,7 +85,6 @@ function buildClusterContent(clusterData, clusterId, validationData) {
             }</p>
         </div>
 
-        <!-- Element Type Legend -->
         <div class="element-legend">
             <h4><i class="fas fa-info-circle"></i> Element Types</h4>
             <div class="legend-items">
@@ -116,7 +100,6 @@ function buildClusterContent(clusterData, clusterId, validationData) {
         </div>
     `;
 
-  // Missing Elements Section (if validation data is available)
   if (
     validationData &&
     validationData.missing_elements &&
@@ -125,7 +108,6 @@ function buildClusterContent(clusterData, clusterId, validationData) {
     html += buildMissingElementsSection(validationData.missing_elements);
   }
 
-  // Duplicate Elements Section (if validation data is available)
   if (
     validationData &&
     validationData.duplicate_elements &&
@@ -134,7 +116,6 @@ function buildClusterContent(clusterData, clusterId, validationData) {
     html += buildDuplicateElementsSection(validationData.duplicate_elements);
   }
 
-  // Revision Issues Section (cluster-specific)
   if (
     validationData &&
     validationData.revision_issues &&
@@ -143,7 +124,6 @@ function buildClusterContent(clusterData, clusterId, validationData) {
     html += buildRevisionIssuesSection(validationData.revision_issues);
   }
 
-  // Event Information Section
   if (
     validationData &&
     validationData.event_warnings &&
@@ -152,13 +132,11 @@ function buildClusterContent(clusterData, clusterId, validationData) {
     html += buildEventInformationSection(validationData.event_warnings);
   }
 
-  // Insert Cluster Metadata section before Attributes
   const metaSection = buildClusterMetaSection(clusterData.features, clusterData.revisions);
   if (metaSection) {
     html += metaSection;
   }
 
-  // Attributes Section
   if (
     clusterData.attributes &&
     Object.keys(clusterData.attributes).length > 0
@@ -166,7 +144,6 @@ function buildClusterContent(clusterData, clusterId, validationData) {
     html += buildAttributesSection(clusterData.attributes, validationData);
   }
 
-  // Commands Section
   if (clusterData.commands) {
     html += buildCommandsSection(clusterData.commands, validationData);
   }
@@ -199,7 +176,6 @@ function buildMissingElementsSection(missingElements) {
     }
   });
 
-  // Display each type of missing element
   Object.entries(groupedElements).forEach(([type, elements]) => {
     if (elements.length > 0) {
       let typeDisplayName = type;
@@ -245,7 +221,6 @@ function buildMissingElementsSection(missingElements) {
             `;
 
       elements.forEach((element) => {
-        // Special handling for feature-specific elements
         if (type.startsWith("feature_")) {
           html += `
                         <div class="modal-item missing-element">
@@ -301,7 +276,6 @@ function buildDuplicateElementsSection(duplicateElements) {
             <div class="modal-items">
     `;
 
-  // Group duplicate elements by type
   const groupedElements = {
     duplicate_attribute: [],
     duplicate_command: [],
@@ -314,7 +288,6 @@ function buildDuplicateElementsSection(duplicateElements) {
     }
   });
 
-  // Display each type of duplicate element
   Object.entries(groupedElements).forEach(([type, elements]) => {
     if (elements.length > 0) {
       let typeDisplayName = type;
@@ -463,7 +436,6 @@ function buildEventInformationSection(eventWarnings) {
   return html;
 }
 
-// Add cluster metadata section for ClusterRevision and FeatureMap
 function buildClusterMetaSection(featuresObj, revisionsObj) {
   if (!featuresObj || typeof featuresObj !== "object") return "";
 
@@ -530,7 +502,6 @@ function buildAttributesSection(attributes, validationData) {
             <div class="modal-items">
     `;
 
-  // Create name mapping from AttributeList
   const nameMap = {};
   if (attributes.AttributeList && attributes.AttributeList.AttributeList) {
     attributes.AttributeList.AttributeList.forEach((attr) => {
@@ -614,10 +585,8 @@ function buildCommandsSection(commands, validationData) {
             <div class="modal-items">
     `;
 
-  // Get optional commands list from validation data
   const optionalCommands = validationData?.optional_commands || [];
 
-  // Generated Commands
   if (
     commands.GeneratedCommandList &&
     commands.GeneratedCommandList.GeneratedCommandList
@@ -660,7 +629,6 @@ function buildCommandsSection(commands, validationData) {
     });
   }
 
-  // Accepted Commands
   if (
     commands.AcceptedCommandList &&
     commands.AcceptedCommandList.AcceptedCommandList
@@ -707,9 +675,7 @@ function buildCommandsSection(commands, validationData) {
   return html;
 }
 
-// ============= INTERACTIVE ELEMENTS =============
 export function initializeInteractiveElements() {
-  // Add smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -720,10 +686,7 @@ export function initializeInteractiveElements() {
     });
   });
 
-  // Add click handlers for expandable sections
   initializeExpandableSections();
-
-  // Add copy functionality for IDs and codes
   initializeCopyButtons();
 }
 
@@ -755,7 +718,6 @@ export function initializeExpandableSections() {
 }
 
 export function initializeCopyButtons() {
-  // Add copy buttons to device type IDs and cluster IDs
   const deviceTypeIds = document.querySelectorAll(".device-type-id");
   const clusterIds = document.querySelectorAll(".cluster-id");
 
@@ -772,12 +734,9 @@ export function initializeCopyButtons() {
   });
 }
 
-// Make functions available globally for template usage
 window.openClusterModal = openClusterModal;
 window.closeClusterModal = closeClusterModal;
 
-// Initialize modal handlers after DOM updates
 window.initializeModalHandlers = function() {
-  // Re-initialize copy buttons for newly rendered content
   initializeCopyButtons();
 };

@@ -1,18 +1,11 @@
-/**
- * Results Renderer Module
- * Renders validation results in the UI
- */
-
 import { openClusterModal } from "./modal.js";
 
 export function renderValidationResults(validationData, parsedData) {
-  // Show results section
   const resultsSection = document.getElementById("resultsSection");
   if (resultsSection) {
     resultsSection.style.display = "block";
   }
 
-  // Update summary stats
   const summary = validationData.summary || {};
   const totalEndpoints = summary.total_endpoints || 0;
   const compliantEndpoints = summary.compliant_endpoints || 0;
@@ -26,10 +19,7 @@ export function renderValidationResults(validationData, parsedData) {
   document.getElementById("nonCompliantEndpoints").textContent = nonCompliantEndpoints;
   document.getElementById("complianceRate").textContent = `${complianceRate}%`;
 
-  // Render detailed results
   renderDetailedResults(validationData.endpoints || [], parsedData);
-
-  // Scroll to results
   resultsSection?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
@@ -189,8 +179,6 @@ function renderDetailedResults(endpoints, parsedData) {
 
           html += `</div>`;
 
-          // Store cluster data for modal (using data attributes instead of script tags)
-          // We'll store this in a global object for modal access
           if (actualClusterData && Object.keys(actualClusterData).length > 0) {
             if (!window.clusterDataCache) {
               window.clusterDataCache = {};
@@ -220,13 +208,10 @@ function renderDetailedResults(endpoints, parsedData) {
 
   detailedResults.innerHTML = html;
 
-  // Re-initialize modal handlers after rendering
-  // Wait a bit for DOM to update
   setTimeout(() => {
     if (window.initializeModalHandlers) {
       window.initializeModalHandlers();
     }
-    // Also re-initialize copy buttons for new content
     import("./modal.js").then(module => {
       if (module.initializeCopyButtons) {
         module.initializeCopyButtons();

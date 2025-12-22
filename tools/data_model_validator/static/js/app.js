@@ -1,9 +1,3 @@
-/**
- * Main Application Entry Point
- * Coordinates all modules and initializes the application
- */
-
-// Import all modules
 import {
   initializeDragAndDrop,
   initializeFileUpload,
@@ -28,14 +22,11 @@ import {
 } from "./utils.js";
 import { initializeValidationFunctionality } from "./validation.js";
 
-// Global variables
 let uploadedFile = null;
 let parsedData = null;
 let validationData = null;
 
-// Initialize the application
 document.addEventListener("DOMContentLoaded", function () {
-  // Wait for Pyodide to be ready
   window.addEventListener("pyodide-ready", function() {
     initializeSessionManagement();
     initializeFileUpload();
@@ -48,14 +39,10 @@ document.addEventListener("DOMContentLoaded", function () {
     initializeModal();
     initializeCopyButtons();
     initializePageProtection();
-    
-    // Load existing data if available
     loadExistingData();
   });
 });
 
-// ============= GLOBAL FUNCTIONS FOR TEMPLATES =============
-// These functions need to be available globally for template usage
 
 window.copyCommand = function () {
   const command =
@@ -88,7 +75,6 @@ window.downloadParsedData = function () {
 
 window.toggleDetailedResults = toggleDetailedResults;
 
-// ============= LOAD EXISTING DATA =============
 function loadExistingData() {
   const parsedData = localStorage.getItem("currentParsedData");
   const validationData = localStorage.getItem("currentValidationData");
@@ -96,7 +82,6 @@ function loadExistingData() {
   const detectedVersion = localStorage.getItem("detectedVersion");
 
   if (parsedData && uploadedFilename) {
-    // Show upload success section
     const uploadSection = document.getElementById("uploadSection");
     const uploadSuccessSection = document.getElementById("uploadSuccessSection");
     
@@ -106,14 +91,12 @@ function loadExistingData() {
     const filenameEl = document.getElementById("uploadedFilename");
     if (filenameEl) filenameEl.textContent = uploadedFilename;
 
-    // Populate version dropdown
     import("./pyodide-bridge.js").then(module => {
       module.getSupportedVersions().then(versions => {
         populateVersionDropdown(versions, detectedVersion);
       });
     });
 
-    // Show validation results if available
     if (validationData) {
       import("./results-renderer.js").then(module => {
         module.renderValidationResults(
@@ -151,9 +134,7 @@ function populateVersionDropdown(versions, detectedVersion) {
   });
 }
 
-// ============= KEYBOARD SHORTCUTS =============
 document.addEventListener("keydown", function (e) {
-  // Ctrl/Cmd + U to trigger file upload
   if ((e.ctrlKey || e.metaKey) && e.key === "u") {
     e.preventDefault();
     const fileInput = document.getElementById("fileInput");
@@ -162,7 +143,6 @@ document.addEventListener("keydown", function (e) {
     }
   }
 
-  // Escape to close any open modals or reset upload area
   if (e.key === "Escape") {
     const modal = document.getElementById("clusterModal");
     if (modal && modal.style.display === "flex") {
@@ -170,7 +150,6 @@ document.addEventListener("keydown", function (e) {
         window.closeClusterModal();
       }
     } else {
-      // Reset upload area if available
       const resetUploadArea = document.querySelector(".upload-area");
       if (resetUploadArea && window.resetUploadArea) {
         window.resetUploadArea();

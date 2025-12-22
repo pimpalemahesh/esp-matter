@@ -1,8 +1,3 @@
-/**
- * Validation Module
- * Handles compliance validation, version selection, and progress tracking
- */
-
 import {
   hideMessage,
   hideValidationLoader,
@@ -14,7 +9,6 @@ import {
 import { validateDeviceConformance } from "./pyodide-bridge.js";
 import { renderValidationResults } from "./results-renderer.js";
 
-// ============= VALIDATION INITIALIZATION =============
 export function initializeValidationFunctionality() {
   initializeValidateButton();
   restoreSelectedVersion();
@@ -28,7 +22,6 @@ function initializeValidateButton() {
     validateBtn.addEventListener("click", async function () {
       const selectedVersion = versionSelect.value;
 
-      // Validate version selection
       if (!selectedVersion) {
         showMessage(
           "validateMessage",
@@ -38,7 +31,6 @@ function initializeValidateButton() {
         return;
       }
 
-      // Get parsed data from storage
       const parsedDataStr = localStorage.getItem("currentParsedData");
       if (!parsedDataStr) {
         showMessage(
@@ -49,32 +41,25 @@ function initializeValidateButton() {
         return;
       }
 
-      // Store the selected version
       sessionStorage.setItem("selectedVersion", selectedVersion);
       const parseId = localStorage.getItem("currentParseId");
       if (parseId) {
         localStorage.setItem(`selectedComplianceVersion:${parseId}`, selectedVersion);
       }
 
-      // Set flags to prevent refresh warning during validation
       window.isValidationInProgress = true;
       window.isIntentionalNavigation = true;
 
-      // Show validation loader
       showValidationLoader();
       hideMessage("validateMessage");
-
-      // Simulate progress updates
       simulateProgress();
 
       try {
         const parsedData = JSON.parse(parsedDataStr);
         
-        // Validate using Pyodide
         updateProgress(50, "Validating device conformance...");
         const validationResults = await validateDeviceConformance(parsedData, selectedVersion);
 
-        // Store validation results
         localStorage.setItem("currentValidationData", JSON.stringify(validationResults));
 
         updateProgress(100, "Validation complete!");
@@ -83,12 +68,9 @@ function initializeValidateButton() {
           hideValidationLoader();
           window.isValidationInProgress = false;
           window.isIntentionalNavigation = false;
-          
-          // Render results
           renderValidationResults(validationResults, parsedData);
         }, 1000);
       } catch (error) {
-        // Reset flags on error
         window.isValidationInProgress = false;
         window.isIntentionalNavigation = false;
         hideValidationLoader();
@@ -98,7 +80,6 @@ function initializeValidateButton() {
   }
 }
 
-// ============= VERSION SELECTION MANAGEMENT =============
 function restoreSelectedVersion() {
   try {
     const versionSelect = document.getElementById("complianceVersion");
@@ -109,7 +90,6 @@ function restoreSelectedVersion() {
       return;
     }
 
-    // Prefer per-parse persistence if parseId is available
     const parseId = versionSelect.dataset
       ? versionSelect.dataset.parseId
       : null;
@@ -120,7 +100,6 @@ function restoreSelectedVersion() {
     if (parseId) {
       const storageKey = `selectedComplianceVersion:${parseId}`;
 
-      // Apply saved selection or fallback to detected version
       try {
         const saved = localStorage.getItem(storageKey);
         if (
@@ -140,7 +119,6 @@ function restoreSelectedVersion() {
         console.warn("Failed to access localStorage:", e);
       }
 
-      // Persist on change
       versionSelect.addEventListener("change", function () {
         try {
           localStorage.setItem(storageKey, versionSelect.value || "");
@@ -149,7 +127,6 @@ function restoreSelectedVersion() {
         }
       });
 
-      // Persist also on validate
       if (validateBtn) {
         validateBtn.addEventListener("click", function () {
           try {
@@ -174,24 +151,18 @@ function restoreSelectedVersion() {
 
     if (storedVersion) {
       try {
-        // Check if there's an auto-detected version option that's already
-        // selected
         const autoDetectedOption =
           versionSelect.querySelector("option[selected]");
 
-        // If there's an auto-detected version and this is a fresh load (no
-        // validation in progress), prioritize the auto-detected version and
-        // clear stored version
         if (autoDetectedOption && !window.isValidationInProgress) {
           try {
             sessionStorage.removeItem("selectedVersion");
           } catch (e) {
             console.warn("Failed to remove stored version:", e);
           }
-          return;
-        }
+            return;
+          }
 
-        // Otherwise, restore the stored version for re-validation scenarios
         versionSelect.value = storedVersion;
 
         const selectedOption = versionSelect.querySelector(

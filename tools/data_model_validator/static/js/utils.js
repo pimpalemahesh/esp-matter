@@ -1,9 +1,3 @@
-/**
- * Utility Functions
- * Common helper functions used across the application
- */
-
-// ============= FILE UTILITIES =============
 export function formatFileSize(bytes) {
   if (bytes === 0) return "0 Bytes";
   const k = 1024;
@@ -12,7 +6,6 @@ export function formatFileSize(bytes) {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 }
 
-// ============= UI UTILITIES =============
 export function showMessage(elementId, message, type) {
   const messageEl = document.getElementById(elementId);
   messageEl.style.display = "block";
@@ -40,7 +33,6 @@ export function showError(message) {
         `;
     uploadArea.parentNode.insertBefore(errorDiv, uploadArea.nextSibling);
 
-    // Remove error message after 5 seconds
     setTimeout(() => {
       if (errorDiv.parentNode) {
         errorDiv.parentNode.removeChild(errorDiv);
@@ -48,18 +40,15 @@ export function showError(message) {
     }, 5000);
   }
 
-  // Reset processing flag on error
   window.isProcessing = false;
 }
 
 export function showLoading() {
   const uploadSection = document.querySelector(".upload-section");
   if (uploadSection) {
-    // Remove existing overlay if any
     const existing = uploadSection.querySelector(".loading-overlay");
     if (existing) existing.remove();
 
-    // Create loading overlay instead of replacing content
     const loadingOverlay = document.createElement("div");
     loadingOverlay.className = "loading-overlay";
     loadingOverlay.innerHTML = `
@@ -70,7 +59,6 @@ export function showLoading() {
             </div>
         `;
 
-    // Style the overlay
     loadingOverlay.style.cssText = `
             position: absolute;
             top: 0;
@@ -85,10 +73,7 @@ export function showLoading() {
             border-radius: 12px;
         `;
 
-    // Make upload section relative positioned
     uploadSection.style.position = "relative";
-
-    // Add overlay to upload section
     uploadSection.appendChild(loadingOverlay);
   }
 }
@@ -103,18 +88,12 @@ export function hideLoading() {
   }
 }
 
-// ============= COPY UTILITIES =============
 export function copyToClipboard(text) {
   if (navigator.clipboard) {
     return navigator.clipboard
       .writeText(text)
-      .then(() => {
-        console.log("Copied to clipboard:", text);
-        return true;
-      })
-      .catch(() => {
-        return fallbackCopyTextToClipboard(text);
-      });
+      .then(() => true)
+      .catch(() => fallbackCopyTextToClipboard(text));
   } else {
     return fallbackCopyTextToClipboard(text);
   }
@@ -218,7 +197,6 @@ export function downloadJSON(data, filename) {
   URL.revokeObjectURL(url);
 }
 
-// ============= TOGGLE UTILITIES =============
 export function toggleDetailedResults() {
   const detailedResults = document.getElementById("detailedResults");
   const toggleIcon = document.querySelector(".toggle-icon");
