@@ -19,6 +19,7 @@
 #include <lib/core/CHIPError.h>
 #include <lib/core/ClusterEnums.h>
 #include <lib/support/Span.h>
+#include <optional>
 
 namespace chip {
 namespace DeviceLayer {
@@ -130,6 +131,27 @@ public:
      *          if access fails.
      */
     virtual CHIP_ERROR GetManufacturingDate(uint16_t & year, uint8_t & month, uint8_t & day) = 0;
+
+    /**
+     * @brief Obtain a manufacturing date from the device's factory data.
+     *
+     * The ManufacturingDate attribute specifies the date that the Node was manufactured.
+     * Output values are returned in ISO 8601, where:
+     *      The first month of the year is January and its returning value is equal to 1.
+     *      The first day of a month starts from 1.
+     *
+     * @param[out] year Reference to location where manufacturing year will be stored
+     * @param[out] month 1-based value [range 1-12] Reference to location where manufacturing month will be stored
+     * @param[out] day 1-based value [range 1-31] Reference to location where manufacturing day will be stored
+     * @param[in] vendorInfo Optional reference to location where vendor defined information will be stored
+     * @returns CHIP_NO_ERROR on success, or another CHIP_ERROR from the underlying implementation
+     *          if access fails.
+     */
+    virtual CHIP_ERROR GetManufacturingDate(uint16_t & year, uint8_t & month, uint8_t & day,
+                                            std::optional<MutableCharSpan> vendorInfo)
+    {
+        return GetManufacturingDate(year, month, day);
+    }
 
     /**
      * @brief Obtain a Hardware Version from the device's factory data.

@@ -159,11 +159,16 @@ inline CHIP_ERROR ReadSoftwareVersionString(DeviceLayer::ConfigurationManager & 
 inline CHIP_ERROR ReadManufacturingDate(DeviceInstanceInfoProvider * deviceInfoProvider, AttributeValueEncoder & aEncoder)
 {
     constexpr size_t kMaxLen                  = DeviceLayer::ConfigurationManager::kMaxManufacturingDateLength;
+    constexpr size_t kMaxDateLength           = 8; // YYYYMMDD
+    constexpr size_t kMaxVendorInfoLength     = kMaxLen - kMaxDateLength;
     char manufacturingDateString[kMaxLen + 1] = { 0 };
+    char vendorInfo[kMaxVendorInfoLength + 1] = { 0 };
     uint16_t manufacturingYear;
     uint8_t manufacturingMonth;
     uint8_t manufacturingDayOfMonth;
-    CHIP_ERROR status = deviceInfoProvider->GetManufacturingDate(manufacturingYear, manufacturingMonth, manufacturingDayOfMonth);
+    std::optional<MutableCharSpan> vendorInfoSpan = MutableCharSpan(vendorInfo, kMaxVendorInfoLength);
+    CHIP_ERROR status =
+        deviceInfoProvider->GetManufacturingDate(manufacturingYear, manufacturingMonth, manufacturingDayOfMonth, vendorInfoSpan);
 
     // TODO: Remove defaulting once proper runtime defaulting of unimplemented factory data is done
     if (status == CHIP_DEVICE_ERROR_CONFIG_NOT_FOUND || status == CHIP_ERROR_UNSUPPORTED_CHIP_FEATURE)
@@ -171,13 +176,17 @@ inline CHIP_ERROR ReadManufacturingDate(DeviceInstanceInfoProvider * deviceInfoP
         manufacturingYear       = 2020;
         manufacturingMonth      = 1;
         manufacturingDayOfMonth = 1;
-        status                  = CHIP_NO_ERROR;
+        vendorInfoSpan->reduce_size(0);
+        status = CHIP_NO_ERROR;
     }
     ReturnErrorOnFailure(status);
 
     // Format is YYYYMMDD
     snprintf(manufacturingDateString, sizeof(manufacturingDateString), "%04u%02u%02u", manufacturingYear, manufacturingMonth,
              manufacturingDayOfMonth);
+    snprintf(manufacturingDateString + kMaxDateLength, kMaxVendorInfoLength + 1, "%.*s", static_cast<int>(kMaxVendorInfoLength),
+             vendorInfo);
+
     return aEncoder.Encode(CharSpan(manufacturingDateString, strnlen(manufacturingDateString, kMaxLen)));
 }
 

@@ -234,7 +234,38 @@ CHIP_ERROR ESP32FactoryDataProvider::GetSerialNumber(char * buf, size_t bufSize)
 
 CHIP_ERROR ESP32FactoryDataProvider::GetManufacturingDate(uint16_t & year, uint8_t & month, uint8_t & day)
 {
-    return GenericDeviceInstanceInfoProvider<ESP32Config>::GetManufacturingDate(year, month, day);
+    return CHIP_ERROR_NOT_IMPLEMENTED;
+}
+
+CHIP_ERROR ESP32FactoryDataProvider::GetManufacturingDate(uint16_t & year, uint8_t & month, uint8_t & day,
+                                                          std::optional<MutableCharSpan> vendorInfo)
+{
+    CHIP_ERROR err                      = CHIP_NO_ERROR;
+    constexpr size_t kMaxDateStringLen  = 16; // YYYYMMDD<vendorInfo>
+    char dateStr[kMaxDateStringLen + 1] = { 0 };
+    size_t dateLen                      = 0;
+
+    err = ESP32Config::ReadConfigValueStr(ESP32Config::kConfigKey_ManufacturingDate, dateStr, sizeof(dateStr), dateLen);
+
+    SuccessOrExit(err);
+    VerifyOrExit(dateLen >= 8 && dateLen <= kMaxDateStringLen, err = CHIP_ERROR_INVALID_ARGUMENT);
+
+    sscanf(dateStr, "%4hu%2hhu%2hhu", &year, &month, &day);
+
+    if (vendorInfo.has_value() && dateLen > 8)
+    {
+        size_t vendorLen = dateLen - 8;
+        VerifyOrExit(vendorLen <= vendorInfo->size(), err = CHIP_ERROR_BUFFER_TOO_SMALL);
+
+        memcpy(vendorInfo->data(), dateStr + 8, vendorLen);
+        vendorInfo->reduce_size(vendorLen);
+    }
+exit:
+    if (err != CHIP_NO_ERROR && err != CHIP_DEVICE_ERROR_CONFIG_NOT_FOUND)
+    {
+        ChipLogError(DeviceLayer, "Invalid manufacturing date: %s", dateStr);
+    }
+    return err;
 }
 
 CHIP_ERROR ESP32FactoryDataProvider::GetProductFinish(app::Clusters::BasicInformation::ProductFinishEnum * finish)
