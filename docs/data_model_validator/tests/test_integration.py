@@ -83,15 +83,15 @@ class TestApplicationStructure:
         assert 'id="uploadSuccessSection"' in html
         assert 'id="resultsSection"' in html
         assert 'id="clusterModal"' in html
-        assert 'static/js/app.js' in html
+        assert "static/js/app.js" in html
 
     def test_pyodide_configuration(self):
         """Test Pyodide configuration"""
         response = requests.get(f"{BASE_URL}/", timeout=10)
         html = response.text
 
-        assert 'pyodide.js' in html or 'pyodide' in html.lower()
-        assert 'DMV_PACKAGE_URL' in html or 'DMV_USE_TEST_PYPI' in html
+        assert "pyodide.js" in html or "pyodide" in html.lower()
+        assert "DMV_PACKAGE_URL" in html or "DMV_USE_TEST_PYPI" in html
 
 
 class TestErrorHandling:
