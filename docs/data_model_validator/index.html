@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Device Datamodel Parser & Validator</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,19 +23,20 @@
 
     <!-- Pyodide Configuration -->
     <script>
-      // Option 1: Configure direct wheel file URL (highest priority)
-      // Set this to your wheel file URL to bypass PyPI entirely
-      // This is useful for GitHub Pages deployment if PyPI access is unreliable
-      // Example: window.DMV_PACKAGE_URL = 'https://your-domain.com/packages/esp_matter_dm_validator-1.0.4-py3-none-any.whl';
+        // Option 1: Configure direct wheel file URL (highest priority)
+        // Set this to your wheel file URL to bypass PyPI entirely
+        // This is useful for GitHub Pages deployment if PyPI access is unreliable
+        // Example: window.DMV_PACKAGE_URL = 'https://your-domain.com/packages/esp_matter_dm_validator-1.0.4-py3-none-any.whl';
 
-      // Option 2: Configure PyPI source (if DMV_PACKAGE_URL is not set)
-      // Set to true to use test PyPI first (default), false to use regular PyPI only
-      // The application will automatically fallback to regular PyPI if test PyPI fails
-      window.DMV_USE_TEST_PYPI = true;
+        // Option 2: Configure PyPI source (if DMV_PACKAGE_URL is not set)
+        // Set to true to use test PyPI first (default), false to use regular PyPI only
+        // The application will automatically fallback to regular PyPI if test PyPI fails
+        window.DMV_USE_TEST_PYPI = true;
     </script>
     <!-- Pyodide -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
 </head>
+
 <body>
     <div class="container">
         <!-- Header -->
@@ -46,7 +49,8 @@
         </header>
 
         <!-- Pyodide Loading Indicator -->
-        <div id="pyodide-loading" class="loading-overlay" style="display: flex; align-items: center; justify-content: center; padding: 40px;">
+        <div id="pyodide-loading" class="loading-overlay"
+            style="display: flex; align-items: center; justify-content: center; padding: 40px;">
             <div style="text-align: center;">
                 <div class="loading-spinner" style="margin: 0 auto 20px;"></div>
                 <h3>Loading Python Runtime...</h3>
@@ -125,14 +129,16 @@
                         <div class="version-selection mt-3">
                             <h4><i class="fas fa-cogs"></i> Select Version for Compliance Check</h4>
 
-                            <div id="autoDetectedVersion" class="auto-detected-version" style="display: none; background: #e8f5e9; padding: 12px; border-radius: 6px; margin-bottom: 15px; border-left: 4px solid #4caf50;">
+                            <div id="autoDetectedVersion" class="auto-detected-version"
+                                style="display: none; background: #e8f5e9; padding: 12px; border-radius: 6px; margin-bottom: 15px; border-left: 4px solid #4caf50;">
                                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
                                     <i class="fas fa-search" style="color: #4caf50;"></i>
                                     <span id="detectedVersionText"></span>
                                 </div>
                                 <div style="margin-top: 6px; color: #b26a00; font-size: 0.98em;">
                                     <i class="fas fa-exclamation-circle" style="color: #ff9800;"></i>
-                                    <strong>Note:</strong> The auto-detected version may not always be correct. Please review and select the correct version if needed before validating.
+                                    <strong>Note:</strong> The auto-detected version may not always be correct. Please
+                                    review and select the correct version if needed before validating.
                                 </div>
                             </div>
 
@@ -203,7 +209,8 @@
                     </div>
 
                     <!-- Validation Scope Notice -->
-                    <div class="mt-3" style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 4px solid #2196f3;">
+                    <div class="mt-3"
+                        style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 4px solid #2196f3;">
                         <h4 style="margin: 0 0 10px 0; color: #1976d2; font-size: 1em;">
                             <i class="fas fa-info-circle"></i> Validation Scope
                         </h4>
@@ -212,8 +219,10 @@
                             <ul style="margin: 5px 0; padding-left: 20px;">
                                 <li>Device type and cluster revisions</li>
                                 <li>Clusters marked as mandatory by conformance on the device type</li>
-                                <li>Mandatory attributes, commands, and features of each required cluster on the device</li>
-                                <li>Optional features added by the application, along with their required attributes and commands</li>
+                                <li>Mandatory attributes, commands, and features of each required cluster on the device
+                                </li>
+                                <li>Optional features added by the application, along with their required attributes and
+                                    commands</li>
                             </ul>
 
                             <strong>⚠️ Not Fully Validated (Optional / Provisional / Disallowed / Deprecated):</strong>
@@ -221,7 +230,8 @@
                                 <li>Optional clusters present on the device</li>
                                 <li>Optional attributes, commands, and events within clusters</li>
                                 <li>Extra elements present on the device other than mandatory</li>
-                                <li>Events (not present in wildcard logs); warnings shown only for missing mandatory events</li>
+                                <li>Events (not present in wildcard logs); warnings shown only for missing mandatory
+                                    events</li>
                                 <li>Attributes and commands dependent on multiple features</li>
                             </ul>
                         </div>
@@ -230,7 +240,8 @@
 
                 <!-- Detailed Results -->
                 <div class="detailed-results-container">
-                    <div class="detailed-results-header" onclick="toggleDetailedResults()" style="cursor: pointer; background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #e9ecef;">
+                    <div class="detailed-results-header" onclick="toggleDetailedResults()"
+                        style="cursor: pointer; background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #e9ecef;">
                         <h3 style="margin: 0; display: flex; align-items: center; justify-content: space-between;">
                             <span><i class="fas fa-info-circle"></i> Detailed Compliance Results</span>
                             <span class="toggle-icon" style="font-size: 0.8em; color: #666;">
@@ -296,4 +307,5 @@
     <script type="module" src="static/js/validation.js"></script>
     <script type="module" src="static/js/version-persistence.js"></script>
 </body>
+
 </html>
