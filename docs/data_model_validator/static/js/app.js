@@ -22,10 +22,6 @@ import {
 } from "./utils.js";
 import { initializeValidationFunctionality } from "./validation.js";
 
-let uploadedFile = null;
-let parsedData = null;
-let validationData = null;
-
 document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("pyodide-ready", function() {
     initializeSessionManagement();

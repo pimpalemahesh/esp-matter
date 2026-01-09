@@ -1,7 +1,7 @@
 # Matter Device Data Model Validator
 
 
-An UI tool for validating Matter device data models against official Matter specifications.
+A UI tool for validating Matter device data models against official Matter specifications.
 
 ## 📋 Overview
 

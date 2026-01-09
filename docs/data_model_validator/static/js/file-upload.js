@@ -271,11 +271,6 @@ export function initializeUploadNewButton() {
         localStorage.removeItem("currentParseId");
         localStorage.removeItem("detectedVersion");
         sessionStorage.removeItem("selectedVersion");
-        
-        const parseId = localStorage.getItem("currentParseId");
-        if (parseId) {
-          localStorage.removeItem(`selectedComplianceVersion:${parseId}`);
-        }
 
         const uploadSection = document.getElementById("uploadSection");
         const uploadSuccessSection = document.getElementById("uploadSuccessSection");

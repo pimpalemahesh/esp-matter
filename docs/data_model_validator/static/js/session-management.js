@@ -72,16 +72,3 @@ export function initializeGlobalDataAccess() {
   window.validationData = window.validationData || null;
   window.parsedData = window.parsedData || null;
 }
-
-export function cleanUpURLParameter() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const hasValidationComplete = urlParams.get("validation_complete");
-  const hasUploadComplete = urlParams.get("upload_complete");
-  if (hasValidationComplete || hasUploadComplete) {
-    window.isValidationInProgress = false;
-    window.isIntentionalNavigation = false;
-
-    const newUrl = window.location.pathname;
-    window.history.replaceState({}, document.title, newUrl);
-  }
-}
