@@ -22,14 +22,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- Pyodide Configuration -->
-    <script>
-        // Option: Configure direct wheel file URL (highest priority)
-        // Set this to your wheel file URL to bypass PyPI entirely
-        // This is useful for GitHub Pages deployment if PyPI access is unreliable
-        // Example: window.DMV_PACKAGE_URL = 'https://your-domain.com/packages/esp_matter_dm_validator-1.0.4-py3-none-any.whl';
-        // If not set, the application will install from PyPI
-    </script>
-    <!-- Pyodide -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
 </head>
 
@@ -70,7 +62,7 @@
                         <p>First, use the following chip-tool command to generate wildcard logs:</p>
                         <div class="command-box">
                             <code>./chip-tool any read-by-id 0xFFFFFFFF 0xFFFFFFFF &lt;node-id&gt; 0xFFFF > wildcard_logs.txt</code>
-                            <button class="copy-btn" onclick="copyCommand()" title="Copy command">
+                            <button class="copy-btn" id="copyCommandBtn" title="Copy command" type="button">
                                 <i class="fas fa-copy"></i>
                             </button>
                         </div>
@@ -196,10 +188,10 @@
                     </div>
 
                     <div class="text-center mt-3">
-                        <button onclick="downloadValidationReport()" class="btn btn-success">
+                        <button id="downloadValidationReportBtn" type="button" class="btn btn-success">
                             <i class="fas fa-download"></i> Download Validation Report
                         </button>
-                        <button onclick="downloadParsedData()" class="btn btn-secondary">
+                        <button id="downloadParsedDataBtn" type="button" class="btn btn-secondary">
                             <i class="fas fa-download"></i> Download Parsed Data
                         </button>
                     </div>
@@ -236,7 +228,7 @@
 
                 <!-- Detailed Results -->
                 <div class="detailed-results-container">
-                    <div class="detailed-results-header" onclick="toggleDetailedResults()"
+                    <div class="detailed-results-header" id="detailedResultsHeader"
                         style="cursor: pointer; background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #e9ecef;">
                         <h3 style="margin: 0; display: flex; align-items: center; justify-content: space-between;">
                             <span><i class="fas fa-info-circle"></i> Detailed Compliance Results</span>
@@ -262,7 +254,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 id="modalTitle">Cluster Details</h2>
-                <button class="modal-close" onclick="closeClusterModal()">
+                <button class="modal-close" id="modalCloseBtn" type="button">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -273,7 +265,7 @@
     </div>
 
     <!-- Modal overlay -->
-    <div id="modalOverlay" class="modal-overlay" onclick="closeClusterModal()"></div>
+    <div id="modalOverlay" class="modal-overlay"></div>
 
     <!-- Validation Loader -->
     <div id="validationLoader" class="validation-loader" style="display: none;">
@@ -296,11 +288,6 @@
     <!-- JavaScript Modules -->
     <script type="module" src="static/js/pyodide-bridge.js"></script>
     <script type="module" src="static/js/app.js"></script>
-    <script type="module" src="static/js/file-upload.js"></script>
-    <script type="module" src="static/js/modal.js"></script>
-    <script type="module" src="static/js/session-management.js"></script>
-    <script type="module" src="static/js/utils.js"></script>
-    <script type="module" src="static/js/validation.js"></script>
 </body>
 
 </html>

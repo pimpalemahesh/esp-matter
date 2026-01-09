@@ -1,3 +1,5 @@
+import { appFlags } from "./app-flags.js";
+
 export function formatFileSize(bytes) {
   if (bytes === 0) return "0 Bytes";
   const k = 1024;
@@ -40,7 +42,9 @@ export function showError(message) {
     }, 5000);
   }
 
-  window.isProcessing = false;
+  // Keep upload UI usable even if processing fails.
+  // Use a module flag instead of leaking to `window`.
+  appFlags.isProcessing = false;
 }
 
 export function showLoading() {

@@ -1,4 +1,4 @@
-import { copyToClipboard, showCopySuccess } from "./utils.js";
+import { getClusterCache } from "./cluster-cache.js";
 
 export function initializeModal() {
   document.addEventListener("keydown", function (e) {
@@ -6,70 +6,52 @@ export function initializeModal() {
       closeClusterModal();
     }
   });
+
+  const closeBtn = document.getElementById("modalCloseBtn");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeClusterModal);
+  }
+
+  const overlay = document.getElementById("modalOverlay");
+  if (overlay) {
+    overlay.addEventListener("click", closeClusterModal);
+  }
 }
 
 export function openClusterModal(clusterId, endpointId) {
-  const cacheKey = `${endpointId}_${clusterId}`;
-  let clusterData = null;
-  let validationData = null;
-
-  if (window.clusterDataCache && window.clusterDataCache[cacheKey]) {
-    clusterData = window.clusterDataCache[cacheKey].clusterData;
-    validationData = window.clusterDataCache[cacheKey].validationData;
-  } else {
-    const clusterDataScript = document.querySelector(
-      `.cluster-data[data-cluster-id="${clusterId}"][data-endpoint-id="${
-        endpointId
-      }"]`,
-    );
-
-    if (!clusterDataScript) {
-      console.error("Cluster data not found");
-      return;
-    }
-
-    try {
-      clusterData = JSON.parse(clusterDataScript.textContent);
-    } catch (e) {
-      console.error("Error parsing cluster data:", e);
-      return;
-    }
-
-    const validationDataScript = document.querySelector(
-      `.validation-data[data-cluster-id="${clusterId}"][data-endpoint-id="${
-        endpointId
-      }"]`,
-    );
-
-    if (validationDataScript) {
-      try {
-        validationData = JSON.parse(validationDataScript.textContent);
-      } catch (e) {
-        console.error("Error parsing validation data:", e);
-      }
-    }
+  const cached = getClusterCache(endpointId, clusterId);
+  if (!cached) {
+    console.error("Cluster data not found in cache");
+    return;
   }
+  const { clusterData, validationData } = cached;
 
   const modalTitle = document.getElementById("modalTitle");
-  modalTitle.innerHTML = `<i class="fas fa-network-wired"></i> Cluster ${
-    clusterId
-  } - Endpoint ${endpointId}`;
+  if (modalTitle) {
+    modalTitle.innerHTML = `<i class="fas fa-network-wired"></i> Cluster ${clusterId} - Endpoint ${endpointId}`;
+  }
 
   const modalBody = document.getElementById("modalBody");
-  modalBody.innerHTML = buildClusterContent(
-    clusterData,
-    clusterId,
-    validationData,
-  );
+  if (modalBody) {
+    modalBody.innerHTML = buildClusterContent(
+      clusterData,
+      clusterId,
+      validationData,
+    );
+  }
 
-  document.getElementById("clusterModal").style.display = "flex";
-  document.getElementById("modalOverlay").style.display = "block";
+  const modal = document.getElementById("clusterModal");
+  const overlay = document.getElementById("modalOverlay");
+  if (modal) modal.style.display = "flex";
+  if (overlay) overlay.style.display = "block";
   document.body.style.overflow = "hidden"; // Prevent background scrolling
 }
 
 export function closeClusterModal() {
-  document.getElementById("clusterModal").style.display = "none";
-  document.getElementById("modalOverlay").style.display = "none";
+  const modal = document.getElementById("clusterModal");
+  const overlay = document.getElementById("modalOverlay");
+  if (modal) modal.style.display = "none";
+  if (overlay) overlay.style.display = "none";
   document.body.style.overflow = "auto";
 }
 
@@ -675,68 +657,5 @@ function buildCommandsSection(commands, validationData) {
   return html;
 }
 
-export function initializeInteractiveElements() {
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  });
-
-  initializeExpandableSections();
-  initializeCopyButtons();
-}
-
-export function initializeExpandableSections() {
-  const deviceTypeCards = document.querySelectorAll(".device-type-card");
-
-  deviceTypeCards.forEach((card) => {
-    const header = card.querySelector(".device-type-header");
-    if (header) {
-      header.style.cursor = "pointer";
-      header.addEventListener("click", function () {
-        const content = card.querySelector(".clusters-grid");
-        if (content) {
-          const isVisible = content.style.display !== "none";
-          content.style.display = isVisible ? "none" : "grid";
-
-          // Add expand/collapse icon
-          let icon = header.querySelector(".expand-icon");
-          if (!icon) {
-            icon = document.createElement("span");
-            icon.className = "expand-icon";
-            header.appendChild(icon);
-          }
-          icon.textContent = isVisible ? "▶" : "▼";
-        }
-      });
-    }
-  });
-}
-
-export function initializeCopyButtons() {
-  const deviceTypeIds = document.querySelectorAll(".device-type-id");
-  const clusterIds = document.querySelectorAll(".cluster-id");
-
-  [...deviceTypeIds, ...clusterIds].forEach((element) => {
-    element.style.cursor = "pointer";
-    element.title = "Click to copy";
-    element.addEventListener("click", function () {
-      copyToClipboard(this.textContent).then((success) => {
-        if (success) {
-          showCopySuccess(this);
-        }
-      });
-    });
-  });
-}
-
-window.openClusterModal = openClusterModal;
-window.closeClusterModal = closeClusterModal;
-
-window.initializeModalHandlers = function() {
-  initializeCopyButtons();
-};
+// (Removed page-level interactions from this module; results interactions are delegated
+// from `results-renderer.js` and global actions are bound in `app.js`.)

@@ -1,5 +1,7 @@
 import { formatFileSize, showError, showLoading, hideLoading } from "./utils.js";
 import { parseDatamodelLogs, detectSpecVersion, getSupportedVersions } from "./pyodide-bridge.js";
+import { appFlags } from "./app-flags.js";
+import { clearClusterCache } from "./cluster-cache.js";
 
 export function initializeFileUpload() {
   const uploadArea = document.getElementById("uploadArea");
@@ -10,7 +12,7 @@ export function initializeFileUpload() {
     uploadBtn.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
-      if (!window.isProcessing) {
+      if (!appFlags.isProcessing) {
         fileInput.click();
       }
     });
@@ -27,7 +29,7 @@ export function initializeFileUpload() {
         return;
       }
 
-      if (!window.isProcessing) {
+      if (!appFlags.isProcessing) {
         fileInput.click();
       }
     });
@@ -35,13 +37,13 @@ export function initializeFileUpload() {
 
   if (fileInput) {
     fileInput.addEventListener("change", function (e) {
-      if (window.isProcessing) {
+      if (appFlags.isProcessing) {
         return;
       }
 
       const file = e.target.files[0];
       if (file) {
-        window.isProcessing = true;
+        appFlags.isProcessing = true;
         handleFileSelection(file);
       }
     });
@@ -81,7 +83,7 @@ export function initializeDragAndDrop() {
   uploadArea.addEventListener("drop", handleDrop, false);
 
   function handleDrop(e) {
-    if (window.isProcessing) return;
+    if (appFlags.isProcessing) return;
 
     const dt = e.dataTransfer;
     const files = dt.files;
@@ -96,7 +98,7 @@ export function initializeDragAndDrop() {
         dataTransfer.items.add(file);
         fileInput.files = dataTransfer.files;
       }
-      window.isProcessing = true;
+      appFlags.isProcessing = true;
       handleFileSelection(file);
     }
   }
@@ -140,6 +142,7 @@ export async function submitFileForm() {
   localStorage.removeItem("currentParsedData");
   localStorage.removeItem("currentValidationData");
   localStorage.removeItem("currentUploadedFilename");
+  clearClusterCache();
 
   showLoading();
 
@@ -180,7 +183,7 @@ export async function submitFileForm() {
     resetUploadArea();
   } finally {
     hideLoading();
-    window.isProcessing = false;
+    appFlags.isProcessing = false;
   }
 }
 
@@ -251,7 +254,7 @@ export function resetUploadArea() {
   }
 
   // Reset processing flag to allow new uploads
-  window.isProcessing = false;
+  appFlags.isProcessing = false;
 }
 
 // ============= UPLOAD NEW BUTTON =============
@@ -262,8 +265,8 @@ export function initializeUploadNewButton() {
       if (
         confirm("This will clear all current data and start over. Continue?")
       ) {
-        window.isIntentionalNavigation = true;
-        window.isValidationInProgress = false;
+        appFlags.isIntentionalNavigation = true;
+        appFlags.isValidationInProgress = false;
 
         localStorage.removeItem("currentParsedData");
         localStorage.removeItem("currentValidationData");
@@ -271,6 +274,7 @@ export function initializeUploadNewButton() {
         localStorage.removeItem("currentParseId");
         localStorage.removeItem("detectedVersion");
         sessionStorage.removeItem("selectedVersion");
+        clearClusterCache();
 
         const uploadSection = document.getElementById("uploadSection");
         const uploadSuccessSection = document.getElementById("uploadSuccessSection");

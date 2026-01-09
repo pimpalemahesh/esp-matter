@@ -8,6 +8,7 @@ import {
 } from "./utils.js";
 import { validateDeviceConformance } from "./pyodide-bridge.js";
 import { renderValidationResults } from "./results-renderer.js";
+import { appFlags } from "./app-flags.js";
 
 export function initializeValidationFunctionality() {
   initializeValidateButton();
@@ -47,8 +48,8 @@ function initializeValidateButton() {
         localStorage.setItem(`selectedComplianceVersion:${parseId}`, selectedVersion);
       }
 
-      window.isValidationInProgress = true;
-      window.isIntentionalNavigation = true;
+      appFlags.isValidationInProgress = true;
+      appFlags.isIntentionalNavigation = true;
 
       showValidationLoader();
       hideMessage("validateMessage");
@@ -66,13 +67,13 @@ function initializeValidateButton() {
         
         setTimeout(() => {
           hideValidationLoader();
-          window.isValidationInProgress = false;
-          window.isIntentionalNavigation = false;
+          appFlags.isValidationInProgress = false;
+          appFlags.isIntentionalNavigation = false;
           renderValidationResults(validationResults, parsedData);
         }, 1000);
       } catch (error) {
-        window.isValidationInProgress = false;
-        window.isIntentionalNavigation = false;
+        appFlags.isValidationInProgress = false;
+        appFlags.isIntentionalNavigation = false;
         hideValidationLoader();
         showMessage("validateMessage", `Validation failed: ${error.message}`, "error");
       }
@@ -154,7 +155,7 @@ function restoreSelectedVersion() {
         const autoDetectedOption =
           versionSelect.querySelector("option[selected]");
 
-        if (autoDetectedOption && !window.isValidationInProgress) {
+        if (autoDetectedOption && !appFlags.isValidationInProgress) {
           try {
             sessionStorage.removeItem("selectedVersion");
           } catch (e) {

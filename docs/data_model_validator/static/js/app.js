@@ -2,18 +2,9 @@ import {
   initializeDragAndDrop,
   initializeFileUpload,
   initializeUploadNewButton,
+  resetUploadArea,
 } from "./file-upload.js";
-import {
-  initializeCopyButtons,
-  initializeExpandableSections,
-  initializeInteractiveElements,
-  initializeModal,
-} from "./modal.js";
-import {
-  initializeDataHandling,
-  initializePageProtection,
-  initializeSessionManagement,
-} from "./session-management.js";
+import { closeClusterModal, initializeModal } from "./modal.js";
 import {
   copyToClipboard,
   downloadJSON,
@@ -23,53 +14,75 @@ import {
 import { initializeValidationFunctionality } from "./validation.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  window.addEventListener("pyodide-ready", function() {
-    initializeSessionManagement();
+  window.addEventListener("pyodide-ready", function () {
     initializeFileUpload();
     initializeDragAndDrop();
     initializeValidationFunctionality();
     initializeUploadNewButton();
-    initializeDataHandling();
-    initializeInteractiveElements();
-    initializeExpandableSections();
     initializeModal();
-    initializeCopyButtons();
-    initializePageProtection();
     loadExistingData();
+    bindGlobalUiActions();
   });
 });
 
+function bindGlobalUiActions() {
+  const copyCommandBtn = document.getElementById("copyCommandBtn");
+  if (copyCommandBtn) {
+    copyCommandBtn.addEventListener("click", async () => {
+      const command =
+        "./chip-tool any read-by-id 0xFFFFFFFF 0xFFFFFFFF <node-id> 0xFFFF > wildcard_logs.txt";
+      const success = await copyToClipboard(command);
+      if (success) {
+        showCopyFeedback();
+      }
+    });
+  }
 
-window.copyCommand = function () {
-  const command =
-    "./chip-tool any read-by-id 0xFFFFFFFF 0xFFFFFFFF <node-id> 0xFFFF > wildcard_logs.txt";
+  const downloadValidationReportBtn = document.getElementById(
+    "downloadValidationReportBtn",
+  );
+  if (downloadValidationReportBtn) {
+    downloadValidationReportBtn.addEventListener("click", () => {
+      const validationData = localStorage.getItem("currentValidationData");
+      if (validationData) {
+        downloadJSON(JSON.parse(validationData), "validation_report.json");
+      } else {
+        alert("No validation data available to download");
+      }
+    });
+  }
 
-  copyToClipboard(command).then((success) => {
-    if (success) {
-      showCopyFeedback();
-    }
+  const downloadParsedDataBtn = document.getElementById("downloadParsedDataBtn");
+  if (downloadParsedDataBtn) {
+    downloadParsedDataBtn.addEventListener("click", () => {
+      const parsedData = localStorage.getItem("currentParsedData");
+      if (parsedData) {
+        downloadJSON(JSON.parse(parsedData), "parsed_data.json");
+      } else {
+        alert("No parsed data available to download");
+      }
+    });
+  }
+
+  const detailedResultsHeader = document.getElementById("detailedResultsHeader");
+  if (detailedResultsHeader) {
+    detailedResultsHeader.addEventListener("click", toggleDetailedResults);
+  }
+
+  // Smooth-scroll in-page anchors without wiring per-link listeners.
+  document.addEventListener("click", (e) => {
+    const target = e.target;
+    if (!(target instanceof Element)) return;
+    const anchor = target.closest('a[href^="#"]');
+    if (!anchor) return;
+    const href = anchor.getAttribute("href");
+    if (!href || href === "#") return;
+    const el = document.querySelector(href);
+    if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
   });
-};
-
-window.downloadValidationReport = function () {
-  const validationData = localStorage.getItem("currentValidationData");
-  if (validationData) {
-    downloadJSON(JSON.parse(validationData), "validation_report.json");
-  } else {
-    alert("No validation data available to download");
-  }
-};
-
-window.downloadParsedData = function () {
-  const parsedData = localStorage.getItem("currentParsedData");
-  if (parsedData) {
-    downloadJSON(JSON.parse(parsedData), "parsed_data.json");
-  } else {
-    alert("No parsed data available to download");
-  }
-};
-
-window.toggleDetailedResults = toggleDetailedResults;
+}
 
 function loadExistingData() {
   const parsedData = localStorage.getItem("currentParsedData");
@@ -142,14 +155,9 @@ document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     const modal = document.getElementById("clusterModal");
     if (modal && modal.style.display === "flex") {
-      if (window.closeClusterModal) {
-        window.closeClusterModal();
-      }
+      closeClusterModal();
     } else {
-      const resetUploadArea = document.querySelector(".upload-area");
-      if (resetUploadArea && window.resetUploadArea) {
-        window.resetUploadArea();
-      }
+      resetUploadArea();
     }
   }
 });

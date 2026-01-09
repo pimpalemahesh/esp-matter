@@ -1,4 +1,8 @@
 import { openClusterModal } from "./modal.js";
+import { copyToClipboard, showCopySuccess } from "./utils.js";
+import { setClusterCache } from "./cluster-cache.js";
+
+let detailedResultsInteractionsBound = false;
 
 export function renderValidationResults(validationData, parsedData) {
   const resultsSection = document.getElementById("resultsSection");
@@ -109,7 +113,7 @@ function renderDetailedResults(endpoints, parsedData) {
             <div class="cluster-card ${!isClusterMissing ? 'clickable-cluster' : ''} ${clusterCompliant ? (hasEventWarnings ? 'warning' : '') : 'non-compliant'}"
                  data-cluster-id="${clusterId}"
                  data-endpoint-id="${endpointId}"
-                 ${!isClusterMissing ? `onclick="openClusterModal('${clusterId}', '${endpointId}')" style="cursor: pointer;"` : ''}>
+                 ${!isClusterMissing ? 'role="button" tabindex="0" style="cursor: pointer;"' : ''}>
               <div class="cluster-header">
                 <div class="cluster-info">
                   <div class="cluster-name">
@@ -179,15 +183,11 @@ function renderDetailedResults(endpoints, parsedData) {
 
           html += `</div>`;
 
-          if (actualClusterData && Object.keys(actualClusterData).length > 0) {
-            if (!window.clusterDataCache) {
-              window.clusterDataCache = {};
-            }
-            const cacheKey = `${endpointId}_${clusterId}`;
-            window.clusterDataCache[cacheKey] = {
+          if (!isClusterMissing) {
+            setClusterCache(endpointId, clusterId, {
               clusterData: actualClusterData,
-              validationData: cluster
-            };
+              validationData: cluster,
+            });
           }
 
           html += `</div>`;
@@ -208,15 +208,75 @@ function renderDetailedResults(endpoints, parsedData) {
 
   detailedResults.innerHTML = html;
 
-  setTimeout(() => {
-    if (window.initializeModalHandlers) {
-      window.initializeModalHandlers();
-    }
-    import("./modal.js").then(module => {
-      if (module.initializeCopyButtons) {
-        module.initializeCopyButtons();
+  bindDetailedResultsInteractions();
+}
+
+function bindDetailedResultsInteractions() {
+  if (detailedResultsInteractionsBound) return;
+  const detailedResults = document.getElementById("detailedResults");
+  if (!detailedResults) return;
+
+  detailedResultsInteractionsBound = true;
+
+  // Single delegated listener for scalability (handles thousands of nodes without thousands of listeners).
+  detailedResults.addEventListener("click", async (e) => {
+    const target = e.target;
+    if (!(target instanceof Element)) return;
+
+    // Open cluster modal
+    const clusterCard = target.closest(".cluster-card.clickable-cluster");
+    if (clusterCard) {
+      const clusterId = clusterCard.getAttribute("data-cluster-id");
+      const endpointId = clusterCard.getAttribute("data-endpoint-id");
+      if (clusterId && endpointId) {
+        openClusterModal(clusterId, endpointId);
       }
-    });
-  }, 100);
+      return;
+    }
+
+    // Copy IDs
+    const copyEl = target.closest(".device-type-id, .cluster-id");
+    if (copyEl) {
+      const text = copyEl.textContent || "";
+      const success = await copyToClipboard(text);
+      if (success) {
+        showCopySuccess(copyEl);
+      }
+      return;
+    }
+
+    // Expand/collapse device type card
+    const header = target.closest(".device-type-header");
+    if (header) {
+      const card = header.closest(".device-type-card");
+      if (!card) return;
+      const content = card.querySelector(".clusters-grid");
+      if (!content) return;
+      const isVisible = content.style.display !== "none";
+      content.style.display = isVisible ? "none" : "grid";
+
+      let icon = header.querySelector(".expand-icon");
+      if (!icon) {
+        icon = document.createElement("span");
+        icon.className = "expand-icon";
+        header.appendChild(icon);
+      }
+      icon.textContent = isVisible ? "▶" : "▼";
+    }
+  });
+
+  detailedResults.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const target = e.target;
+    if (!(target instanceof Element)) return;
+    const clusterCard = target.closest(".cluster-card.clickable-cluster");
+    if (!clusterCard) return;
+    e.preventDefault();
+    const clusterId = clusterCard.getAttribute("data-cluster-id");
+    const endpointId = clusterCard.getAttribute("data-endpoint-id");
+    if (clusterId && endpointId) {
+      openClusterModal(clusterId, endpointId);
+    }
+  });
 }
 
