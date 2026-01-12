@@ -1,4 +1,4 @@
-import sys
+import os
 from delegate_clusters import CLUSTERS
 
 """
@@ -33,7 +33,6 @@ def generate_cluster_sections():
             output.append(cluster["note"])
             output.append("")
 
-        # Create CSV table
         output.append(".. csv-table::")
         output.append('  :header: "Delegate Class", "Reference Implementation"')
         output.append("")
@@ -41,7 +40,6 @@ def generate_cluster_sections():
         # Add delegate class reference
         delegate_ref = f"`{cluster['delegate_link_name']}`_"
 
-        # Handle different implementation scenarios
         if "multiple_impl_link_urls" in cluster:
             # Multiple implementations
             impl_ref = f"`{cluster['multiple_impl_link_urls'][0][0]}`_"
@@ -51,11 +49,9 @@ def generate_cluster_sections():
                     impl_ref = f"`{impl_name}`_" if _ else impl_name
                     output.append(f"              , {impl_ref}")
         elif cluster["delegate_impl_link_name"]:
-            # Single implementation
             impl_ref = f"`{cluster['delegate_impl_link_name']}`_"
             output.append(f"  {delegate_ref}, {impl_ref}")
         else:
-            # No implementation
             output.append(f"  {delegate_ref}, None")
 
         output.append("")
@@ -136,7 +132,9 @@ Below is the list of clusters with delegate and their reference implementation h
 if __name__ == "__main__":
     content = generate_full_document()
 
-    output_file = "app_guide.rst"
+    matter_path = os.getenv("ESP_MATTER_PATH")
+    assert matter_path is not None, "ESP_MATTER_PATH is not set"
+    output_file = os.path.join(matter_path, "docs", "en", "app_guide.rst")
     with open(output_file, "w") as f:
         f.write(content)
     print(f"Generated {output_file}")
