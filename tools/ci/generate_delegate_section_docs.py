@@ -119,12 +119,11 @@ Below is the list of clusters with delegate and their reference implementation h
     return "\n".join(output)
 
 if __name__ == "__main__":
+
     sorted_clusters = sorted(CLUSTERS, key=lambda x: x["display_name"])
     content = generate_delegate_section_document(sorted_clusters)
-
-    matter_path = os.getenv("ESP_MATTER_PATH")
-    assert matter_path is not None, "ESP_MATTER_PATH is not set"
-    output_file = os.path.join(matter_path, "docs", "en", "app_guide.rst")
+    curr_file_path = os.path.dirname(os.path.abspath(__file__))
+    output_file = os.path.join(curr_file_path, "..", "..", "docs", "en", "app_guide.rst")
     with open(output_file, "w") as f:
         f.write(content)
     print(f"Generated {output_file}")
