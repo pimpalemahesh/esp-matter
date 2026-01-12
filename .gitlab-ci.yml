@@ -698,6 +698,15 @@ build_docs:
         - cd docs
         - pip install -r requirements.txt
         - build-docs -bs html latex -t esp32 esp32s3 esp32c2 esp32c3 esp32c6 esp32h2 esp32p4 esp32c5 esp32c61 -l en
+        # Check if delegate_clusters.py was modified and validate app_guide.rst is up-to-date
+        - cd ${CI_PROJECT_DIR}
+        - |
+          if git diff --name-only origin/main...HEAD | grep -q 'tools/ci/delegate_clusters.py'; then
+            echo "Changes detected in delegate_clusters.py, Generating app_guide.rst"
+            python3 ${CI_PROJECT_DIR}/tools/ci/generate_delegate_section_docs.py
+          else
+            echo "No changes in delegate_clusters.py, skipping generation of app_guide.rst"
+          fi
         # disable link checks for now, as it is failing due to some links taking longer time to respond
         # - build-docs -t esp32 -l en linkcheck
 
