@@ -12,6 +12,7 @@ will define it's data and actions in the form of delegate-impl class and set the
 delegate while creating cluster/device type.
 
 List of clusters with delegate:
+
     - Account Login Cluster.
     - Actions Cluster.
     - Application Basic Cluster.
@@ -20,15 +21,19 @@ List of clusters with delegate:
     - Boolean State Configuration Cluster.
     - Camera AV Settings User Level Management Cluster.
     - Channel Cluster.
+    - Chime Cluster.
     - Closure Control Cluster.
     - Closure Dimension Cluster.
     - Commissioner Control Cluster.
+    - Commodity Price Cluster.
+    - Commodity Tariff Cluster.
     - Content App Observer Cluster.
     - Content Control Cluster.
     - Content Launcher Cluster.
     - Device Energy Management Cluster.
     - Dishwasher Alarm Cluster.
     - Door Lock Cluster.
+    - Electrical Grid Conditions Cluster.
     - Electrical Power Measurement Cluster.
     - Energy EVSE Cluster.
     - Energy Preference Cluster.
@@ -41,10 +46,11 @@ List of clusters with delegate:
     - Media Playback Cluster.
     - Messages Cluster.
     - Microwave Oven Control Cluster.
-    - Mode Base Cluster (all derived types of clusters).
+    - Mode Base Cluster.
     - Mode Select Cluster.
     - Operational State Cluster.
     - Power Topology Cluster.
+    - Push AV Stream Transport Cluster.
     - Resource Monitoring Cluster.
     - Service Area Cluster.
     - Target Navigator Cluster.
@@ -55,13 +61,9 @@ List of clusters with delegate:
     - Water Heater Management Cluster.
     - WebRTC Transport Provider Cluster.
     - Window Covering Cluster.
-    - Chime Cluster.
-    - Push AV Stream Transport Cluster.
-    - Commodity Tariff Cluster.
-    - Commodity Price Cluster.
-    - Electrical Grid Conditions Cluster.
 
 Below is the list of clusters with delegate and their reference implementation header files:
+
 
 1.1 Account Login Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,7 +79,7 @@ Below is the list of clusters with delegate and their reference implementation h
 .. csv-table::
   :header: "Delegate Class", "Reference Implementation"
 
-  `Actions`_, None
+  `Actions`_, `Actions Delegate`_
 
 1.3 Application Basic Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -127,15 +129,23 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Channel`_, `Channel Delegate`_
 
-1.9 Closure Control Cluster
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.9 Chime Cluster
+~~~~~~~~~~~~~~~~~
+
+.. csv-table::
+  :header: "Delegate Class", "Reference Implementation"
+
+  `Chime`_, `Chime Delegate`_
+
+1.10 Closure Control Cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
   :header: "Delegate Class", "Reference Implementation"
 
   `Closure Control`_, `Closure Control Delegate`_
 
-1.10 Closure Dimension Cluster
+1.11 Closure Dimension Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -143,7 +153,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Closure Dimension`_, `Closure Dimension Delegate`_
 
-1.11 Commissioner Control Cluster
+1.12 Commissioner Control Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -151,7 +161,23 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Commissioner Control`_, `Commissioner Control Delegate`_
 
-1.12 Content App Observer Cluster
+1.13 Commodity Price Cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. csv-table::
+  :header: "Delegate Class", "Reference Implementation"
+
+  `Commodity Price`_, `Commodity Price Delegate`_
+
+1.14 Commodity Tariff Cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. csv-table::
+  :header: "Delegate Class", "Reference Implementation"
+
+  `Commodity Tariff`_, `Commodity Tariff Delegate`_
+
+1.15 Content App Observer Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -159,7 +185,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Content App Observer`_, None
 
-1.13 Content Control Cluster
+1.16 Content Control Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -167,7 +193,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Content Control`_, None
 
-1.14 Content Launcher Cluster
+1.17 Content Launcher Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -175,7 +201,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Content Launcher`_, `Content Launcher Delegate`_
 
-1.15 Device Energy Management Cluster
+1.18 Device Energy Management Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -183,7 +209,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Device Energy Management`_, `Device Energy Management Delegate`_
 
-1.16 Dishwasher Alarm Cluster
+1.19 Dishwasher Alarm Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -191,7 +217,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Dishwasher Alarm`_, `Dishwasher Alarm Delegate`_
 
-1.17 Door Lock Cluster
+1.20 Door Lock Cluster
 ~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -199,7 +225,15 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Door Lock`_, `Door Lock Delegate`_
 
-1.18 Electrical Power Measurement Cluster
+1.21 Electrical Grid Conditions Cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. csv-table::
+  :header: "Delegate Class", "Reference Implementation"
+
+  `Electrical Grid Conditions`_, `Electrical Grid Conditions Delegate`_
+
+1.22 Electrical Power Measurement Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -207,7 +241,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Electrical Power Measurement`_, `Electrical Power Measurement Delegate`_
 
-1.19 Energy Evse Cluster
+1.23 Energy EVSE Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -215,7 +249,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Energy Evse`_, `Energy Evse Delegate`_
 
-1.20 Energy Preference Cluster
+1.24 Energy Preference Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -223,7 +257,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Energy Preference`_, `Energy Preference Delegate`_
 
-1.21 Fan Control Cluster
+1.25 Fan Control Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -231,7 +265,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Fan Control`_, `Fan Control Delegate`_
 
-1.22 Keypad Input Cluster
+1.26 Keypad Input Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -239,7 +273,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Keypad Input`_, `Keypad Input Delegate`_
 
-1.23 Laundry Dryer Controls Cluster
+1.27 Laundry Dryer Controls Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -247,7 +281,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Laundry Dryer Controls`_, `Laundry Dryer Controls Delegate`_
 
-1.24 Laundry Washer Controls Cluster
+1.28 Laundry Washer Controls Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -255,7 +289,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Laundry Washer Controls`_, `Laundry Washer Controls Delegate`_
 
-1.25 Low Power Cluster
+1.29 Low Power Cluster
 ~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -263,7 +297,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Low Power`_, `Low Power Delegate`_
 
-1.26 Media Input Cluster
+1.30 Media Input Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -271,7 +305,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Media Input`_, `Media Input Delegate`_
 
-1.27 Media Playback Cluster
+1.31 Media Playback Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -279,7 +313,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Media Playback`_, `Media Playback Delegate`_
 
-1.28 Messages Cluster
+1.32 Messages Cluster
 ~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -287,7 +321,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Messages`_, `Messages Delegate`_
 
-1.29 Microwave Oven Control Cluster
+1.33 Microwave Oven Control Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -295,7 +329,7 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Microwave Oven Control`_, `Microwave Oven Control Delegate`_
 
-1.30 Mode Base Cluster
+1.34 Mode Base Cluster
 ~~~~~~~~~~~~~~~~~~~~~~
 
 It is a base cluster for ModeEVSE, ModeOven, ModeRVSRun, ModeRVSClean, ModeDishwasher,
@@ -313,7 +347,7 @@ ModeWaterHeater, ModeRefrigerator, ModeLaundryWasher and ModeMicrowaveOven.
               , `Device Energy Management Mode`_
               , `Water Heater Mode`_
 
-1.31 Mode Select Cluster
+1.35 Mode Select Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -321,7 +355,7 @@ ModeWaterHeater, ModeRefrigerator, ModeLaundryWasher and ModeMicrowaveOven.
 
   `Mode Select`_, `Mode Select Delegate`_
 
-1.32 Operational State Cluster
+1.36 Operational State Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -329,7 +363,7 @@ ModeWaterHeater, ModeRefrigerator, ModeLaundryWasher and ModeMicrowaveOven.
 
   `Operational State`_, `Operational State Delegate`_
 
-1.33 Power Topology Cluster
+1.37 Power Topology Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -337,97 +371,7 @@ ModeWaterHeater, ModeRefrigerator, ModeLaundryWasher and ModeMicrowaveOven.
 
   `Power Topology`_, `Power Topology Delegate`_
 
-1.34 Resource Monitoring Cluster
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. csv-table::
-  :header: "Delegate Class", "Reference Implementation"
-
-  `Resource Monitoring`_, `HEPA Filter Monitoring Delegate`_
-                        , `Activated Carbon Filter Monitoring Delegate`_
-                        , `Water Tank Level Monitoring Delegate`
-
-1.35 Service Area Cluster
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. csv-table::
-  :header: "Delegate Class", "Reference Implementation"
-
-  `Service Area`_, `Service Area Delegate`_
-
-1.36 Target Navigator Cluster
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. csv-table::
-  :header: "Delegate Class", "Reference Implementation"
-
-  `Target Navigator`_, `Target Navigator Delegate`_
-
-1.37 Thermostat Cluster
-~~~~~~~~~~~~~~~~~~~~~~~
-
-.. csv-table::
-  :header: "Delegate Class", "Reference Implementation"
-  
-  `Thermostat`_, `Thermostat Delegate`_
-
-1.38 Time Synchronization Cluster
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. csv-table::
-  :header: "Delegate Class", "Reference Implementation"
-
-  `Time Synchronization`_, `Time Synchronization Delegate`_
-
-1.39 Valve Configuration And Control Cluster
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. csv-table::
-  :header: "Delegate Class", "Reference Implementation"
-
-  `Valve Configuration And Control`_, `Valve Configuration And Control Delegate`_
-
-1.40 Wake On LAN Cluster
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. csv-table::
-  :header: "Delegate Class", "Reference Implementation"
-
-  `Wake On LAN`_, `Wake On LAN Delegate`_
-
-1.41 Water Heater Management Cluster
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. csv-table::
-  :header: "Delegate Class", "Reference Implementation"
-
-  `Water Heater Management`_, `Water Heater Management Delegate`_
-
-1.42 WebRTC Transport Provider Cluster
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. csv-table::
-  :header: "Delegate Class", "Reference Implementation"
-
-  `WebRTC Transport Provider`_, `WebRTC Transport Provider Delegate`_
-
-1.43 Window Covering Cluster
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. csv-table::
-  :header: "Delegate Class", "Reference Implementation"
-
-  `Window Covering`_, `Window Covering Delegate`_
-
-1.44 Chime Cluster
-~~~~~~~~~~~~~~~~~~
-
-.. csv-table::
-  :header: "Delegate Class", "Reference Implementation"
-
-  `Chime`_, `Chime Delegate`_
-
-1.45 Push AV Stream Transport Cluster
+1.38 Push AV Stream Transport Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
@@ -435,29 +379,87 @@ ModeWaterHeater, ModeRefrigerator, ModeLaundryWasher and ModeMicrowaveOven.
 
   `Push AV Stream Transport`_, `Push AV Stream Transport Delegate`_
 
-1.46 Commodity Tariff Cluster
+1.39 Resource Monitoring Cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. csv-table::
+  :header: "Delegate Class", "Reference Implementation"
+
+  `Resource Monitoring`_, `HEPA Filter Monitoring Delegate`_
+              , `Activated Carbon Filter Monitoring Delegate`_
+              , Water Tank Level Monitoring Delegate
+
+1.40 Service Area Cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. csv-table::
+  :header: "Delegate Class", "Reference Implementation"
+
+  `Service Area`_, `Service Area Delegate`_
+
+1.41 Target Navigator Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
   :header: "Delegate Class", "Reference Implementation"
 
-  `Commodity Tariff`_, `Commodity Tariff Delegate`_
+  `Target Navigator`_, `Target Navigator Delegate`_
 
-1.47 Commodity Price Cluster
+1.42 Thermostat Cluster
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. csv-table::
+  :header: "Delegate Class", "Reference Implementation"
+
+  `Thermostat`_, `Thermostat Delegate`_
+
+1.43 Time Synchronization Cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. csv-table::
+  :header: "Delegate Class", "Reference Implementation"
+
+  `Time Synchronization`_, `Time Synchronization Delegate`_
+
+1.44 Valve Configuration And Control Cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. csv-table::
+  :header: "Delegate Class", "Reference Implementation"
+
+  `Valve Configuration And Control`_, `Valve Configuration And Control Delegate`_
+
+1.45 Wake On Lan Cluster
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. csv-table::
+  :header: "Delegate Class", "Reference Implementation"
+
+  `Wake On LAN`_, `Wake On LAN Delegate`_
+
+1.46 Water Heater Management Cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. csv-table::
+  :header: "Delegate Class", "Reference Implementation"
+
+  `Water Heater Management`_, `Water Heater Management Delegate`_
+
+1.47 WebRTC Transport Provider Cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. csv-table::
+  :header: "Delegate Class", "Reference Implementation"
+
+  `WebRTC Transport Provider`_, `WebRTC Transport Provider Delegate`_
+
+1.48 Window Covering Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. csv-table::
   :header: "Delegate Class", "Reference Implementation"
 
-  `Commodity Price`_, `Commodity Price Delegate`_
-
-1.48 Electrical Grid Conditions Cluster
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. csv-table::
-  :header: "Delegate Class", "Reference Implementation"
-
-  `Electrical Grid Conditions`_, `Electrical Grid Conditions Delegate`_
+  `Window Covering`_, `Window Covering Delegate`_
 
 .. note::
     Make sure that after implementing delegate class, you set the delegate class pointer at the time of creating cluster.
@@ -484,10 +486,16 @@ ModeWaterHeater, ModeRefrigerator, ModeLaundryWasher and ModeMicrowaveOven.
 .. _`Camera AV Settings User Level Management Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/all-clusters-app/all-clusters-common/include/camera-av-settings-user-level-management-instance.h
 .. _`Channel`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/channel-server/channel-delegate.h
 .. _`Channel Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/tv-app/tv-common/clusters/channel/ChannelManager.h
+.. _`Chime`: https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/chime-server/chime-server.h
+.. _`Chime Delegate`: https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/all-clusters-app/all-clusters-common/include/chime-instance.h
 .. _`Closure Control`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/closure-control-server/closure-control-cluster-delegate.h
 .. _`Closure Control Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/closure-app/closure-common/include/ClosureControlEndpoint.h
 .. _`Closure Dimension`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/closure-dimension-server/closure-dimension-delegate.h
 .. _`Closure Dimension Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/closure-app/closure-common/include/ClosureDimensionEndpoint.h
+.. _`Commodity Price`: https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/commodity-price-server/commodity-price-server.h
+.. _`Commodity Price Delegate`: https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/energy-gateway-app/commodity-price/include/CommodityPriceDelegate.h
+.. _`Commodity Tariff`: https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/commodity-tariff-server/commodity-tariff-server.h
+.. _`Commodity Tariff Delegate`: https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/energy-gateway-app/commodity-tariff/include/CommodityTariffInstance.h
 .. _`Commissioner Control`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/commissioner-control-server/commissioner-control-server.h
 .. _`Commissioner Control Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/fabric-bridge-app/linux/include/CommissionerControlDelegate.h
 .. _`Content App Observer`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/content-app-observer/content-app-observer-delegate.h
@@ -500,6 +508,8 @@ ModeWaterHeater, ModeRefrigerator, ModeLaundryWasher and ModeMicrowaveOven.
 .. _`Dishwasher Alarm Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/all-clusters-app/all-clusters-common/src/dishwasher-alarm-stub.cpp
 .. _`Door Lock`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/door-lock-server/door-lock-delegate.h
 .. _`Door Lock Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/lock-app/lock-common/src/LockEndpoint.cpp
+.. _`Electrical Grid Conditions`: https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/electrical-grid-conditions-server/electrical-grid-conditions-server.h
+.. _`Electrical Grid Conditions Delegate`: https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/energy-gateway-app/electrical-grid-conditions/include/ElectricalGridConditionsDelegate.h
 .. _`Electrical Power Measurement`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/electrical-power-measurement-server/electrical-power-measurement-server.h
 .. _`Electrical Power Measurement Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/energy-management-app/energy-management-common/energy-reporting/include/ElectricalPowerMeasurementDelegate.h
 .. _`Energy Evse`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/energy-evse-server/energy-evse-server.h
@@ -539,6 +549,8 @@ ModeWaterHeater, ModeRefrigerator, ModeLaundryWasher and ModeMicrowaveOven.
 .. _`Operational State Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/all-clusters-app/all-clusters-common/include/operational-state-delegate-impl.h
 .. _`Power Topology`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/power-topology-server/power-topology-server.h
 .. _`Power Topology Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/energy-management-app/energy-management-common/energy-reporting/include/PowerTopologyDelegate.h
+.. _`Push AV Stream Transport`: https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/push-av-stream-transport-server/push-av-stream-transport-delegate.h
+.. _`Push AV Stream Transport Delegate`: https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/all-clusters-app/all-clusters-common/include/push-av-stream-transport-delegate-impl.h
 .. _`Resource Monitoring`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/resource-monitoring-server/resource-monitoring-server.h
 .. _`HEPA Filter Monitoring Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/all-clusters-app/all-clusters-common/include/resource-monitoring-delegates.h
 .. _`Activated Carbon Filter Monitoring Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/all-clusters-app/all-clusters-common/include/resource-monitoring-delegates.h
@@ -560,13 +572,3 @@ ModeWaterHeater, ModeRefrigerator, ModeLaundryWasher and ModeMicrowaveOven.
 .. _`WebRTC Transport Provider Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/camera-app/linux/include/clusters/webrtc_provider/webrtc-provider-manager.h
 .. _`Window Covering`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/window-covering-server/window-covering-delegate.h
 .. _`Window Covering Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/chef/common/clusters/window-covering/chef-window-covering.h
-.. _`Chime`: https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/chime-server/chime-server.h
-.. _`Chime Delegate`: https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/all-clusters-app/all-clusters-common/include/chime-instance.h
-.. _`Push AV Stream Transport`: https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/push-av-stream-transport-server/push-av-stream-transport-delegate.h
-.. _`Push AV Stream Transport Delegate`: https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/all-clusters-app/all-clusters-common/include/push-av-stream-transport-delegate-impl.h
-.. _`Commodity Tariff`: https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/commodity-tariff-server/commodity-tariff-server.h
-.. _`Commodity Tariff Delegate`: https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/energy-gateway-app/commodity-tariff/include/CommodityTariffInstance.h
-.. _`Commodity Price`: https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/commodity-price-server/commodity-price-server.h
-.. _`Commodity Price Delegate`: https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/energy-gateway-app/commodity-price/include/CommodityPriceDelegate.h
-.. _`Electrical Grid Conditions`: https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/electrical-grid-conditions-server/electrical-grid-conditions-server.h
-.. _`Electrical Grid Conditions Delegate`: https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/energy-gateway-app/electrical-grid-conditions/include/ElectricalGridConditionsDelegate.h
