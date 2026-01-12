@@ -56,13 +56,6 @@ CLUSTERS = [
         "delegate_impl_link_url": "https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/tv-app/tv-common/clusters/channel/ChannelManager.h",
     },
     {
-        "display_name": "Chime Cluster",
-        "delegate_link_name": "Chime",
-        "delegate_impl_link_name": "Chime Delegate",
-        "delegate_link_url": "https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/chime-server/chime-server.h",
-        "delegate_impl_link_url": "https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/all-clusters-app/all-clusters-common/include/chime-instance.h",
-    },
-    {
         "display_name": "Closure Control Cluster",
         "delegate_link_name": "Closure Control",
         "delegate_impl_link_name": "Closure Control Delegate",
@@ -231,7 +224,7 @@ CLUSTERS = [
         "delegate_impl_link_url": "https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/microwave-oven-app/microwave-oven-common/include/microwave-oven-device.h",
     },
     {
-        "display_name": "Mode Base Cluster",
+        "display_name": "Mode Base Cluster (all derived types of clusters)",
         "delegate_link_name": "Mode Base",
         "delegate_impl_link_name": None,
         "delegate_link_url": "https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/mode-base-server/mode-base-server.h",
@@ -350,5 +343,12 @@ CLUSTERS = [
         "delegate_impl_link_name": "Window Covering Delegate",
         "delegate_link_url": "https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/window-covering-server/window-covering-delegate.h",
         "delegate_impl_link_url": "https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/chef/common/clusters/window-covering/chef-window-covering.h",
+    },
+    {
+        "display_name": "Chime Cluster",
+        "delegate_link_name": "Chime",
+        "delegate_impl_link_name": "Chime Delegate",
+        "delegate_link_url": "https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/chime-server/chime-server.h",
+        "delegate_impl_link_url": "https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/all-clusters-app/all-clusters-common/include/chime-instance.h",
     },
 ]

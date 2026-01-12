@@ -46,7 +46,7 @@ List of clusters with delegate:
     - Media Playback Cluster.
     - Messages Cluster.
     - Microwave Oven Control Cluster.
-    - Mode Base Cluster.
+    - Mode Base Cluster (all derived types of clusters).
     - Mode Select Cluster.
     - Operational State Cluster.
     - Power Topology Cluster.
@@ -329,8 +329,8 @@ Below is the list of clusters with delegate and their reference implementation h
 
   `Microwave Oven Control`_, `Microwave Oven Control Delegate`_
 
-1.34 Mode Base Cluster
-~~~~~~~~~~~~~~~~~~~~~~
+1.34 Mode Base Cluster (all derived types of clusters)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is a base cluster for ModeEVSE, ModeOven, ModeRVSRun, ModeRVSClean, ModeDishwasher,
 ModeWaterHeater, ModeRefrigerator, ModeLaundryWasher and ModeMicrowaveOven.
@@ -386,8 +386,8 @@ ModeWaterHeater, ModeRefrigerator, ModeLaundryWasher and ModeMicrowaveOven.
   :header: "Delegate Class", "Reference Implementation"
 
   `Resource Monitoring`_, `HEPA Filter Monitoring Delegate`_
-              , `Activated Carbon Filter Monitoring Delegate`_
-              , Water Tank Level Monitoring Delegate
+                        , `Activated Carbon Filter Monitoring Delegate`_
+                        , `Water Tank Level Monitoring Delegate`
 
 1.40 Service Area Cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -492,12 +492,12 @@ ModeWaterHeater, ModeRefrigerator, ModeLaundryWasher and ModeMicrowaveOven.
 .. _`Closure Control Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/closure-app/closure-common/include/ClosureControlEndpoint.h
 .. _`Closure Dimension`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/closure-dimension-server/closure-dimension-delegate.h
 .. _`Closure Dimension Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/closure-app/closure-common/include/ClosureDimensionEndpoint.h
+.. _`Commissioner Control`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/commissioner-control-server/commissioner-control-server.h
+.. _`Commissioner Control Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/fabric-bridge-app/linux/include/CommissionerControlDelegate.h
 .. _`Commodity Price`: https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/commodity-price-server/commodity-price-server.h
 .. _`Commodity Price Delegate`: https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/energy-gateway-app/commodity-price/include/CommodityPriceDelegate.h
 .. _`Commodity Tariff`: https://github.com/espressif/connectedhomeip/blob/faf4d09/src/app/clusters/commodity-tariff-server/commodity-tariff-server.h
 .. _`Commodity Tariff Delegate`: https://github.com/espressif/connectedhomeip/blob/faf4d09/examples/energy-gateway-app/commodity-tariff/include/CommodityTariffInstance.h
-.. _`Commissioner Control`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/commissioner-control-server/commissioner-control-server.h
-.. _`Commissioner Control Delegate`: https://github.com/espressif/connectedhomeip/blob/d144bbb/examples/fabric-bridge-app/linux/include/CommissionerControlDelegate.h
 .. _`Content App Observer`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/content-app-observer/content-app-observer-delegate.h
 .. _`Content Control`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/content-control-server/content-control-delegate.h
 .. _`Content Launcher`: https://github.com/espressif/connectedhomeip/blob/d144bbb/src/app/clusters/content-launch-server/content-launch-delegate.h

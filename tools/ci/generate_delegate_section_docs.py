@@ -1,34 +1,30 @@
-import os
-from delegate_clusters import CLUSTERS
-
 """
 Script to generate the delegate implementation section of app_guide.rst
 This ensures the cluster list is always sorted and reduces code repetition.
 """
+import os
+from delegate_clusters import CLUSTERS
 
-def generate_cluster_list():
+def generate_cluster_display_names(clusters: list[dict]) -> str:
     """Generate the bullet list of clusters with delegates"""
     output = []
-    for cluster in sorted(CLUSTERS, key=lambda x: x["display_name"]):
+    for cluster in clusters:
         output.append(f"    - {cluster['display_name']}.")
     return "\n".join(output)
 
 
-def generate_cluster_sections():
+def generate_cluster_sections(clusters: list[dict]) -> str:
     """Generate the individual cluster sections with CSV tables"""
     output = []
-    sorted_clusters = sorted(CLUSTERS, key=lambda x: x["display_name"])
 
-    for idx, cluster in enumerate(sorted_clusters, start=1):
+    for idx, cluster in enumerate(clusters, start=1):
         section_num = f"1.{idx}"
         display_name = cluster["display_name"]
 
-        # Create section header
         output.append(f"{section_num} {display_name}")
         output.append("~" * len(f"{section_num} {display_name}"))
         output.append("")
 
-        # Add note if present
         if "note" in cluster:
             output.append(cluster["note"])
             output.append("")
@@ -37,17 +33,15 @@ def generate_cluster_sections():
         output.append('  :header: "Delegate Class", "Reference Implementation"')
         output.append("")
 
-        # Add delegate class reference
         delegate_ref = f"`{cluster['delegate_link_name']}`_"
 
         if "multiple_impl_link_urls" in cluster:
-            # Multiple implementations
-            impl_ref = f"`{cluster['multiple_impl_link_urls'][0][0]}`_"
-            output.append(f"  {delegate_ref}, {impl_ref}")
-            for impl_name, _ in cluster["multiple_impl_link_urls"][1:]:
-                if impl_name:
-                    impl_ref = f"`{impl_name}`_" if _ else impl_name
-                    output.append(f"              , {impl_ref}")
+            for idx, (impl_name, impl_url) in enumerate(cluster["multiple_impl_link_urls"]):
+                if idx == 0:
+                    output.append(f"  {delegate_ref}, `{impl_name}`_")
+                else:
+                    impl_ref = f"`{impl_name}`_" if impl_url else f"`{impl_name}`"
+                    output.append(f"{' ' * (len(delegate_ref) + 2)}, {impl_ref}")
         elif cluster["delegate_impl_link_name"]:
             impl_ref = f"`{cluster['delegate_impl_link_name']}`_"
             output.append(f"  {delegate_ref}, {impl_ref}")
@@ -59,13 +53,13 @@ def generate_cluster_sections():
     return "\n".join(output)
 
 
-def generate_reference_links():
+def generate_reference_links(clusters: list[dict]) -> str:
     """Generate the reference link definitions"""
     output = []
 
     links = {}
 
-    for cluster in CLUSTERS:
+    for cluster in clusters:
         links[cluster["delegate_link_name"]] = cluster["delegate_link_url"]
 
         if "multiple_impl_link_urls" in cluster:
@@ -82,21 +76,7 @@ def generate_reference_links():
 
     return "\n".join(output)
 
-
-def generate_note_section():
-    """Generate the note section with example code"""
-    return """.. note::
-    Make sure that after implementing delegate class, you set the delegate class pointer at the time of creating cluster.
-
-   ::
-
-      robotic_vacuum_cleaner::config_t rvc_config;
-      rvc_config.rvc_run_mode.delegate = object_of_delegate_class;
-      endpoint_t *endpoint = robotic_vacuum_cleaner::create(node, & rvc_config, ENDPOINT_FLAG_NONE);
-"""
-
-
-def generate_full_document():
+def generate_delegate_section_document(clusters: list[dict]) -> str:
     """Generate the complete delegate implementation section"""
     header = """Application User Guide
 ======================
@@ -118,19 +98,29 @@ List of clusters with delegate:
 Below is the list of clusters with delegate and their reference implementation header files:
 
 """
+    note = """.. note::
+    Make sure that after implementing delegate class, you set the delegate class pointer at the time of creating cluster.
+
+   ::
+
+      robotic_vacuum_cleaner::config_t rvc_config;
+      rvc_config.rvc_run_mode.delegate = object_of_delegate_class;
+      endpoint_t *endpoint = robotic_vacuum_cleaner::create(node, & rvc_config, ENDPOINT_FLAG_NONE);
+"""
 
     output = [header]
-    output.append(generate_cluster_list())
+    output.append(generate_cluster_display_names(clusters))
     output.append(intro)
-    output.append(generate_cluster_sections())
-    output.append(generate_note_section())
-    output.append(generate_reference_links())
+    output.append(generate_cluster_sections(clusters))
+    output.append(note)
+    output.append(generate_reference_links(clusters))
+    output.append("")
 
     return "\n".join(output)
 
-
 if __name__ == "__main__":
-    content = generate_full_document()
+    sorted_clusters = sorted(CLUSTERS, key=lambda x: x["display_name"])
+    content = generate_delegate_section_document(sorted_clusters)
 
     matter_path = os.getenv("ESP_MATTER_PATH")
     assert matter_path is not None, "ESP_MATTER_PATH is not set"
