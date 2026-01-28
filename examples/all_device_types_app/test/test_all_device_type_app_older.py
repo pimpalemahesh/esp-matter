@@ -217,7 +217,7 @@ def run_tests_for_all_devices():
                 
                 # Clean environment after each test
                 clean_environment()
-                time.sleep(2)
+                time.sleep(10)
             
             # Determine overall result
             overall = "PASS" if all(r == "PASS" for r in test_results) else "FAIL"
