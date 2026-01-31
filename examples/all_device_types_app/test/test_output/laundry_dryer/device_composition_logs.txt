@@ -1,0 +1,377 @@
+=== Test Output ===
+[0;32m[1769758611.810] [61306:61306] [CTL] Setting attestation nonce to random value[0m
+[0;32m[1769758611.810] [61306:61306] [CTL] Setting CSR nonce to random value[0m
+[0;34m[1769758611.811] [61306:61306] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_kvs[0m
+[0;34m[1769758611.817] [61306:61306] [DL] Wrote settings to /tmp/chip_kvs[0m
+[0;34m[1769758611.817] [61306:61306] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_factory.ini[0m
+[0;34m[1769758611.818] [61306:61306] [DL] Wrote settings to /tmp/chip_factory.ini[0m
+[0;34m[1769758611.818] [61306:61306] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_config.ini[0m
+[0;34m[1769758611.819] [61306:61306] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;34m[1769758611.819] [61306:61306] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_counters.ini[0m
+[0;34m[1769758611.820] [61306:61306] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;34m[1769758611.821] [61306:61306] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769758611.821] [61306:61306] [DL] NVS set: chip-config/unique-id = "D37D7FF3CDAD9BBC"[0m
+[0;34m[1769758611.823] [61306:61306] [DL] Wrote settings to /tmp/chip_factory.ini[0m
+[0;32m[1769758611.823] [61306:61306] [DL] NVS set: chip-factory/vendor-id = 65521 (0xFFF1)[0m
+[0;34m[1769758611.824] [61306:61306] [DL] Wrote settings to /tmp/chip_factory.ini[0m
+[0;32m[1769758611.824] [61306:61306] [DL] NVS set: chip-factory/product-id = 32769 (0x8001)[0m
+[0;34m[1769758611.826] [61306:61306] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;32m[1769758611.826] [61306:61306] [DL] NVS set: chip-counters/reboot-count = 1 (0x1)[0m
+[0;34m[1769758611.827] [61306:61306] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;32m[1769758611.827] [61306:61306] [DL] NVS set: chip-counters/total-operational-hours = 0 (0x0)[0m
+[0;34m[1769758611.828] [61306:61306] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;32m[1769758611.828] [61306:61306] [DL] NVS set: chip-counters/boot-reason = 0 (0x0)[0m
+[0;34m[1769758611.828] [61306:61306] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769758611.828] [61306:61306] [DL] NVS set: chip-config/regulatory-location = 0 (0x0)[0m
+[0;34m[1769758611.829] [61306:61306] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769758611.829] [61306:61306] [DL] NVS set: chip-config/location-capability = 2 (0x2)[0m
+[0;34m[1769758611.830] [61306:61306] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769758611.830] [61306:61306] [DL] NVS set: chip-config/configuration-version = 1 (0x1)[0m
+[0;32m[1769758611.831] [61306:61306] [DL] Got Ethernet interface: enp2s0f0[0m
+[0;32m[1769758611.831] [61306:61306] [DL] Found the primary Ethernet interface:enp2s0f0[0m
+[0;32m[1769758611.831] [61306:61306] [DL] Got WiFi interface: wlp3s0[0m
+[0;32m[1769758611.832] [61306:61306] [DL] Found the primary WiFi interface:wlp3s0[0m
+[0;32m[1769758611.832] [61306:61306] [PAF] WiFiPAF: WiFiPAFLayer::Init()[0m
+[0;34m[1769758611.832] [61306:61306] [CTL] StorageAdapter::GetKeyValue: Key = g/icdfl, Value = 0x4383860 (512)[0m
+[0;34m[1769758611.832] [61306:61306] [CTL] Key Not Found
+[0m
+[0;34m[1769758611.832] [61306:61306] [IN] UDP::Init bind&listen port=0[0m
+[0;34m[1769758611.832] [61306:61306] [IN] UDP::Init bound to port=35709[0m
+[0;34m[1769758611.832] [61306:61306] [IN] UDP::Init bind&listen port=0[0m
+[0;34m[1769758611.832] [61306:61306] [IN] UDP::Init bound to port=42687[0m
+[0;34m[1769758611.832] [61306:61306] [IN] BLEBase::Init - setting/overriding transport[0m
+[0;34m[1769758611.832] [61306:61306] [IN] WiFiPAFBase::Init - setting/overriding transport[0m
+[0;34m[1769758611.832] [61306:61306] [IN] TransportMgr initialized[0m
+[0;34m[1769758611.832] [61306:61306] [FP] Initializing FabricTable from persistent storage[0m
+[0;34m[1769758611.832] [61306:61306] [CTL] StorageAdapter::GetKeyValue: Key = g/lkgt, Value = 0x7ffd0deb9830 (18)[0m
+[0;34m[1769758611.832] [61306:61306] [CTL] Key Not Found
+[0m
+[0;32m[1769758611.832] [61306:61306] [TS] Last Known Good Time: [unknown][0m
+[0;32m[1769758611.832] [61306:61306] [TS] Setting Last Known Good Time to firmware build time 2023-10-14T01:16:48[0m
+[0;34m[1769758611.832] [61306:61306] [CTL] StorageAdapter::SetKeyValue: Key = g/lkgt, Value = 0x7ffd0deb9820 (8)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+[0;34m[1769758611.833] [61306:61306] [CTL] StorageAdapter::GetKeyValue: Key = g/fidx, Value = 0x7ffd0deb99c0 (44)[0m
+[0;34m[1769758611.833] [61306:61306] [CTL] Key Not Found
+[0m
+[0;34m[1769758611.833] [61306:61306] [CTL] StorageAdapter::GetKeyValue: Key = g/fs/c, Value = 0x7ffd0deb9890 (36)[0m
+[0;34m[1769758611.833] [61306:61306] [CTL] Key Not Found
+[0m
+[0;34m[1769758611.833] [61306:61306] [CTL] StorageAdapter::GetKeyValue: Key = g/gcc, Value = 0x7ffd0deb991c (4)[0m
+[0;34m[1769758611.833] [61306:61306] [CTL] Key Not Found
+[0m
+[0;34m[1769758611.833] [61306:61306] [CTL] StorageAdapter::GetKeyValue: Key = g/gdc, Value = 0x7ffd0deb991c (4)[0m
+[0;34m[1769758611.833] [61306:61306] [CTL] Key Not Found
+[0m
+[0;34m[1769758611.833] [61306:61306] [CTL] StorageAdapter::SetKeyValue: Key = g/gcc, Value = 0x7ffd0deb991c (4)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+[0;34m[1769758611.833] [61306:61306] [CTL] StorageAdapter::SetKeyValue: Key = g/gdc, Value = 0x7ffd0deb991c (4)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+[0;32m[1769758611.833] [61306:61306] [DMG] Ember attribute persistence requires setting up[0m
+[0;32m[1769758611.835] [61306:61306] [IN] CASE Server enabling CASE session setups[0m
+[0;34m[1769758611.835] [61306:61306] [IN] SecureSession[0x37ee0c0]: Allocated Type:2 LSID:17165[0m
+[0;34m[1769758611.835] [61306:61306] [SC] Allocated SecureSession (0x37ee0c0) - waiting for Sigma1 msg[0m
+[0;34m[1769758611.835] [61306:61306] [CTL] System State Initialized...[0m
+[0;34m[1769758611.835] [61306:61309] [DL] CHIP task running[0m
+Didn't find any CertificateAuthorities in storage -- creating a new CertificateAuthority + FabricAdmin...
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/laundry_dryer'
+[MatterTest] 01-30 13:06:51.958 INFO Starting test set, running 1 tests
+[MatterTest] 01-30 13:06:51.959 INFO ==========> TC_DeviceBasicComposition <==========
+[MatterTest] 01-30 13:06:51.962 INFO Lookup started for FFF0055CFFC5C1A7-0000000012344321
+[MatterTest] 01-30 13:06:51.962 INFO Stopping commissionable node discovery over DNS-SD
+[MatterTest] 01-30 13:06:51.962 INFO Starting commissionable node discovery over BLE
+[MatterTest] 01-30 13:06:51.962 INFO Starting commissionable node discovery over Wi-Fi PAF
+[MatterTest] 01-30 13:06:51.962 ERROR Error, Long discriminator is required
+[MatterTest] 01-30 13:06:51.962 ERROR Failed to start commissionable node discovery over Wi-Fi PAF: src/controller/SetUpCodePairer.cpp:285: CHIP Error 0x0000002F: Invalid argument
+[MatterTest] 01-30 13:06:51.962 INFO Skipping commissionable node discovery over NFC since not supported by the controller!
+[MatterTest] 01-30 13:06:51.963 INFO Starting commissionable node discovery over DNS-SD
+[MatterTest] 01-30 13:06:51.967 INFO BLE removing known devices
+[MatterTest] 01-30 13:06:51.970 INFO BLE initiating scan
+[MatterTest] 01-30 13:06:52.083 ERROR Long dispatch time: 120 ms, for event type 3
+[MatterTest] 01-30 13:06:52.162 INFO Checking node lookup status for FFF0055CFFC5C1A7-0000000012344321 after 200 ms
+[MatterTest] 01-30 13:06:54.548 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:06:54.549 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:06:54.549 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:06:54.549 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:06:55.583 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:06:55.583 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:06:55.584 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:06:55.584 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:08.696 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:08.696 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:09.038 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:09.039 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:09.126 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:09.126 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:09.162 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:09.163 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:09.229 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:09.229 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:09.308 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:09.308 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:09.379 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:09.379 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:09.780 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:09.780 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:10.167 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:10.167 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:10.220 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:10.220 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:10.558 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:10.558 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:10.622 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:10.622 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:10.685 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:10.685 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:10.717 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:10.718 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:10.839 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:10.839 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:10.840 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:11.163 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:11.163 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:11.190 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:11.190 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:11.261 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:11.261 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:11.608 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:11.608 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:11.669 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:11.669 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:11.725 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:11.726 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:11.743 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:11.743 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:11.766 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:11.766 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:11.890 INFO New device scanned: D3:AA:8B:08:30:F7
+[MatterTest] 01-30 13:07:11.890 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:07:12.084 ERROR Commissionable node discovery over BLE failed: src/platform/Linux/BLEManagerImpl.cpp:714: CHIP Error 0x00000032: Timeout
+[MatterTest] 01-30 13:07:12.084 ERROR src/platform/Linux/BLEManagerImpl.cpp:714: CHIP Error 0x00000032: Timeout at src/controller/SetUpCodePairer.cpp:522
+[MatterTest] 01-30 13:07:12.084 ERROR BLE scan error: src/platform/Linux/BLEManagerImpl.cpp:714: CHIP Error 0x00000032: Timeout
+[MatterTest] 01-30 13:07:12.089 INFO Scan complete. No matching device found.
+[MatterTest] 01-30 13:07:15.550 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:15.551 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:21.964 ERROR Discovery timed out
+[MatterTest] 01-30 13:07:21.964 INFO Stopping commissionable node discovery over DNS-SD
+[MatterTest] 01-30 13:07:21.964 ERROR Secure Pairing Failed
+[MatterTest] 01-30 13:07:21.964 WARNING Failed to establish secure session to device: src/controller/python/ChipDeviceController-ScriptDevicePairingDelegate.cpp:96: CHIP Error 0x00000003: Incorrect state
+[MatterTest] 01-30 13:07:22.963 ERROR Timeout waiting for mDNS resolution.
+[MatterTest] 01-30 13:07:25.170 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:25.170 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:25.170 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:25.883 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:25.883 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:25.883 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:31.005 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:31.005 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:31.005 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:07:36.963 INFO Checking node lookup status for FFF0055CFFC5C1A7-0000000012344321 after 45000 ms
+[MatterTest] 01-30 13:07:36.963 ERROR OperationalSessionSetup[1:0000000012344321]: operational discovery failed: src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032: Timeout
+[MatterTest] 01-30 13:07:36.964 ERROR Error in TC_DeviceBasicComposition#setup_class.
+Traceback (most recent call last):
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/base_test.py", line 411, in _setup_class
+    self.setup_class()
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py", line 265, in async_runner
+    return _async_runner(body, self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py", line 253, in _async_runner
+    return test_instance.event_loop.run_until_complete(asyncio.wait_for(body(test_instance, *args, **kwargs), timeout=timeout))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceBasicComposition.py", line 310, in setup_class
+    await self.setup_class_helper()
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/basic_composition.py", line 210, in setup_class_helper
+    wildcard_read = (await dev_ctrl.Read(node_id, [()]))  # type: ignore[list-item]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 2194, in Read
+    device = await self.GetConnectedDevice(nodeId, payloadCapability=payloadCapability)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 1540, in GetConnectedDevice
+    await future
+matter.exceptions.ChipStackError: src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032: Timeout
+[MatterTest] 01-30 13:07:36.965 INFO 		***** Test Failure : 
+[MatterTest] 01-30 13:07:36.965 INFO Finished test in 0ms
+[MatterTest] 01-30 13:07:36.966 ERROR 
+
+******************************************************************
+*
+* Test setup_class failed for the following reason:
+* src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032: Timeout
+*
+* File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 1540, in GetConnectedDevice
+* matter.exceptions.ChipStackError: src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032: Timeout
+*
+* Test step:
+*     UNKNOWN - no test steps provided in test script
+*
+* Endpoint: None
+*
+*******************************************************************
+
+[MatterTest] 01-30 13:07:36.969 INFO Summary for test class TC_DeviceBasicComposition: Error 1, Executed 0, Failed 0, Passed 0, Requested 1, Skipped 1
+[MatterTest] 01-30 13:07:36.970 INFO Summary for test run MatterTest@01-30-2026_13-06-51-957:
+Total time elapsed 45.01158322700212s
+Artifacts are saved in "/tmp/matter_testing/logs/MatterTest/01-30-2026_13-06-51-957"
+Test summary saved in "/tmp/matter_testing/logs/MatterTest/01-30-2026_13-06-51-957/test_summary.yaml"
+Test results: Error 1, Executed 0, Failed 0, Passed 0, Requested 1, Skipped 1
+Shutting down the stack...
+Final result: FAIL !
+Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<ChipDeviceControllerBase.FindOrEstablishPASESession() done, defined at /home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py:1374> exception=ChipStackError(3, 'src/controller/python/ChipDeviceController-ScriptDevicePairingDelegate.cpp:96: CHIP Error 0x00000003: Incorrect state') created at /usr/lib/python3.11/asyncio/tasks.py:384>
+source_traceback: Object created at (most recent call last):
+  File "/home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceBasicComposition.py", line 1288, in <module>
+    default_matter_test_main()
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/runner.py", line 347, in default_matter_test_main
+    run_tests(test_class, matter_test_config, hooks)
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/runner.py", line 539, in run_tests
+    if not run_tests_no_exit(
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/runner.py", line 486, in run_tests_no_exit
+    runner.run()
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/test_runner.py", line 515, in run
+    self._run_test_class(
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/test_runner.py", line 458, in _run_test_class
+    cls_result = test_instance.run(tests)
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/base_test.py", line 1103, in run
+    setup_class_result = self._setup_class()
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/base_test.py", line 411, in _setup_class
+    self.setup_class()
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py", line 265, in async_runner
+    return _async_runner(body, self, *args, **kwargs)
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py", line 253, in _async_runner
+    return test_instance.event_loop.run_until_complete(asyncio.wait_for(body(test_instance, *args, **kwargs), timeout=timeout))
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 641, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 1928, in _run_once
+    handle._run()
+  File "/usr/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceBasicComposition.py", line 310, in setup_class
+    await self.setup_class_helper()
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/basic_composition.py", line 193, in setup_class_helper
+    task_list.append(asyncio.create_task(pase_future))
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 384, in create_task
+    task = loop.create_task(coro)
+Traceback (most recent call last):
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 1393, in FindOrEstablishPASESession
+    await self.EstablishPASESession(setupCode, nodeId)
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 970, in EstablishPASESession
+    await self._establishPASESession(
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 913, in _establishPASESession
+    await asyncio.futures.wrap_future(ctx.future)
+matter.exceptions.ChipStackError: src/controller/python/ChipDeviceController-ScriptDevicePairingDelegate.cpp:96: CHIP Error 0x00000003: Incorrect state
+
+=== test_summary.yaml (from .) ===
+---
+Requested Tests:
+- test_TC_IDM_10_1
+Type: TestNameList
+...
+---
+Begin Time: 1769758611960
+Details: 'src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032:
+    Timeout'
+End Time: 1769758656965
+Extra Errors: {}
+Extras: null
+Parent: null
+Result: ERROR
+Retry Parent: null
+Signature: setup_class-1769758611960
+Stacktrace: "Traceback (most recent call last):\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/base_test.py\"\
+    , line 411, in _setup_class\n    self.setup_class()\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 265, in async_runner\n    return _async_runner(body, self, *args, **kwargs)\n\
+    \           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 253, in _async_runner\n    return test_instance.event_loop.run_until_complete(asyncio.wait_for(body(test_instance,\
+    \ *args, **kwargs), timeout=timeout))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/usr/lib/python3.11/asyncio/base_events.py\", line 654, in run_until_complete\n\
+    \    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/asyncio/tasks.py\"\
+    , line 489, in wait_for\n    return fut.result()\n           ^^^^^^^^^^^^\n  File\
+    \ \"/home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceBasicComposition.py\"\
+    , line 310, in setup_class\n    await self.setup_class_helper()\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/basic_composition.py\"\
+    , line 210, in setup_class_helper\n    wildcard_read = (await dev_ctrl.Read(node_id,\
+    \ [()]))  # type: ignore[list-item]\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py\"\
+    , line 2194, in Read\n    device = await self.GetConnectedDevice(nodeId, payloadCapability=payloadCapability)\n\
+    \             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py\"\
+    , line 1540, in GetConnectedDevice\n    await future\nmatter.exceptions.ChipStackError:\
+    \ src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032:\
+    \ Timeout\n"
+Termination Signal Type: ChipStackError
+Test Class: TC_DeviceBasicComposition
+Test Name: setup_class
+Type: Record
+UID: null
+...
+---
+Begin Time: null
+Details: 'src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032:
+    Timeout'
+End Time: null
+Extra Errors: {}
+Extras: null
+Parent: null
+Result: SKIP
+Retry Parent: null
+Signature: null
+Stacktrace: "Traceback (most recent call last):\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/base_test.py\"\
+    , line 411, in _setup_class\n    self.setup_class()\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 265, in async_runner\n    return _async_runner(body, self, *args, **kwargs)\n\
+    \           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 253, in _async_runner\n    return test_instance.event_loop.run_until_complete(asyncio.wait_for(body(test_instance,\
+    \ *args, **kwargs), timeout=timeout))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/usr/lib/python3.11/asyncio/base_events.py\", line 654, in run_until_complete\n\
+    \    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/asyncio/tasks.py\"\
+    , line 489, in wait_for\n    return fut.result()\n           ^^^^^^^^^^^^\n  File\
+    \ \"/home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceBasicComposition.py\"\
+    , line 310, in setup_class\n    await self.setup_class_helper()\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/basic_composition.py\"\
+    , line 210, in setup_class_helper\n    wildcard_read = (await dev_ctrl.Read(node_id,\
+    \ [()]))  # type: ignore[list-item]\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py\"\
+    , line 2194, in Read\n    device = await self.GetConnectedDevice(nodeId, payloadCapability=payloadCapability)\n\
+    \             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py\"\
+    , line 1540, in GetConnectedDevice\n    await future\nmatter.exceptions.ChipStackError:\
+    \ src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032:\
+    \ Timeout\n"
+Termination Signal Type: ChipStackError
+Test Class: TC_DeviceBasicComposition
+Test Name: test_TC_IDM_10_1
+Type: Record
+UID: null
+...
+---
+Error: 1
+Executed: 0
+Failed: 0
+Passed: 0
+Requested: 1
+Skipped: 1
+Type: Summary
+...
+
+

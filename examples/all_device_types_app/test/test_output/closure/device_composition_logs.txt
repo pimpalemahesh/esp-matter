@@ -1,0 +1,311 @@
+=== Test Output ===
+[0;32m[1769769642.832] [143451:143451] [CTL] Setting attestation nonce to random value[0m
+[0;32m[1769769642.832] [143451:143451] [CTL] Setting CSR nonce to random value[0m
+[0;34m[1769769642.833] [143451:143451] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_kvs[0m
+[0;34m[1769769642.838] [143451:143451] [DL] Wrote settings to /tmp/chip_kvs[0m
+[0;34m[1769769642.838] [143451:143451] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_factory.ini[0m
+[0;34m[1769769642.839] [143451:143451] [DL] Wrote settings to /tmp/chip_factory.ini[0m
+[0;34m[1769769642.839] [143451:143451] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_config.ini[0m
+[0;34m[1769769642.840] [143451:143451] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;34m[1769769642.840] [143451:143451] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_counters.ini[0m
+[0;34m[1769769642.841] [143451:143451] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;34m[1769769642.842] [143451:143451] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769769642.842] [143451:143451] [DL] NVS set: chip-config/unique-id = "B130C382EF5B9D6B"[0m
+[0;34m[1769769642.843] [143451:143451] [DL] Wrote settings to /tmp/chip_factory.ini[0m
+[0;32m[1769769642.843] [143451:143451] [DL] NVS set: chip-factory/vendor-id = 65521 (0xFFF1)[0m
+[0;34m[1769769642.844] [143451:143451] [DL] Wrote settings to /tmp/chip_factory.ini[0m
+[0;32m[1769769642.844] [143451:143451] [DL] NVS set: chip-factory/product-id = 32769 (0x8001)[0m
+[0;34m[1769769642.845] [143451:143451] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;32m[1769769642.845] [143451:143451] [DL] NVS set: chip-counters/reboot-count = 1 (0x1)[0m
+[0;34m[1769769642.846] [143451:143451] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;32m[1769769642.846] [143451:143451] [DL] NVS set: chip-counters/total-operational-hours = 0 (0x0)[0m
+[0;34m[1769769642.847] [143451:143451] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;32m[1769769642.847] [143451:143451] [DL] NVS set: chip-counters/boot-reason = 0 (0x0)[0m
+[0;34m[1769769642.848] [143451:143451] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769769642.848] [143451:143451] [DL] NVS set: chip-config/regulatory-location = 0 (0x0)[0m
+[0;34m[1769769642.850] [143451:143451] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769769642.850] [143451:143451] [DL] NVS set: chip-config/location-capability = 2 (0x2)[0m
+[0;34m[1769769642.852] [143451:143451] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769769642.852] [143451:143451] [DL] NVS set: chip-config/configuration-version = 1 (0x1)[0m
+[0;32m[1769769642.852] [143451:143451] [DL] Got Ethernet interface: enp2s0f0[0m
+[0;32m[1769769642.852] [143451:143451] [DL] Found the primary Ethernet interface:enp2s0f0[0m
+[0;32m[1769769642.852] [143451:143451] [DL] Got WiFi interface: wlp3s0[0m
+[0;32m[1769769642.853] [143451:143451] [DL] Found the primary WiFi interface:wlp3s0[0m
+[0;32m[1769769642.853] [143451:143451] [PAF] WiFiPAF: WiFiPAFLayer::Init()[0m
+[0;34m[1769769642.853] [143451:143451] [CTL] StorageAdapter::GetKeyValue: Key = g/icdfl, Value = 0x2f26b060 (512)[0m
+[0;34m[1769769642.853] [143451:143451] [CTL] Key Not Found
+[0m
+[0;34m[1769769642.853] [143451:143451] [IN] UDP::Init bind&listen port=0[0m
+[0;34m[1769769642.853] [143451:143451] [IN] UDP::Init bound to port=49826[0m
+[0;34m[1769769642.853] [143451:143451] [IN] UDP::Init bind&listen port=0[0m
+[0;34m[1769769642.854] [143451:143451] [IN] UDP::Init bound to port=48255[0m
+[0;34m[1769769642.854] [143451:143451] [IN] BLEBase::Init - setting/overriding transport[0m
+[0;34m[1769769642.854] [143451:143451] [IN] WiFiPAFBase::Init - setting/overriding transport[0m
+[0;34m[1769769642.854] [143451:143451] [IN] TransportMgr initialized[0m
+[0;34m[1769769642.854] [143451:143451] [FP] Initializing FabricTable from persistent storage[0m
+[0;34m[1769769642.854] [143451:143451] [CTL] StorageAdapter::GetKeyValue: Key = g/lkgt, Value = 0x7ffe2557af70 (18)[0m
+[0;34m[1769769642.854] [143451:143451] [CTL] Key Not Found
+[0m
+[0;32m[1769769642.854] [143451:143451] [TS] Last Known Good Time: [unknown][0m
+[0;32m[1769769642.854] [143451:143451] [TS] Setting Last Known Good Time to firmware build time 2023-10-14T01:16:48[0m
+[0;34m[1769769642.854] [143451:143451] [CTL] StorageAdapter::SetKeyValue: Key = g/lkgt, Value = 0x7ffe2557af60 (8)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+[0;34m[1769769642.854] [143451:143451] [CTL] StorageAdapter::GetKeyValue: Key = g/fidx, Value = 0x7ffe2557b100 (44)[0m
+[0;34m[1769769642.854] [143451:143451] [CTL] Key Not Found
+[0m
+[0;34m[1769769642.854] [143451:143451] [CTL] StorageAdapter::GetKeyValue: Key = g/fs/c, Value = 0x7ffe2557afd0 (36)[0m
+[0;34m[1769769642.854] [143451:143451] [CTL] Key Not Found
+[0m
+[0;34m[1769769642.854] [143451:143451] [CTL] StorageAdapter::GetKeyValue: Key = g/gcc, Value = 0x7ffe2557b05c (4)[0m
+[0;34m[1769769642.854] [143451:143451] [CTL] Key Not Found
+[0m
+[0;34m[1769769642.854] [143451:143451] [CTL] StorageAdapter::GetKeyValue: Key = g/gdc, Value = 0x7ffe2557b05c (4)[0m
+[0;34m[1769769642.854] [143451:143451] [CTL] Key Not Found
+[0m
+[0;34m[1769769642.854] [143451:143451] [CTL] StorageAdapter::SetKeyValue: Key = g/gcc, Value = 0x7ffe2557b05c (4)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+[0;34m[1769769642.854] [143451:143451] [CTL] StorageAdapter::SetKeyValue: Key = g/gdc, Value = 0x7ffe2557b05c (4)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+[0;32m[1769769642.854] [143451:143451] [DMG] Ember attribute persistence requires setting up[0m
+[0;32m[1769769642.856] [143451:143451] [IN] CASE Server enabling CASE session setups[0m
+[0;34m[1769769642.856] [143451:143451] [IN] SecureSession[0x2e7dd2e0]: Allocated Type:2 LSID:10707[0m
+[0;34m[1769769642.856] [143451:143451] [SC] Allocated SecureSession (0x2e7dd2e0) - waiting for Sigma1 msg[0m
+[0;34m[1769769642.857] [143451:143451] [CTL] System State Initialized...[0m
+[0;34m[1769769642.857] [143451:143454] [DL] CHIP task running[0m
+Didn't find any CertificateAuthorities in storage -- creating a new CertificateAuthority + FabricAdmin...
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/closure'
+[MatterTest] 01-30 16:10:42.982 INFO Starting test set, running 1 tests
+[MatterTest] 01-30 16:10:42.982 INFO ==========> TC_DeviceBasicComposition <==========
+[MatterTest] 01-30 16:10:42.986 INFO Lookup started for B77EEDB63721AAB0-0000000012344321
+[MatterTest] 01-30 16:10:42.986 INFO Stopping commissionable node discovery over DNS-SD
+[MatterTest] 01-30 16:10:42.986 INFO Starting commissionable node discovery over BLE
+[MatterTest] 01-30 16:10:42.986 INFO Starting commissionable node discovery over Wi-Fi PAF
+[MatterTest] 01-30 16:10:42.986 ERROR Error, Long discriminator is required
+[MatterTest] 01-30 16:10:42.986 ERROR Failed to start commissionable node discovery over Wi-Fi PAF: src/controller/SetUpCodePairer.cpp:285: CHIP Error 0x0000002F: Invalid argument
+[MatterTest] 01-30 16:10:42.986 INFO Skipping commissionable node discovery over NFC since not supported by the controller!
+[MatterTest] 01-30 16:10:42.986 INFO Starting commissionable node discovery over DNS-SD
+[MatterTest] 01-30 16:10:42.990 INFO BLE removing known devices
+[MatterTest] 01-30 16:10:42.990 INFO BLE initiating scan
+[MatterTest] 01-30 16:10:43.105 ERROR Long dispatch time: 119 ms, for event type 3
+[MatterTest] 01-30 16:10:43.124 INFO New device scanned: C7:D3:06:2B:3C:5D
+[MatterTest] 01-30 16:10:43.124 INFO Device discriminator match. Attempting to connect.
+[MatterTest] 01-30 16:10:43.187 INFO Checking node lookup status for B77EEDB63721AAB0-0000000012344321 after 200 ms
+[MatterTest] 01-30 16:10:43.274 INFO New device connected: C7:D3:06:2B:3C:5D
+[MatterTest] 01-30 16:10:43.371 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 16:10:43.371 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 16:10:43.371 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 16:10:44.231 INFO Discovered device to be commissioned over BLE
+[MatterTest] 01-30 16:10:44.231 INFO Attempting PASE connection to BLE
+[MatterTest] 01-30 16:10:44.231 INFO <<< [E:45101i S:0 M:49131354] (U) Msg TX from 825D5F0FD0D91CB5 to 0:0000000000000000 [0000] [BLE] --- Type 0000:20 (SecureChannel:PBKDFParamRequest) (B:98)
+[MatterTest] 01-30 16:10:44.231 INFO Sent PBKDF param request [II:500ms AI:300ms AT:4000ms)
+[MatterTest] 01-30 16:10:44.762 INFO subscribe complete, ep = 0x79cdd7b247b0
+[MatterTest] 01-30 16:10:44.762 INFO peripheral chose BTP version 4; central expected between 4 and 4
+[MatterTest] 01-30 16:10:44.762 INFO using BTP fragment sizes rx 244 / tx 244.
+[MatterTest] 01-30 16:10:44.762 INFO local and remote recv window size = 5
+[MatterTest] 01-30 16:10:44.896 INFO >>> [E:45101i S:0 M:16525155] (U) Msg RX from 0:0000000000000000 [0000] to 825D5F0FD0D91CB5 --- Type 0000:21 (SecureChannel:PBKDFParamResponse) (B:154)
+[MatterTest] 01-30 16:10:44.898 INFO <<< [E:45101i S:0 M:49131355] (U) Msg TX from 825D5F0FD0D91CB5 to 0:0000000000000000 [0000] [BLE] --- Type 0000:22 (SecureChannel:PASE_Pake1) (B:92)
+[MatterTest] 01-30 16:10:45.618 INFO >>> [E:45101i S:0 M:16525156] (U) Msg RX from 0:0000000000000000 [0000] to 825D5F0FD0D91CB5 --- Type 0000:23 (SecureChannel:PASE_Pake2) (B:127)
+[MatterTest] 01-30 16:10:45.619 INFO <<< [E:45101i S:0 M:49131356] (U) Msg TX from 825D5F0FD0D91CB5 to 0:0000000000000000 [0000] [BLE] --- Type 0000:24 (SecureChannel:PASE_Pake3) (B:59)
+[MatterTest] 01-30 16:10:45.753 INFO >>> [E:45101i S:0 M:16525157] (U) Msg RX from 0:0000000000000000 [0000] to 825D5F0FD0D91CB5 --- Type 0000:40 (SecureChannel:StatusReport) (B:30)
+[MatterTest] 01-30 16:10:45.753 INFO SecureSession[0x79cdcc064300, LSID:10708]: State change 'kEstablishing' --> 'kActive'
+[MatterTest] 01-30 16:10:45.753 INFO PASE session established with commissionee. Stopping discovery.
+[MatterTest] 01-30 16:10:45.753 INFO Stopping commissionable node discovery over DNS-SD
+[MatterTest] 01-30 16:10:45.753 INFO Established secure session with Device
+[MatterTest] 01-30 16:10:45.754 INFO Using PASE connection
+[MatterTest] 01-30 16:10:45.755 INFO 0 data version filters provided, 0 not relevant, 0 encoded, 0 skipped due to lack of space
+[MatterTest] 01-30 16:10:45.755 INFO <<< [E:45102i S:10708 M:62060900] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:02 (IM:ReadRequest) (B:42)
+[MatterTest] 01-30 16:10:46.247 INFO >>> [E:45102i S:10708 M:117948537] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:05 (IM:ReportData) (B:1195)
+[MatterTest] 01-30 16:10:46.272 INFO <<< [E:45102i S:10708 M:62060901] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:01 (IM:StatusResponse) (B:38)
+[MatterTest] 01-30 16:10:46.743 INFO >>> [E:45102i S:10708 M:117948538] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:05 (IM:ReportData) (B:1203)
+[MatterTest] 01-30 16:10:46.766 INFO <<< [E:45102i S:10708 M:62060902] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:01 (IM:StatusResponse) (B:38)
+[MatterTest] 01-30 16:10:47.237 INFO >>> [E:45102i S:10708 M:117948539] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:05 (IM:ReportData) (B:1202)
+[MatterTest] 01-30 16:10:47.261 INFO <<< [E:45102i S:10708 M:62060903] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:01 (IM:StatusResponse) (B:38)
+[MatterTest] 01-30 16:10:47.599 INFO >>> [E:45102i S:10708 M:117948540] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:05 (IM:ReportData) (B:697)
+[MatterTest] 01-30 16:10:47.651 INFO ###########################################################
+[MatterTest] 01-30 16:10:47.651 INFO Start of actual tests
+[MatterTest] 01-30 16:10:47.651 INFO ###########################################################
+[MatterTest] 01-30 16:10:47.652 INFO ----------------------------------------------------------------------------------
+[MatterTest] 01-30 16:10:47.652 INFO -- Running tests against Specification version 1.5
+[MatterTest] 01-30 16:10:47.652 INFO ----------------------------------------------------------------------------------
+[MatterTest] 01-30 16:10:47.653 INFO Reading XML clusters from Path('/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/data_model/1.5/allfiles.zip', 'clusters/')
+[MatterTest] 01-30 16:10:47.886 INFO Reading XML clusters from Path('/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/data_model/1.5/allfiles.zip', 'clusters/')
+[MatterTest] 01-30 16:10:48.078 WARNING Executing <Task finished name='Task-2' coro=<TC_DeviceBasicComposition.setup_class() done, defined at /home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceBasicComposition.py:307> result=None created at /usr/lib/python3.11/asyncio/tasks.py:680> took 0.464 seconds
+[MatterTest] 01-30 16:10:48.078 INFO [Test] test_TC_IDM_10_1
+[MatterTest] 01-30 16:10:48.078 INFO Starting test from /home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceBasicComposition.py: test_TC_IDM_10_1 - 1 steps
+[MatterTest] 01-30 16:10:48.078 INFO ***** Test Step 1 : Run entire test
+[MatterTest] 01-30 16:10:48.078 INFO 		***** Test Step 1 : Run entire test
+[MatterTest] 01-30 16:10:48.079 INFO ***** Test Step 1 : Perform a wildcard read of attributes on all endpoints - already done
+[MatterTest] 01-30 16:10:48.079 INFO ***** Test Step 2 : Validate all global attributes are present
+[MatterTest] 01-30 16:10:48.080 INFO ***** Test Step 3 : Validate the global attributes are in range and do not contain duplicates
+[MatterTest] 01-30 16:10:48.080 INFO ***** Test Step 4 : Validate the attribute list exactly matches the set of reported attributes
+[MatterTest] 01-30 16:10:48.083 INFO ***** Test Step 5 : Validate that the global attributes do not contain any additional values in the standard or scoped range that are not defined by the cluster specification
+[MatterTest] 01-30 16:10:48.083 INFO ***** Test Step 6 : Validate that none of the global attribute IDs contain values with prefixes outside of the allowed standard or MEI prefix range
+[MatterTest] 01-30 16:10:48.083 INFO ***** Test Step 7 : Validate that none of the MEI global attribute IDs contain values outside of the allowed suffix range
+[MatterTest] 01-30 16:10:48.083 INFO ***** Test Step 8 : Validate that all cluster ID prefixes are in the standard or MEI range
+[MatterTest] 01-30 16:10:48.083 INFO ***** Test Step 9 : Validate that all clusters in the standard range have a known cluster ID
+[MatterTest] 01-30 16:10:48.083 INFO ***** Test Step 10 : Validate that all clusters in the MEI range have a suffix in the manufacturer suffix range
+[MatterTest] 01-30 16:10:48.083 INFO ***** Test Step 11 : Validate that standard cluster FeatureMap attributes contains only known feature flags
+[MatterTest] 01-30 16:10:48.083 ERROR Exception occurred in test_TC_IDM_10_1.
+Traceback (most recent call last):
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/base_test.py", line 801, in exec_one_test
+    test_method()
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py", line 265, in async_runner
+    return _async_runner(body, self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py", line 253, in _async_runner
+    return test_instance.event_loop.run_until_complete(asyncio.wait_for(body(test_instance, *args, **kwargs), timeout=timeout))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceBasicComposition.py", line 716, in test_TC_IDM_10_1
+    self.fail_current_test(
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/basic_composition.py", line 243, in fail_current_test
+    asserts.fail(msg)
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/asserts.py", line 441, in fail
+    raise signals.TestFailure(msg, extras)
+mobly.signals.TestFailure: Details=At least one cluster has failed the range and support checks for its listed attributes, commands or features, Extras=None
+[MatterTest] 01-30 16:10:48.085 INFO 		***** Test Failure : 
+[MatterTest] 01-30 16:10:48.085 INFO Finished test in 6782.0ms
+[MatterTest] 01-30 16:10:48.085 ERROR 
+
+******************************************************************
+*
+* Test test_TC_IDM_10_1 failed for the following reason:
+* Details=At least one cluster has failed the range and support checks for its listed attributes, commands or features, Extras=None
+*
+* File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/basic_composition.py", line 243, in fail_current_test
+* asserts.fail(msg)
+*
+* Test step:
+*     UNKNOWN - no test steps provided in test script
+*
+* Endpoint: None
+*
+*******************************************************************
+
+[MatterTest] 01-30 16:10:48.085 INFO [Test] test_TC_IDM_10_1 FAIL
+[MatterTest] 01-30 16:10:48.087 INFO ###########################################################
+[MatterTest] 01-30 16:10:48.087 INFO Problems found:
+[MatterTest] 01-30 16:10:48.087 INFO ===============
+[MatterTest] 01-30 16:10:48.087 INFO 
+Problem: ProblemSeverity.ERROR
+    test_name: test_TC_IDM_10_1
+    location: 
+       Endpoint: 1,
+       Cluster:  260 (0x104) ClosureControl
+      Attribute:1 (0x01)
+    problem: Found a failure to read/decode Attribute MainState (1, 0x0001) on Endpoint 1, Cluster ClosureControl (260, 0x0104) when it was claimed as supported in AttributeList ([65532, 65533, 1, 2, 3, 4, 65531, 65529, 65528]): ValueDecodeFailure(TLVValue=None, Reason=InteractionModelError(<Status.Failure: 1>))
+    spec_location: AttributeList Attribute
+
+[MatterTest] 01-30 16:10:48.087 INFO 
+Problem: ProblemSeverity.ERROR
+    test_name: test_TC_IDM_10_1
+    location: 
+       Endpoint: 1,
+       Cluster:  260 (0x104) ClosureControl
+      Attribute:2 (0x02)
+    problem: Found a failure to read/decode Attribute CurrentErrorList (2, 0x0002) on Endpoint 1, Cluster ClosureControl (260, 0x0104) when it was claimed as supported in AttributeList ([65532, 65533, 1, 2, 3, 4, 65531, 65529, 65528]): ValueDecodeFailure(TLVValue=None, Reason=InteractionModelError(<Status.Failure: 1>))
+    spec_location: AttributeList Attribute
+
+[MatterTest] 01-30 16:10:48.087 INFO 
+Problem: ProblemSeverity.ERROR
+    test_name: test_TC_IDM_10_1
+    location: 
+       Endpoint: 1,
+       Cluster:  260 (0x104) ClosureControl
+      Attribute:3 (0x03)
+    problem: Found a failure to read/decode Attribute OverallCurrentState (3, 0x0003) on Endpoint 1, Cluster ClosureControl (260, 0x0104) when it was claimed as supported in AttributeList ([65532, 65533, 1, 2, 3, 4, 65531, 65529, 65528]): ValueDecodeFailure(TLVValue=None, Reason=InteractionModelError(<Status.Failure: 1>))
+    spec_location: AttributeList Attribute
+
+[MatterTest] 01-30 16:10:48.087 INFO 
+Problem: ProblemSeverity.ERROR
+    test_name: test_TC_IDM_10_1
+    location: 
+       Endpoint: 1,
+       Cluster:  260 (0x104) ClosureControl
+      Attribute:4 (0x04)
+    problem: Found a failure to read/decode Attribute OverallTargetState (4, 0x0004) on Endpoint 1, Cluster ClosureControl (260, 0x0104) when it was claimed as supported in AttributeList ([65532, 65533, 1, 2, 3, 4, 65531, 65529, 65528]): ValueDecodeFailure(TLVValue=None, Reason=InteractionModelError(<Status.Failure: 1>))
+    spec_location: AttributeList Attribute
+
+[MatterTest] 01-30 16:10:48.087 INFO ###########################################################
+[MatterTest] 01-30 16:10:48.087 INFO Summary for test class TC_DeviceBasicComposition: Error 0, Executed 1, Failed 1, Passed 0, Requested 1, Skipped 0
+[MatterTest] 01-30 16:10:48.087 INFO Summary for test run MatterTest@01-30-2026_16-10-42-981:
+Total time elapsed 5.105681099004869s
+Artifacts are saved in "/tmp/matter_testing/logs/MatterTest/01-30-2026_16-10-42-981"
+Test summary saved in "/tmp/matter_testing/logs/MatterTest/01-30-2026_16-10-42-981/test_summary.yaml"
+Test results: Error 0, Executed 1, Failed 1, Passed 0, Requested 1, Skipped 0
+Long dispatch time: 137 ms, for event type 2
+Shutting down the stack...
+Executing <Task finished name='Task-7' coro=<run_tests_no_exit.<locals>.shutdown() done, defined at /home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/runner.py:505> result=None created at /usr/lib/python3.11/asyncio/tasks.py:680> took 0.150 seconds
+Final result: FAIL !
+
+=== test_summary.yaml (from .) ===
+---
+Requested Tests:
+- test_TC_IDM_10_1
+Type: TestNameList
+...
+---
+Begin Time: 1769769648078
+Details: At least one cluster has failed the range and support checks for its listed
+    attributes, commands or features
+End Time: 1769769648085
+Extra Errors: {}
+Extras: null
+Parent: null
+Result: FAIL
+Retry Parent: null
+Signature: test_TC_IDM_10_1-1769769648078
+Stacktrace: "Traceback (most recent call last):\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/base_test.py\"\
+    , line 801, in exec_one_test\n    test_method()\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 265, in async_runner\n    return _async_runner(body, self, *args, **kwargs)\n\
+    \           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 253, in _async_runner\n    return test_instance.event_loop.run_until_complete(asyncio.wait_for(body(test_instance,\
+    \ *args, **kwargs), timeout=timeout))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/usr/lib/python3.11/asyncio/base_events.py\", line 654, in run_until_complete\n\
+    \    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/asyncio/tasks.py\"\
+    , line 489, in wait_for\n    return fut.result()\n           ^^^^^^^^^^^^\n  File\
+    \ \"/home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceBasicComposition.py\"\
+    , line 716, in test_TC_IDM_10_1\n    self.fail_current_test(\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/basic_composition.py\"\
+    , line 243, in fail_current_test\n    asserts.fail(msg)\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/asserts.py\"\
+    , line 441, in fail\n    raise signals.TestFailure(msg, extras)\nmobly.signals.TestFailure:\
+    \ Details=At least one cluster has failed the range and support checks for its\
+    \ listed attributes, commands or features, Extras=None\n"
+Termination Signal Type: TestFailure
+Test Class: TC_DeviceBasicComposition
+Test Name: test_TC_IDM_10_1
+Type: Record
+UID: null
+...
+---
+Error: 0
+Executed: 1
+Failed: 1
+Passed: 0
+Requested: 1
+Skipped: 0
+Type: Summary
+...
+
+

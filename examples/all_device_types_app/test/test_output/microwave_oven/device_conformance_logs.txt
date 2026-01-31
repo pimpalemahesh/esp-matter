@@ -1,0 +1,430 @@
+=== Test Output ===
+[0;32m[1769758269.701] [58541:58541] [CTL] Setting attestation nonce to random value[0m
+[0;32m[1769758269.702] [58541:58541] [CTL] Setting CSR nonce to random value[0m
+[0;34m[1769758269.703] [58541:58541] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_kvs[0m
+[0;34m[1769758269.717] [58541:58541] [DL] Wrote settings to /tmp/chip_kvs[0m
+[0;34m[1769758269.717] [58541:58541] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_factory.ini[0m
+[0;34m[1769758269.733] [58541:58541] [DL] Wrote settings to /tmp/chip_factory.ini[0m
+[0;34m[1769758269.733] [58541:58541] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_config.ini[0m
+[0;34m[1769758269.737] [58541:58541] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;34m[1769758269.737] [58541:58541] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_counters.ini[0m
+[0;34m[1769758269.738] [58541:58541] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;34m[1769758269.739] [58541:58541] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769758269.739] [58541:58541] [DL] NVS set: chip-config/unique-id = "888EEF0BE3A2B123"[0m
+[0;34m[1769758269.740] [58541:58541] [DL] Wrote settings to /tmp/chip_factory.ini[0m
+[0;32m[1769758269.740] [58541:58541] [DL] NVS set: chip-factory/vendor-id = 65521 (0xFFF1)[0m
+[0;34m[1769758269.742] [58541:58541] [DL] Wrote settings to /tmp/chip_factory.ini[0m
+[0;32m[1769758269.742] [58541:58541] [DL] NVS set: chip-factory/product-id = 32769 (0x8001)[0m
+[0;34m[1769758269.743] [58541:58541] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;32m[1769758269.743] [58541:58541] [DL] NVS set: chip-counters/reboot-count = 1 (0x1)[0m
+[0;34m[1769758269.744] [58541:58541] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;32m[1769758269.744] [58541:58541] [DL] NVS set: chip-counters/total-operational-hours = 0 (0x0)[0m
+[0;34m[1769758269.745] [58541:58541] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;32m[1769758269.745] [58541:58541] [DL] NVS set: chip-counters/boot-reason = 0 (0x0)[0m
+[0;34m[1769758269.746] [58541:58541] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769758269.746] [58541:58541] [DL] NVS set: chip-config/regulatory-location = 0 (0x0)[0m
+[0;34m[1769758269.747] [58541:58541] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769758269.747] [58541:58541] [DL] NVS set: chip-config/location-capability = 2 (0x2)[0m
+[0;34m[1769758269.748] [58541:58541] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769758269.748] [58541:58541] [DL] NVS set: chip-config/configuration-version = 1 (0x1)[0m
+[0;32m[1769758269.749] [58541:58541] [DL] Got Ethernet interface: enp2s0f0[0m
+[0;32m[1769758269.749] [58541:58541] [DL] Found the primary Ethernet interface:enp2s0f0[0m
+[0;32m[1769758269.749] [58541:58541] [DL] Got WiFi interface: wlp3s0[0m
+[0;32m[1769758269.752] [58541:58541] [DL] Found the primary WiFi interface:wlp3s0[0m
+[0;32m[1769758269.752] [58541:58541] [PAF] WiFiPAF: WiFiPAFLayer::Init()[0m
+[0;34m[1769758269.753] [58541:58541] [CTL] StorageAdapter::GetKeyValue: Key = g/icdfl, Value = 0x2c1d260 (512)[0m
+[0;34m[1769758269.753] [58541:58541] [CTL] Key Not Found
+[0m
+[0;34m[1769758269.753] [58541:58541] [IN] UDP::Init bind&listen port=0[0m
+[0;34m[1769758269.753] [58541:58541] [IN] UDP::Init bound to port=59268[0m
+[0;34m[1769758269.753] [58541:58541] [IN] UDP::Init bind&listen port=0[0m
+[0;34m[1769758269.753] [58541:58541] [IN] UDP::Init bound to port=57326[0m
+[0;34m[1769758269.753] [58541:58541] [IN] BLEBase::Init - setting/overriding transport[0m
+[0;34m[1769758269.753] [58541:58541] [IN] WiFiPAFBase::Init - setting/overriding transport[0m
+[0;34m[1769758269.753] [58541:58541] [IN] TransportMgr initialized[0m
+[0;34m[1769758269.753] [58541:58541] [FP] Initializing FabricTable from persistent storage[0m
+[0;34m[1769758269.753] [58541:58541] [CTL] StorageAdapter::GetKeyValue: Key = g/lkgt, Value = 0x7ffc89eb8d10 (18)[0m
+[0;34m[1769758269.753] [58541:58541] [CTL] Key Not Found
+[0m
+[0;32m[1769758269.753] [58541:58541] [TS] Last Known Good Time: [unknown][0m
+[0;32m[1769758269.753] [58541:58541] [TS] Setting Last Known Good Time to firmware build time 2023-10-14T01:16:48[0m
+[0;34m[1769758269.753] [58541:58541] [CTL] StorageAdapter::SetKeyValue: Key = g/lkgt, Value = 0x7ffc89eb8d00 (8)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+[0;34m[1769758269.753] [58541:58541] [CTL] StorageAdapter::GetKeyValue: Key = g/fidx, Value = 0x7ffc89eb8ea0 (44)[0m
+[0;34m[1769758269.753] [58541:58541] [CTL] Key Not Found
+[0m
+[0;34m[1769758269.753] [58541:58541] [CTL] StorageAdapter::GetKeyValue: Key = g/fs/c, Value = 0x7ffc89eb8d70 (36)[0m
+[0;34m[1769758269.753] [58541:58541] [CTL] Key Not Found
+[0m
+[0;34m[1769758269.753] [58541:58541] [CTL] StorageAdapter::GetKeyValue: Key = g/gcc, Value = 0x7ffc89eb8dfc (4)[0m
+[0;34m[1769758269.753] [58541:58541] [CTL] Key Not Found
+[0m
+[0;34m[1769758269.753] [58541:58541] [CTL] StorageAdapter::GetKeyValue: Key = g/gdc, Value = 0x7ffc89eb8dfc (4)[0m
+[0;34m[1769758269.753] [58541:58541] [CTL] Key Not Found
+[0m
+[0;34m[1769758269.753] [58541:58541] [CTL] StorageAdapter::SetKeyValue: Key = g/gcc, Value = 0x7ffc89eb8dfc (4)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+[0;34m[1769758269.753] [58541:58541] [CTL] StorageAdapter::SetKeyValue: Key = g/gdc, Value = 0x7ffc89eb8dfc (4)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+[0;32m[1769758269.753] [58541:58541] [DMG] Ember attribute persistence requires setting up[0m
+[0;32m[1769758269.756] [58541:58541] [IN] CASE Server enabling CASE session setups[0m
+[0;34m[1769758269.756] [58541:58541] [IN] SecureSession[0x2141930]: Allocated Type:2 LSID:64901[0m
+[0;34m[1769758269.756] [58541:58541] [SC] Allocated SecureSession (0x2141930) - waiting for Sigma1 msg[0m
+[0;34m[1769758269.756] [58541:58541] [CTL] System State Initialized...[0m
+[0;34m[1769758269.756] [58541:58544] [DL] CHIP task running[0m
+Didn't find any CertificateAuthorities in storage -- creating a new CertificateAuthority + FabricAdmin...
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/microwave_oven'
+[MatterTest] 01-30 13:01:09.879 INFO Starting test set, running 1 tests
+[MatterTest] 01-30 13:01:09.879 INFO ==========> TC_DeviceConformance <==========
+[MatterTest] 01-30 13:01:09.880 INFO Lookup started for 7AE2BAA62250B400-0000000012344321
+[MatterTest] 01-30 13:01:09.881 INFO Stopping commissionable node discovery over DNS-SD
+[MatterTest] 01-30 13:01:09.881 INFO Starting commissionable node discovery over BLE
+[MatterTest] 01-30 13:01:09.881 INFO Starting commissionable node discovery over Wi-Fi PAF
+[MatterTest] 01-30 13:01:09.881 ERROR Error, Long discriminator is required
+[MatterTest] 01-30 13:01:09.881 ERROR Failed to start commissionable node discovery over Wi-Fi PAF: src/controller/SetUpCodePairer.cpp:285: CHIP Error 0x0000002F: Invalid argument
+[MatterTest] 01-30 13:01:09.881 INFO Skipping commissionable node discovery over NFC since not supported by the controller!
+[MatterTest] 01-30 13:01:09.881 INFO Starting commissionable node discovery over DNS-SD
+[MatterTest] 01-30 13:01:09.885 INFO BLE removing known devices
+[MatterTest] 01-30 13:01:09.885 INFO BLE initiating scan
+[MatterTest] 01-30 13:01:09.998 ERROR Long dispatch time: 117 ms, for event type 3
+[MatterTest] 01-30 13:01:10.080 INFO Checking node lookup status for 7AE2BAA62250B400-0000000012344321 after 200 ms
+[MatterTest] 01-30 13:01:17.353 INFO Discovered device discriminator (265) does not match our discriminator.
+[MatterTest] 01-30 13:01:17.353 INFO Discovered device discriminator (265) does not match our discriminator.
+[MatterTest] 01-30 13:01:17.353 INFO Discovered device discriminator (265) does not match our discriminator.
+[MatterTest] 01-30 13:01:18.032 INFO New device scanned: FD:A2:5D:FA:99:41
+[MatterTest] 01-30 13:01:18.032 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:18.333 INFO New device scanned: FD:A2:5D:FA:99:41
+[MatterTest] 01-30 13:01:18.333 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:18.784 INFO Discovered device discriminator (265) does not match our discriminator.
+[MatterTest] 01-30 13:01:20.621 INFO Discovered device discriminator (265) does not match our discriminator.
+[MatterTest] 01-30 13:01:20.621 INFO Discovered device discriminator (265) does not match our discriminator.
+[MatterTest] 01-30 13:01:21.103 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:21.103 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:21.165 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:21.165 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:21.190 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:21.190 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:21.239 INFO Discovered device discriminator (265) does not match our discriminator.
+[MatterTest] 01-30 13:01:21.284 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:21.284 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:21.485 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:21.485 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:21.523 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:21.524 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:21.532 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:21.532 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:21.621 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:21.621 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:21.644 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:21.644 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:21.748 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:21.748 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:21.811 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:21.811 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:21.919 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:21.920 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:22.152 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:22.152 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:22.206 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:22.206 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:22.296 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:22.296 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:22.337 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:22.338 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:22.470 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:22.470 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:22.530 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:22.530 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:22.774 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:22.774 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:22.844 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:22.844 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:22.950 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:22.950 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:22.985 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:22.985 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:23.034 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:23.034 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:23.216 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:23.216 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:23.839 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:23.839 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:23.882 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:23.882 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:23.936 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:23.936 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:23.971 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:23.971 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:24.063 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:24.063 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:24.266 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:24.267 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:24.596 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:24.596 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:24.642 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:24.642 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:24.705 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:24.705 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:25.175 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:25.175 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:25.291 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:25.291 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:25.522 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:25.522 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:26.190 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:26.190 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:26.335 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:26.335 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:26.397 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:26.397 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:26.462 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:26.462 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:26.731 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:26.731 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:26.850 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:26.850 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:26.884 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:26.884 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:27.183 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:27.183 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:27.701 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:27.701 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:27.721 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:27.721 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:27.916 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:27.916 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:28.015 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:28.015 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:28.101 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:28.101 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:28.157 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:28.157 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:28.466 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:28.466 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:28.674 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:28.674 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:28.743 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:28.743 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:28.806 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:28.806 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:28.987 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:28.988 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:29.133 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:29.133 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:29.231 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:29.231 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:29.342 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:29.342 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:29.367 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:29.367 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:29.693 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:29.693 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:29.772 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:29.772 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:29.834 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:29.834 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:29.980 INFO New device scanned: C6:2F:3F:8F:68:7C
+[MatterTest] 01-30 13:01:29.981 ERROR Skip connection: Device discriminator does not match: 1198 != 15
+[MatterTest] 01-30 13:01:29.998 ERROR Commissionable node discovery over BLE failed: src/platform/Linux/BLEManagerImpl.cpp:714: CHIP Error 0x00000032: Timeout
+[MatterTest] 01-30 13:01:29.999 ERROR src/platform/Linux/BLEManagerImpl.cpp:714: CHIP Error 0x00000032: Timeout at src/controller/SetUpCodePairer.cpp:522
+[MatterTest] 01-30 13:01:29.999 ERROR BLE scan error: src/platform/Linux/BLEManagerImpl.cpp:714: CHIP Error 0x00000032: Timeout
+[MatterTest] 01-30 13:01:30.004 INFO Scan complete. No matching device found.
+[MatterTest] 01-30 13:01:33.945 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:01:33.945 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:01:33.946 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:01:33.946 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:01:36.184 INFO Discovered device discriminator (265) does not match our discriminator.
+[MatterTest] 01-30 13:01:36.907 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:01:36.908 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:01:36.908 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:01:36.909 ERROR Could not start SRV record processing: src/lib/dnssd/IncrementalResolve.cpp:130: CHIP Error 0x0000000B: No memory
+[MatterTest] 01-30 13:01:38.440 INFO Discovered device discriminator (265) does not match our discriminator.
+[MatterTest] 01-30 13:01:38.440 INFO Discovered device discriminator (265) does not match our discriminator.
+[MatterTest] 01-30 13:01:38.440 INFO Discovered device discriminator (265) does not match our discriminator.
+[MatterTest] 01-30 13:01:38.441 INFO Discovered device discriminator (265) does not match our discriminator.
+[MatterTest] 01-30 13:01:39.882 ERROR Discovery timed out
+[MatterTest] 01-30 13:01:39.882 INFO Stopping commissionable node discovery over DNS-SD
+[MatterTest] 01-30 13:01:39.883 ERROR Secure Pairing Failed
+[MatterTest] 01-30 13:01:39.883 WARNING Failed to establish secure session to device: src/controller/python/ChipDeviceController-ScriptDevicePairingDelegate.cpp:96: CHIP Error 0x00000003: Incorrect state
+[MatterTest] 01-30 13:01:40.884 ERROR Timeout waiting for mDNS resolution.
+[MatterTest] 01-30 13:01:54.882 INFO Checking node lookup status for 7AE2BAA62250B400-0000000012344321 after 45002 ms
+[MatterTest] 01-30 13:01:54.882 ERROR OperationalSessionSetup[1:0000000012344321]: operational discovery failed: src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032: Timeout
+[MatterTest] 01-30 13:01:54.883 ERROR Error in TC_DeviceConformance#setup_class.
+Traceback (most recent call last):
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/base_test.py", line 411, in _setup_class
+    self.setup_class()
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py", line 265, in async_runner
+    return _async_runner(body, self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py", line 253, in _async_runner
+    return test_instance.event_loop.run_until_complete(asyncio.wait_for(body(test_instance, *args, **kwargs), timeout=timeout))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceConformance.py", line 63, in setup_class
+    await self.setup_class_helper()
+  File "/home/mahesh/code/connectedhomeip/src/python_testing/test_testing/DeviceConformanceTests.py", line 77, in setup_class_helper
+    await super().setup_class_helper()
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/basic_composition.py", line 210, in setup_class_helper
+    wildcard_read = (await dev_ctrl.Read(node_id, [()]))  # type: ignore[list-item]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 2194, in Read
+    device = await self.GetConnectedDevice(nodeId, payloadCapability=payloadCapability)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 1540, in GetConnectedDevice
+    await future
+matter.exceptions.ChipStackError: src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032: Timeout
+[MatterTest] 01-30 13:01:54.885 INFO 		***** Test Failure : 
+[MatterTest] 01-30 13:01:54.885 INFO Finished test in 0ms
+[MatterTest] 01-30 13:01:54.886 ERROR 
+
+******************************************************************
+*
+* Test setup_class failed for the following reason:
+* src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032: Timeout
+*
+* File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 1540, in GetConnectedDevice
+* matter.exceptions.ChipStackError: src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032: Timeout
+*
+* Test step:
+*     UNKNOWN - no test steps provided in test script
+*
+* Endpoint: None
+*
+*******************************************************************
+
+[MatterTest] 01-30 13:01:54.890 INFO Summary for test class TC_DeviceConformance: Error 1, Executed 0, Failed 0, Passed 0, Requested 1, Skipped 1
+[MatterTest] 01-30 13:01:54.890 INFO Summary for test run MatterTest@01-30-2026_13-01-09-878:
+Total time elapsed 45.01123080400066s
+Artifacts are saved in "/tmp/matter_testing/logs/MatterTest/01-30-2026_13-01-09-878"
+Test summary saved in "/tmp/matter_testing/logs/MatterTest/01-30-2026_13-01-09-878/test_summary.yaml"
+Test results: Error 1, Executed 0, Failed 0, Passed 0, Requested 1, Skipped 1
+Shutting down the stack...
+Final result: FAIL !
+Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<ChipDeviceControllerBase.FindOrEstablishPASESession() done, defined at /home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py:1374> exception=ChipStackError(3, 'src/controller/python/ChipDeviceController-ScriptDevicePairingDelegate.cpp:96: CHIP Error 0x00000003: Incorrect state')>
+Traceback (most recent call last):
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 1393, in FindOrEstablishPASESession
+    await self.EstablishPASESession(setupCode, nodeId)
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 970, in EstablishPASESession
+    await self._establishPASESession(
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 913, in _establishPASESession
+    await asyncio.futures.wrap_future(ctx.future)
+matter.exceptions.ChipStackError: src/controller/python/ChipDeviceController-ScriptDevicePairingDelegate.cpp:96: CHIP Error 0x00000003: Incorrect state
+
+=== test_summary.yaml (from .) ===
+---
+Requested Tests:
+- test_TC_IDM_10_2
+Type: TestNameList
+...
+---
+Begin Time: 1769758269880
+Details: 'src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032:
+    Timeout'
+End Time: 1769758314885
+Extra Errors: {}
+Extras: null
+Parent: null
+Result: ERROR
+Retry Parent: null
+Signature: setup_class-1769758269880
+Stacktrace: "Traceback (most recent call last):\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/base_test.py\"\
+    , line 411, in _setup_class\n    self.setup_class()\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 265, in async_runner\n    return _async_runner(body, self, *args, **kwargs)\n\
+    \           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 253, in _async_runner\n    return test_instance.event_loop.run_until_complete(asyncio.wait_for(body(test_instance,\
+    \ *args, **kwargs), timeout=timeout))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/usr/lib/python3.11/asyncio/base_events.py\", line 654, in run_until_complete\n\
+    \    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/asyncio/tasks.py\"\
+    , line 489, in wait_for\n    return fut.result()\n           ^^^^^^^^^^^^\n  File\
+    \ \"/home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceConformance.py\"\
+    , line 63, in setup_class\n    await self.setup_class_helper()\n  File \"/home/mahesh/code/connectedhomeip/src/python_testing/test_testing/DeviceConformanceTests.py\"\
+    , line 77, in setup_class_helper\n    await super().setup_class_helper()\n  File\
+    \ \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/basic_composition.py\"\
+    , line 210, in setup_class_helper\n    wildcard_read = (await dev_ctrl.Read(node_id,\
+    \ [()]))  # type: ignore[list-item]\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py\"\
+    , line 2194, in Read\n    device = await self.GetConnectedDevice(nodeId, payloadCapability=payloadCapability)\n\
+    \             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py\"\
+    , line 1540, in GetConnectedDevice\n    await future\nmatter.exceptions.ChipStackError:\
+    \ src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032:\
+    \ Timeout\n"
+Termination Signal Type: ChipStackError
+Test Class: TC_DeviceConformance
+Test Name: setup_class
+Type: Record
+UID: null
+...
+---
+Begin Time: null
+Details: 'src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032:
+    Timeout'
+End Time: null
+Extra Errors: {}
+Extras: null
+Parent: null
+Result: SKIP
+Retry Parent: null
+Signature: null
+Stacktrace: "Traceback (most recent call last):\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/base_test.py\"\
+    , line 411, in _setup_class\n    self.setup_class()\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 265, in async_runner\n    return _async_runner(body, self, *args, **kwargs)\n\
+    \           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 253, in _async_runner\n    return test_instance.event_loop.run_until_complete(asyncio.wait_for(body(test_instance,\
+    \ *args, **kwargs), timeout=timeout))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/usr/lib/python3.11/asyncio/base_events.py\", line 654, in run_until_complete\n\
+    \    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/asyncio/tasks.py\"\
+    , line 489, in wait_for\n    return fut.result()\n           ^^^^^^^^^^^^\n  File\
+    \ \"/home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceConformance.py\"\
+    , line 63, in setup_class\n    await self.setup_class_helper()\n  File \"/home/mahesh/code/connectedhomeip/src/python_testing/test_testing/DeviceConformanceTests.py\"\
+    , line 77, in setup_class_helper\n    await super().setup_class_helper()\n  File\
+    \ \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/basic_composition.py\"\
+    , line 210, in setup_class_helper\n    wildcard_read = (await dev_ctrl.Read(node_id,\
+    \ [()]))  # type: ignore[list-item]\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py\"\
+    , line 2194, in Read\n    device = await self.GetConnectedDevice(nodeId, payloadCapability=payloadCapability)\n\
+    \             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py\"\
+    , line 1540, in GetConnectedDevice\n    await future\nmatter.exceptions.ChipStackError:\
+    \ src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032:\
+    \ Timeout\n"
+Termination Signal Type: ChipStackError
+Test Class: TC_DeviceConformance
+Test Name: test_TC_IDM_10_2
+Type: Record
+UID: null
+...
+---
+Error: 1
+Executed: 0
+Failed: 0
+Passed: 0
+Requested: 1
+Skipped: 1
+Type: Summary
+...
+
+

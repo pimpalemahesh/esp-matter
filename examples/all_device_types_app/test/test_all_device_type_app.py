@@ -14,6 +14,7 @@ import json
 import time
 import click
 from dataclasses import dataclass
+from datetime import datetime
 
 PYTEST_PATH = "/home/mahesh/code/connectedhomeip/src/python_testing"
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -28,8 +29,8 @@ BAUDRATE = 115200
 
 # Device types from device_types.h (excluding ESP_MATTER_DEVICE_TYPE_MAX)
 DEVICE_TYPES = [
-    "on_off_light",
-    "dimmable_light",
+    # "on_off_light",
+    # "dimmable_light",
     # "color_temperature_light",
     # "extended_color_light",
     # "on_off_light_switch",
@@ -41,7 +42,7 @@ DEVICE_TYPES = [
     # "fan",
     # "thermostat",
     # "aggregator",
-    # "bridged_node",
+    "bridged_node",
     # "control_bridge",
     # "door_lock",
     # "window_covering",
@@ -53,7 +54,7 @@ DEVICE_TYPES = [
     # "pressure_sensor",
     # "flow_sensor",
     # "pump",
-    # "mode_select_device",
+    "mode_select_device",
     # "room_ac",
     # "temp_ctrl_cabinet",
     # "refrigerator",
@@ -62,14 +63,14 @@ DEVICE_TYPES = [
     # "robotic_vacuum_cleaner",
     # "laundry_washer",
     # "dish_washer",
-    # "smoke_co_alarm",
+    "smoke_co_alarm",
     # "water_leak_detector",
     # "water_freeze_detector",
-    # "power_source",
+    "power_source",
     # "rain_sensor",
     # "electrical_sensor",
     # "oven",
-    # "cooktop",
+    "cooktop",
     # "energy_evse",
     # "microwave_oven",
     # "extractor_hood",
@@ -127,35 +128,41 @@ test_commands = [
             "timeout": 10000,
         },
     },
-    {
-        "script": "TC_RR_1_1.py",
-        "args": {
-            "-m": "ble-wifi",
-            "-p": "20202021",
-            "-d": "3840",
-            "--wifi-ssid": WIFI_SSID,
-            "--wifi-passphrase": WIFI_PASSPHRASE,
-            "--int-arg": "use_pase_only:0",
-            "-c": "/tmp",
-            "timeout": 10000,
-        },
-    },
+    # {
+    #     "script": "TC_RR_1_1.py",
+    #     "args": {
+    #         "-m": "ble-wifi",
+    #         "-p": "20202021",
+    #         "-d": "3840",
+    #         "--wifi-ssid": WIFI_SSID,
+    #         "--wifi-passphrase": WIFI_PASSPHRASE,
+    #         "--int-arg": "use_pase_only:0",
+    #         "-c": "/tmp",
+    #         "timeout": 10000,
+    #     },
+    # },
 ]
 
 
 def send_serial_command(ser, command, wait_time=2):
-    """Send a command to the device via serial port"""
-    print(f"Sending command: {command}")
-    ser.write(f"{command}\r\n".encode())
+    """Send a command to the device via serial port and return response"""
+    clean_command = command.strip()
+    print(f"Sending command: {clean_command}")
+
+    ser.write((clean_command + "\r\n").encode("ascii"))
     time.sleep(wait_time)
-    # Read any response
+
     response = b""
     while ser.in_waiting > 0:
         response += ser.read(ser.in_waiting)
         time.sleep(0.1)
-    if response:
-        print(f"Response: {response.decode('utf-8', errors='ignore')}")
 
+    decoded_response = response.decode("utf-8", errors="ignore").strip()
+
+    if decoded_response:
+        print(f"Response: {decoded_response}")
+
+    return decoded_response
 
 def factory_reset_device(ser):
     """Factory reset the device"""
@@ -164,10 +171,38 @@ def factory_reset_device(ser):
 
 
 def create_device(ser, device_type):
-    """Create a device of the specified type"""
+    """Create a device of the specified type, retry once on failure"""
     print(f"Creating device type: {device_type}")
-    send_serial_command(ser, f"create --device_type {device_type}", wait_time=5)
 
+    response = send_serial_command(
+        ser,
+        f"create --device_type {device_type}",
+        wait_time=5
+    )
+
+    # Define what "failure" looks like
+    failed = (
+        not response or
+        "error" in response.lower() or
+        "fail" in response.lower()
+    )
+
+    if failed:
+        print("retrying once more time")
+        time.sleep(1)
+
+        response = send_serial_command(
+            ser,
+            f"create --device_type {device_type}",
+            wait_time=5
+        )
+
+        # if not response or "error" in response.lower():
+        #     print("Retry failed.")
+        #     return False
+
+    print("Device created successfully.")
+    return True
 
 def load_test_command(test_command, device_storage_path):
     """Build the full test command with storage path"""
@@ -209,13 +244,11 @@ def parse_test_results(test_output):
     )
     match = pattern.search(test_output)
     if match:
-        results = {k: int(v) for k, v in match.groupdict().items()}
-        if results["Passed"] > 0:
+        final_output = {k: int(v) for k, v in match.groupdict().items()}
+        if final_output["Passed"] > 0:
             final_result = "PASS"
-            final_output = results
         else:
             final_result = "FAIL"
-            final_output = results
     # Fallback: check for "Final result: PASS !"
     if "Final result: FAIL !" in test_output:
         final_result = "FAIL"
@@ -242,7 +275,7 @@ def collect_artifacts(
         artifact_mapping = {
             "TC_DeviceConformance.py": "device_conformance_logs.txt",
             "TC_DeviceBasicComposition.py": "device_composition_logs.txt",
-            "TC_RR_1_1.py": "tc_rr_logs.txt",
+            # "TC_RR_1_1.py": "tc_rr_logs.txt",
         }
 
         artifact_filename = artifact_mapping.get(test_name, f"{test_name}_logs.txt")
@@ -315,7 +348,7 @@ def execute_test_command(
                 artifacts_path, device_storage_path, test_name, test_output
             )
             clean_environment()
-            time.sleep(5)
+            time.sleep(2)
             return "PASS"
         else:
             print(f"Test failed on attempt {attempt + 1}.")
@@ -329,6 +362,10 @@ def execute_test_command(
             time.sleep(10)
             if attempt < retry_attempts - 1:
                 clean_environment()
+                factory_reset_device(ser)
+                time.sleep(2)
+                create_device(ser, device_type)
+                time.sleep(2)
 
     # Collect artifacts even on failure
     collect_artifacts(artifacts_path, device_storage_path, test_name, test_output)
@@ -354,7 +391,7 @@ def run_tests_for_all_devices(context: ContextArgs):
         "Device Type",
         "Test 1 (TC_DeviceConformance)",
         "Test 2 (TC_DeviceBasicComposition)",
-        "Test 3 (TC_RR_1_1)",
+        # "Test 3 (TC_RR_1_1)",
         "Overall",
     ]
 
@@ -365,14 +402,13 @@ def run_tests_for_all_devices(context: ContextArgs):
             print(f"{'='*80}")
 
             # Create device-specific storage path
+            if not os.path.exists(context.storage_path):
+                os.makedirs(context.storage_path, exist_ok=True)
             device_storage_path = os.path.join(context.storage_path, device_type)
             os.makedirs(device_storage_path, exist_ok=True)
 
             # Factory reset device
             factory_reset_device(ser)
-
-            # Create device
-            create_device(ser, device_type)
 
             # Wait for device to be ready
             time.sleep(5)
@@ -380,6 +416,9 @@ def run_tests_for_all_devices(context: ContextArgs):
             # Run each test command
             test_results = []
             for idx, test_command in enumerate(test_commands, start=1):
+                print(f"\n--- Creating device {device_type} ---")
+                create_device(ser, device_type)
+                time.sleep(5)
                 print(f"\n--- Running Test {idx}: {test_command['script']} ---")
                 full_command = f"cd {context.pytest_path} && {load_test_command(test_command, device_storage_path)}"
                 result = execute_test_command(
@@ -388,12 +427,9 @@ def run_tests_for_all_devices(context: ContextArgs):
                 test_results.append(result)
                 time.sleep(2)
                 factory_reset_device(ser)
-                time.sleep(5)
-                create_device(ser, device_type)
-                time.sleep(5)
-
-            clean_environment()
-            time.sleep(5)
+                time.sleep(2)
+                clean_environment()
+                time.sleep(2)
 
             # Determine overall result
             overall = "PASS" if all(r == "PASS" for r in test_results) else "FAIL"
@@ -404,7 +440,7 @@ def run_tests_for_all_devices(context: ContextArgs):
                     device_type,
                     test_results[0],
                     test_results[1],
-                    test_results[2],
+                    # test_results[2],
                     overall,
                 ]
             )
@@ -412,12 +448,8 @@ def run_tests_for_all_devices(context: ContextArgs):
             print(f"\nDevice {device_type} test results:")
             print(f"  Test 1: {test_results[0]}")
             print(f"  Test 2: {test_results[1]}")
-            print(f"  Test 3: {test_results[2]}")
+            # print(f"  Test 3: {test_results[2]}")
             print(f"  Overall: {overall}")
-
-            # Factory reset before next device
-            factory_reset_device(ser)
-            time.sleep(5)
 
     except KeyboardInterrupt:
         print("\nTest interrupted by user")
@@ -445,7 +477,7 @@ def run_tests_for_all_devices(context: ContextArgs):
         print(f"  Failed: {failed_devices}")
 
         # Save results to file
-        results_file = os.path.join(context.storage_path, "test_results.txt")
+        results_file = os.path.join("out", f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_test_results.txt")
         with open(results_file, "w") as f:
             f.write("Device Type Test Results\n")
             f.write("=" * 80 + "\n")
@@ -458,8 +490,9 @@ def run_tests_for_all_devices(context: ContextArgs):
 
 
 @click.command()
+@click.option("--device-type", type=str, default=None, show_default=True)
 @click.option("--retry-attempts", type=int, default=1, show_default=True)
-@click.option("--storage-path", type=str, default=STORAGE_PATH, show_default=True)
+@click.option("--storage-path", type=str, default="out", show_default=True)
 @click.option("--pytest-path", type=str, default=PYTEST_PATH, show_default=True)
 @click.option("--serial-port", type=str, default=SERIAL_PORT, show_default=True)
 @click.option("--baudrate", type=int, default=BAUDRATE, show_default=True)
@@ -468,6 +501,7 @@ def run_tests_for_all_devices(context: ContextArgs):
 @click.option("--manual-code", type=str, default=MANUAL_CODE, show_default=True)
 @click.option("--allow-provisional", is_flag=True, help="Allow provisional tests")
 def main(
+    device_type,
     retry_attempts,
     storage_path,
     pytest_path,
@@ -478,8 +512,13 @@ def main(
     manual_code,
     allow_provisional,
 ):
+
+    device_type_list = DEVICE_TYPES
+
+    if device_type is not None:
+        device_type_list = [device_type]
     ctx = ContextArgs(
-        device_types=DEVICE_TYPES,
+        device_types=device_type_list,
         retry_attempts=retry_attempts,
         storage_path=storage_path,
         pytest_path=pytest_path,

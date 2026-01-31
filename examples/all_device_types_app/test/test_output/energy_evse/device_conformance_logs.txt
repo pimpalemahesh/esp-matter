@@ -1,0 +1,260 @@
+=== Test Output ===
+[0;32m[1769766720.311] [97823:97823] [CTL] Setting attestation nonce to random value[0m
+[0;32m[1769766720.312] [97823:97823] [CTL] Setting CSR nonce to random value[0m
+[0;34m[1769766720.313] [97823:97823] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_kvs[0m
+[0;34m[1769766720.313] [97823:97823] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_factory.ini[0m
+[0;34m[1769766720.313] [97823:97823] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_config.ini[0m
+[0;34m[1769766720.313] [97823:97823] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_counters.ini[0m
+[0;34m[1769766720.315] [97823:97823] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;32m[1769766720.315] [97823:97823] [DL] NVS set: chip-counters/reboot-count = 4 (0x4)[0m
+[0;32m[1769766720.316] [97823:97823] [DL] Got Ethernet interface: enp2s0f0[0m
+[0;32m[1769766720.316] [97823:97823] [DL] Found the primary Ethernet interface:enp2s0f0[0m
+[0;32m[1769766720.316] [97823:97823] [DL] Got WiFi interface: wlp3s0[0m
+[0;32m[1769766720.319] [97823:97823] [DL] Found the primary WiFi interface:wlp3s0[0m
+[0;32m[1769766720.319] [97823:97823] [PAF] WiFiPAF: WiFiPAFLayer::Init()[0m
+[0;34m[1769766720.319] [97823:97823] [CTL] StorageAdapter::GetKeyValue: Key = g/icdfl, Value = 0x36468260 (512)[0m
+[0;34m[1769766720.319] [97823:97823] [CTL] Key Not Found
+[0m
+[0;34m[1769766720.319] [97823:97823] [IN] UDP::Init bind&listen port=0[0m
+[0;34m[1769766720.319] [97823:97823] [IN] UDP::Init bound to port=48361[0m
+[0;34m[1769766720.319] [97823:97823] [IN] UDP::Init bind&listen port=0[0m
+[0;34m[1769766720.319] [97823:97823] [IN] UDP::Init bound to port=46089[0m
+[0;34m[1769766720.319] [97823:97823] [IN] BLEBase::Init - setting/overriding transport[0m
+[0;34m[1769766720.319] [97823:97823] [IN] WiFiPAFBase::Init - setting/overriding transport[0m
+[0;34m[1769766720.319] [97823:97823] [IN] TransportMgr initialized[0m
+[0;34m[1769766720.319] [97823:97823] [FP] Initializing FabricTable from persistent storage[0m
+[0;34m[1769766720.319] [97823:97823] [CTL] StorageAdapter::GetKeyValue: Key = g/lkgt, Value = 0x7fff90bd44a0 (18)[0m
+[0;34m[1769766720.319] [97823:97823] [CTL] Key Not Found
+[0m
+[0;32m[1769766720.319] [97823:97823] [TS] Last Known Good Time: [unknown][0m
+[0;32m[1769766720.319] [97823:97823] [TS] Setting Last Known Good Time to firmware build time 2023-10-14T01:16:48[0m
+[0;34m[1769766720.319] [97823:97823] [CTL] StorageAdapter::SetKeyValue: Key = g/lkgt, Value = 0x7fff90bd4490 (8)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+[0;34m[1769766720.319] [97823:97823] [CTL] StorageAdapter::GetKeyValue: Key = g/fidx, Value = 0x7fff90bd4630 (44)[0m
+[0;34m[1769766720.319] [97823:97823] [CTL] Key Not Found
+[0m
+[0;34m[1769766720.319] [97823:97823] [CTL] StorageAdapter::GetKeyValue: Key = g/fs/c, Value = 0x7fff90bd4500 (36)[0m
+[0;34m[1769766720.319] [97823:97823] [CTL] Key Not Found
+[0m
+[0;34m[1769766720.320] [97823:97823] [CTL] StorageAdapter::GetKeyValue: Key = g/gcc, Value = 0x7fff90bd458c (4)[0m
+[0;34m[1769766720.320] [97823:97823] [CTL] Key Not Found
+[0m
+[0;34m[1769766720.320] [97823:97823] [CTL] StorageAdapter::GetKeyValue: Key = g/gdc, Value = 0x7fff90bd458c (4)[0m
+[0;34m[1769766720.320] [97823:97823] [CTL] Key Not Found
+[0m
+[0;34m[1769766720.320] [97823:97823] [CTL] StorageAdapter::SetKeyValue: Key = g/gcc, Value = 0x7fff90bd458c (4)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+[0;34m[1769766720.320] [97823:97823] [CTL] StorageAdapter::SetKeyValue: Key = g/gdc, Value = 0x7fff90bd458c (4)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+[0;32m[1769766720.320] [97823:97823] [DMG] Ember attribute persistence requires setting up[0m
+[0;32m[1769766720.322] [97823:97823] [IN] CASE Server enabling CASE session setups[0m
+[0;34m[1769766720.322] [97823:97823] [IN] SecureSession[0x35ac1d50]: Allocated Type:2 LSID:25389[0m
+[0;34m[1769766720.322] [97823:97823] [SC] Allocated SecureSession (0x35ac1d50) - waiting for Sigma1 msg[0m
+[0;34m[1769766720.322] [97823:97823] [CTL] System State Initialized...[0m
+[0;34m[1769766720.322] [97823:97826] [DL] CHIP task running[0m
+Didn't find any CertificateAuthorities in storage -- creating a new CertificateAuthority + FabricAdmin...
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/energy_evse'
+[MatterTest] 01-30 15:22:00.446 INFO Starting test set, running 1 tests
+[MatterTest] 01-30 15:22:00.447 INFO ==========> TC_DeviceConformance <==========
+[MatterTest] 01-30 15:22:00.448 INFO Lookup started for 7B7AA7A5AE976D51-0000000012344321
+[MatterTest] 01-30 15:22:00.448 INFO Stopping commissionable node discovery over DNS-SD
+[MatterTest] 01-30 15:22:00.448 INFO Starting commissionable node discovery over BLE
+[MatterTest] 01-30 15:22:00.448 INFO Starting commissionable node discovery over Wi-Fi PAF
+[MatterTest] 01-30 15:22:00.448 ERROR Error, Long discriminator is required
+[MatterTest] 01-30 15:22:00.448 ERROR Failed to start commissionable node discovery over Wi-Fi PAF: src/controller/SetUpCodePairer.cpp:285: CHIP Error 0x0000002F: Invalid argument
+[MatterTest] 01-30 15:22:00.448 INFO Skipping commissionable node discovery over NFC since not supported by the controller!
+[MatterTest] 01-30 15:22:00.448 INFO Starting commissionable node discovery over DNS-SD
+[MatterTest] 01-30 15:22:00.452 INFO BLE removing known devices
+[MatterTest] 01-30 15:22:00.453 INFO BLE initiating scan
+[MatterTest] 01-30 15:22:00.566 ERROR Long dispatch time: 117 ms, for event type 3
+[MatterTest] 01-30 15:22:00.648 INFO Checking node lookup status for 7B7AA7A5AE976D51-0000000012344321 after 200 ms
+[MatterTest] 01-30 15:22:20.569 ERROR Commissionable node discovery over BLE failed: src/platform/Linux/BLEManagerImpl.cpp:714: CHIP Error 0x00000032: Timeout
+[MatterTest] 01-30 15:22:20.569 ERROR src/platform/Linux/BLEManagerImpl.cpp:714: CHIP Error 0x00000032: Timeout at src/controller/SetUpCodePairer.cpp:522
+[MatterTest] 01-30 15:22:20.570 ERROR BLE scan error: src/platform/Linux/BLEManagerImpl.cpp:714: CHIP Error 0x00000032: Timeout
+[MatterTest] 01-30 15:22:20.574 INFO Scan complete. No matching device found.
+[MatterTest] 01-30 15:22:30.449 ERROR Discovery timed out
+[MatterTest] 01-30 15:22:30.450 INFO Stopping commissionable node discovery over DNS-SD
+[MatterTest] 01-30 15:22:30.450 ERROR Secure Pairing Failed
+[MatterTest] 01-30 15:22:30.450 WARNING Failed to establish secure session to device: src/controller/python/ChipDeviceController-ScriptDevicePairingDelegate.cpp:96: CHIP Error 0x00000003: Incorrect state
+[MatterTest] 01-30 15:22:31.455 ERROR Timeout waiting for mDNS resolution.
+[MatterTest] 01-30 15:22:45.449 INFO Checking node lookup status for 7B7AA7A5AE976D51-0000000012344321 after 45001 ms
+[MatterTest] 01-30 15:22:45.449 ERROR OperationalSessionSetup[1:0000000012344321]: operational discovery failed: src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032: Timeout
+[MatterTest] 01-30 15:22:45.450 ERROR Error in TC_DeviceConformance#setup_class.
+Traceback (most recent call last):
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/base_test.py", line 411, in _setup_class
+    self.setup_class()
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py", line 265, in async_runner
+    return _async_runner(body, self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py", line 253, in _async_runner
+    return test_instance.event_loop.run_until_complete(asyncio.wait_for(body(test_instance, *args, **kwargs), timeout=timeout))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceConformance.py", line 63, in setup_class
+    await self.setup_class_helper()
+  File "/home/mahesh/code/connectedhomeip/src/python_testing/test_testing/DeviceConformanceTests.py", line 77, in setup_class_helper
+    await super().setup_class_helper()
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/basic_composition.py", line 210, in setup_class_helper
+    wildcard_read = (await dev_ctrl.Read(node_id, [()]))  # type: ignore[list-item]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 2194, in Read
+    device = await self.GetConnectedDevice(nodeId, payloadCapability=payloadCapability)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 1540, in GetConnectedDevice
+    await future
+matter.exceptions.ChipStackError: src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032: Timeout
+[MatterTest] 01-30 15:22:45.457 INFO 		***** Test Failure : 
+[MatterTest] 01-30 15:22:45.457 INFO Finished test in 0ms
+[MatterTest] 01-30 15:22:45.458 ERROR 
+
+******************************************************************
+*
+* Test setup_class failed for the following reason:
+* src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032: Timeout
+*
+* File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 1540, in GetConnectedDevice
+* matter.exceptions.ChipStackError: src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032: Timeout
+*
+* Test step:
+*     UNKNOWN - no test steps provided in test script
+*
+* Endpoint: None
+*
+*******************************************************************
+
+[MatterTest] 01-30 15:22:45.462 INFO Summary for test class TC_DeviceConformance: Error 1, Executed 0, Failed 0, Passed 0, Requested 1, Skipped 1
+[MatterTest] 01-30 15:22:45.462 INFO Summary for test run MatterTest@01-30-2026_15-22-00-445:
+Total time elapsed 45.01590221099468s
+Artifacts are saved in "/tmp/matter_testing/logs/MatterTest/01-30-2026_15-22-00-445"
+Test summary saved in "/tmp/matter_testing/logs/MatterTest/01-30-2026_15-22-00-445/test_summary.yaml"
+Test results: Error 1, Executed 0, Failed 0, Passed 0, Requested 1, Skipped 1
+Shutting down the stack...
+Final result: FAIL !
+Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<ChipDeviceControllerBase.FindOrEstablishPASESession() done, defined at /home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py:1374> exception=ChipStackError(3, 'src/controller/python/ChipDeviceController-ScriptDevicePairingDelegate.cpp:96: CHIP Error 0x00000003: Incorrect state')>
+Traceback (most recent call last):
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 1393, in FindOrEstablishPASESession
+    await self.EstablishPASESession(setupCode, nodeId)
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 970, in EstablishPASESession
+    await self._establishPASESession(
+  File "/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py", line 913, in _establishPASESession
+    await asyncio.futures.wrap_future(ctx.future)
+matter.exceptions.ChipStackError: src/controller/python/ChipDeviceController-ScriptDevicePairingDelegate.cpp:96: CHIP Error 0x00000003: Incorrect state
+
+=== test_summary.yaml (from .) ===
+---
+Requested Tests:
+- test_TC_IDM_10_2
+Type: TestNameList
+...
+---
+Begin Time: 1769766720448
+Details: 'src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032:
+    Timeout'
+End Time: 1769766765457
+Extra Errors: {}
+Extras: null
+Parent: null
+Result: ERROR
+Retry Parent: null
+Signature: setup_class-1769766720448
+Stacktrace: "Traceback (most recent call last):\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/base_test.py\"\
+    , line 411, in _setup_class\n    self.setup_class()\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 265, in async_runner\n    return _async_runner(body, self, *args, **kwargs)\n\
+    \           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 253, in _async_runner\n    return test_instance.event_loop.run_until_complete(asyncio.wait_for(body(test_instance,\
+    \ *args, **kwargs), timeout=timeout))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/usr/lib/python3.11/asyncio/base_events.py\", line 654, in run_until_complete\n\
+    \    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/asyncio/tasks.py\"\
+    , line 489, in wait_for\n    return fut.result()\n           ^^^^^^^^^^^^\n  File\
+    \ \"/home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceConformance.py\"\
+    , line 63, in setup_class\n    await self.setup_class_helper()\n  File \"/home/mahesh/code/connectedhomeip/src/python_testing/test_testing/DeviceConformanceTests.py\"\
+    , line 77, in setup_class_helper\n    await super().setup_class_helper()\n  File\
+    \ \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/basic_composition.py\"\
+    , line 210, in setup_class_helper\n    wildcard_read = (await dev_ctrl.Read(node_id,\
+    \ [()]))  # type: ignore[list-item]\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py\"\
+    , line 2194, in Read\n    device = await self.GetConnectedDevice(nodeId, payloadCapability=payloadCapability)\n\
+    \             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py\"\
+    , line 1540, in GetConnectedDevice\n    await future\nmatter.exceptions.ChipStackError:\
+    \ src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032:\
+    \ Timeout\n"
+Termination Signal Type: ChipStackError
+Test Class: TC_DeviceConformance
+Test Name: setup_class
+Type: Record
+UID: null
+...
+---
+Begin Time: null
+Details: 'src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032:
+    Timeout'
+End Time: null
+Extra Errors: {}
+Extras: null
+Parent: null
+Result: SKIP
+Retry Parent: null
+Signature: null
+Stacktrace: "Traceback (most recent call last):\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/mobly/base_test.py\"\
+    , line 411, in _setup_class\n    self.setup_class()\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 265, in async_runner\n    return _async_runner(body, self, *args, **kwargs)\n\
+    \           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/decorators.py\"\
+    , line 253, in _async_runner\n    return test_instance.event_loop.run_until_complete(asyncio.wait_for(body(test_instance,\
+    \ *args, **kwargs), timeout=timeout))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/usr/lib/python3.11/asyncio/base_events.py\", line 654, in run_until_complete\n\
+    \    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/asyncio/tasks.py\"\
+    , line 489, in wait_for\n    return fut.result()\n           ^^^^^^^^^^^^\n  File\
+    \ \"/home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceConformance.py\"\
+    , line 63, in setup_class\n    await self.setup_class_helper()\n  File \"/home/mahesh/code/connectedhomeip/src/python_testing/test_testing/DeviceConformanceTests.py\"\
+    , line 77, in setup_class_helper\n    await super().setup_class_helper()\n  File\
+    \ \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/basic_composition.py\"\
+    , line 210, in setup_class_helper\n    wildcard_read = (await dev_ctrl.Read(node_id,\
+    \ [()]))  # type: ignore[list-item]\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py\"\
+    , line 2194, in Read\n    device = await self.GetConnectedDevice(nodeId, payloadCapability=payloadCapability)\n\
+    \             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/ChipDeviceCtrl.py\"\
+    , line 1540, in GetConnectedDevice\n    await future\nmatter.exceptions.ChipStackError:\
+    \ src/lib/address_resolve/AddressResolve_DefaultImpl.cpp:124: CHIP Error 0x00000032:\
+    \ Timeout\n"
+Termination Signal Type: ChipStackError
+Test Class: TC_DeviceConformance
+Test Name: test_TC_IDM_10_2
+Type: Record
+UID: null
+...
+---
+Error: 1
+Executed: 0
+Failed: 0
+Passed: 0
+Requested: 1
+Skipped: 1
+Type: Summary
+...
+
+

@@ -1,0 +1,71 @@
+|          Device Type          | Test 1 (TC_DeviceConformance) | Test 2 (TC_DeviceBasicComposition) | Overall |
++-------------------------------+-------------------------------+------------------------------------+---------+
+|          on_off_light         |              PASS             |                PASS                |   PASS  |
+|         dimmable_light        |              PASS             |                PASS                |   PASS  |
+|    color_temperature_light    |              PASS             |                PASS                |   PASS  |
+|      extended_color_light     |              PASS             |                PASS                |   PASS  |
+|      on_off_light_switch      |              PASS             |                PASS                |   PASS  |
+|         dimmer_switch         |              PASS             |                PASS                |   PASS  |
+|      color_dimmer_switch      |              PASS             |                PASS                |   PASS  |
+|         generic_switch        |              PASS             |                PASS                |   PASS  |
+|      on_off_plug_in_unit      |              PASS             |                PASS                |   PASS  |
+|     dimmable_plug_in_unit     |              PASS             |                PASS                |   PASS  |
+|              fan              |              PASS             |                PASS                |   PASS  |
+|           thermostat          |              PASS             |                PASS                |   PASS  |
+|           aggregator          |              PASS             |                PASS                |   PASS  |
+|          bridged_node         |              PASS             |                PASS                |   PASS  |
+|         control_bridge        |              PASS             |                PASS                |   PASS  |
+|           door_lock           |              FAIL             |                PASS                |   FAIL  |
+|        window_covering        |              PASS             |                PASS                |   PASS  |
+|       temperature_sensor      |              PASS             |                PASS                |   PASS  |
+|        humidity_sensor        |              PASS             |                PASS                |   PASS  |
+|        occupancy_sensor       |              PASS             |                PASS                |   PASS  |
+|         contact_sensor        |              PASS             |                PASS                |   PASS  |
+|          light_sensor         |              PASS             |                PASS                |   PASS  |
+|        pressure_sensor        |              PASS             |                PASS                |   PASS  |
+|          flow_sensor          |              PASS             |                PASS                |   PASS  |
+|              pump             |              PASS             |                PASS                |   PASS  |
+|       mode_select_device      |              PASS             |                PASS                |   PASS  |
+|            room_ac            |              PASS             |                PASS                |   PASS  |
+|       temp_ctrl_cabinet       |              PASS             |                PASS                |   PASS  |
+|          refrigerator         |              PASS             |                PASS                |   PASS  |
+|          air_purifier         |              PASS             |                PASS                |   PASS  |
+|       air_quality_sensor      |              PASS             |                PASS                |   PASS  |
+|     robotic_vacuum_cleaner    |              PASS             |                FAIL                |   FAIL  |
+|         laundry_washer        |              PASS             |                FAIL                |   FAIL  |
+|          dish_washer          |              PASS             |                FAIL                |   FAIL  |
+|         smoke_co_alarm        |              PASS             |                PASS                |   PASS  |
+|      water_leak_detector      |              PASS             |                PASS                |   PASS  |
+|     water_freeze_detector     |              PASS             |                PASS                |   PASS  |
+|          power_source         |              PASS             |                PASS                |   PASS  |
+|          rain_sensor          |              PASS             |                PASS                |   PASS  |
+|       electrical_sensor       |              PASS             |                FAIL                |   FAIL  |
+|              oven             |              PASS             |                PASS                |   PASS  |
+|            cooktop            |              PASS             |                PASS                |   PASS  |
+|          energy_evse          |              FAIL             |                FAIL                |   FAIL  |
+|         microwave_oven        |              FAIL             |                FAIL                |   FAIL  |
+|         extractor_hood        |              PASS             |                PASS                |   PASS  |
+|         laundry_dryer         |              PASS             |                FAIL                |   FAIL  |
+|          water_valve          |              PASS             |                PASS                |   PASS  |
+|    device_energy_management   |              FAIL             |                FAIL                |   FAIL  |
+|        pump_controller        |              PASS             |                PASS                |   PASS  |
+|     mounted_on_off_control    |              PASS             |                PASS                |   PASS  |
+| mounted_dimmable_load_control |              PASS             |                PASS                |   PASS  |
+|          water_heater         |              PASS             |                FAIL                |   FAIL  |
+|          solar_power          |              PASS             |                PASS                |   PASS  |
+|        battery_storage        |              PASS             |                PASS                |   PASS  |
+|           heat_pump           |              PASS             |                PASS                |   PASS  |
+|             chime             |              PASS             |                FAIL                |   FAIL  |
+|     thermostat_controller     |              PASS             |                PASS                |   PASS  |
+|       closure_controller      |              PASS             |                PASS                |   PASS  |
+|            closure            |              PASS             |                FAIL                |   FAIL  |
+|         closure_panel         |              FAIL             |                FAIL                |   FAIL  |
+|    electrical_energy_tariff   |              PASS             |                FAIL                |   FAIL  |
+|        electrical_meter       |              PASS             |                FAIL                |   FAIL  |
+|    electrical_utility_meter   |              PASS             |                FAIL                |   FAIL |
++-------------------------------+-------------------------------+------------------------------------+---------+
+
+Summary:
+  Total devices tested: 63
+  Passed: 47
+  Failed: 16

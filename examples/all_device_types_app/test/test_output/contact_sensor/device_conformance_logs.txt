@@ -1,0 +1,194 @@
+=== Test Output ===
+[0;32m[1769756140.756] [56156:56156] [CTL] Setting attestation nonce to random value[0m
+[0;32m[1769756140.756] [56156:56156] [CTL] Setting CSR nonce to random value[0m
+[0;34m[1769756140.757] [56156:56156] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_kvs[0m
+[0;34m[1769756140.758] [56156:56156] [DL] Wrote settings to /tmp/chip_kvs[0m
+[0;34m[1769756140.758] [56156:56156] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_factory.ini[0m
+[0;34m[1769756140.759] [56156:56156] [DL] Wrote settings to /tmp/chip_factory.ini[0m
+[0;34m[1769756140.759] [56156:56156] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_config.ini[0m
+[0;34m[1769756140.760] [56156:56156] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;34m[1769756140.760] [56156:56156] [DL] ChipLinuxStorage::Init: Using KVS config file: /tmp/chip_counters.ini[0m
+[0;34m[1769756140.761] [56156:56156] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;34m[1769756140.762] [56156:56156] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769756140.762] [56156:56156] [DL] NVS set: chip-config/unique-id = "AB42D26632178937"[0m
+[0;34m[1769756140.763] [56156:56156] [DL] Wrote settings to /tmp/chip_factory.ini[0m
+[0;32m[1769756140.763] [56156:56156] [DL] NVS set: chip-factory/vendor-id = 65521 (0xFFF1)[0m
+[0;34m[1769756140.764] [56156:56156] [DL] Wrote settings to /tmp/chip_factory.ini[0m
+[0;32m[1769756140.764] [56156:56156] [DL] NVS set: chip-factory/product-id = 32769 (0x8001)[0m
+[0;34m[1769756140.765] [56156:56156] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;32m[1769756140.765] [56156:56156] [DL] NVS set: chip-counters/reboot-count = 1 (0x1)[0m
+[0;34m[1769756140.766] [56156:56156] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;32m[1769756140.766] [56156:56156] [DL] NVS set: chip-counters/total-operational-hours = 0 (0x0)[0m
+[0;34m[1769756140.768] [56156:56156] [DL] Wrote settings to /tmp/chip_counters.ini[0m
+[0;32m[1769756140.768] [56156:56156] [DL] NVS set: chip-counters/boot-reason = 0 (0x0)[0m
+[0;34m[1769756140.769] [56156:56156] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769756140.769] [56156:56156] [DL] NVS set: chip-config/regulatory-location = 0 (0x0)[0m
+[0;34m[1769756140.770] [56156:56156] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769756140.770] [56156:56156] [DL] NVS set: chip-config/location-capability = 2 (0x2)[0m
+[0;34m[1769756140.771] [56156:56156] [DL] Wrote settings to /tmp/chip_config.ini[0m
+[0;32m[1769756140.771] [56156:56156] [DL] NVS set: chip-config/configuration-version = 1 (0x1)[0m
+[0;32m[1769756140.771] [56156:56156] [DL] Got Ethernet interface: enp2s0f0[0m
+[0;32m[1769756140.771] [56156:56156] [DL] Found the primary Ethernet interface:enp2s0f0[0m
+[0;32m[1769756140.772] [56156:56156] [DL] Got WiFi interface: wlp3s0[0m
+[0;32m[1769756140.774] [56156:56156] [DL] Found the primary WiFi interface:wlp3s0[0m
+[0;32m[1769756140.774] [56156:56156] [PAF] WiFiPAF: WiFiPAFLayer::Init()[0m
+[0;34m[1769756140.774] [56156:56156] [CTL] StorageAdapter::GetKeyValue: Key = g/icdfl, Value = 0xe086630 (512)[0m
+[0;34m[1769756140.774] [56156:56156] [CTL] Key Not Found
+[0m
+[0;34m[1769756140.774] [56156:56156] [IN] UDP::Init bind&listen port=0[0m
+[0;34m[1769756140.774] [56156:56156] [IN] UDP::Init bound to port=55677[0m
+[0;34m[1769756140.774] [56156:56156] [IN] UDP::Init bind&listen port=0[0m
+[0;34m[1769756140.774] [56156:56156] [IN] UDP::Init bound to port=45742[0m
+[0;34m[1769756140.774] [56156:56156] [IN] BLEBase::Init - setting/overriding transport[0m
+[0;34m[1769756140.774] [56156:56156] [IN] WiFiPAFBase::Init - setting/overriding transport[0m
+[0;34m[1769756140.774] [56156:56156] [IN] TransportMgr initialized[0m
+[0;34m[1769756140.774] [56156:56156] [FP] Initializing FabricTable from persistent storage[0m
+[0;34m[1769756140.774] [56156:56156] [CTL] StorageAdapter::GetKeyValue: Key = g/lkgt, Value = 0x7ffe4117e6c0 (18)[0m
+[0;34m[1769756140.774] [56156:56156] [CTL] Key Not Found
+[0m
+[0;32m[1769756140.774] [56156:56156] [TS] Last Known Good Time: [unknown][0m
+[0;32m[1769756140.774] [56156:56156] [TS] Setting Last Known Good Time to firmware build time 2023-10-14T01:16:48[0m
+[0;34m[1769756140.774] [56156:56156] [CTL] StorageAdapter::SetKeyValue: Key = g/lkgt, Value = 0x7ffe4117e6b0 (8)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+[0;34m[1769756140.774] [56156:56156] [CTL] StorageAdapter::GetKeyValue: Key = g/fidx, Value = 0x7ffe4117e850 (44)[0m
+[0;34m[1769756140.774] [56156:56156] [CTL] Key Not Found
+[0m
+[0;34m[1769756140.774] [56156:56156] [CTL] StorageAdapter::GetKeyValue: Key = g/fs/c, Value = 0x7ffe4117e720 (36)[0m
+[0;34m[1769756140.774] [56156:56156] [CTL] Key Not Found
+[0m
+[0;34m[1769756140.774] [56156:56156] [CTL] StorageAdapter::GetKeyValue: Key = g/gcc, Value = 0x7ffe4117e7ac (4)[0m
+[0;34m[1769756140.774] [56156:56156] [CTL] Key Not Found
+[0m
+[0;34m[1769756140.774] [56156:56156] [CTL] StorageAdapter::GetKeyValue: Key = g/gdc, Value = 0x7ffe4117e7ac (4)[0m
+[0;34m[1769756140.774] [56156:56156] [CTL] Key Not Found
+[0m
+[0;34m[1769756140.774] [56156:56156] [CTL] StorageAdapter::SetKeyValue: Key = g/gcc, Value = 0x7ffe4117e7ac (4)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+[0;34m[1769756140.775] [56156:56156] [CTL] StorageAdapter::SetKeyValue: Key = g/gdc, Value = 0x7ffe4117e7ac (4)[0m
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+[0;32m[1769756140.775] [56156:56156] [DMG] Ember attribute persistence requires setting up[0m
+[0;32m[1769756140.777] [56156:56156] [IN] CASE Server enabling CASE session setups[0m
+[0;34m[1769756140.777] [56156:56156] [IN] SecureSession[0xd5ab930]: Allocated Type:2 LSID:26651[0m
+[0;34m[1769756140.777] [56156:56156] [SC] Allocated SecureSession (0xd5ab930) - waiting for Sigma1 msg[0m
+[0;34m[1769756140.777] [56156:56156] [CTL] System State Initialized...[0m
+[0;34m[1769756140.777] [56156:56159] [DL] CHIP task running[0m
+Didn't find any CertificateAuthorities in storage -- creating a new CertificateAuthority + FabricAdmin...
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+Could not save configuration to JSON file: [Errno 2] No such file or directory: 'test_output/contact_sensor'
+[MatterTest] 01-30 12:25:40.906 INFO Starting test set, running 1 tests
+[MatterTest] 01-30 12:25:40.907 INFO ==========> TC_DeviceConformance <==========
+[MatterTest] 01-30 12:25:40.909 INFO Lookup started for 91DC851305C64D56-0000000012344321
+[MatterTest] 01-30 12:25:40.909 INFO Stopping commissionable node discovery over DNS-SD
+[MatterTest] 01-30 12:25:40.909 INFO Starting commissionable node discovery over BLE
+[MatterTest] 01-30 12:25:40.909 INFO Starting commissionable node discovery over Wi-Fi PAF
+[MatterTest] 01-30 12:25:40.910 ERROR Error, Long discriminator is required
+[MatterTest] 01-30 12:25:40.910 ERROR Failed to start commissionable node discovery over Wi-Fi PAF: src/controller/SetUpCodePairer.cpp:285: CHIP Error 0x0000002F: Invalid argument
+[MatterTest] 01-30 12:25:40.910 INFO Skipping commissionable node discovery over NFC since not supported by the controller!
+[MatterTest] 01-30 12:25:40.910 INFO Starting commissionable node discovery over DNS-SD
+[MatterTest] 01-30 12:25:40.914 INFO BLE removing known devices
+[MatterTest] 01-30 12:25:40.914 INFO BLE initiating scan
+[MatterTest] 01-30 12:25:41.028 ERROR Long dispatch time: 118 ms, for event type 3
+[MatterTest] 01-30 12:25:41.048 INFO New device scanned: D9:8D:A4:21:AB:05
+[MatterTest] 01-30 12:25:41.048 INFO Device discriminator match. Attempting to connect.
+[MatterTest] 01-30 12:25:41.109 INFO Checking node lookup status for 91DC851305C64D56-0000000012344321 after 200 ms
+[MatterTest] 01-30 12:25:41.230 INFO New device connected: D9:8D:A4:21:AB:05
+[MatterTest] 01-30 12:25:42.183 INFO Discovered device to be commissioned over BLE
+[MatterTest] 01-30 12:25:42.183 INFO Attempting PASE connection to BLE
+[MatterTest] 01-30 12:25:42.184 INFO <<< [E:43436i S:0 M:93805123] (U) Msg TX from CC2BDE2B960B6CEF to 0:0000000000000000 [0000] [BLE] --- Type 0000:20 (SecureChannel:PBKDFParamRequest) (B:98)
+[MatterTest] 01-30 12:25:42.184 INFO Sent PBKDF param request [II:500ms AI:300ms AT:4000ms)
+[MatterTest] 01-30 12:25:42.715 INFO subscribe complete, ep = 0x7315ced247b0
+[MatterTest] 01-30 12:25:42.715 INFO peripheral chose BTP version 4; central expected between 4 and 4
+[MatterTest] 01-30 12:25:42.715 INFO using BTP fragment sizes rx 244 / tx 244.
+[MatterTest] 01-30 12:25:42.715 INFO local and remote recv window size = 5
+[MatterTest] 01-30 12:25:42.852 INFO >>> [E:43436i S:0 M:258574791] (U) Msg RX from 0:0000000000000000 [0000] to CC2BDE2B960B6CEF --- Type 0000:21 (SecureChannel:PBKDFParamResponse) (B:154)
+[MatterTest] 01-30 12:25:42.853 INFO <<< [E:43436i S:0 M:93805124] (U) Msg TX from CC2BDE2B960B6CEF to 0:0000000000000000 [0000] [BLE] --- Type 0000:22 (SecureChannel:PASE_Pake1) (B:92)
+[MatterTest] 01-30 12:25:43.528 INFO >>> [E:43436i S:0 M:258574792] (U) Msg RX from 0:0000000000000000 [0000] to CC2BDE2B960B6CEF --- Type 0000:23 (SecureChannel:PASE_Pake2) (B:127)
+[MatterTest] 01-30 12:25:43.528 INFO <<< [E:43436i S:0 M:93805125] (U) Msg TX from CC2BDE2B960B6CEF to 0:0000000000000000 [0000] [BLE] --- Type 0000:24 (SecureChannel:PASE_Pake3) (B:59)
+[MatterTest] 01-30 12:25:43.664 INFO >>> [E:43436i S:0 M:258574793] (U) Msg RX from 0:0000000000000000 [0000] to CC2BDE2B960B6CEF --- Type 0000:40 (SecureChannel:StatusReport) (B:30)
+[MatterTest] 01-30 12:25:43.664 INFO SecureSession[0x7315bc064300, LSID:26652]: State change 'kEstablishing' --> 'kActive'
+[MatterTest] 01-30 12:25:43.664 INFO PASE session established with commissionee. Stopping discovery.
+[MatterTest] 01-30 12:25:43.665 INFO Stopping commissionable node discovery over DNS-SD
+[MatterTest] 01-30 12:25:43.665 INFO Established secure session with Device
+[MatterTest] 01-30 12:25:43.665 INFO Using PASE connection
+[MatterTest] 01-30 12:25:43.665 INFO 0 data version filters provided, 0 not relevant, 0 encoded, 0 skipped due to lack of space
+[MatterTest] 01-30 12:25:43.666 INFO <<< [E:43437i S:26652 M:229016645] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:02 (IM:ReadRequest) (B:42)
+[MatterTest] 01-30 12:25:44.158 INFO >>> [E:43437i S:26652 M:135453175] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:05 (IM:ReportData) (B:1195)
+[MatterTest] 01-30 12:25:44.182 INFO <<< [E:43437i S:26652 M:229016646] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:01 (IM:StatusResponse) (B:38)
+[MatterTest] 01-30 12:25:44.652 INFO >>> [E:43437i S:26652 M:135453176] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:05 (IM:ReportData) (B:1203)
+[MatterTest] 01-30 12:25:44.676 INFO <<< [E:43437i S:26652 M:229016647] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:01 (IM:StatusResponse) (B:38)
+[MatterTest] 01-30 12:25:45.148 INFO >>> [E:43437i S:26652 M:135453177] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:05 (IM:ReportData) (B:1200)
+[MatterTest] 01-30 12:25:45.171 INFO <<< [E:43437i S:26652 M:229016648] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:01 (IM:StatusResponse) (B:38)
+[MatterTest] 01-30 12:25:45.462 INFO >>> [E:43437i S:26652 M:135453178] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:05 (IM:ReportData) (B:611)
+[MatterTest] 01-30 12:25:45.514 INFO ###########################################################
+[MatterTest] 01-30 12:25:45.514 INFO Start of actual tests
+[MatterTest] 01-30 12:25:45.514 INFO ###########################################################
+[MatterTest] 01-30 12:25:45.514 INFO ----------------------------------------------------------------------------------
+[MatterTest] 01-30 12:25:45.515 INFO -- Running tests against Specification version 1.5
+[MatterTest] 01-30 12:25:45.515 INFO ----------------------------------------------------------------------------------
+[MatterTest] 01-30 12:25:45.517 INFO Reading XML clusters from Path('/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/data_model/1.5/allfiles.zip', 'clusters/')
+[MatterTest] 01-30 12:25:45.761 INFO Reading XML clusters from Path('/home/mahesh/code/connectedhomeip/out/py-env/lib/python3.11/site-packages/matter/testing/data_model/1.5/allfiles.zip', 'clusters/')
+[MatterTest] 01-30 12:25:45.961 INFO [Test] test_TC_IDM_10_2
+[MatterTest] 01-30 12:25:45.961 INFO Starting test from /home/mahesh/code/connectedhomeip/src/python_testing/TC_DeviceConformance.py: test_TC_IDM_10_2 - 1 steps
+[MatterTest] 01-30 12:25:45.961 INFO ***** Test Step 1 : Run entire test
+[MatterTest] 01-30 12:25:45.961 INFO 		***** Test Step 1 : Run entire test
+[MatterTest] 01-30 12:25:45.962 INFO Finished test in 1016.0ms
+[MatterTest] 01-30 12:25:45.962 INFO [Test] test_TC_IDM_10_2 PASS
+[MatterTest] 01-30 12:25:45.963 INFO Summary for test class TC_DeviceConformance: Error 0, Executed 1, Failed 0, Passed 1, Requested 1, Skipped 0
+[MatterTest] 01-30 12:25:45.965 INFO Summary for test run MatterTest@01-30-2026_12-25-40-906:
+Total time elapsed 5.058779552997294s
+Artifacts are saved in "/tmp/matter_testing/logs/MatterTest/01-30-2026_12-25-40-906"
+Test summary saved in "/tmp/matter_testing/logs/MatterTest/01-30-2026_12-25-40-906/test_summary.yaml"
+Test results: Error 0, Executed 1, Failed 0, Passed 1, Requested 1, Skipped 0
+Long dispatch time: 124 ms, for event type 2
+Shutting down the stack...
+
+=== test_summary.yaml (from .) ===
+---
+Requested Tests:
+- test_TC_IDM_10_2
+Type: TestNameList
+...
+---
+Begin Time: 1769756145961
+Details: null
+End Time: 1769756145962
+Extra Errors: {}
+Extras: null
+Parent: null
+Result: PASS
+Retry Parent: null
+Signature: test_TC_IDM_10_2-1769756145961
+Stacktrace: null
+Termination Signal Type: null
+Test Class: TC_DeviceConformance
+Test Name: test_TC_IDM_10_2
+Type: Record
+UID: null
+...
+---
+Error: 0
+Executed: 1
+Failed: 0
+Passed: 1
+Requested: 1
+Skipped: 0
+Type: Summary
+...
+
+
