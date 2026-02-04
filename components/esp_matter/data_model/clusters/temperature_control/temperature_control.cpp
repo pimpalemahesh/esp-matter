@@ -41,7 +41,7 @@ static const char *TAG = "temperature_control_cluster";
 constexpr uint16_t cluster_revision = 1;
 
 static esp_err_t esp_matter_command_callback_set_temperature(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                             void *opaque_ptr)
 {
     chip::app::Clusters::TemperatureControl::Commands::SetTemperature::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -121,7 +121,6 @@ esp_err_t add(cluster_t *cluster, config_t *config)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_temperature_setpoint(cluster_t *cluster, int16_t value)
 {
@@ -176,8 +175,6 @@ attribute_t *create_supported_temperature_levels(cluster_t *cluster, uint8_t *va
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_set_temperature(cluster_t *cluster)
 {
@@ -185,7 +182,6 @@ command_t *create_set_temperature(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -213,10 +209,9 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
 
-
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_EXACT_ONE("TemperatureNumber,TemperatureLevel",
-                                   feature::temperature_number::get_id(), feature::temperature_level::get_id());
+                                    feature::temperature_number::get_id(), feature::temperature_level::get_id());
         if (feature_map & feature::temperature_number::get_id()) {
             VerifyOrReturnValue(feature::temperature_number::add(cluster, &(config->features.temperature_number)) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }

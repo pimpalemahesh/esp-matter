@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "thread_border_router_management_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace thread_border_router_management {
@@ -63,7 +62,6 @@ esp_err_t add(cluster_t *cluster)
 } /* pan_change */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_border_router_name(cluster_t *cluster, char *value, uint16_t length)
@@ -97,8 +95,6 @@ attribute_t *create_pending_dataset_timestamp(cluster_t *cluster, nullable<uint6
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_get_active_dataset_request(cluster_t *cluster)
 {
@@ -128,7 +124,6 @@ command_t *create_set_pending_dataset_request(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -165,7 +160,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_interface_enabled(cluster, false);
         attribute::create_active_dataset_timestamp(cluster, 0);
         attribute::create_pending_dataset_timestamp(cluster, 0);
-
         command::create_get_active_dataset_request(cluster);
         command::create_get_pending_dataset_request(cluster);
         command::create_dataset_response(cluster);

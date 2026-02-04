@@ -21,12 +21,10 @@ namespace esp_matter {
 namespace cluster {
 namespace localization_configuration {
 
-
 namespace attribute {
 attribute_t *create_active_locale(cluster_t *cluster, char * value, uint16_t length);
 attribute_t *create_supported_locales(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 } /* attribute */
-
 
 typedef struct config {
     config() {}

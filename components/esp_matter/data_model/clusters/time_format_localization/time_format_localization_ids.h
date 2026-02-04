@@ -41,8 +41,6 @@ inline constexpr uint32_t Id = 0x0002;
 } /* SupportedCalendarTypes */
 } /* attribute */
 
-
-
 } /* time_format_localization */
 } /* cluster */
 } /* esp_matter */

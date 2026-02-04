@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace power_topology {
 
-
 namespace feature {
 namespace node_topology {
 uint32_t get_id();
@@ -49,7 +48,6 @@ namespace attribute {
 attribute_t *create_available_endpoints(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_active_endpoints(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 } /* attribute */
-
 
 typedef struct config {
     void *delegate;

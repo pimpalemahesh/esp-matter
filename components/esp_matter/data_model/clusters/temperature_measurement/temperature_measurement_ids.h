@@ -23,7 +23,6 @@ namespace temperature_measurement {
 
 inline constexpr uint32_t Id = 0x0402;
 
-
 namespace attribute {
 namespace MeasuredValue {
 inline constexpr uint32_t Id = 0x0000;
@@ -38,8 +37,6 @@ namespace Tolerance {
 inline constexpr uint32_t Id = 0x0003;
 } /* Tolerance */
 } /* attribute */
-
-
 
 } /* temperature_measurement */
 } /* cluster */

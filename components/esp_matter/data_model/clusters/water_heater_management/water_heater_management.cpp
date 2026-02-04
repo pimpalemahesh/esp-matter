@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "water_heater_management_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace water_heater_management {
@@ -81,7 +80,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_heater_types(cluster_t *cluster, uint8_t value)
 {
@@ -120,8 +118,6 @@ attribute_t *create_boost_state(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_boost(cluster_t *cluster)
 {
@@ -135,7 +131,6 @@ command_t *create_cancel_boost(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_boost_started(cluster_t *cluster)
 {
@@ -148,7 +143,6 @@ event_t *create_boost_ended(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -182,7 +176,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_heater_types(cluster, 0);
         attribute::create_heat_demand(cluster, 0);
         attribute::create_boost_state(cluster, 0);
-
         command::create_boost(cluster);
         command::create_cancel_boost(cluster);
         /* Events */

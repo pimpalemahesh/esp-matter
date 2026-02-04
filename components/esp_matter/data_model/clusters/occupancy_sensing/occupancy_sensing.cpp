@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "occupancy_sensing_cluster";
 constexpr uint16_t cluster_revision = 5;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace occupancy_sensing {
@@ -187,7 +186,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_occupancy(cluster_t *cluster, uint8_t value)
 {
@@ -274,7 +272,6 @@ attribute_t *create_physical_contact_unoccupied_to_occupied_threshold(cluster_t 
 
 } /* attribute */
 
-
 namespace event {
 event_t *create_occupancy_changed(cluster_t *cluster)
 {
@@ -282,7 +279,6 @@ event_t *create_occupancy_changed(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -314,7 +310,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_AT_LEAST_ONE("Other,ActiveInfrared,PassiveInfrared,Radar,Ultrasonic,RFSensing,PhysicalContact,Vision",
-                                      feature::other::get_id(), feature::active_infrared::get_id(), feature::passive_infrared::get_id(), feature::radar::get_id(), feature::ultrasonic::get_id(), feature::rf_sensing::get_id(), feature::physical_contact::get_id(), feature::vision::get_id());
+                                       feature::other::get_id(), feature::active_infrared::get_id(), feature::passive_infrared::get_id(), feature::radar::get_id(), feature::ultrasonic::get_id(), feature::rf_sensing::get_id(), feature::physical_contact::get_id(), feature::vision::get_id());
         if (feature_map & feature::other::get_id()) {
             VerifyOrReturnValue(feature::other::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }
@@ -339,6 +335,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         if (feature_map & feature::vision::get_id()) {
             VerifyOrReturnValue(feature::vision::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterOccupancySensingClusterServerInitCallback,
                                                  ESPMatterOccupancySensingClusterServerShutdownCallback);
     }

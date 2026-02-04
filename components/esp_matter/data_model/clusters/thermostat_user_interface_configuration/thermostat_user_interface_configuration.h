@@ -21,13 +21,11 @@ namespace esp_matter {
 namespace cluster {
 namespace thermostat_user_interface_configuration {
 
-
 namespace attribute {
 attribute_t *create_temperature_display_mode(cluster_t *cluster, uint8_t value);
 attribute_t *create_keypad_lockout(cluster_t *cluster, uint8_t value);
 attribute_t *create_schedule_programming_visibility(cluster_t *cluster, uint8_t value);
 } /* attribute */
-
 
 typedef struct config {
     uint8_t temperature_display_mode;

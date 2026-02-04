@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "power_source_configuration_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace power_source_configuration {
-
 
 namespace attribute {
 attribute_t *create_sources(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -53,8 +51,6 @@ attribute_t *create_sources(cluster_t *cluster, uint8_t *value, uint16_t length,
 }
 
 } /* attribute */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -76,7 +72,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         global::attribute::create_cluster_revision(cluster, cluster_revision);
 
         attribute::create_sources(cluster, NULL, 0, 0);
-
     }
 
     return cluster;

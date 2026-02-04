@@ -61,7 +61,6 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     return ESP_OK;
 }
 
-
 } /* room_air_conditioner */
 } /* endpoint */
 } /* esp_matter */

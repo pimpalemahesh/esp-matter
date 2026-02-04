@@ -23,7 +23,6 @@ namespace wi_fi_network_management {
 
 inline constexpr uint32_t Id = 0x0451;
 
-
 namespace attribute {
 namespace SSID {
 inline constexpr uint32_t Id = 0x0000;
@@ -41,7 +40,6 @@ namespace NetworkPassphraseResponse {
 inline constexpr uint32_t Id = 0x01;
 } /* NetworkPassphraseResponse */
 } /* command */
-
 
 } /* wi_fi_network_management */
 } /* cluster */

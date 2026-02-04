@@ -22,7 +22,6 @@ namespace cluster {
 namespace thermostat {
 
 const uint8_t k_max_active_schedule_handle_length = 16u;
-
 namespace feature {
 namespace heating {
 typedef struct config {
@@ -169,7 +168,6 @@ command_t *create_setpoint_raise_lower(cluster_t *cluster);
 command_t *create_set_active_schedule_request(cluster_t *cluster);
 command_t *create_set_active_preset_request(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     nullable<int16_t> local_temperature;

@@ -23,7 +23,6 @@ namespace illuminance_measurement {
 
 inline constexpr uint32_t Id = 0x0400;
 
-
 namespace attribute {
 namespace MeasuredValue {
 inline constexpr uint32_t Id = 0x0000;
@@ -41,8 +40,6 @@ namespace LightSensorType {
 inline constexpr uint32_t Id = 0x0004;
 } /* LightSensorType */
 } /* attribute */
-
-
 
 } /* illuminance_measurement */
 } /* cluster */

@@ -61,7 +61,6 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     return ESP_OK;
 }
 
-
 } /* network_infrastructure_manager */
 } /* endpoint */
 } /* esp_matter */

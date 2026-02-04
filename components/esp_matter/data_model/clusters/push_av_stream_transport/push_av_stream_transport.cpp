@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "push_av_stream_transport_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace push_av_stream_transport {
@@ -64,7 +63,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_supported_formats(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
@@ -77,8 +75,6 @@ attribute_t *create_current_connections(cluster_t *cluster, uint8_t *value, uint
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_allocate_push_transport(cluster_t *cluster)
 {
@@ -122,7 +118,6 @@ command_t *create_find_transport_response(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_push_transport_begin(cluster_t *cluster)
 {
@@ -135,7 +130,6 @@ event_t *create_push_transport_end(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -168,7 +162,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         attribute::create_supported_formats(cluster, NULL, 0, 0);
         attribute::create_current_connections(cluster, NULL, 0, 0);
-
         command::create_allocate_push_transport(cluster);
         command::create_allocate_push_transport_response(cluster);
         command::create_deallocate_push_transport(cluster);
@@ -180,6 +173,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         /* Events */
         event::create_push_transport_begin(cluster);
         event::create_push_transport_end(cluster);
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterPushAvStreamTransportClusterServerInitCallback,
                                                  ESPMatterPushAvStreamTransportClusterServerShutdownCallback);
     }

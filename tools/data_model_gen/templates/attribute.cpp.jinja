@@ -1,5 +1,4 @@
 {% if cluster.get_attribute_list() | length > 0 %}
-
 namespace attribute {
 {% for attr in cluster.get_attribute_list() %}
 {% set has_bounds = attr.type not in ["list", "string", "octstr"] and attr.get_max_value() is not none and attr.get_min_value() is not none and not attr.is_internally_managed %}
@@ -25,5 +24,4 @@ attribute_t *create_{{ attr.func_name }}(cluster_t *cluster{% if attr.type in ["
 
 {% endfor %}
 } /* attribute */
-
 {% endif %}

@@ -59,8 +59,6 @@ inline constexpr uint32_t Id = 0x0014;
 } /* Scale */
 } /* attribute */
 
-
-
 } /* pressure_measurement */
 } /* cluster */
 } /* esp_matter */

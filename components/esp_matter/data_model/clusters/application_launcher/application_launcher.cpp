@@ -41,7 +41,7 @@ static const char *TAG = "application_launcher_cluster";
 constexpr uint16_t cluster_revision = 2;
 
 static esp_err_t esp_matter_command_callback_launch_app(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                        void *opaque_ptr)
 {
     chip::app::Clusters::ApplicationLauncher::Commands::LaunchApp::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -50,8 +50,9 @@ static esp_err_t esp_matter_command_callback_launch_app(const ConcreteCommandPat
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_stop_app(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                      void *opaque_ptr)
 {
     chip::app::Clusters::ApplicationLauncher::Commands::StopApp::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -60,8 +61,9 @@ static esp_err_t esp_matter_command_callback_stop_app(const ConcreteCommandPath 
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_hide_app(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                      void *opaque_ptr)
 {
     chip::app::Clusters::ApplicationLauncher::Commands::HideApp::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -94,7 +96,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_catalog_list(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
@@ -109,8 +110,6 @@ attribute_t *create_current_app(cluster_t *cluster, uint8_t *value, uint16_t len
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_launch_app(cluster_t *cluster)
 {
@@ -133,7 +132,6 @@ command_t *create_launcher_response(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -163,7 +161,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
-
 
         command::create_launch_app(cluster);
         command::create_stop_app(cluster);

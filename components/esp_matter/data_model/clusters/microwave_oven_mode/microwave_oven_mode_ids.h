@@ -38,8 +38,6 @@ inline constexpr uint32_t Id = 0x0001;
 } /* CurrentMode */
 } /* attribute */
 
-
-
 } /* microwave_oven_mode */
 } /* cluster */
 } /* esp_matter */

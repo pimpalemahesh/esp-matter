@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace valve_configuration_and_control {
 
-
 namespace feature {
 namespace time_sync {
 typedef struct config {
@@ -67,7 +66,6 @@ namespace event {
 event_t *create_valve_state_changed(cluster_t *cluster);
 event_t *create_valve_fault(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     nullable<uint32_t> open_duration;

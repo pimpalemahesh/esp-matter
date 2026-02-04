@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "boolean_state_configuration_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace boolean_state_configuration {
@@ -121,7 +120,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_current_sensitivity_level(cluster_t *cluster, uint8_t value)
 {
@@ -174,8 +172,6 @@ attribute_t *create_sensor_fault(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_suppress_alarm(cluster_t *cluster)
 {
@@ -193,7 +189,6 @@ command_t *create_enable_disable_alarm(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_alarms_state_changed(cluster_t *cluster)
 {
@@ -208,7 +203,6 @@ event_t *create_sensor_fault(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -238,7 +232,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
-
 
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterBooleanStateConfigurationClusterServerInitCallback,
                                                  ESPMatterBooleanStateConfigurationClusterServerShutdownCallback);

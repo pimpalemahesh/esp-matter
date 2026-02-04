@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace commissioner_control {
 
-
 namespace attribute {
 attribute_t *create_supported_device_categories(cluster_t *cluster, uint32_t value);
 } /* attribute */
@@ -35,7 +34,6 @@ command_t *create_reverse_open_commissioning_window(cluster_t *cluster);
 namespace event {
 event_t *create_commissioning_request_result(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     uint32_t supported_device_categories;

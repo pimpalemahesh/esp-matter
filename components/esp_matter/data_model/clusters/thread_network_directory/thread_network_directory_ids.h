@@ -23,7 +23,6 @@ namespace thread_network_directory {
 
 inline constexpr uint32_t Id = 0x0453;
 
-
 namespace attribute {
 namespace PreferredExtendedPanID {
 inline constexpr uint32_t Id = 0x0000;
@@ -50,7 +49,6 @@ namespace OperationalDatasetResponse {
 inline constexpr uint32_t Id = 0x03;
 } /* OperationalDatasetResponse */
 } /* command */
-
 
 } /* thread_network_directory */
 } /* cluster */

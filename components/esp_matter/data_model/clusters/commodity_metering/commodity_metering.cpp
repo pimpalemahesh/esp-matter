@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "commodity_metering_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace commodity_metering {
-
 
 namespace attribute {
 attribute_t *create_metered_quantity(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -68,7 +66,6 @@ attribute_t *create_maximum_metered_quantities(cluster_t *cluster, nullable<uint
 }
 
 } /* attribute */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -99,7 +96,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_metered_quantity_timestamp(cluster, 0);
         attribute::create_tariff_unit(cluster, 0);
         attribute::create_maximum_metered_quantities(cluster, 1);
-
     }
 
     if (flags & CLUSTER_FLAG_CLIENT) {

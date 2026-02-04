@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace service_area {
 
-
 namespace feature {
 namespace select_while_running {
 uint32_t get_id();
@@ -55,7 +54,6 @@ command_t *create_select_areas_response(cluster_t *cluster);
 command_t *create_skip_area(cluster_t *cluster);
 command_t *create_skip_area_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

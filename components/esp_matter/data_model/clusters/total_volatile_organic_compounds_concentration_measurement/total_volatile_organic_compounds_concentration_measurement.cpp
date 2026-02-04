@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "total_volatile_organic_compounds_concentration_measurement_cluster";
 constexpr uint16_t cluster_revision = 3;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace total_volatile_organic_compounds_concentration_measurement {
@@ -147,7 +146,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_measured_value(cluster_t *cluster, nullable<float> value)
 {
@@ -224,7 +222,6 @@ attribute_t *create_level_value(cluster_t *cluster, uint8_t value)
 
 } /* attribute */
 
-
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
     binding::config_t config;
@@ -255,7 +252,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_AT_LEAST_ONE("NumericMeasurement,LevelIndication",
-                                      feature::numeric_measurement::get_id(), feature::level_indication::get_id());
+                                       feature::numeric_measurement::get_id(), feature::level_indication::get_id());
         if (feature_map & feature::numeric_measurement::get_id()) {
             VerifyOrReturnValue(feature::numeric_measurement::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }

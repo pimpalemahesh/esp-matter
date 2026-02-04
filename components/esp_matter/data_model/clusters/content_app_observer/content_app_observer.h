@@ -21,12 +21,10 @@ namespace esp_matter {
 namespace cluster {
 namespace content_app_observer {
 
-
 namespace command {
 command_t *create_content_app_message(cluster_t *cluster);
 command_t *create_content_app_message_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

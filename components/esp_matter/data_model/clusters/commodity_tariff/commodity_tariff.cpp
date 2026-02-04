@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "commodity_tariff_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace commodity_tariff {
@@ -139,7 +138,6 @@ esp_err_t add(cluster_t *cluster)
 } /* randomization */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_tariff_info(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -242,8 +240,6 @@ attribute_t *create_default_randomization_type(cluster_t *cluster, nullable<uint
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_get_tariff_component(cluster_t *cluster)
 {
@@ -266,7 +262,6 @@ command_t *create_get_day_entry_response(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -318,7 +313,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_AT_LEAST_ONE("Pricing,FriendlyCredit,AuxiliaryLoad",
-                                      feature::pricing::get_id(), feature::friendly_credit::get_id(), feature::auxiliary_load::get_id());
+                                       feature::pricing::get_id(), feature::friendly_credit::get_id(), feature::auxiliary_load::get_id());
         if (feature_map & feature::pricing::get_id()) {
             VerifyOrReturnValue(feature::pricing::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }

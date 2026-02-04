@@ -41,7 +41,7 @@ static const char *TAG = "on_off_cluster";
 constexpr uint16_t cluster_revision = 6;
 
 static esp_err_t esp_matter_command_callback_off(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                 void *opaque_ptr)
 {
     chip::app::Clusters::OnOff::Commands::Off::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -50,8 +50,9 @@ static esp_err_t esp_matter_command_callback_off(const ConcreteCommandPath &comm
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_on(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                void *opaque_ptr)
 {
     chip::app::Clusters::OnOff::Commands::On::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -60,8 +61,9 @@ static esp_err_t esp_matter_command_callback_on(const ConcreteCommandPath &comma
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_toggle(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                    void *opaque_ptr)
 {
     chip::app::Clusters::OnOff::Commands::Toggle::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -70,8 +72,9 @@ static esp_err_t esp_matter_command_callback_toggle(const ConcreteCommandPath &c
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_off_with_effect(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                             void *opaque_ptr)
 {
     chip::app::Clusters::OnOff::Commands::OffWithEffect::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -80,6 +83,7 @@ static esp_err_t esp_matter_command_callback_off_with_effect(const ConcreteComma
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_on_with_recall_global_scene(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
                                                                          void *opaque_ptr)
 {
@@ -90,8 +94,9 @@ static esp_err_t esp_matter_command_callback_on_with_recall_global_scene(const C
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_on_with_timed_off(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                               void *opaque_ptr)
 {
     chip::app::Clusters::OnOff::Commands::OnWithTimedOff::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -172,7 +177,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_on_off(cluster_t *cluster, bool value)
 {
@@ -214,8 +218,6 @@ attribute_t *create_start_up_on_off(cluster_t *cluster, nullable<uint8_t> value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_off(cluster_t *cluster)
 {
@@ -259,7 +261,6 @@ command_t *create_on_with_timed_off(cluster_t *cluster)
 
 } /* command */
 
-
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
     binding::config_t config;
@@ -293,7 +294,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         } else {
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
-
         command::create_off(cluster);
         command::create_on(cluster);
         command::create_toggle(cluster);

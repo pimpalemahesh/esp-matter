@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace ota_software_update_requestor {
 
-
 namespace attribute {
 attribute_t *create_default_ota_providers(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_update_possible(cluster_t *cluster, bool value);
@@ -38,7 +37,6 @@ event_t *create_state_transition(cluster_t *cluster);
 event_t *create_version_applied(cluster_t *cluster);
 event_t *create_download_error(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     bool update_possible;

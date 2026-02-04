@@ -59,7 +59,6 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     return ESP_OK;
 }
 
-
 } /* thread_border_router */
 } /* endpoint */
 } /* esp_matter */

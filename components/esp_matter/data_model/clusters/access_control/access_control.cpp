@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "access_control_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace access_control {
@@ -86,7 +85,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_acl(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
@@ -130,8 +128,6 @@ attribute_t *create_arl(cluster_t *cluster, uint8_t *value, uint16_t length, uin
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_review_fabric_restrictions(cluster_t *cluster)
 {
@@ -148,7 +144,6 @@ command_t *create_review_fabric_restrictions_response(cluster_t *cluster)
 }
 
 } /* command */
-
 
 namespace event {
 event_t *create_access_control_entry_changed(cluster_t *cluster)
@@ -171,8 +166,6 @@ event_t *create_fabric_restriction_review_update(cluster_t *cluster)
 }
 
 } /* event */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -197,9 +190,9 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_subjects_per_access_control_entry(cluster, 4);
         attribute::create_targets_per_access_control_entry(cluster, 3);
         attribute::create_access_control_entries_per_fabric(cluster, 4);
-
         /* Events */
         event::create_access_control_entry_changed(cluster);
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterAccessControlClusterServerInitCallback,
                                                  ESPMatterAccessControlClusterServerShutdownCallback);
     }

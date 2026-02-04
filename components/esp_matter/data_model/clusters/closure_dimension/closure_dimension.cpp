@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "closure_dimension_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace closure_dimension {
@@ -179,7 +178,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_current_state(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
@@ -262,8 +260,6 @@ attribute_t *create_latch_control_modes(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_set_target(cluster_t *cluster)
 {
@@ -278,7 +274,6 @@ command_t *create_step(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -316,7 +311,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         uint32_t feature_map = config->feature_flags;
         if (feature_map & feature::positioning::get_id()) {
             VALIDATE_FEATURES_EXACT_ONE("Translation,Rotation,Modulation",
-                                       feature::translation::get_id(), feature::rotation::get_id(), feature::modulation::get_id());
+                                        feature::translation::get_id(), feature::rotation::get_id(), feature::modulation::get_id());
             if (feature_map & feature::translation::get_id()) {
                 VerifyOrReturnValue(feature::translation::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
             }
@@ -328,7 +323,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
             }
         }
         VALIDATE_FEATURES_AT_LEAST_ONE("Positioning,MotionLatching",
-                                      feature::positioning::get_id(), feature::motion_latching::get_id());
+                                       feature::positioning::get_id(), feature::motion_latching::get_id());
         if (feature_map & feature::positioning::get_id()) {
             VerifyOrReturnValue(feature::positioning::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }

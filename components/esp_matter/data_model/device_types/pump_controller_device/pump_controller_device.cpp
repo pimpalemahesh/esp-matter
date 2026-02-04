@@ -62,7 +62,6 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     return ESP_OK;
 }
 
-
 } /* pump_controller */
 } /* endpoint */
 } /* esp_matter */

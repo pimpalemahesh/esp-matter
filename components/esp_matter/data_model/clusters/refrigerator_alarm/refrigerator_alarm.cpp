@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "refrigerator_alarm_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace refrigerator_alarm {
@@ -68,7 +67,6 @@ esp_err_t add(cluster_t *cluster, config_t *config)
 } /* reset */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_mask(cluster_t *cluster, uint32_t value)
@@ -102,8 +100,6 @@ attribute_t *create_supported(cluster_t *cluster, uint32_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_reset(cluster_t *cluster)
 {
@@ -114,7 +110,6 @@ command_t *create_reset(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_notify(cluster_t *cluster)
 {
@@ -122,8 +117,6 @@ event_t *create_notify(cluster_t *cluster)
 }
 
 } /* event */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -151,7 +144,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         } else {
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
-
         /* Events */
         event::create_notify(cluster);
     }

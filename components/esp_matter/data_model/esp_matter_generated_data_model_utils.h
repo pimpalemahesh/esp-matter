@@ -19,8 +19,7 @@
 #include <root_node_device.h>
 // this space is for feature validation functions
 
-enum class feature_policy
-{
+enum class feature_policy {
     k_exact_one = 0,        // O.a
     k_at_least_one = 1,     // 0.a+
     k_at_most_one = 2,      // 0.a-
@@ -57,7 +56,7 @@ typedef struct config {
  *                               for the root endpoint only.
  */
 node_t *create(config_t *config, attribute::callback_t attribute_callback,
-                identification::callback_t identify_callback, void* priv_data = nullptr);
+               identification::callback_t identify_callback, void* priv_data = nullptr);
 
 } /* node */
 

@@ -41,7 +41,7 @@ static const char *TAG = "media_input_cluster";
 constexpr uint16_t cluster_revision = 1;
 
 static esp_err_t esp_matter_command_callback_select_input(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                          void *opaque_ptr)
 {
     chip::app::Clusters::MediaInput::Commands::SelectInput::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -50,8 +50,9 @@ static esp_err_t esp_matter_command_callback_select_input(const ConcreteCommandP
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_show_input_status(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                               void *opaque_ptr)
 {
     chip::app::Clusters::MediaInput::Commands::ShowInputStatus::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -60,8 +61,9 @@ static esp_err_t esp_matter_command_callback_show_input_status(const ConcreteCom
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_hide_input_status(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                               void *opaque_ptr)
 {
     chip::app::Clusters::MediaInput::Commands::HideInputStatus::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -70,8 +72,9 @@ static esp_err_t esp_matter_command_callback_hide_input_status(const ConcreteCom
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_rename_input(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                          void *opaque_ptr)
 {
     chip::app::Clusters::MediaInput::Commands::RenameInput::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -104,7 +107,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_input_list(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
@@ -117,8 +119,6 @@ attribute_t *create_current_input(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_select_input(cluster_t *cluster)
 {
@@ -143,7 +143,6 @@ command_t *create_rename_input(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -176,7 +175,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         attribute::create_input_list(cluster, NULL, 0, 0);
         attribute::create_current_input(cluster, 0);
-
         command::create_select_input(cluster);
         command::create_show_input_status(cluster);
         command::create_hide_input_status(cluster);

@@ -25,7 +25,6 @@ const uint8_t k_max_description_length = 60u;
 const uint8_t k_max_bat_replacement_description_length = 60u;
 const uint8_t k_max_bat_ansi_designation_length = 20u;
 const uint8_t k_max_bat_iec_designation_length = 20u;
-
 namespace feature {
 namespace wired {
 typedef struct config {
@@ -109,7 +108,6 @@ event_t *create_wired_fault_change(cluster_t *cluster);
 event_t *create_bat_fault_change(cluster_t *cluster);
 event_t *create_bat_charge_fault_change(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     uint8_t status;

@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "operational_state_cluster";
 constexpr uint16_t cluster_revision = 3;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace operational_state {
-
 
 namespace attribute {
 attribute_t *create_phase_list(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -78,8 +76,6 @@ attribute_t *create_operational_error(cluster_t *cluster, uint8_t *value, uint16
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_pause(cluster_t *cluster)
 {
@@ -109,7 +105,6 @@ command_t *create_operational_command_response(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_operational_error(cluster_t *cluster)
 {
@@ -122,7 +117,6 @@ event_t *create_operation_completion(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -158,7 +152,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_operational_state_list(cluster, NULL, 0, 0);
         attribute::create_operational_state(cluster, 0);
         attribute::create_operational_error(cluster, NULL, 0, 0);
-
         /* Events */
         event::create_operational_error(cluster);
     }

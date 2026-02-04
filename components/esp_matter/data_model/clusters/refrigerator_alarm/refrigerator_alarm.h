@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace refrigerator_alarm {
 
-
 namespace feature {
 namespace reset {
 typedef struct config {
@@ -48,7 +47,6 @@ command_t *create_reset(cluster_t *cluster);
 namespace event {
 event_t *create_notify(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     uint32_t mask;

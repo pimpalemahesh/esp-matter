@@ -43,7 +43,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "switch_cluster_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace switch_cluster {
@@ -157,7 +156,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_number_of_positions(cluster_t *cluster, uint8_t value)
 {
@@ -183,7 +181,6 @@ attribute_t *create_multi_press_max(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
 
 namespace event {
 event_t *create_switch_latched(cluster_t *cluster)
@@ -278,7 +275,6 @@ esp_err_t send_multi_press_complete(EndpointId endpoint, uint8_t new_position, u
 }
 } /* event */
 
-
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
     binding::config_t config;
@@ -320,7 +316,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
             }
         }
         VALIDATE_FEATURES_EXACT_ONE("LatchingSwitch,MomentarySwitch",
-                                   feature::latching_switch::get_id(), feature::momentary_switch::get_id());
+                                    feature::latching_switch::get_id(), feature::momentary_switch::get_id());
         if (feature_map & feature::latching_switch::get_id()) {
             VerifyOrReturnValue(feature::latching_switch::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }

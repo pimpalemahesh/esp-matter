@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace boolean_state_configuration {
 
-
 namespace feature {
 namespace visual {
 uint32_t get_id();
@@ -65,7 +64,6 @@ namespace event {
 event_t *create_alarms_state_changed(cluster_t *cluster);
 event_t *create_sensor_fault(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

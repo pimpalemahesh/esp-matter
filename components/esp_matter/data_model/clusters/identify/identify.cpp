@@ -41,11 +41,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "identify_cluster";
 constexpr uint16_t cluster_revision = 6;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace identify {
-
 
 namespace attribute {
 attribute_t *create_identify_time(cluster_t *cluster, uint16_t value)
@@ -59,8 +57,6 @@ attribute_t *create_identify_type(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_identify(cluster_t *cluster)
 {
@@ -73,8 +69,6 @@ command_t *create_trigger_effect(cluster_t *cluster)
 }
 
 } /* command */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -97,8 +91,8 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         attribute::create_identify_time(cluster, 0);
         attribute::create_identify_type(cluster, 0);
-
         command::create_identify(cluster);
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterIdentifyClusterServerInitCallback,
                                                  ESPMatterIdentifyClusterServerShutdownCallback);
     }

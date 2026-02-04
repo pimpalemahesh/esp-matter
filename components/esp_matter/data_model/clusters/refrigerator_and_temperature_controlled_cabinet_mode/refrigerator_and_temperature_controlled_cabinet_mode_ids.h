@@ -47,7 +47,6 @@ inline constexpr uint32_t Id = 0x01;
 } /* ChangeToModeResponse */
 } /* command */
 
-
 } /* refrigerator_and_temperature_controlled_cabinet_mode */
 } /* cluster */
 } /* esp_matter */

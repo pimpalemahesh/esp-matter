@@ -41,7 +41,6 @@ inline constexpr uint32_t Id = 0x0002;
 } /* ForecastConditions */
 } /* attribute */
 
-
 namespace event {
 namespace CurrentConditionsChanged {
 inline constexpr uint32_t Id = 0x00;

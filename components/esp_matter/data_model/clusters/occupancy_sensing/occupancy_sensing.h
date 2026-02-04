@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace occupancy_sensing {
 
-
 namespace feature {
 namespace other {
 uint32_t get_id();
@@ -100,7 +99,6 @@ attribute_t *create_physical_contact_unoccupied_to_occupied_threshold(cluster_t 
 namespace event {
 event_t *create_occupancy_changed(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     struct {

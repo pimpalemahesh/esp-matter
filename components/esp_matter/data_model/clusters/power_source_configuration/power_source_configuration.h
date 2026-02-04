@@ -21,11 +21,9 @@ namespace esp_matter {
 namespace cluster {
 namespace power_source_configuration {
 
-
 namespace attribute {
 attribute_t *create_sources(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 } /* attribute */
-
 
 typedef struct config {
     config() {}

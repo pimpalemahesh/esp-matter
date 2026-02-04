@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace groups {
 
-
 namespace feature {
 namespace group_names {
 uint32_t get_id();
@@ -46,7 +45,6 @@ command_t *create_remove_group_response(cluster_t *cluster);
 command_t *create_remove_all_groups(cluster_t *cluster);
 command_t *create_add_group_if_identifying(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     uint8_t name_support;

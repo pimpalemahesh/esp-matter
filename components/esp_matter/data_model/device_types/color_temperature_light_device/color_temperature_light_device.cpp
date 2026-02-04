@@ -70,7 +70,6 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     return ESP_OK;
 }
 
-
 } /* color_temperature_light */
 } /* endpoint */
 } /* esp_matter */

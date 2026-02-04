@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace hepa_filter_monitoring {
 
-
 namespace feature {
 namespace condition {
 uint32_t get_id();
@@ -52,7 +51,6 @@ attribute_t *create_replacement_product_list(cluster_t *cluster, uint8_t * value
 namespace command {
 command_t *create_reset_condition(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     config() {}

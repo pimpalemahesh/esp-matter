@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace thread_network_diagnostics {
 
-
 namespace feature {
 namespace packet_counts {
 uint32_t get_id();
@@ -119,7 +118,6 @@ namespace event {
 event_t *create_connection_status(cluster_t *cluster);
 event_t *create_network_fault_change(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     config() {}

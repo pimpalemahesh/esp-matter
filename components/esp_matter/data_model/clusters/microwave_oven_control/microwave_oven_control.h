@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace microwave_oven_control {
 
-
 namespace feature {
 namespace power_as_number {
 uint32_t get_id();
@@ -49,7 +48,6 @@ namespace command {
 command_t *create_set_cooking_parameters(cluster_t *cluster);
 command_t *create_add_more_time(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

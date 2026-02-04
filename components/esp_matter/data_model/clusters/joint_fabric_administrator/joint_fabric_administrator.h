@@ -21,8 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace joint_fabric_administrator {
 
-
-
 typedef struct config {
     config() {}
 } config_t;

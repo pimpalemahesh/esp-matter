@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace wi_fi_network_diagnostics {
 
-
 namespace feature {
 namespace packet_counts {
 uint32_t get_id();
@@ -60,7 +59,6 @@ event_t *create_disconnection(cluster_t *cluster);
 event_t *create_association_failure(cluster_t *cluster);
 event_t *create_connection_status(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     config() {}

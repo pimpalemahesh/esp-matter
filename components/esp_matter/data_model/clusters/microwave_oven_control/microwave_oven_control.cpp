@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "microwave_oven_control_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace microwave_oven_control {
@@ -81,7 +80,6 @@ esp_err_t add(cluster_t *cluster)
 } /* power_number_limits */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_cook_time(cluster_t *cluster, uint32_t value)
@@ -128,8 +126,6 @@ attribute_t *create_watt_rating(cluster_t *cluster, uint16_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_set_cooking_parameters(cluster_t *cluster)
 {
@@ -142,7 +138,6 @@ command_t *create_add_more_time(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -179,7 +174,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_EXACT_ONE("PowerAsNumber",
-                                   feature::power_as_number::get_id());
+                                    feature::power_as_number::get_id());
         if (feature_map & feature::power_as_number::get_id()) {
             VerifyOrReturnValue(feature::power_as_number::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }

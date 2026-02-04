@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace channel {
 
-
 namespace feature {
 namespace channel_list {
 uint32_t get_id();
@@ -61,7 +60,6 @@ command_t *create_program_guide_response(cluster_t *cluster);
 command_t *create_record_program(cluster_t *cluster);
 command_t *create_cancel_record_program(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

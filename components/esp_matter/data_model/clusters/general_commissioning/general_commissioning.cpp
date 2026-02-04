@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "general_commissioning_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace general_commissioning {
@@ -70,7 +69,6 @@ esp_err_t add(cluster_t *cluster)
 } /* terms_and_conditions */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_breadcrumb(cluster_t *cluster, uint64_t value)
@@ -134,8 +132,6 @@ attribute_t *create_tc_update_deadline(cluster_t *cluster, nullable<uint32_t> va
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_arm_fail_safe(cluster_t *cluster)
 {
@@ -183,8 +179,6 @@ command_t *create_set_tc_acknowledgements_response(cluster_t *cluster)
 
 } /* command */
 
-
-
 const function_generic_t *function_list = NULL;
 
 const int function_flags = CLUSTER_FLAG_NONE;
@@ -209,13 +203,13 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_regulatory_config(cluster, 0);
         attribute::create_location_capability(cluster, 0);
         attribute::create_supports_concurrent_connection(cluster, true);
-
         command::create_arm_fail_safe(cluster);
         command::create_arm_fail_safe_response(cluster);
         command::create_set_regulatory_config(cluster);
         command::create_set_regulatory_config_response(cluster);
         command::create_commissioning_complete(cluster);
         command::create_commissioning_complete_response(cluster);
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterGeneralCommissioningClusterServerInitCallback,
                                                  ESPMatterGeneralCommissioningClusterServerShutdownCallback);
     }

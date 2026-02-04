@@ -21,11 +21,9 @@ namespace esp_matter {
 namespace cluster {
 namespace fixed_label {
 
-
 namespace attribute {
 attribute_t *create_label_list(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 } /* attribute */
-
 
 typedef struct config {
     config() {}

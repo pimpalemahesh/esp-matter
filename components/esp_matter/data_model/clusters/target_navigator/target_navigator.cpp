@@ -41,7 +41,7 @@ static const char *TAG = "target_navigator_cluster";
 constexpr uint16_t cluster_revision = 2;
 
 static esp_err_t esp_matter_command_callback_navigate_target(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                             void *opaque_ptr)
 {
     chip::app::Clusters::TargetNavigator::Commands::NavigateTarget::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -55,7 +55,6 @@ namespace esp_matter {
 namespace cluster {
 namespace target_navigator {
 
-
 namespace attribute {
 attribute_t *create_target_list(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
@@ -68,8 +67,6 @@ attribute_t *create_current_target(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_navigate_target(cluster_t *cluster)
 {
@@ -83,7 +80,6 @@ command_t *create_navigate_target_response(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_target_updated(cluster_t *cluster)
 {
@@ -91,7 +87,6 @@ event_t *create_target_updated(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -123,7 +118,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         global::attribute::create_cluster_revision(cluster, cluster_revision);
 
         attribute::create_target_list(cluster, NULL, 0, 0);
-
         command::create_navigate_target(cluster);
         command::create_navigate_target_response(cluster);
     }

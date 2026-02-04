@@ -21,12 +21,10 @@ namespace esp_matter {
 namespace cluster {
 namespace diagnostic_logs {
 
-
 namespace command {
 command_t *create_retrieve_logs_request(cluster_t *cluster);
 command_t *create_retrieve_logs_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

@@ -23,7 +23,6 @@ namespace basic_information {
 
 inline constexpr uint32_t Id = 0x0028;
 
-
 namespace attribute {
 namespace DataModelRevision {
 inline constexpr uint32_t Id = 0x0000;
@@ -95,7 +94,6 @@ namespace MaxPathsPerInvoke {
 inline constexpr uint32_t Id = 0x0016;
 } /* MaxPathsPerInvoke */
 } /* attribute */
-
 
 namespace event {
 namespace StartUp {

@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace time_synchronization {
 
-
 namespace feature {
 namespace time_zone {
 uint32_t get_id();
@@ -77,7 +76,6 @@ event_t *create_time_zone_status(cluster_t *cluster);
 event_t *create_time_failure(cluster_t *cluster);
 event_t *create_missing_trusted_time_source(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

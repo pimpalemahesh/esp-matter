@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace laundry_washer_controls {
 
-
 namespace feature {
 namespace spin {
 typedef struct config {
@@ -49,7 +48,6 @@ attribute_t *create_spin_speed_current(cluster_t *cluster, nullable<uint8_t> val
 attribute_t *create_number_of_rinses(cluster_t *cluster, uint8_t value);
 attribute_t *create_supported_rinses(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 } /* attribute */
-
 
 typedef struct config {
     void *delegate;

@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "thread_network_directory_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace thread_network_directory {
-
 
 namespace attribute {
 attribute_t *create_preferred_extended_pan_id(cluster_t *cluster, uint8_t *value, uint16_t length)
@@ -63,8 +61,6 @@ attribute_t *create_thread_network_table_size(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_add_network(cluster_t *cluster)
 {
@@ -87,7 +83,6 @@ command_t *create_operational_dataset_response(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -117,7 +112,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_preferred_extended_pan_id(cluster, NULL, 0);
         attribute::create_thread_networks(cluster, NULL, 0, 0);
         attribute::create_thread_network_table_size(cluster, 0);
-
         command::create_add_network(cluster);
         command::create_remove_network(cluster);
         command::create_get_operational_dataset(cluster);

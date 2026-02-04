@@ -41,7 +41,7 @@ static const char *TAG = "level_control_cluster";
 constexpr uint16_t cluster_revision = 6;
 
 static esp_err_t esp_matter_command_callback_move_to_level(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                           void *opaque_ptr)
 {
     chip::app::Clusters::LevelControl::Commands::MoveToLevel::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -50,8 +50,9 @@ static esp_err_t esp_matter_command_callback_move_to_level(const ConcreteCommand
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_move(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                  void *opaque_ptr)
 {
     chip::app::Clusters::LevelControl::Commands::Move::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -60,8 +61,9 @@ static esp_err_t esp_matter_command_callback_move(const ConcreteCommandPath &com
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_step(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                  void *opaque_ptr)
 {
     chip::app::Clusters::LevelControl::Commands::Step::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -70,8 +72,9 @@ static esp_err_t esp_matter_command_callback_step(const ConcreteCommandPath &com
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_stop(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                  void *opaque_ptr)
 {
     chip::app::Clusters::LevelControl::Commands::Stop::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -80,8 +83,9 @@ static esp_err_t esp_matter_command_callback_stop(const ConcreteCommandPath &com
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_move_to_level_with_on_off(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                       void *opaque_ptr)
 {
     chip::app::Clusters::LevelControl::Commands::MoveToLevelWithOnOff::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -90,8 +94,9 @@ static esp_err_t esp_matter_command_callback_move_to_level_with_on_off(const Con
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_move_with_on_off(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                              void *opaque_ptr)
 {
     chip::app::Clusters::LevelControl::Commands::MoveWithOnOff::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -100,8 +105,9 @@ static esp_err_t esp_matter_command_callback_move_with_on_off(const ConcreteComm
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_step_with_on_off(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                              void *opaque_ptr)
 {
     chip::app::Clusters::LevelControl::Commands::StepWithOnOff::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -110,8 +116,9 @@ static esp_err_t esp_matter_command_callback_step_with_on_off(const ConcreteComm
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_stop_with_on_off(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                              void *opaque_ptr)
 {
     chip::app::Clusters::LevelControl::Commands::StopWithOnOff::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -163,7 +170,6 @@ esp_err_t add(cluster_t *cluster, config_t *config)
 } /* lighting */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_current_level(cluster_t *cluster, nullable<uint8_t> value)
@@ -248,8 +254,6 @@ attribute_t *create_start_up_current_level(cluster_t *cluster, nullable<uint8_t>
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_move_to_level(cluster_t *cluster)
 {
@@ -293,7 +297,6 @@ command_t *create_stop_with_on_off(cluster_t *cluster)
 
 } /* command */
 
-
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
     binding::config_t config;
@@ -329,7 +332,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         } else {
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
-
         command::create_move_to_level(cluster);
         command::create_move(cluster);
         command::create_step(cluster);

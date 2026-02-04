@@ -22,7 +22,6 @@ namespace cluster {
 namespace icd_management {
 
 const uint8_t k_max_user_active_mode_trigger_instruction_length = 128u;
-
 namespace feature {
 namespace check_in_protocol_support {
 uint32_t get_id();
@@ -70,7 +69,6 @@ command_t *create_unregister_client(cluster_t *cluster);
 command_t *create_stay_active_request(cluster_t *cluster);
 command_t *create_stay_active_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     config() {}

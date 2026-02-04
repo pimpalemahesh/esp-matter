@@ -596,7 +596,6 @@ void MeterIdentificationDelegateInitCB(void *delegate, uint16_t endpoint_id)
     meter_identification_instance->Init();
 }
 
-
 void ApplicationLauncherDelegateInitCB(void *delegate, uint16_t endpoint_id)
 {
     // TODO: Implement

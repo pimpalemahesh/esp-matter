@@ -23,7 +23,6 @@ namespace webrtc_transport_provider {
 
 inline constexpr uint32_t Id = 0x0553;
 
-
 namespace attribute {
 namespace CurrentSessions {
 inline constexpr uint32_t Id = 0x0000;
@@ -53,7 +52,6 @@ namespace EndSession {
 inline constexpr uint32_t Id = 0x06;
 } /* EndSession */
 } /* command */
-
 
 } /* webrtc_transport_provider */
 } /* cluster */

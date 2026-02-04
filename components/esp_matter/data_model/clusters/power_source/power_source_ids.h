@@ -137,7 +137,6 @@ inline constexpr uint32_t Id = 0x001F;
 } /* EndpointList */
 } /* attribute */
 
-
 namespace event {
 namespace WiredFaultChange {
 inline constexpr uint32_t Id = 0x00;

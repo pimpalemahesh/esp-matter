@@ -23,7 +23,6 @@ namespace application_basic {
 
 inline constexpr uint32_t Id = 0x050D;
 
-
 namespace attribute {
 namespace VendorName {
 inline constexpr uint32_t Id = 0x0000;
@@ -50,8 +49,6 @@ namespace AllowedVendorList {
 inline constexpr uint32_t Id = 0x0007;
 } /* AllowedVendorList */
 } /* attribute */
-
-
 
 } /* application_basic */
 } /* cluster */

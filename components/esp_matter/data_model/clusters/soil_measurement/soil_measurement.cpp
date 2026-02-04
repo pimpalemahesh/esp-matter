@@ -41,11 +41,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "soil_measurement_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace soil_measurement {
-
 
 namespace attribute {
 attribute_t *create_soil_moisture_measurement_limits(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -59,7 +57,6 @@ attribute_t *create_soil_moisture_measured_value(cluster_t *cluster, nullable<ui
 }
 
 } /* attribute */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {

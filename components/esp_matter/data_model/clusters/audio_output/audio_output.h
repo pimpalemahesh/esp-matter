@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace audio_output {
 
-
 namespace feature {
 namespace name_updates {
 uint32_t get_id();
@@ -39,7 +38,6 @@ namespace command {
 command_t *create_select_output(cluster_t *cluster);
 command_t *create_rename_output(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

@@ -80,8 +80,6 @@ inline constexpr uint32_t Id = 0x000A;
 } /* LevelValue */
 } /* attribute */
 
-
-
 } /* nitrogen_dioxide_concentration_measurement */
 } /* cluster */
 } /* esp_matter */

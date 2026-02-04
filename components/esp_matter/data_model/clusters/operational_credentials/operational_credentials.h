@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace operational_credentials {
 
-
 namespace attribute {
 attribute_t *create_no_cs(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_fabrics(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
@@ -48,7 +47,6 @@ command_t *create_set_vid_verification_statement(cluster_t *cluster);
 command_t *create_sign_vid_verification_request(cluster_t *cluster);
 command_t *create_sign_vid_verification_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     config() {}

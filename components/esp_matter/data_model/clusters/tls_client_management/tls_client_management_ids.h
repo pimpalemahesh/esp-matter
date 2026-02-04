@@ -23,7 +23,6 @@ namespace tls_client_management {
 
 inline constexpr uint32_t Id = 0x0802;
 
-
 namespace attribute {
 namespace MaxProvisioned {
 inline constexpr uint32_t Id = 0x0000;
@@ -50,7 +49,6 @@ namespace RemoveEndpoint {
 inline constexpr uint32_t Id = 0x04;
 } /* RemoveEndpoint */
 } /* command */
-
 
 } /* tls_client_management */
 } /* cluster */

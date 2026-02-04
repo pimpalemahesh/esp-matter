@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "administrator_commissioning_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace administrator_commissioning {
@@ -65,7 +64,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_window_status(cluster_t *cluster, uint8_t value)
 {
@@ -83,8 +81,6 @@ attribute_t *create_admin_vendor_id(cluster_t *cluster, nullable<uint16_t> value
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_open_commissioning_window(cluster_t *cluster)
 {
@@ -104,8 +100,6 @@ command_t *create_revoke_commissioning(cluster_t *cluster)
 }
 
 } /* command */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -129,9 +123,9 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_window_status(cluster, 0);
         attribute::create_admin_fabric_index(cluster, 0);
         attribute::create_admin_vendor_id(cluster, 0);
-
         command::create_open_commissioning_window(cluster);
         command::create_revoke_commissioning(cluster);
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterAdministratorCommissioningClusterServerInitCallback,
                                                  ESPMatterAdministratorCommissioningClusterServerShutdownCallback);
     }

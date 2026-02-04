@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace media_playback {
 
-
 namespace feature {
 namespace advanced_seek {
 uint32_t get_id();
@@ -85,7 +84,6 @@ command_t *create_deactivate_text_track(cluster_t *cluster);
 namespace event {
 event_t *create_state_changed(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

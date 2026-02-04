@@ -22,7 +22,6 @@ namespace cluster {
 namespace door_lock {
 
 const uint8_t k_max_language_length = 3u;
-
 namespace feature {
 namespace pin_credential {
 typedef struct config {
@@ -209,7 +208,6 @@ event_t *create_lock_operation(cluster_t *cluster);
 event_t *create_lock_operation_error(cluster_t *cluster);
 event_t *create_lock_user_change(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     nullable<uint8_t> lock_state;

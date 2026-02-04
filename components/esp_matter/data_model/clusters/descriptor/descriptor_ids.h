@@ -50,8 +50,6 @@ inline constexpr uint32_t Id = 0x0005;
 } /* EndpointUniqueID */
 } /* attribute */
 
-
-
 } /* descriptor */
 } /* cluster */
 } /* esp_matter */

@@ -53,10 +53,8 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     esp_err_t err = add_device_type(endpoint, ESP_MATTER_BATTERY_STORAGE_DEVICE_TYPE_ID, ESP_MATTER_BATTERY_STORAGE_DEVICE_TYPE_VERSION);
     VerifyOrReturnError(err == ESP_OK, err);
 
-
     return ESP_OK;
 }
-
 
 } /* battery_storage */
 } /* endpoint */

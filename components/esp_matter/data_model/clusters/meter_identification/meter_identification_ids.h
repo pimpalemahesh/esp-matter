@@ -47,8 +47,6 @@ inline constexpr uint32_t Id = 0x0004;
 } /* PowerThreshold */
 } /* attribute */
 
-
-
 } /* meter_identification */
 } /* cluster */
 } /* esp_matter */

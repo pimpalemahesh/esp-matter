@@ -23,14 +23,11 @@ namespace binding {
 
 inline constexpr uint32_t Id = 0x001E;
 
-
 namespace attribute {
 namespace Binding {
 inline constexpr uint32_t Id = 0x0000;
 } /* Binding */
 } /* attribute */
-
-
 
 } /* binding */
 } /* cluster */

@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "zone_management_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace zone_management {
@@ -122,7 +121,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_max_user_defined_zones(cluster_t *cluster, uint8_t value)
 {
@@ -166,8 +164,6 @@ attribute_t *create_two_d_cartesian_max(cluster_t *cluster, uint8_t *value, uint
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_create_two_d_cartesian_zone(cluster_t *cluster)
 {
@@ -209,7 +205,6 @@ command_t *create_remove_trigger(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_zone_triggered(cluster_t *cluster)
 {
@@ -222,7 +217,6 @@ event_t *create_zone_stopped(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -254,7 +248,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_triggers(cluster, NULL, 0, 0);
         attribute::create_sensitivity_max(cluster, 0);
         attribute::create_sensitivity(cluster, 0);
-
         command::create_create_or_update_trigger(cluster);
         command::create_remove_trigger(cluster);
         /* Events */

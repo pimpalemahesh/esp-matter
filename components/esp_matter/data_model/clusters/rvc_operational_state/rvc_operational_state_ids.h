@@ -23,7 +23,6 @@ namespace rvc_operational_state {
 
 inline constexpr uint32_t Id = 0x0061;
 
-
 namespace attribute {
 namespace PhaseList {
 inline constexpr uint32_t Id = 0x0000;

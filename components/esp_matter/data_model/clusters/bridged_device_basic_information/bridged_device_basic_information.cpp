@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "bridged_device_basic_information_cluster";
 constexpr uint16_t cluster_revision = 5;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace bridged_device_basic_information {
@@ -64,7 +63,6 @@ esp_err_t add(cluster_t *cluster)
 } /* bridged_icd_support */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_vendor_name(cluster_t *cluster, char *value, uint16_t length)
@@ -169,8 +167,6 @@ attribute_t *create_product_appearance(cluster_t *cluster, uint8_t *value, uint1
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_keep_active(cluster_t *cluster)
 {
@@ -180,7 +176,6 @@ command_t *create_keep_active(cluster_t *cluster)
 }
 
 } /* command */
-
 
 namespace event {
 event_t *create_start_up(cluster_t *cluster)
@@ -212,8 +207,6 @@ event_t *create_active_changed(cluster_t *cluster)
 
 } /* event */
 
-
-
 const function_generic_t function_list[] = {
     (function_generic_t)MatterBridgedDeviceBasicInformationClusterServerAttributeChangedCallback,
 };
@@ -241,7 +234,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         } else {
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
-
         /* Events */
         event::create_reachable_changed(cluster);
     }

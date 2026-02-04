@@ -41,7 +41,7 @@ static const char *TAG = "keypad_input_cluster";
 constexpr uint16_t cluster_revision = 1;
 
 static esp_err_t esp_matter_command_callback_send_key(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                      void *opaque_ptr)
 {
     chip::app::Clusters::KeypadInput::Commands::SendKey::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -103,7 +103,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace command {
 command_t *create_send_key(cluster_t *cluster)
 {
@@ -116,7 +115,6 @@ command_t *create_send_key_response(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -146,7 +144,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
-
 
         command::create_send_key(cluster);
         command::create_send_key_response(cluster);

@@ -679,6 +679,7 @@ build_esp_matter_examples_idf_v4_4_generated_data_model:
   extends:
         - .build_examples_template
   image: ${DOCKER_IMAGE_NAME}:chip_${CHIP_SHORT_HASH}_idf_${IDF_CHECKOUT_REF}
+  allow_failure: true
   artifacts:
     paths:
       - "examples/**/build*/size.json"

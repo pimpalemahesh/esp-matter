@@ -23,7 +23,6 @@ namespace ecosystem_information {
 
 inline constexpr uint32_t Id = 0x0750;
 
-
 namespace attribute {
 namespace DeviceDirectory {
 inline constexpr uint32_t Id = 0x0000;
@@ -32,8 +31,6 @@ namespace LocationDirectory {
 inline constexpr uint32_t Id = 0x0001;
 } /* LocationDirectory */
 } /* attribute */
-
-
 
 } /* ecosystem_information */
 } /* cluster */

@@ -62,7 +62,6 @@ inline constexpr uint32_t Id = 0x00;
 } /* SetTemperature */
 } /* command */
 
-
 } /* temperature_control */
 } /* cluster */
 } /* esp_matter */

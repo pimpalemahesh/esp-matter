@@ -23,8 +23,6 @@ namespace account_login {
 
 inline constexpr uint32_t Id = 0x050E;
 
-
-
 namespace command {
 namespace GetSetupPIN {
 inline constexpr uint32_t Id = 0x00;

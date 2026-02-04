@@ -41,7 +41,7 @@ static const char *TAG = "low_power_cluster";
 constexpr uint16_t cluster_revision = 1;
 
 static esp_err_t esp_matter_command_callback_sleep(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                   void *opaque_ptr)
 {
     chip::app::Clusters::LowPower::Commands::Sleep::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -55,7 +55,6 @@ namespace esp_matter {
 namespace cluster {
 namespace low_power {
 
-
 namespace command {
 command_t *create_sleep(cluster_t *cluster)
 {
@@ -63,7 +62,6 @@ command_t *create_sleep(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -93,7 +91,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
-
 
         command::create_sleep(cluster);
     }

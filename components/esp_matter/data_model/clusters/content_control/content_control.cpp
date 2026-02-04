@@ -41,7 +41,7 @@ static const char *TAG = "content_control_cluster";
 constexpr uint16_t cluster_revision = 1;
 
 static esp_err_t esp_matter_command_callback_update_pin(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                        void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::UpdatePIN::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -50,8 +50,9 @@ static esp_err_t esp_matter_command_callback_update_pin(const ConcreteCommandPat
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_reset_pin(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                       void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::ResetPIN::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -60,8 +61,9 @@ static esp_err_t esp_matter_command_callback_reset_pin(const ConcreteCommandPath
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_enable(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                    void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::Enable::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -70,8 +72,9 @@ static esp_err_t esp_matter_command_callback_enable(const ConcreteCommandPath &c
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_disable(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                     void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::Disable::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -80,8 +83,9 @@ static esp_err_t esp_matter_command_callback_disable(const ConcreteCommandPath &
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_add_bonus_time(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                            void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::AddBonusTime::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -90,8 +94,9 @@ static esp_err_t esp_matter_command_callback_add_bonus_time(const ConcreteComman
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_set_screen_daily_time(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                   void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::SetScreenDailyTime::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -100,8 +105,9 @@ static esp_err_t esp_matter_command_callback_set_screen_daily_time(const Concret
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_block_unrated_content(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                   void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::BlockUnratedContent::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -110,8 +116,9 @@ static esp_err_t esp_matter_command_callback_block_unrated_content(const Concret
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_unblock_unrated_content(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                     void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::UnblockUnratedContent::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -120,8 +127,9 @@ static esp_err_t esp_matter_command_callback_unblock_unrated_content(const Concr
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_set_on_demand_rating_threshold(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                            void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::SetOnDemandRatingThreshold::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -130,8 +138,9 @@ static esp_err_t esp_matter_command_callback_set_on_demand_rating_threshold(cons
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_set_scheduled_content_rating_threshold(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                                    void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::SetScheduledContentRatingThreshold::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -140,8 +149,9 @@ static esp_err_t esp_matter_command_callback_set_scheduled_content_rating_thresh
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_add_block_channels(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::AddBlockChannels::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -150,8 +160,9 @@ static esp_err_t esp_matter_command_callback_add_block_channels(const ConcreteCo
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_remove_block_channels(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                   void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::RemoveBlockChannels::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -160,8 +171,9 @@ static esp_err_t esp_matter_command_callback_remove_block_channels(const Concret
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_add_block_applications(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                    void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::AddBlockApplications::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -170,8 +182,9 @@ static esp_err_t esp_matter_command_callback_add_block_applications(const Concre
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_remove_block_applications(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                       void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::RemoveBlockApplications::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -180,8 +193,9 @@ static esp_err_t esp_matter_command_callback_remove_block_applications(const Con
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_set_block_content_time_window(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                           void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::SetBlockContentTimeWindow::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -190,8 +204,9 @@ static esp_err_t esp_matter_command_callback_set_block_content_time_window(const
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_remove_block_content_time_window(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                              void *opaque_ptr)
 {
     chip::app::Clusters::ContentControl::Commands::RemoveBlockContentTimeWindow::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -371,7 +386,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_enabled(cluster_t *cluster, bool value)
 {
@@ -455,8 +469,6 @@ attribute_t *create_block_content_time_window(cluster_t *cluster, uint8_t *value
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_update_pin(cluster_t *cluster)
 {
@@ -575,7 +587,6 @@ command_t *create_remove_block_content_time_window(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_remaining_screen_time_expired(cluster_t *cluster)
 {
@@ -592,7 +603,6 @@ event_t *create_entering_block_content_time_window(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -628,7 +638,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         } else {
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
-
         command::create_enable(cluster);
         command::create_disable(cluster);
     }

@@ -41,7 +41,7 @@ static const char *TAG = "media_playback_cluster";
 constexpr uint16_t cluster_revision = 2;
 
 static esp_err_t esp_matter_command_callback_play(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                  void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::Play::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -50,8 +50,9 @@ static esp_err_t esp_matter_command_callback_play(const ConcreteCommandPath &com
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_pause(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                   void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::Pause::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -60,8 +61,9 @@ static esp_err_t esp_matter_command_callback_pause(const ConcreteCommandPath &co
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_stop(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                  void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::Stop::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -70,8 +72,9 @@ static esp_err_t esp_matter_command_callback_stop(const ConcreteCommandPath &com
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_start_over(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                        void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::StartOver::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -80,8 +83,9 @@ static esp_err_t esp_matter_command_callback_start_over(const ConcreteCommandPat
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_previous(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                      void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::Previous::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -90,8 +94,9 @@ static esp_err_t esp_matter_command_callback_previous(const ConcreteCommandPath 
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_next(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                  void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::Next::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -100,8 +105,9 @@ static esp_err_t esp_matter_command_callback_next(const ConcreteCommandPath &com
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_rewind(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                    void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::Rewind::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -110,8 +116,9 @@ static esp_err_t esp_matter_command_callback_rewind(const ConcreteCommandPath &c
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_fast_forward(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                          void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::FastForward::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -120,8 +127,9 @@ static esp_err_t esp_matter_command_callback_fast_forward(const ConcreteCommandP
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_skip_forward(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                          void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::SkipForward::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -130,8 +138,9 @@ static esp_err_t esp_matter_command_callback_skip_forward(const ConcreteCommandP
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_skip_backward(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                           void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::SkipBackward::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -140,8 +149,9 @@ static esp_err_t esp_matter_command_callback_skip_backward(const ConcreteCommand
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_seek(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                  void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::Seek::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -150,8 +160,9 @@ static esp_err_t esp_matter_command_callback_seek(const ConcreteCommandPath &com
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_activate_audio_track(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                  void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::ActivateAudioTrack::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -160,8 +171,9 @@ static esp_err_t esp_matter_command_callback_activate_audio_track(const Concrete
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_activate_text_track(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                 void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::ActivateTextTrack::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -170,8 +182,9 @@ static esp_err_t esp_matter_command_callback_activate_text_track(const ConcreteC
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_deactivate_text_track(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                   void *opaque_ptr)
 {
     chip::app::Clusters::MediaPlayback::Commands::DeactivateTextTrack::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -279,7 +292,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_current_state(cluster_t *cluster, uint8_t value)
 {
@@ -357,8 +369,6 @@ attribute_t *create_available_text_tracks(cluster_t *cluster, uint8_t *value, ui
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_play(cluster_t *cluster)
 {
@@ -449,7 +459,6 @@ command_t *create_deactivate_text_track(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_state_changed(cluster_t *cluster)
 {
@@ -457,7 +466,6 @@ event_t *create_state_changed(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -489,7 +497,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         global::attribute::create_cluster_revision(cluster, cluster_revision);
 
         attribute::create_current_state(cluster, 0);
-
         command::create_play(cluster);
         command::create_pause(cluster);
         command::create_stop(cluster);

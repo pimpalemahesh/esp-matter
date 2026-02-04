@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace administrator_commissioning {
 
-
 namespace feature {
 namespace basic {
 uint32_t get_id();
@@ -41,7 +40,6 @@ command_t *create_open_commissioning_window(cluster_t *cluster);
 command_t *create_open_basic_commissioning_window(cluster_t *cluster);
 command_t *create_revoke_commissioning(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     config() {}

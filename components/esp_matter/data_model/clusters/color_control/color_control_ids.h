@@ -260,7 +260,6 @@ inline constexpr uint32_t Id = 0x4C;
 } /* StepColorTemperature */
 } /* command */
 
-
 } /* color_control */
 } /* cluster */
 } /* esp_matter */

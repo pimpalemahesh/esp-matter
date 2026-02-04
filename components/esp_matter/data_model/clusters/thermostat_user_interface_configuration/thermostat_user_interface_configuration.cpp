@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "thermostat_user_interface_configuration_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace thermostat_user_interface_configuration {
-
 
 namespace attribute {
 attribute_t *create_temperature_display_mode(cluster_t *cluster, uint8_t value)
@@ -69,7 +67,6 @@ attribute_t *create_schedule_programming_visibility(cluster_t *cluster, uint8_t 
 }
 
 } /* attribute */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -104,7 +101,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         } else {
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
-
     }
 
     if (flags & CLUSTER_FLAG_CLIENT) {

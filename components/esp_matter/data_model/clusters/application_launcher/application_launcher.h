@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace application_launcher {
 
-
 namespace feature {
 namespace application_platform {
 uint32_t get_id();
@@ -41,7 +40,6 @@ command_t *create_stop_app(cluster_t *cluster);
 command_t *create_hide_app(cluster_t *cluster);
 command_t *create_launcher_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "wake_on_lan_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace wake_on_lan {
-
 
 namespace attribute {
 attribute_t *create_mac_address(cluster_t *cluster, char *value, uint16_t length)
@@ -58,7 +56,6 @@ attribute_t *create_link_local_address(cluster_t *cluster, uint8_t *value, uint1
 }
 
 } /* attribute */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -88,7 +85,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
-
 
     }
 

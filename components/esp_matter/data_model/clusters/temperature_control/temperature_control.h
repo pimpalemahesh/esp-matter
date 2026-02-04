@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace temperature_control {
 
-
 namespace feature {
 namespace temperature_number {
 typedef struct config {
@@ -66,7 +65,6 @@ attribute_t *create_supported_temperature_levels(cluster_t *cluster, uint8_t * v
 namespace command {
 command_t *create_set_temperature(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     struct {

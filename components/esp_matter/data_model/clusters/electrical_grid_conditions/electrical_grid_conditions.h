@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace electrical_grid_conditions {
 
-
 namespace feature {
 namespace forecasting {
 uint32_t get_id();
@@ -39,7 +38,6 @@ attribute_t *create_forecast_conditions(cluster_t *cluster, uint8_t * value, uin
 namespace event {
 event_t *create_current_conditions_changed(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

@@ -41,11 +41,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "boolean_state_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace boolean_state {
-
 
 namespace attribute {
 attribute_t *create_state_value(cluster_t *cluster, bool value)
@@ -55,7 +53,6 @@ attribute_t *create_state_value(cluster_t *cluster, bool value)
 
 } /* attribute */
 
-
 namespace event {
 event_t *create_state_change(cluster_t *cluster)
 {
@@ -63,7 +60,6 @@ event_t *create_state_change(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {

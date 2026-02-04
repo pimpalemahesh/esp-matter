@@ -23,8 +23,6 @@ namespace ota_software_update_provider {
 
 inline constexpr uint32_t Id = 0x0029;
 
-
-
 namespace command {
 namespace QueryImage {
 inline constexpr uint32_t Id = 0x00;
@@ -42,7 +40,6 @@ namespace NotifyUpdateApplied {
 inline constexpr uint32_t Id = 0x04;
 } /* NotifyUpdateApplied */
 } /* command */
-
 
 } /* ota_software_update_provider */
 } /* cluster */

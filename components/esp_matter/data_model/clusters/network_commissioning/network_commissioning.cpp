@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "network_commissioning_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace network_commissioning {
@@ -117,7 +116,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_max_networks(cluster_t *cluster, uint8_t value)
 {
@@ -185,8 +183,6 @@ attribute_t *create_thread_version(cluster_t *cluster, uint16_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_scan_networks(cluster_t *cluster)
 {
@@ -253,8 +249,6 @@ command_t *create_reorder_network(cluster_t *cluster)
 
 } /* command */
 
-
-
 const function_generic_t *function_list = NULL;
 
 const int function_flags = CLUSTER_FLAG_NONE;
@@ -284,7 +278,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_EXACT_ONE("WiFiNetworkInterface,ThreadNetworkInterface,EthernetNetworkInterface",
-                                   feature::wi_fi_network_interface::get_id(), feature::thread_network_interface::get_id(), feature::ethernet_network_interface::get_id());
+                                    feature::wi_fi_network_interface::get_id(), feature::thread_network_interface::get_id(), feature::ethernet_network_interface::get_id());
         if (feature_map & feature::wi_fi_network_interface::get_id()) {
             VerifyOrReturnValue(feature::wi_fi_network_interface::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }
@@ -294,6 +288,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         if (feature_map & feature::ethernet_network_interface::get_id()) {
             VerifyOrReturnValue(feature::ethernet_network_interface::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterNetworkCommissioningClusterServerInitCallback,
                                                  ESPMatterNetworkCommissioningClusterServerShutdownCallback);
     }

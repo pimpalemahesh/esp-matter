@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace switch_cluster {
 
-
 namespace feature {
 namespace latching_switch {
 uint32_t get_id();
@@ -81,7 +80,6 @@ esp_err_t send_long_release(chip::EndpointId endpoint, uint8_t previous_position
 esp_err_t send_multi_press_ongoing(chip::EndpointId endpoint, uint8_t new_position, uint8_t count);
 esp_err_t send_multi_press_complete(chip::EndpointId endpoint, uint8_t new_position, uint8_t count);
 } /* event */
-
 
 typedef struct config {
     uint8_t number_of_positions;

@@ -41,11 +41,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "localization_configuration_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace localization_configuration {
-
 
 namespace attribute {
 attribute_t *create_active_locale(cluster_t *cluster, char *value, uint16_t length)
@@ -59,8 +57,6 @@ attribute_t *create_supported_locales(cluster_t *cluster, uint8_t *value, uint16
 }
 
 } /* attribute */
-
-
 
 const function_generic_t *function_list = NULL;
 

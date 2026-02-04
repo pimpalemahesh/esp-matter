@@ -58,7 +58,6 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     return ESP_OK;
 }
 
-
 } /* dish_washer */
 } /* endpoint */
 } /* esp_matter */

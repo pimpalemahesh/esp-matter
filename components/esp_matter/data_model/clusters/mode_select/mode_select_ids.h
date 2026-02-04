@@ -56,7 +56,6 @@ inline constexpr uint32_t Id = 0x00;
 } /* ChangeToMode */
 } /* command */
 
-
 } /* mode_select */
 } /* cluster */
 } /* esp_matter */

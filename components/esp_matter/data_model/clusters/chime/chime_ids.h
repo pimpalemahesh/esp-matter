@@ -23,7 +23,6 @@ namespace chime {
 
 inline constexpr uint32_t Id = 0x0556;
 
-
 namespace attribute {
 namespace InstalledChimeSounds {
 inline constexpr uint32_t Id = 0x0000;
@@ -41,7 +40,6 @@ namespace PlayChimeSound {
 inline constexpr uint32_t Id = 0x00;
 } /* PlayChimeSound */
 } /* command */
-
 
 } /* chime */
 } /* cluster */

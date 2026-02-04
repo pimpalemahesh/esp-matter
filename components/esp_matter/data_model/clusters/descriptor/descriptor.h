@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace descriptor {
 
-
 namespace feature {
 namespace tag_list {
 uint32_t get_id();
@@ -38,7 +37,6 @@ attribute_t *create_parts_list(cluster_t *cluster, uint8_t * value, uint16_t len
 attribute_t *create_tag_list(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_endpoint_unique_id(cluster_t *cluster, char * value, uint16_t length);
 } /* attribute */
-
 
 typedef struct config {
     config() {}

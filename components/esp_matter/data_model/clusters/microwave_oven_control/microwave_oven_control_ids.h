@@ -65,7 +65,6 @@ inline constexpr uint32_t Id = 0x01;
 } /* AddMoreTime */
 } /* command */
 
-
 } /* microwave_oven_control */
 } /* cluster */
 } /* esp_matter */

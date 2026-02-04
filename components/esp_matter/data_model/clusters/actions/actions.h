@@ -22,7 +22,6 @@ namespace cluster {
 namespace actions {
 
 const uint16_t k_max_setup_url_length = 512u;
-
 namespace attribute {
 attribute_t *create_action_list(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_endpoint_lists(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
@@ -48,7 +47,6 @@ namespace event {
 event_t *create_state_changed(cluster_t *cluster);
 event_t *create_action_failed(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

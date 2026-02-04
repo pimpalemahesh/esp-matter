@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace water_heater_management {
 
-
 namespace feature {
 namespace energy_management {
 uint32_t get_id();
@@ -53,7 +52,6 @@ namespace event {
 event_t *create_boost_started(cluster_t *cluster);
 event_t *create_boost_ended(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

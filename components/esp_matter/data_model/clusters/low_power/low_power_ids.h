@@ -23,14 +23,11 @@ namespace low_power {
 
 inline constexpr uint32_t Id = 0x0508;
 
-
-
 namespace command {
 namespace Sleep {
 inline constexpr uint32_t Id = 0x00;
 } /* Sleep */
 } /* command */
-
 
 } /* low_power */
 } /* cluster */

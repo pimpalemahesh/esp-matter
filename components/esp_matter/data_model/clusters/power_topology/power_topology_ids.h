@@ -47,8 +47,6 @@ inline constexpr uint32_t Id = 0x0001;
 } /* ActiveEndpoints */
 } /* attribute */
 
-
-
 } /* power_topology */
 } /* cluster */
 } /* esp_matter */

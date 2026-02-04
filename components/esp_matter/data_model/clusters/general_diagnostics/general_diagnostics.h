@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace general_diagnostics {
 
-
 namespace feature {
 namespace data_model_test {
 uint32_t get_id();
@@ -56,7 +55,6 @@ event_t *create_radio_fault_change(cluster_t *cluster);
 event_t *create_network_fault_change(cluster_t *cluster);
 event_t *create_boot_reason(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     config() {}

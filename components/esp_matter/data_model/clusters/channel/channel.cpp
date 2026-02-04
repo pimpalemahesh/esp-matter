@@ -41,7 +41,7 @@ static const char *TAG = "channel_cluster";
 constexpr uint16_t cluster_revision = 2;
 
 static esp_err_t esp_matter_command_callback_change_channel(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                            void *opaque_ptr)
 {
     chip::app::Clusters::Channel::Commands::ChangeChannel::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -50,8 +50,9 @@ static esp_err_t esp_matter_command_callback_change_channel(const ConcreteComman
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_change_channel_by_number(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                      void *opaque_ptr)
 {
     chip::app::Clusters::Channel::Commands::ChangeChannelByNumber::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -60,8 +61,9 @@ static esp_err_t esp_matter_command_callback_change_channel_by_number(const Conc
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_skip_channel(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                          void *opaque_ptr)
 {
     chip::app::Clusters::Channel::Commands::SkipChannel::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -70,8 +72,9 @@ static esp_err_t esp_matter_command_callback_skip_channel(const ConcreteCommandP
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_get_program_guide(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                               void *opaque_ptr)
 {
     chip::app::Clusters::Channel::Commands::GetProgramGuide::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -80,8 +83,9 @@ static esp_err_t esp_matter_command_callback_get_program_guide(const ConcreteCom
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_record_program(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                            void *opaque_ptr)
 {
     chip::app::Clusters::Channel::Commands::RecordProgram::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -90,8 +94,9 @@ static esp_err_t esp_matter_command_callback_record_program(const ConcreteComman
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_cancel_record_program(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                   void *opaque_ptr)
 {
     chip::app::Clusters::Channel::Commands::CancelRecordProgram::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -180,7 +185,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_channel_list(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
@@ -202,8 +206,6 @@ attribute_t *create_current_channel(cluster_t *cluster, uint8_t *value, uint16_t
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_change_channel(cluster_t *cluster)
 {
@@ -259,7 +261,6 @@ command_t *create_cancel_record_program(cluster_t *cluster)
 
 } /* command */
 
-
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
     binding::config_t config;
@@ -288,7 +289,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
-
 
         command::create_change_channel_by_number(cluster);
         command::create_skip_channel(cluster);

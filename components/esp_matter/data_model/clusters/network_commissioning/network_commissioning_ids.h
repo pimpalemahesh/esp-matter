@@ -101,7 +101,6 @@ inline constexpr uint32_t Id = 0x08;
 } /* ReorderNetwork */
 } /* command */
 
-
 } /* network_commissioning */
 } /* cluster */
 } /* esp_matter */

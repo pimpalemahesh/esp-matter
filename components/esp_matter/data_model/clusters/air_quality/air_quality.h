@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace air_quality {
 
-
 namespace feature {
 namespace fair {
 uint32_t get_id();
@@ -48,7 +47,6 @@ esp_err_t add(cluster_t *cluster);
 namespace attribute {
 attribute_t *create_air_quality(cluster_t *cluster, uint8_t value);
 } /* attribute */
-
 
 typedef struct config {
     uint8_t air_quality;

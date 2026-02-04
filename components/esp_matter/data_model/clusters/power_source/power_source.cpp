@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "power_source_cluster";
 constexpr uint16_t cluster_revision = 3;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace power_source {
@@ -131,7 +130,6 @@ esp_err_t add(cluster_t *cluster, config_t *config)
 } /* replaceable */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_status(cluster_t *cluster, uint8_t value)
@@ -356,7 +354,6 @@ attribute_t *create_endpoint_list(cluster_t *cluster, uint8_t *value, uint16_t l
 
 } /* attribute */
 
-
 namespace event {
 event_t *create_wired_fault_change(cluster_t *cluster)
 {
@@ -374,8 +371,6 @@ event_t *create_bat_charge_fault_change(cluster_t *cluster)
 }
 
 } /* event */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -408,7 +403,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_EXACT_ONE("Wired,Battery",
-                                   feature::wired::get_id(), feature::battery::get_id());
+                                    feature::wired::get_id(), feature::battery::get_id());
         if (feature_map & feature::wired::get_id()) {
             VerifyOrReturnValue(feature::wired::add(cluster, &(config->features.wired)) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }

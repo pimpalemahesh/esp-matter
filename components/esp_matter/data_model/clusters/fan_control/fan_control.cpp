@@ -41,7 +41,7 @@ static const char *TAG = "fan_control_cluster";
 constexpr uint16_t cluster_revision = 5;
 
 static esp_err_t esp_matter_command_callback_step(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                  void *opaque_ptr)
 {
     chip::app::Clusters::FanControl::Commands::Step::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -173,7 +173,6 @@ esp_err_t add(cluster_t *cluster, config_t *config)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_fan_mode(cluster_t *cluster, uint8_t value)
 {
@@ -276,8 +275,6 @@ attribute_t *create_airflow_direction(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_step(cluster_t *cluster)
 {
@@ -287,7 +284,6 @@ command_t *create_step(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -329,7 +325,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         } else {
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
-
     }
 
     if (flags & CLUSTER_FLAG_CLIENT) {

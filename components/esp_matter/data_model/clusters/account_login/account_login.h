@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace account_login {
 
-
 namespace command {
 command_t *create_get_setup_pin(cluster_t *cluster);
 command_t *create_get_setup_pin_response(cluster_t *cluster);
@@ -32,7 +31,6 @@ command_t *create_logout(cluster_t *cluster);
 namespace event {
 event_t *create_logged_out(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

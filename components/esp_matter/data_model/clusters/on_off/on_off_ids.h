@@ -74,7 +74,6 @@ inline constexpr uint32_t Id = 0x42;
 } /* OnWithTimedOff */
 } /* command */
 
-
 } /* on_off */
 } /* cluster */
 } /* esp_matter */

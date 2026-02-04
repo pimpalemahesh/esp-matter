@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace target_navigator {
 
-
 namespace attribute {
 attribute_t *create_target_list(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_current_target(cluster_t *cluster, uint8_t value);
@@ -35,7 +34,6 @@ command_t *create_navigate_target_response(cluster_t *cluster);
 namespace event {
 event_t *create_target_updated(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

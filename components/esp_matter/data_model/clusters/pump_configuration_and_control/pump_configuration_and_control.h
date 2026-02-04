@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace pump_configuration_and_control {
 
-
 namespace feature {
 namespace constant_pressure {
 typedef struct config {
@@ -143,7 +142,6 @@ event_t *create_leakage(cluster_t *cluster);
 event_t *create_air_detection(cluster_t *cluster);
 event_t *create_turbine_operation(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     nullable<int16_t> max_pressure;

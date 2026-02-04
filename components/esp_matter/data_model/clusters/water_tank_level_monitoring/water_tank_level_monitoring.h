@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace water_tank_level_monitoring {
 
-
 namespace feature {
 namespace condition {
 typedef struct config {
@@ -57,7 +56,6 @@ attribute_t *create_replacement_product_list(cluster_t *cluster, uint8_t * value
 namespace command {
 command_t *create_reset_condition(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     uint8_t change_indication;

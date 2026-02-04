@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace webrtc_transport_requestor {
 
-
 namespace attribute {
 attribute_t *create_current_sessions(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 } /* attribute */
@@ -32,7 +31,6 @@ command_t *create_answer(cluster_t *cluster);
 command_t *create_ice_candidates(cluster_t *cluster);
 command_t *create_end(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     config() {}

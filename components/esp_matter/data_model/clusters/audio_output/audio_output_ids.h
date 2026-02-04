@@ -47,7 +47,6 @@ inline constexpr uint32_t Id = 0x01;
 } /* RenameOutput */
 } /* command */
 
-
 } /* audio_output */
 } /* cluster */
 } /* esp_matter */

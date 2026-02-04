@@ -41,11 +41,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "basic_information_cluster";
 constexpr uint16_t cluster_revision = 5;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace basic_information {
-
 
 namespace attribute {
 attribute_t *create_data_model_revision(cluster_t *cluster, uint16_t value)
@@ -165,7 +163,6 @@ attribute_t *create_max_paths_per_invoke(cluster_t *cluster, uint16_t value)
 
 } /* attribute */
 
-
 namespace event {
 event_t *create_start_up(cluster_t *cluster)
 {
@@ -189,8 +186,6 @@ event_t *create_reachable_changed(cluster_t *cluster)
 }
 
 } /* event */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -226,9 +221,9 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_capability_minima(cluster, NULL, 0, 0);
         attribute::create_specification_version(cluster, 0);
         attribute::create_max_paths_per_invoke(cluster, 1);
-
         /* Events */
         event::create_start_up(cluster);
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterBasicInformationClusterServerInitCallback,
                                                  ESPMatterBasicInformationClusterServerShutdownCallback);
     }

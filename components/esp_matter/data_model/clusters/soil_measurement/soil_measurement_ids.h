@@ -23,7 +23,6 @@ namespace soil_measurement {
 
 inline constexpr uint32_t Id = 0x0430;
 
-
 namespace attribute {
 namespace SoilMoistureMeasurementLimits {
 inline constexpr uint32_t Id = 0x0000;
@@ -32,8 +31,6 @@ namespace SoilMoistureMeasuredValue {
 inline constexpr uint32_t Id = 0x0001;
 } /* SoilMoistureMeasuredValue */
 } /* attribute */
-
-
 
 } /* soil_measurement */
 } /* cluster */

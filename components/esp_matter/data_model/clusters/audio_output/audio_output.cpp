@@ -41,7 +41,7 @@ static const char *TAG = "audio_output_cluster";
 constexpr uint16_t cluster_revision = 1;
 
 static esp_err_t esp_matter_command_callback_select_output(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                           void *opaque_ptr)
 {
     chip::app::Clusters::AudioOutput::Commands::SelectOutput::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -50,8 +50,9 @@ static esp_err_t esp_matter_command_callback_select_output(const ConcreteCommand
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_rename_output(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                           void *opaque_ptr)
 {
     chip::app::Clusters::AudioOutput::Commands::RenameOutput::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -84,7 +85,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_output_list(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
@@ -97,8 +97,6 @@ attribute_t *create_current_output(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_select_output(cluster_t *cluster)
 {
@@ -113,7 +111,6 @@ command_t *create_rename_output(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -146,7 +143,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         attribute::create_output_list(cluster, NULL, 0, 0);
         attribute::create_current_output(cluster, 0);
-
         command::create_select_output(cluster);
     }
 

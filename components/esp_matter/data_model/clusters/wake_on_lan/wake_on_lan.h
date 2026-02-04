@@ -21,12 +21,10 @@ namespace esp_matter {
 namespace cluster {
 namespace wake_on_lan {
 
-
 namespace attribute {
 attribute_t *create_mac_address(cluster_t *cluster, char * value, uint16_t length);
 attribute_t *create_link_local_address(cluster_t *cluster, uint8_t * value, uint16_t length);
 } /* attribute */
-
 
 typedef struct config {
     void *delegate;

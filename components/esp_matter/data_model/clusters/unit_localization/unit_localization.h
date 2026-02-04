@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace unit_localization {
 
-
 namespace feature {
 namespace temperature_unit {
 uint32_t get_id();
@@ -34,7 +33,6 @@ namespace attribute {
 attribute_t *create_temperature_unit(cluster_t *cluster, uint8_t value);
 attribute_t *create_supported_temperature_units(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 } /* attribute */
-
 
 typedef struct config {
     config() {}

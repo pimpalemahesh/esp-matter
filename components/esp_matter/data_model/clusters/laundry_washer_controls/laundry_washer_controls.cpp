@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "laundry_washer_controls_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace laundry_washer_controls {
@@ -90,7 +89,6 @@ esp_err_t add(cluster_t *cluster, config_t *config)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_spin_speeds(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
@@ -126,7 +124,6 @@ attribute_t *create_supported_rinses(cluster_t *cluster, uint8_t *value, uint16_
 
 } /* attribute */
 
-
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
     binding::config_t config;
@@ -159,10 +156,9 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
 
-
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_AT_LEAST_ONE("Spin,Rinse",
-                                      feature::spin::get_id(), feature::rinse::get_id());
+                                       feature::spin::get_id(), feature::rinse::get_id());
         if (feature_map & feature::spin::get_id()) {
             VerifyOrReturnValue(feature::spin::add(cluster, &(config->features.spin)) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }

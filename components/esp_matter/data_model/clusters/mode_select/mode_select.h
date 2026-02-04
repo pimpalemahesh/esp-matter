@@ -22,7 +22,6 @@ namespace cluster {
 namespace mode_select {
 
 const uint8_t k_max_description_length = 64u;
-
 namespace feature {
 namespace on_off {
 typedef struct config {
@@ -47,7 +46,6 @@ attribute_t *create_on_mode(cluster_t *cluster, nullable<uint8_t> value);
 namespace command {
 command_t *create_change_to_mode(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     char description[k_max_description_length + 1];

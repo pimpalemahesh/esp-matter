@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace group_key_management {
 
-
 namespace attribute {
 attribute_t *create_group_key_map(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_group_table(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
@@ -37,7 +36,6 @@ command_t *create_key_set_remove(cluster_t *cluster);
 command_t *create_key_set_read_all_indices(cluster_t *cluster);
 command_t *create_key_set_read_all_indices_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     config() {}

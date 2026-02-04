@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "commodity_price_cluster";
 constexpr uint16_t cluster_revision = 4;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace commodity_price {
@@ -63,7 +62,6 @@ esp_err_t add(cluster_t *cluster)
 } /* forecasting */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_tariff_unit(cluster_t *cluster, uint8_t value)
@@ -89,8 +87,6 @@ attribute_t *create_price_forecast(cluster_t *cluster, uint8_t *value, uint16_t 
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_get_detailed_price_request(cluster_t *cluster)
 {
@@ -116,7 +112,6 @@ command_t *create_get_detailed_forecast_response(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_price_change(cluster_t *cluster)
 {
@@ -124,7 +119,6 @@ event_t *create_price_change(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -158,7 +152,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_tariff_unit(cluster, 0);
         attribute::create_currency(cluster, NULL, 0, 0);
         attribute::create_current_price(cluster, NULL, 0, 0);
-
     }
 
     if (flags & CLUSTER_FLAG_CLIENT) {

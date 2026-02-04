@@ -59,7 +59,6 @@ inline constexpr uint32_t Id = 0x0005;
 } /* CumulativeEnergyReset */
 } /* attribute */
 
-
 namespace event {
 namespace CumulativeEnergyMeasured {
 inline constexpr uint32_t Id = 0x00;

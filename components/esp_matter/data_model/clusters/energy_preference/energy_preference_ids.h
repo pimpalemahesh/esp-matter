@@ -50,8 +50,6 @@ inline constexpr uint32_t Id = 0x0004;
 } /* CurrentLowPowerModeSensitivity */
 } /* attribute */
 
-
-
 } /* energy_preference */
 } /* cluster */
 } /* esp_matter */

@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace pm10_concentration_measurement {
 
-
 namespace feature {
 namespace numeric_measurement {
 typedef struct config {
@@ -89,7 +88,6 @@ attribute_t *create_measurement_unit(cluster_t *cluster, uint8_t value);
 attribute_t *create_measurement_medium(cluster_t *cluster, uint8_t value);
 attribute_t *create_level_value(cluster_t *cluster, uint8_t value);
 } /* attribute */
-
 
 typedef struct config {
     uint8_t measurement_medium;

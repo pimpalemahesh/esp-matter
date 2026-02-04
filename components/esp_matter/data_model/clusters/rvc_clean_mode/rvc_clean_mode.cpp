@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "rvc_clean_mode_cluster";
 constexpr uint16_t cluster_revision = 5;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace rvc_clean_mode {
@@ -78,7 +77,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_supported_modes(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
@@ -93,8 +91,6 @@ attribute_t *create_current_mode(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_change_to_mode(cluster_t *cluster)
 {
@@ -107,8 +103,6 @@ command_t *create_change_to_mode_response(cluster_t *cluster)
 }
 
 } /* command */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -132,7 +126,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
-
 
         command::create_change_to_mode(cluster);
         command::create_change_to_mode_response(cluster);

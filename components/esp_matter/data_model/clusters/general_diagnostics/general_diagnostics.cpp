@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "general_diagnostics_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace general_diagnostics {
@@ -65,7 +64,6 @@ esp_err_t add(cluster_t *cluster)
 } /* data_model_test */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_network_interfaces(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -114,8 +112,6 @@ attribute_t *create_test_event_triggers_enabled(cluster_t *cluster, bool value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_test_event_trigger(cluster_t *cluster)
 {
@@ -148,7 +144,6 @@ command_t *create_payload_test_response(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_hardware_fault_change(cluster_t *cluster)
 {
@@ -171,8 +166,6 @@ event_t *create_boot_reason(cluster_t *cluster)
 }
 
 } /* event */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -197,12 +190,12 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_reboot_count(cluster, 0);
         attribute::create_up_time(cluster, 0);
         attribute::create_test_event_triggers_enabled(cluster, false);
-
         command::create_test_event_trigger(cluster);
         command::create_time_snapshot(cluster);
         command::create_time_snapshot_response(cluster);
         /* Events */
         event::create_boot_reason(cluster);
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterGeneralDiagnosticsClusterServerInitCallback,
                                                  ESPMatterGeneralDiagnosticsClusterServerShutdownCallback);
     }

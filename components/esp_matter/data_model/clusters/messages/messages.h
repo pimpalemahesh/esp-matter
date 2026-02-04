@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace messages {
 
-
 namespace feature {
 namespace received_confirmation {
 uint32_t get_id();
@@ -60,7 +59,6 @@ event_t *create_message_queued(cluster_t *cluster);
 event_t *create_message_presented(cluster_t *cluster);
 event_t *create_message_complete(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

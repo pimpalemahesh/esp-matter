@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace camera_av_settings_user_level_management {
 
-
 namespace feature {
 namespace digital_ptz {
 uint32_t get_id();
@@ -72,7 +71,6 @@ command_t *create_mptz_remove_preset(cluster_t *cluster);
 command_t *create_dptz_set_viewport(cluster_t *cluster);
 command_t *create_dptz_relative_move(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     uint32_t feature_flags;

@@ -89,7 +89,6 @@ inline constexpr uint32_t Id = 0x04;
 } /* StayActiveResponse */
 } /* command */
 
-
 } /* icd_management */
 } /* cluster */
 } /* esp_matter */

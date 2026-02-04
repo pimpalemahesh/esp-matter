@@ -41,7 +41,7 @@ static const char *TAG = "thermostat_cluster";
 constexpr uint16_t cluster_revision = 9;
 
 static esp_err_t esp_matter_command_callback_setpoint_raise_lower(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                  void *opaque_ptr)
 {
     chip::app::Clusters::Thermostat::Commands::SetpointRaiseLower::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -50,6 +50,7 @@ static esp_err_t esp_matter_command_callback_setpoint_raise_lower(const Concrete
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_set_active_schedule_request(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
                                                                          void *opaque_ptr)
 {
@@ -60,8 +61,9 @@ static esp_err_t esp_matter_command_callback_set_active_schedule_request(const C
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_set_active_preset_request(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                       void *opaque_ptr)
 {
     chip::app::Clusters::Thermostat::Commands::SetActivePresetRequest::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -250,7 +252,6 @@ esp_err_t add(cluster_t *cluster)
 } /* presets */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_local_temperature(cluster_t *cluster, nullable<int16_t> value)
@@ -677,8 +678,6 @@ attribute_t *create_setpoint_hold_expiry_timestamp(cluster_t *cluster, nullable<
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_setpoint_raise_lower(cluster_t *cluster)
 {
@@ -700,7 +699,6 @@ command_t *create_set_active_preset_request(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -752,7 +750,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
             VerifyOrReturnValue(feature::cooling::add(cluster, &(config->features.cooling)) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         } else {
             VALIDATE_FEATURES_AT_LEAST_ONE("Heating,Cooling",
-                                          feature::heating::get_id(), feature::cooling::get_id());
+                                           feature::heating::get_id(), feature::cooling::get_id());
             if (feature_map & feature::heating::get_id()) {
                 VerifyOrReturnValue(feature::heating::add(cluster, &(config->features.heating)) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
             }

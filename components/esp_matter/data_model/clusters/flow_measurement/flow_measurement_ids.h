@@ -23,7 +23,6 @@ namespace flow_measurement {
 
 inline constexpr uint32_t Id = 0x0404;
 
-
 namespace attribute {
 namespace MeasuredValue {
 inline constexpr uint32_t Id = 0x0000;
@@ -38,8 +37,6 @@ namespace Tolerance {
 inline constexpr uint32_t Id = 0x0003;
 } /* Tolerance */
 } /* attribute */
-
-
 
 } /* flow_measurement */
 } /* cluster */

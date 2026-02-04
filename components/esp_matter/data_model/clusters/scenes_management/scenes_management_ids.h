@@ -86,7 +86,6 @@ inline constexpr uint32_t Id = 0x40;
 } /* CopySceneResponse */
 } /* command */
 
-
 } /* scenes_management */
 } /* cluster */
 } /* esp_matter */

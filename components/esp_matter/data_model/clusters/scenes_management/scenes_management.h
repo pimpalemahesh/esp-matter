@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace scenes_management {
 
-
 namespace feature {
 namespace scene_names {
 uint32_t get_id();
@@ -52,7 +51,6 @@ command_t *create_get_scene_membership_response(cluster_t *cluster);
 command_t *create_copy_scene(cluster_t *cluster);
 command_t *create_copy_scene_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     uint16_t scene_table_size;

@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace mode_base {
 
-
 namespace feature {
 namespace on_off {
 uint32_t get_id();
@@ -42,11 +41,9 @@ command_t *create_change_to_mode(cluster_t *cluster);
 command_t *create_change_to_mode_response(cluster_t *cluster);
 } /* command */
 
-
 typedef struct config {
     config() {}
 } config_t;
-
 
 } /* mode_base */
 } /* cluster */

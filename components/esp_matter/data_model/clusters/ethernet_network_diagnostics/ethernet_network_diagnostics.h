@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace ethernet_network_diagnostics {
 
-
 namespace feature {
 namespace packet_counts {
 uint32_t get_id();
@@ -50,7 +49,6 @@ attribute_t *create_time_since_reset(cluster_t *cluster, uint64_t value);
 namespace command {
 command_t *create_reset_counts(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     config() {}

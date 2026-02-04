@@ -62,7 +62,6 @@ inline constexpr uint32_t Id = 0x00;
 } /* ResetCondition */
 } /* command */
 
-
 } /* activated_carbon_filter_monitoring */
 } /* cluster */
 } /* esp_matter */

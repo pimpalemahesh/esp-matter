@@ -23,13 +23,11 @@ namespace boolean_state {
 
 inline constexpr uint32_t Id = 0x0045;
 
-
 namespace attribute {
 namespace StateValue {
 inline constexpr uint32_t Id = 0x0000;
 } /* StateValue */
 } /* attribute */
-
 
 namespace event {
 namespace StateChange {

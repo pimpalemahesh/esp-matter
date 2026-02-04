@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace energy_preference {
 
-
 namespace feature {
 namespace energy_balance {
 typedef struct config {
@@ -50,7 +49,6 @@ attribute_t *create_energy_priorities(cluster_t *cluster, uint8_t * value, uint1
 attribute_t *create_low_power_mode_sensitivities(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_current_low_power_mode_sensitivity(cluster_t *cluster, uint8_t value);
 } /* attribute */
-
 
 typedef struct config {
     void *delegate;

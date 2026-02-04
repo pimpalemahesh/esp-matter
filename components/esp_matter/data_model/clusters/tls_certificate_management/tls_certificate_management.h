@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace tls_certificate_management {
 
-
 namespace attribute {
 attribute_t *create_max_root_certificates(cluster_t *cluster, uint8_t value);
 attribute_t *create_provisioned_root_certificates(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
@@ -46,7 +45,6 @@ command_t *create_lookup_client_certificate(cluster_t *cluster);
 command_t *create_lookup_client_certificate_response(cluster_t *cluster);
 command_t *create_remove_client_certificate(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     config() {}

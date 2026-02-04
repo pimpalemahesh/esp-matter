@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace fan_control {
 
-
 namespace feature {
 namespace multi_speed {
 typedef struct config {
@@ -93,7 +92,6 @@ attribute_t *create_airflow_direction(cluster_t *cluster, uint8_t value);
 namespace command {
 command_t *create_step(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     uint8_t fan_mode;

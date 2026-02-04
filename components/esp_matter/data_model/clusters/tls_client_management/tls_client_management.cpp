@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "tls_client_management_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace tls_client_management {
-
 
 namespace attribute {
 attribute_t *create_max_provisioned(cluster_t *cluster, uint8_t value)
@@ -58,8 +56,6 @@ attribute_t *create_provisioned_endpoints(cluster_t *cluster, uint8_t *value, ui
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_provision_endpoint(cluster_t *cluster)
 {
@@ -88,8 +84,6 @@ command_t *create_remove_endpoint(cluster_t *cluster)
 
 } /* command */
 
-
-
 const function_generic_t *function_list = NULL;
 
 const int function_flags = CLUSTER_FLAG_NONE;
@@ -111,7 +105,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         attribute::create_max_provisioned(cluster, 0);
         attribute::create_provisioned_endpoints(cluster, NULL, 0, 0);
-
         command::create_provision_endpoint(cluster);
         command::create_provision_endpoint_response(cluster);
         command::create_find_endpoint(cluster);

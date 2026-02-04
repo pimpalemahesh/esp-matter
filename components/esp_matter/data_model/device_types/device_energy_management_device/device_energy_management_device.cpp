@@ -58,7 +58,6 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     return ESP_OK;
 }
 
-
 } /* device_energy_management */
 } /* endpoint */
 } /* esp_matter */

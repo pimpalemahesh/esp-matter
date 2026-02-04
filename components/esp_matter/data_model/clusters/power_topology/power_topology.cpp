@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "power_topology_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace power_topology {
@@ -111,7 +110,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_available_endpoints(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
@@ -128,7 +126,6 @@ attribute_t *create_active_endpoints(cluster_t *cluster, uint8_t *value, uint16_
 }
 
 } /* attribute */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -160,10 +157,9 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
 
-
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_EXACT_ONE("NodeTopology,TreeTopology,SetTopology",
-                                   feature::node_topology::get_id(), feature::tree_topology::get_id(), feature::set_topology::get_id());
+                                    feature::node_topology::get_id(), feature::tree_topology::get_id(), feature::set_topology::get_id());
         if (feature_map & feature::node_topology::get_id()) {
             VerifyOrReturnValue(feature::node_topology::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }
@@ -176,6 +172,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         if (feature_map & feature::dynamic_power_flow::get_id()) {
             VerifyOrReturnValue(feature::dynamic_power_flow::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterPowerTopologyClusterServerInitCallback,
                                                  ESPMatterPowerTopologyClusterServerShutdownCallback);
     }

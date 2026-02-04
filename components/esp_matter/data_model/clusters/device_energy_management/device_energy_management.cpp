@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "device_energy_management_cluster";
 constexpr uint16_t cluster_revision = 4;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace device_energy_management {
@@ -176,7 +175,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_esa_type(cluster_t *cluster, uint8_t value)
 {
@@ -225,8 +223,6 @@ attribute_t *create_opt_out_state(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_power_adjust_request(cluster_t *cluster)
 {
@@ -286,7 +282,6 @@ command_t *create_cancel_request(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_power_adjust_start(cluster_t *cluster)
 {
@@ -317,7 +312,6 @@ event_t *create_resumed(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -358,7 +352,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         uint32_t feature_map = config->feature_flags;
         if ((!(feature_map & feature::power_adjustment::get_id()))) {
             VALIDATE_FEATURES_EXACT_ONE("PowerForecastReporting,StateForecastReporting",
-                                   feature::power_forecast_reporting::get_id(), feature::state_forecast_reporting::get_id());
+                                        feature::power_forecast_reporting::get_id(), feature::state_forecast_reporting::get_id());
             if (feature_map & feature::power_forecast_reporting::get_id()) {
                 VerifyOrReturnValue(feature::power_forecast_reporting::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
             }
@@ -381,6 +375,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         if (feature_map & feature::constraint_based_adjustment::get_id()) {
             VerifyOrReturnValue(feature::constraint_based_adjustment::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterDeviceEnergyManagementClusterServerInitCallback,
                                                  ESPMatterDeviceEnergyManagementClusterServerShutdownCallback);
     }

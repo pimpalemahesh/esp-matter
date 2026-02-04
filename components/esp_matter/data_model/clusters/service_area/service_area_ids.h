@@ -71,7 +71,6 @@ inline constexpr uint32_t Id = 0x03;
 } /* SkipAreaResponse */
 } /* command */
 
-
 } /* service_area */
 } /* cluster */
 } /* esp_matter */

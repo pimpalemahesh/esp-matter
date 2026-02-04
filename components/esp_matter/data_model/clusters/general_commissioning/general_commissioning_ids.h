@@ -89,7 +89,6 @@ inline constexpr uint32_t Id = 0x07;
 } /* SetTCAcknowledgementsResponse */
 } /* command */
 
-
 } /* general_commissioning */
 } /* cluster */
 } /* esp_matter */

@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace network_commissioning {
 
-
 namespace feature {
 namespace wi_fi_network_interface {
 uint32_t get_id();
@@ -65,7 +64,6 @@ command_t *create_connect_network(cluster_t *cluster);
 command_t *create_connect_network_response(cluster_t *cluster);
 command_t *create_reorder_network(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     uint32_t feature_flags;

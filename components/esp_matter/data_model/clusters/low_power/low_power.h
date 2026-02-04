@@ -21,11 +21,9 @@ namespace esp_matter {
 namespace cluster {
 namespace low_power {
 
-
 namespace command {
 command_t *create_sleep(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

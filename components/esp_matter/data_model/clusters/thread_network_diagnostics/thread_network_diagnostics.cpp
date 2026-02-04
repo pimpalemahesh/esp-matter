@@ -41,7 +41,7 @@ static const char *TAG = "thread_network_diagnostics_cluster";
 constexpr uint16_t cluster_revision = 3;
 
 static esp_err_t esp_matter_command_callback_reset_counts(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                          void *opaque_ptr)
 {
     chip::app::Clusters::ThreadNetworkDiagnostics::Commands::ResetCounts::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -119,7 +119,6 @@ esp_err_t add(cluster_t *cluster)
 } /* mac_counts */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_channel(cluster_t *cluster, nullable<uint16_t> value)
@@ -440,8 +439,6 @@ attribute_t *create_active_network_faults_list(cluster_t *cluster, uint8_t *valu
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_reset_counts(cluster_t *cluster)
 {
@@ -451,7 +448,6 @@ command_t *create_reset_counts(cluster_t *cluster)
 }
 
 } /* command */
-
 
 namespace event {
 event_t *create_connection_status(cluster_t *cluster)
@@ -465,8 +461,6 @@ event_t *create_network_fault_change(cluster_t *cluster)
 }
 
 } /* event */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -504,7 +498,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_channel_page_0_mask(cluster, NULL, 0);
         attribute::create_operational_dataset_components(cluster, NULL, 0, 0);
         attribute::create_active_network_faults_list(cluster, NULL, 0, 0);
-
     }
 
     return cluster;

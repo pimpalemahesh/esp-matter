@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace smoke_co_alarm {
 
-
 namespace feature {
 namespace smoke_alarm {
 typedef struct config {
@@ -76,7 +75,6 @@ event_t *create_interconnect_smoke_alarm(cluster_t *cluster);
 event_t *create_interconnect_co_alarm(cluster_t *cluster);
 event_t *create_all_clear(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     uint8_t expressed_state;

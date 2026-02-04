@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "service_area_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace service_area {
@@ -95,7 +94,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_supported_areas(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
@@ -132,8 +130,6 @@ attribute_t *create_progress(cluster_t *cluster, uint8_t *value, uint16_t length
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_select_areas(cluster_t *cluster)
 {
@@ -157,7 +153,6 @@ command_t *create_skip_area_response(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -190,7 +185,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         attribute::create_supported_areas(cluster, NULL, 0, 0);
         attribute::create_selected_areas(cluster, NULL, 0, 0);
-
         command::create_select_areas(cluster);
         command::create_select_areas_response(cluster);
     }

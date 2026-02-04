@@ -35,7 +35,6 @@ inline constexpr uint32_t Id = 0x4;
 } /* NumberKeys */
 } /* feature */
 
-
 namespace command {
 namespace SendKey {
 inline constexpr uint32_t Id = 0x00;
@@ -44,7 +43,6 @@ namespace SendKeyResponse {
 inline constexpr uint32_t Id = 0x01;
 } /* SendKeyResponse */
 } /* command */
-
 
 } /* keypad_input */
 } /* cluster */

@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace closure_dimension {
 
-
 namespace feature {
 namespace positioning {
 uint32_t get_id();
@@ -84,7 +83,6 @@ namespace command {
 command_t *create_set_target(cluster_t *cluster);
 command_t *create_step(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

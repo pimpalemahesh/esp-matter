@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace closure_control {
 
-
 namespace feature {
 namespace positioning {
 uint32_t get_id();
@@ -91,7 +90,6 @@ event_t *create_movement_completed(cluster_t *cluster);
 event_t *create_engage_state_changed(cluster_t *cluster);
 event_t *create_secure_state_changed(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

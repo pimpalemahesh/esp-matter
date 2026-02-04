@@ -21,14 +21,12 @@ namespace esp_matter {
 namespace cluster {
 namespace temperature_measurement {
 
-
 namespace attribute {
 attribute_t *create_measured_value(cluster_t *cluster, nullable<int16_t> value);
 attribute_t *create_min_measured_value(cluster_t *cluster, nullable<int16_t> value);
 attribute_t *create_max_measured_value(cluster_t *cluster, nullable<int16_t> value);
 attribute_t *create_tolerance(cluster_t *cluster, uint16_t value);
 } /* attribute */
-
 
 typedef struct config {
     nullable<int16_t> measured_value;

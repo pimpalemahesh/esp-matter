@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace device_energy_management {
 
-
 namespace feature {
 namespace power_adjustment {
 uint32_t get_id();
@@ -88,7 +87,6 @@ event_t *create_power_adjust_end(cluster_t *cluster);
 event_t *create_paused(cluster_t *cluster);
 event_t *create_resumed(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

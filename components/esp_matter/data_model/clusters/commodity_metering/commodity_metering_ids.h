@@ -23,7 +23,6 @@ namespace commodity_metering {
 
 inline constexpr uint32_t Id = 0x0B07;
 
-
 namespace attribute {
 namespace MeteredQuantity {
 inline constexpr uint32_t Id = 0x0000;
@@ -38,8 +37,6 @@ namespace MaximumMeteredQuantities {
 inline constexpr uint32_t Id = 0x0003;
 } /* MaximumMeteredQuantities */
 } /* attribute */
-
-
 
 } /* commodity_metering */
 } /* cluster */

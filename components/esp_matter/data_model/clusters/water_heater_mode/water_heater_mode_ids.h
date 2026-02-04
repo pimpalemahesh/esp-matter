@@ -47,7 +47,6 @@ inline constexpr uint32_t Id = 0x01;
 } /* ChangeToModeResponse */
 } /* command */
 
-
 } /* water_heater_mode */
 } /* cluster */
 } /* esp_matter */

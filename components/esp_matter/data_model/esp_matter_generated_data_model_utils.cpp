@@ -95,7 +95,7 @@ namespace esp_matter {
 namespace node {
 
 node_t *create(config_t *config, attribute::callback_t attribute_callback,
-                identification::callback_t identification_callback, void* priv_data)
+               identification::callback_t identification_callback, void* priv_data)
 {
     node_t *node = create_raw();
     /* Initialize esp-matter nvs partition */
@@ -129,7 +129,6 @@ attribute_t *create_feature_map(cluster_t *cluster, uint32_t value)
 }
 } // namespace attribute
 } // namespace global
-
 
 esp_err_t update_feature_map(cluster_t *cluster, uint32_t value)
 {
@@ -255,7 +254,7 @@ void dispatch_single_cluster_command(const ConcreteCommandPath &command_path, TL
                 return;
             }
             command_obj->AddStatus(command_path, err == ESP_OK ? chip::Protocols::InteractionModel::Status::Success :
-                                                                chip::Protocols::InteractionModel::Status::Failure);
+                                   chip::Protocols::InteractionModel::Status::Failure);
         }
     }
 }

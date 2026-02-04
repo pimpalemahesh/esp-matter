@@ -21,12 +21,10 @@ namespace esp_matter {
 namespace cluster {
 namespace laundry_dryer_controls {
 
-
 namespace attribute {
 attribute_t *create_supported_dryness_levels(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_selected_dryness_level(cluster_t *cluster, nullable<uint8_t> value);
 } /* attribute */
-
 
 typedef struct config {
     nullable<uint8_t> selected_dryness_level;

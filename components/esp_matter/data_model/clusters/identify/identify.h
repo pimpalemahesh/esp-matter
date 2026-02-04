@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace identify {
 
-
 namespace attribute {
 attribute_t *create_identify_time(cluster_t *cluster, uint16_t value);
 attribute_t *create_identify_type(cluster_t *cluster, uint8_t value);
@@ -31,7 +30,6 @@ namespace command {
 command_t *create_identify(cluster_t *cluster);
 command_t *create_trigger_effect(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     config() {}

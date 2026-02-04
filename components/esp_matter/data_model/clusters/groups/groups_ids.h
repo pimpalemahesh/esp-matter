@@ -68,7 +68,6 @@ inline constexpr uint32_t Id = 0x05;
 } /* AddGroupIfIdentifying */
 } /* command */
 
-
 } /* groups */
 } /* cluster */
 } /* esp_matter */

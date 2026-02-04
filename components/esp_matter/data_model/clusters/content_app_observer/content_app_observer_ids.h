@@ -23,8 +23,6 @@ namespace content_app_observer {
 
 inline constexpr uint32_t Id = 0x0510;
 
-
-
 namespace command {
 namespace ContentAppMessage {
 inline constexpr uint32_t Id = 0x00;
@@ -33,7 +31,6 @@ namespace ContentAppMessageResponse {
 inline constexpr uint32_t Id = 0x01;
 } /* ContentAppMessageResponse */
 } /* command */
-
 
 } /* content_app_observer */
 } /* cluster */

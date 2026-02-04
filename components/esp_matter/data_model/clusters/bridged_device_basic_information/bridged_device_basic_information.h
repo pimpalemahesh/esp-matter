@@ -32,7 +32,6 @@ const uint16_t k_max_product_url_length = 256u;
 const uint8_t k_max_product_label_length = 64u;
 const uint8_t k_max_serial_number_length = 32u;
 const uint8_t k_max_unique_id_length = 32u;
-
 namespace feature {
 namespace bridged_icd_support {
 uint32_t get_id();
@@ -72,7 +71,6 @@ event_t *create_leave(cluster_t *cluster);
 event_t *create_reachable_changed(cluster_t *cluster);
 event_t *create_active_changed(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     bool reachable;

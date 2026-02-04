@@ -23,7 +23,6 @@ namespace thermostat_user_interface_configuration {
 
 inline constexpr uint32_t Id = 0x0204;
 
-
 namespace attribute {
 namespace TemperatureDisplayMode {
 inline constexpr uint32_t Id = 0x0000;
@@ -35,8 +34,6 @@ namespace ScheduleProgrammingVisibility {
 inline constexpr uint32_t Id = 0x0002;
 } /* ScheduleProgrammingVisibility */
 } /* attribute */
-
-
 
 } /* thermostat_user_interface_configuration */
 } /* cluster */

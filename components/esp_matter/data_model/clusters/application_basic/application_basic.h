@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace application_basic {
 
-
 namespace attribute {
 attribute_t *create_vendor_name(cluster_t *cluster, char * value, uint16_t length);
 attribute_t *create_vendor_id(cluster_t *cluster, uint16_t value);
@@ -32,7 +31,6 @@ attribute_t *create_status(cluster_t *cluster, uint8_t value);
 attribute_t *create_application_version(cluster_t *cluster, char * value, uint16_t length);
 attribute_t *create_allowed_vendor_list(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 } /* attribute */
-
 
 typedef struct config {
     void *delegate;

@@ -75,7 +75,6 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     return ESP_OK;
 }
 
-
 } /* root_node */
 } /* endpoint */
 } /* esp_matter */

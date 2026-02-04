@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace electrical_power_measurement {
 
-
 namespace feature {
 namespace direct_current {
 uint32_t get_id();
@@ -75,7 +74,6 @@ attribute_t *create_neutral_current(cluster_t *cluster, nullable<int64_t> value)
 namespace event {
 event_t *create_measurement_period_ranges(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

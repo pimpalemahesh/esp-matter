@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "software_diagnostics_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace software_diagnostics {
@@ -65,7 +64,6 @@ esp_err_t add(cluster_t *cluster)
 } /* watermarks */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_thread_metrics(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -91,8 +89,6 @@ attribute_t *create_current_heap_high_watermark(cluster_t *cluster, uint64_t val
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_reset_watermarks(cluster_t *cluster)
 {
@@ -103,7 +99,6 @@ command_t *create_reset_watermarks(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_software_fault(cluster_t *cluster)
 {
@@ -111,8 +106,6 @@ event_t *create_software_fault(cluster_t *cluster)
 }
 
 } /* event */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -132,7 +125,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
-
 
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterSoftwareDiagnosticsClusterServerInitCallback,
                                                  ESPMatterSoftwareDiagnosticsClusterServerShutdownCallback);

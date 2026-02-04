@@ -23,14 +23,11 @@ namespace label {
 
 inline constexpr uint32_t Id = 0xffff;
 
-
 namespace attribute {
 namespace LabelList {
 inline constexpr uint32_t Id = 0x0000;
 } /* LabelList */
 } /* attribute */
-
-
 
 } /* label */
 } /* cluster */

@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace dish_washer_alarm {
 
-
 namespace feature {
 namespace reset {
 typedef struct config {
@@ -49,7 +48,6 @@ command_t *create_modify_enabled_alarms(cluster_t *cluster);
 namespace event {
 event_t *create_notify(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     uint32_t mask;

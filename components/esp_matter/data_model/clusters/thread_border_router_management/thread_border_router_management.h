@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace thread_border_router_management {
 
-
 namespace feature {
 namespace pan_change {
 uint32_t get_id();
@@ -46,7 +45,6 @@ command_t *create_dataset_response(cluster_t *cluster);
 command_t *create_set_active_dataset_request(cluster_t *cluster);
 command_t *create_set_pending_dataset_request(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

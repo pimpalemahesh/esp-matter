@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "wi_fi_network_diagnostics_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace wi_fi_network_diagnostics {
@@ -86,7 +85,6 @@ esp_err_t add(cluster_t *cluster)
 } /* error_counts */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_bssid(cluster_t *cluster, uint8_t *value, uint16_t length)
@@ -169,8 +167,6 @@ attribute_t *create_overrun_count(cluster_t *cluster, nullable<uint64_t> value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_reset_counts(cluster_t *cluster)
 {
@@ -180,7 +176,6 @@ command_t *create_reset_counts(cluster_t *cluster)
 }
 
 } /* command */
-
 
 namespace event {
 event_t *create_disconnection(cluster_t *cluster)
@@ -199,8 +194,6 @@ event_t *create_connection_status(cluster_t *cluster)
 }
 
 } /* event */
-
-
 
 const function_generic_t *function_list = NULL;
 

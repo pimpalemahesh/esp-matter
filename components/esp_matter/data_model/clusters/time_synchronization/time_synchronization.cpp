@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "time_synchronization_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace time_synchronization {
@@ -127,7 +126,6 @@ esp_err_t add(cluster_t *cluster)
 } /* time_sync_client */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_utc_time(cluster_t *cluster, nullable<uint64_t> value)
@@ -216,8 +214,6 @@ attribute_t *create_supports_dns_resolve(cluster_t *cluster, bool value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_set_utc_time(cluster_t *cluster)
 {
@@ -261,7 +257,6 @@ command_t *create_set_default_ntp(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_dst_table_empty(cluster_t *cluster)
 {
@@ -298,8 +293,6 @@ event_t *create_missing_trusted_time_source(cluster_t *cluster)
 
 } /* event */
 
-
-
 const function_generic_t *function_list = NULL;
 
 const int function_flags = CLUSTER_FLAG_NONE;
@@ -325,10 +318,10 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         attribute::create_utc_time(cluster, 0);
         attribute::create_granularity(cluster, 0);
-
         command::create_set_utc_time(cluster);
         /* Events */
         event::create_time_failure(cluster);
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterTimeSynchronizationClusterServerInitCallback,
                                                  ESPMatterTimeSynchronizationClusterServerShutdownCallback);
     }

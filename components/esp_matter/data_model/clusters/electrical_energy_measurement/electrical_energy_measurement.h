@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace electrical_energy_measurement {
 
-
 namespace feature {
 namespace imported_energy {
 uint32_t get_id();
@@ -58,7 +57,6 @@ namespace event {
 event_t *create_cumulative_energy_measured(cluster_t *cluster);
 event_t *create_periodic_energy_measured(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     uint32_t feature_flags;

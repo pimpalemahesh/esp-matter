@@ -41,7 +41,7 @@ static const char *TAG = "valve_configuration_and_control_cluster";
 constexpr uint16_t cluster_revision = 1;
 
 static esp_err_t esp_matter_command_callback_open(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                  void *opaque_ptr)
 {
     chip::app::Clusters::ValveConfigurationAndControl::Commands::Open::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -50,8 +50,9 @@ static esp_err_t esp_matter_command_callback_open(const ConcreteCommandPath &com
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_close(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                   void *opaque_ptr)
 {
     chip::app::Clusters::ValveConfigurationAndControl::Commands::Close::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -108,7 +109,6 @@ esp_err_t add(cluster_t *cluster, config_t *config)
 } /* level */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_open_duration(cluster_t *cluster, nullable<uint32_t> value)
@@ -193,8 +193,6 @@ attribute_t *create_level_step(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_open(cluster_t *cluster)
 {
@@ -208,7 +206,6 @@ command_t *create_close(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_valve_state_changed(cluster_t *cluster)
 {
@@ -221,7 +218,6 @@ event_t *create_valve_fault(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -261,7 +257,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
         attribute::create_remaining_duration(cluster, 0);
-
         command::create_open(cluster);
         command::create_close(cluster);
     }

@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace zone_management {
 
-
 namespace feature {
 namespace two_dimensional_cartesian_zone {
 uint32_t get_id();
@@ -68,7 +67,6 @@ namespace event {
 event_t *create_zone_triggered(cluster_t *cluster);
 event_t *create_zone_stopped(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     config() {}

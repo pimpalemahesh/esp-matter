@@ -41,11 +41,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "diagnostic_logs_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace diagnostic_logs {
-
 
 namespace command {
 command_t *create_retrieve_logs_request(cluster_t *cluster)
@@ -59,8 +57,6 @@ command_t *create_retrieve_logs_response(cluster_t *cluster)
 }
 
 } /* command */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -85,9 +81,9 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
 
-
         command::create_retrieve_logs_request(cluster);
         command::create_retrieve_logs_response(cluster);
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterDiagnosticLogsClusterServerInitCallback,
                                                  ESPMatterDiagnosticLogsClusterServerShutdownCallback);
     }

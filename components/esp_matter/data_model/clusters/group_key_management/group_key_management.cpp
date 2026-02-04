@@ -41,11 +41,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "group_key_management_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace group_key_management {
-
 
 namespace attribute {
 attribute_t *create_group_key_map(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -69,8 +67,6 @@ attribute_t *create_max_group_keys_per_fabric(cluster_t *cluster, uint16_t value
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_key_set_write(cluster_t *cluster)
 {
@@ -104,8 +100,6 @@ command_t *create_key_set_read_all_indices_response(cluster_t *cluster)
 
 } /* command */
 
-
-
 const function_generic_t *function_list = NULL;
 
 const int function_flags = CLUSTER_FLAG_NONE;
@@ -129,13 +123,13 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_group_table(cluster, NULL, 0, 0);
         attribute::create_max_groups_per_fabric(cluster, 0);
         attribute::create_max_group_keys_per_fabric(cluster, 1);
-
         command::create_key_set_write(cluster);
         command::create_key_set_read(cluster);
         command::create_key_set_read_response(cluster);
         command::create_key_set_remove(cluster);
         command::create_key_set_read_all_indices(cluster);
         command::create_key_set_read_all_indices_response(cluster);
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterGroupKeyManagementClusterServerInitCallback,
                                                  ESPMatterGroupKeyManagementClusterServerShutdownCallback);
     }

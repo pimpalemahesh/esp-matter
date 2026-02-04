@@ -41,7 +41,7 @@ static const char *TAG = "color_control_cluster";
 constexpr uint16_t cluster_revision = 8;
 
 static esp_err_t esp_matter_command_callback_move_to_hue(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                         void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::MoveToHue::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -50,8 +50,9 @@ static esp_err_t esp_matter_command_callback_move_to_hue(const ConcreteCommandPa
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_move_hue(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                      void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::MoveHue::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -60,8 +61,9 @@ static esp_err_t esp_matter_command_callback_move_hue(const ConcreteCommandPath 
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_step_hue(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                      void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::StepHue::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -70,8 +72,9 @@ static esp_err_t esp_matter_command_callback_step_hue(const ConcreteCommandPath 
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_move_to_saturation(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::MoveToSaturation::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -80,8 +83,9 @@ static esp_err_t esp_matter_command_callback_move_to_saturation(const ConcreteCo
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_move_saturation(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                             void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::MoveSaturation::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -90,8 +94,9 @@ static esp_err_t esp_matter_command_callback_move_saturation(const ConcreteComma
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_step_saturation(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                             void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::StepSaturation::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -100,8 +105,9 @@ static esp_err_t esp_matter_command_callback_step_saturation(const ConcreteComma
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_move_to_hue_and_saturation(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                        void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::MoveToHueAndSaturation::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -110,8 +116,9 @@ static esp_err_t esp_matter_command_callback_move_to_hue_and_saturation(const Co
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_move_to_color(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                           void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::MoveToColor::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -120,8 +127,9 @@ static esp_err_t esp_matter_command_callback_move_to_color(const ConcreteCommand
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_move_color(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                        void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::MoveColor::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -130,8 +138,9 @@ static esp_err_t esp_matter_command_callback_move_color(const ConcreteCommandPat
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_step_color(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                        void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::StepColor::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -140,8 +149,9 @@ static esp_err_t esp_matter_command_callback_step_color(const ConcreteCommandPat
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_move_to_color_temperature(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                       void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::MoveToColorTemperature::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -150,8 +160,9 @@ static esp_err_t esp_matter_command_callback_move_to_color_temperature(const Con
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_enhanced_move_to_hue(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                  void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::EnhancedMoveToHue::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -160,8 +171,9 @@ static esp_err_t esp_matter_command_callback_enhanced_move_to_hue(const Concrete
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_enhanced_move_hue(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                               void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::EnhancedMoveHue::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -170,8 +182,9 @@ static esp_err_t esp_matter_command_callback_enhanced_move_hue(const ConcreteCom
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_enhanced_step_hue(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                               void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::EnhancedStepHue::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -180,8 +193,9 @@ static esp_err_t esp_matter_command_callback_enhanced_step_hue(const ConcreteCom
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_enhanced_move_to_hue_and_saturation(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                                 void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::EnhancedMoveToHueAndSaturation::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -190,8 +204,9 @@ static esp_err_t esp_matter_command_callback_enhanced_move_to_hue_and_saturation
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_color_loop_set(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                            void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::ColorLoopSet::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -200,8 +215,9 @@ static esp_err_t esp_matter_command_callback_color_loop_set(const ConcreteComman
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_stop_move_step(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                            void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::StopMoveStep::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -210,8 +226,9 @@ static esp_err_t esp_matter_command_callback_stop_move_step(const ConcreteComman
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_move_color_temperature(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                    void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::MoveColorTemperature::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -220,8 +237,9 @@ static esp_err_t esp_matter_command_callback_move_color_temperature(const Concre
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_step_color_temperature(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                    void *opaque_ptr)
 {
     chip::app::Clusters::ColorControl::Commands::StepColorTemperature::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -368,7 +386,6 @@ esp_err_t add(cluster_t *cluster, config_t *config)
 } /* color_temperature */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_current_hue(cluster_t *cluster, uint8_t value)
@@ -765,8 +782,6 @@ attribute_t *create_start_up_color_temperature_mireds(cluster_t *cluster, nullab
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_move_to_hue(cluster_t *cluster)
 {
@@ -903,7 +918,6 @@ command_t *create_step_color_temperature(cluster_t *cluster)
 
 } /* command */
 
-
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
     binding::config_t config;
@@ -959,7 +973,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         } else {
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
-
     }
 
     if (flags & CLUSTER_FLAG_CLIENT) {

@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "unit_localization_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace unit_localization {
@@ -66,7 +65,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_temperature_unit(cluster_t *cluster, uint8_t value)
 {
@@ -83,8 +81,6 @@ attribute_t *create_supported_temperature_units(cluster_t *cluster, uint8_t *val
 }
 
 } /* attribute */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -104,7 +100,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
-
 
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterUnitLocalizationClusterServerInitCallback,
                                                  ESPMatterUnitLocalizationClusterServerShutdownCallback);

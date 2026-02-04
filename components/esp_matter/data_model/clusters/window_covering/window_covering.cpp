@@ -41,7 +41,7 @@ static const char *TAG = "window_covering_cluster";
 constexpr uint16_t cluster_revision = 7;
 
 static esp_err_t esp_matter_command_callback_up_or_open(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                        void *opaque_ptr)
 {
     chip::app::Clusters::WindowCovering::Commands::UpOrOpen::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -50,8 +50,9 @@ static esp_err_t esp_matter_command_callback_up_or_open(const ConcreteCommandPat
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_down_or_close(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                           void *opaque_ptr)
 {
     chip::app::Clusters::WindowCovering::Commands::DownOrClose::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -60,8 +61,9 @@ static esp_err_t esp_matter_command_callback_down_or_close(const ConcreteCommand
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_stop_motion(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                         void *opaque_ptr)
 {
     chip::app::Clusters::WindowCovering::Commands::StopMotion::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -70,8 +72,9 @@ static esp_err_t esp_matter_command_callback_stop_motion(const ConcreteCommandPa
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_go_to_lift_percentage(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                   void *opaque_ptr)
 {
     chip::app::Clusters::WindowCovering::Commands::GoToLiftPercentage::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -80,8 +83,9 @@ static esp_err_t esp_matter_command_callback_go_to_lift_percentage(const Concret
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_go_to_tilt_percentage(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                   void *opaque_ptr)
 {
     chip::app::Clusters::WindowCovering::Commands::GoToTiltPercentage::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -185,7 +189,6 @@ esp_err_t add(cluster_t *cluster, config_t *config)
 } /* position_aware_tilt */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_type(cluster_t *cluster, uint8_t value)
@@ -295,8 +298,6 @@ attribute_t *create_safety_status(cluster_t *cluster, uint16_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_up_or_open(cluster_t *cluster)
 {
@@ -324,7 +325,6 @@ command_t *create_go_to_tilt_percentage(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -370,7 +370,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_AT_LEAST_ONE("Lift,Tilt",
-                                      feature::lift::get_id(), feature::tilt::get_id());
+                                       feature::lift::get_id(), feature::tilt::get_id());
         if (feature_map & feature::lift::get_id()) {
             VerifyOrReturnValue(feature::lift::add(cluster, &(config->features.lift)) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }

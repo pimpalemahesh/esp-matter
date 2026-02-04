@@ -23,7 +23,6 @@ namespace target_navigator {
 
 inline constexpr uint32_t Id = 0x0505;
 
-
 namespace attribute {
 namespace TargetList {
 inline constexpr uint32_t Id = 0x0000;

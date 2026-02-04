@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "hepa_filter_monitoring_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace hepa_filter_monitoring {
@@ -97,7 +96,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_condition(cluster_t *cluster, uint8_t value)
 {
@@ -136,8 +134,6 @@ attribute_t *create_replacement_product_list(cluster_t *cluster, uint8_t *value,
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_reset_condition(cluster_t *cluster)
 {
@@ -145,7 +141,6 @@ command_t *create_reset_condition(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {

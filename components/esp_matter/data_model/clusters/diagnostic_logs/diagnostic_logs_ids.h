@@ -23,8 +23,6 @@ namespace diagnostic_logs {
 
 inline constexpr uint32_t Id = 0x0032;
 
-
-
 namespace command {
 namespace RetrieveLogsRequest {
 inline constexpr uint32_t Id = 0x00;
@@ -33,7 +31,6 @@ namespace RetrieveLogsResponse {
 inline constexpr uint32_t Id = 0x01;
 } /* RetrieveLogsResponse */
 } /* command */
-
 
 } /* diagnostic_logs */
 } /* cluster */

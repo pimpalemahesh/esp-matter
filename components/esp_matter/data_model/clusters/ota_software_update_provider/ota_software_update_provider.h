@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace ota_software_update_provider {
 
-
 namespace command {
 command_t *create_query_image(cluster_t *cluster);
 command_t *create_query_image_response(cluster_t *cluster);
@@ -29,7 +28,6 @@ command_t *create_apply_update_request(cluster_t *cluster);
 command_t *create_apply_update_response(cluster_t *cluster);
 command_t *create_notify_update_applied(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

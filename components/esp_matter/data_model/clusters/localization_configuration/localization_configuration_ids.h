@@ -23,7 +23,6 @@ namespace localization_configuration {
 
 inline constexpr uint32_t Id = 0x002B;
 
-
 namespace attribute {
 namespace ActiveLocale {
 inline constexpr uint32_t Id = 0x0000;
@@ -32,8 +31,6 @@ namespace SupportedLocales {
 inline constexpr uint32_t Id = 0x0001;
 } /* SupportedLocales */
 } /* attribute */
-
-
 
 } /* localization_configuration */
 } /* cluster */

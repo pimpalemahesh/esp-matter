@@ -44,8 +44,6 @@ inline constexpr uint32_t Id = 0x0000;
 } /* AirQuality */
 } /* attribute */
 
-
-
 } /* air_quality */
 } /* cluster */
 } /* esp_matter */

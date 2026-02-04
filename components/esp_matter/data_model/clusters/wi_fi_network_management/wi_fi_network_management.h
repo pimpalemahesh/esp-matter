@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace wi_fi_network_management {
 
-
 namespace attribute {
 attribute_t *create_ssid(cluster_t *cluster, uint8_t * value, uint16_t length);
 attribute_t *create_passphrase_surrogate(cluster_t *cluster, nullable<uint64_t> value);
@@ -31,7 +30,6 @@ namespace command {
 command_t *create_network_passphrase_request(cluster_t *cluster);
 command_t *create_network_passphrase_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     config() {}

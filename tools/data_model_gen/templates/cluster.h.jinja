@@ -28,12 +28,10 @@ const {{ attribute.get_default_value_type() }} k_max_{{ attribute.func_name }}_l
 {% endif %}
 {% endif %}
 {% endfor %}
-
 {% include "feature.h.jinja" | indent(4) %}
 {% include "attribute.h.jinja" | indent(4) %}
 {% include "command.h.jinja" | indent(4) %}
 {% include "event.h.jinja" | indent(4) %}
-
 {% set init_list = [] %}
 {% set feature_list = cluster.get_feature_list() if cluster.has_choice_features() else [] %}
 {% set config_features = [] %}

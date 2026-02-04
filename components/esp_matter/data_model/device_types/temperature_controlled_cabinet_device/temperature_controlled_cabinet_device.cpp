@@ -59,7 +59,6 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     return ESP_OK;
 }
 
-
 } /* temperature_controlled_cabinet */
 } /* endpoint */
 } /* esp_matter */

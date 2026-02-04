@@ -89,7 +89,6 @@ inline constexpr uint32_t Id = 0x00;
 } /* Step */
 } /* command */
 
-
 } /* fan_control */
 } /* cluster */
 } /* esp_matter */

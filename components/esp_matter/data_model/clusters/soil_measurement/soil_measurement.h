@@ -21,12 +21,10 @@ namespace esp_matter {
 namespace cluster {
 namespace soil_measurement {
 
-
 namespace attribute {
 attribute_t *create_soil_moisture_measurement_limits(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_soil_moisture_measured_value(cluster_t *cluster, nullable<uint8_t> value);
 } /* attribute */
-
 
 typedef struct config {
     config() {}

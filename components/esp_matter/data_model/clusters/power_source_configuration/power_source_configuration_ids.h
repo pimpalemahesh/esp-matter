@@ -23,14 +23,11 @@ namespace power_source_configuration {
 
 inline constexpr uint32_t Id = 0x002E;
 
-
 namespace attribute {
 namespace Sources {
 inline constexpr uint32_t Id = 0x0000;
 } /* Sources */
 } /* attribute */
-
-
 
 } /* power_source_configuration */
 } /* cluster */

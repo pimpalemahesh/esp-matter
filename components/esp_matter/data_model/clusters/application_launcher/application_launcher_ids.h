@@ -53,7 +53,6 @@ inline constexpr uint32_t Id = 0x03;
 } /* LauncherResponse */
 } /* command */
 
-
 } /* application_launcher */
 } /* cluster */
 } /* esp_matter */

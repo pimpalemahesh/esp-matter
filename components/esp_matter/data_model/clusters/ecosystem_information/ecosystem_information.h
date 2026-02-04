@@ -21,12 +21,10 @@ namespace esp_matter {
 namespace cluster {
 namespace ecosystem_information {
 
-
 namespace attribute {
 attribute_t *create_device_directory(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_location_directory(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 } /* attribute */
-
 
 typedef struct config {
     config() {}

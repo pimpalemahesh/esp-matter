@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace basic_information {
 
-
 namespace attribute {
 attribute_t *create_data_model_revision(cluster_t *cluster, uint16_t value);
 attribute_t *create_vendor_name(cluster_t *cluster, char * value, uint16_t length);
@@ -54,7 +53,6 @@ event_t *create_shut_down(cluster_t *cluster);
 event_t *create_leave(cluster_t *cluster);
 event_t *create_reachable_changed(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     config() {}

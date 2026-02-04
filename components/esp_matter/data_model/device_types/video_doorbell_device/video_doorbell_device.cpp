@@ -53,10 +53,8 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     esp_err_t err = add_device_type(endpoint, ESP_MATTER_VIDEO_DOORBELL_DEVICE_TYPE_ID, ESP_MATTER_VIDEO_DOORBELL_DEVICE_TYPE_VERSION);
     VerifyOrReturnError(err == ESP_OK, err);
 
-
     return ESP_OK;
 }
-
 
 } /* video_doorbell */
 } /* endpoint */

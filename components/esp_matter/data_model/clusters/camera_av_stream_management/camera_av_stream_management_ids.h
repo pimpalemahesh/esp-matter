@@ -230,7 +230,6 @@ inline constexpr uint32_t Id = 0x0D;
 } /* CaptureSnapshotResponse */
 } /* command */
 
-
 } /* camera_av_stream_management */
 } /* cluster */
 } /* esp_matter */

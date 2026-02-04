@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "alarm_base_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace alarm_base {
@@ -68,7 +67,6 @@ esp_err_t add(cluster_t *cluster, config_t *config)
 } /* reset */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_mask(cluster_t *cluster, uint32_t value)
@@ -102,8 +100,6 @@ attribute_t *create_supported(cluster_t *cluster, uint32_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_reset(cluster_t *cluster)
 {
@@ -119,7 +115,6 @@ command_t *create_modify_enabled_alarms(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_notify(cluster_t *cluster)
 {
@@ -127,9 +122,6 @@ event_t *create_notify(cluster_t *cluster)
 }
 
 } /* event */
-
-
-
 
 } /* alarm_base */
 } /* cluster */

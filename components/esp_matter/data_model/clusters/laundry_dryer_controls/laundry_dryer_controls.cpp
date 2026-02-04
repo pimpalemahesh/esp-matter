@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "laundry_dryer_controls_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace laundry_dryer_controls {
-
 
 namespace attribute {
 attribute_t *create_supported_dryness_levels(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -60,7 +58,6 @@ attribute_t *create_selected_dryness_level(cluster_t *cluster, nullable<uint8_t>
 }
 
 } /* attribute */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -99,7 +96,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
         attribute::create_supported_dryness_levels(cluster, NULL, 0, 0);
-
     }
 
     if (flags & CLUSTER_FLAG_CLIENT) {

@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace on_off {
 
-
 namespace feature {
 namespace lighting {
 typedef struct config {
@@ -63,7 +62,6 @@ command_t *create_off_with_effect(cluster_t *cluster);
 command_t *create_on_with_recall_global_scene(cluster_t *cluster);
 command_t *create_on_with_timed_off(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     bool on_off;

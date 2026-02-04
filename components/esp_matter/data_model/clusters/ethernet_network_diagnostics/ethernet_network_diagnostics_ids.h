@@ -68,7 +68,6 @@ inline constexpr uint32_t Id = 0x00;
 } /* ResetCounts */
 } /* command */
 
-
 } /* ethernet_network_diagnostics */
 } /* cluster */
 } /* esp_matter */

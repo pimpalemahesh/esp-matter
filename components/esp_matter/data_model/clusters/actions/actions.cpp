@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "actions_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace actions {
-
 
 namespace attribute {
 attribute_t *create_action_list(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -64,8 +62,6 @@ attribute_t *create_setup_url(cluster_t *cluster, char *value, uint16_t length)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_instant_action(cluster_t *cluster)
 {
@@ -129,7 +125,6 @@ command_t *create_disable_action_with_duration(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_state_changed(cluster_t *cluster)
 {
@@ -142,7 +137,6 @@ event_t *create_action_failed(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -175,7 +169,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         attribute::create_action_list(cluster, NULL, 0, 0);
         attribute::create_endpoint_lists(cluster, NULL, 0, 0);
-
         /* Events */
         event::create_state_changed(cluster);
         event::create_action_failed(cluster);

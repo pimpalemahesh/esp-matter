@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace software_diagnostics {
 
-
 namespace feature {
 namespace watermarks {
 uint32_t get_id();
@@ -44,7 +43,6 @@ command_t *create_reset_watermarks(cluster_t *cluster);
 namespace event {
 event_t *create_software_fault(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     config() {}

@@ -22,9 +22,9 @@ namespace cluster {
 namespace {{ cluster.esp_name }} {
 
 inline constexpr uint32_t Id = {{ cluster.get_id() }};
-
 {% set features = cluster.get_feature_list() %}
 {% if features | length > 0 %}
+
 namespace feature {
 {# ---------- Feature IDs ---------- #}
 {% for feature in features %}
@@ -34,8 +34,8 @@ inline constexpr uint32_t Id = {{ feature.get_id() }};
 {% endfor %}
 } /* feature */
 {% endif %}
-
 {% if cluster.get_attribute_list() | length > 0 %}
+
 namespace attribute {
 {% for attr in cluster.get_attribute_list() %}
 namespace {{ attr.chip_name }} {
@@ -44,8 +44,8 @@ inline constexpr uint32_t Id = {{ attr.get_id()}};
 {% endfor %}
 } /* attribute */
 {% endif %}
-
 {% if cluster.get_command_list() | length > 0 %}
+
 namespace command {
 {% for command in cluster.get_command_list() %}
 namespace {{ command.chip_name }} {
@@ -54,8 +54,8 @@ inline constexpr uint32_t Id = {{ command.get_id()}};
 {% endfor %}
 } /* command */
 {% endif %}
-
 {% if cluster.get_event_list() | length > 0 %}
+
 namespace event {
 {% for event in cluster.get_event_list() %}
 namespace {{ event.chip_name }} {

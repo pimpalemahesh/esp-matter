@@ -23,7 +23,6 @@ namespace tls_certificate_management {
 
 inline constexpr uint32_t Id = 0x0801;
 
-
 namespace attribute {
 namespace MaxRootCertificates {
 inline constexpr uint32_t Id = 0x0000;
@@ -86,7 +85,6 @@ namespace RemoveClientCertificate {
 inline constexpr uint32_t Id = 0x0E;
 } /* RemoveClientCertificate */
 } /* command */
-
 
 } /* tls_certificate_management */
 } /* cluster */

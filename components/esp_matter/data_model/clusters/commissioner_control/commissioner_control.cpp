@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "commissioner_control_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace commissioner_control {
-
 
 namespace attribute {
 attribute_t *create_supported_device_categories(cluster_t *cluster, uint32_t value)
@@ -55,8 +53,6 @@ attribute_t *create_supported_device_categories(cluster_t *cluster, uint32_t val
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_request_commissioning_approval(cluster_t *cluster)
 {
@@ -75,7 +71,6 @@ command_t *create_reverse_open_commissioning_window(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_commissioning_request_result(cluster_t *cluster)
 {
@@ -83,8 +78,6 @@ event_t *create_commissioning_request_result(cluster_t *cluster)
 }
 
 } /* event */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -114,7 +107,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         } else {
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
-
         command::create_request_commissioning_approval(cluster);
         command::create_commission_node(cluster);
         command::create_reverse_open_commissioning_window(cluster);

@@ -56,7 +56,6 @@ inline constexpr uint32_t Id = 0x0002;
 } /* MultiPressMax */
 } /* attribute */
 
-
 namespace event {
 namespace SwitchLatched {
 inline constexpr uint32_t Id = 0x00;

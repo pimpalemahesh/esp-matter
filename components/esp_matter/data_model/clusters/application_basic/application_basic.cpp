@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "application_basic_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace application_basic {
-
 
 namespace attribute {
 attribute_t *create_vendor_name(cluster_t *cluster, char *value, uint16_t length)
@@ -89,7 +87,6 @@ attribute_t *create_allowed_vendor_list(cluster_t *cluster, uint8_t *value, uint
 
 } /* attribute */
 
-
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
     binding::config_t config;
@@ -124,7 +121,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_status(cluster, 0);
         attribute::create_application_version(cluster, NULL, 0);
         attribute::create_allowed_vendor_list(cluster, NULL, 0, 0);
-
     }
 
     if (flags & CLUSTER_FLAG_CLIENT) {

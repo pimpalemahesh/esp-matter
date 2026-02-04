@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace time_format_localization {
 
-
 namespace feature {
 namespace calendar_format {
 uint32_t get_id();
@@ -35,7 +34,6 @@ attribute_t *create_hour_format(cluster_t *cluster, uint8_t value);
 attribute_t *create_active_calendar_type(cluster_t *cluster, uint8_t value);
 attribute_t *create_supported_calendar_types(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 } /* attribute */
-
 
 typedef struct config {
     config() {}

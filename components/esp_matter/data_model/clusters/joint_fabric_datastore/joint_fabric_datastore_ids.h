@@ -23,10 +23,6 @@ namespace joint_fabric_datastore {
 
 inline constexpr uint32_t Id = 0x0752;
 
-
-
-
-
 } /* joint_fabric_datastore */
 } /* cluster */
 } /* esp_matter */

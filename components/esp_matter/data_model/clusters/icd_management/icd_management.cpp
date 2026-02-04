@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "icd_management_cluster";
 constexpr uint16_t cluster_revision = 3;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace icd_management {
@@ -124,7 +123,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_idle_mode_duration(cluster_t *cluster, uint32_t value)
 {
@@ -192,8 +190,6 @@ attribute_t *create_maximum_check_in_backoff(cluster_t *cluster, uint32_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_register_client(cluster_t *cluster)
 {
@@ -227,8 +223,6 @@ command_t *create_stay_active_response(cluster_t *cluster)
 }
 
 } /* command */
-
-
 
 const function_generic_t *function_list = NULL;
 

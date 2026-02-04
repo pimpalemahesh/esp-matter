@@ -40,12 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "joint_fabric_administrator_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace joint_fabric_administrator {
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -65,7 +62,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
-
 
     }
 

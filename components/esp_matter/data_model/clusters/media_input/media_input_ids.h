@@ -53,7 +53,6 @@ inline constexpr uint32_t Id = 0x03;
 } /* RenameInput */
 } /* command */
 
-
 } /* media_input */
 } /* cluster */
 } /* esp_matter */

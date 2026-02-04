@@ -98,7 +98,6 @@ inline constexpr uint32_t Id = 0x06;
 } /* DPTZRelativeMove */
 } /* command */
 
-
 } /* camera_av_settings_user_level_management */
 } /* cluster */
 } /* esp_matter */

@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "energy_evse_cluster";
 constexpr uint16_t cluster_revision = 4;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace energy_evse {
@@ -137,7 +136,6 @@ esp_err_t add(cluster_t *cluster)
 } /* v_2_x */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_state(cluster_t *cluster, nullable<uint8_t> value)
@@ -276,8 +274,6 @@ attribute_t *create_session_energy_discharged(cluster_t *cluster, nullable<int64
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_get_targets_response(cluster_t *cluster)
 {
@@ -331,7 +327,6 @@ command_t *create_clear_targets(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_ev_connected(cluster_t *cluster)
 {
@@ -364,7 +359,6 @@ event_t *create_rfid(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -405,7 +399,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_session_id(cluster, 0);
         attribute::create_session_duration(cluster, 0);
         attribute::create_session_energy_charged(cluster, 0);
-
         command::create_disable(cluster);
         command::create_enable_charging(cluster);
         /* Events */

@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "mode_base_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace mode_base {
@@ -63,7 +62,6 @@ esp_err_t add(cluster_t *cluster)
 } /* on_off */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_supported_modes(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -89,8 +87,6 @@ attribute_t *create_on_mode(cluster_t *cluster, nullable<uint8_t> value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_change_to_mode(cluster_t *cluster)
 {
@@ -103,9 +99,6 @@ command_t *create_change_to_mode_response(cluster_t *cluster)
 }
 
 } /* command */
-
-
-
 
 } /* mode_base */
 } /* cluster */

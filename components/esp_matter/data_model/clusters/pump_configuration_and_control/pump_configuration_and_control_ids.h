@@ -119,7 +119,6 @@ inline constexpr uint32_t Id = 0x0021;
 } /* ControlMode */
 } /* attribute */
 
-
 namespace event {
 namespace SupplyVoltageLow {
 inline constexpr uint32_t Id = 0x00;

@@ -53,7 +53,6 @@ inline constexpr uint32_t Id = 0x02;
 } /* RevokeCommissioning */
 } /* command */
 
-
 } /* administrator_commissioning */
 } /* cluster */
 } /* esp_matter */

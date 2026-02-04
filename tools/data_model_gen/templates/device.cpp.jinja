@@ -138,8 +138,8 @@ endpoint_t *resume(node_t *node, config_t *config, uint8_t flags, uint16_t endpo
     VerifyOrReturnValue(ESP_OK == add(endpoint, config), NULL, ESP_LOGE("{{ device.esp_name }}", "Failed to add cluster"));
     return endpoint;
 }
-{% endif %}
 
+{% endif %}
 } /* {{ device.esp_name }} */
 } /* endpoint */
 } /* esp_matter */

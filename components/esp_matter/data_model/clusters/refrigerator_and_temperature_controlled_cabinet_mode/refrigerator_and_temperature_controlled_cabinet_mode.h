@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace refrigerator_and_temperature_controlled_cabinet_mode {
 
-
 namespace feature {
 namespace on_off {
 uint32_t get_id();
@@ -39,7 +38,6 @@ namespace command {
 command_t *create_change_to_mode(cluster_t *cluster);
 command_t *create_change_to_mode_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     uint8_t current_mode;

@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace keypad_input {
 
-
 namespace feature {
 namespace navigation_key_codes {
 uint32_t get_id();
@@ -44,7 +43,6 @@ namespace command {
 command_t *create_send_key(cluster_t *cluster);
 command_t *create_send_key_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

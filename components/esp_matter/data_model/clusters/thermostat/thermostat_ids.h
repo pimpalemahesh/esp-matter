@@ -233,7 +233,6 @@ inline constexpr uint32_t Id = 0x06;
 } /* SetActivePresetRequest */
 } /* command */
 
-
 } /* thermostat */
 } /* cluster */
 } /* esp_matter */

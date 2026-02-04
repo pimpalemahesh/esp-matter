@@ -22,7 +22,6 @@ namespace cluster {
 namespace color_control {
 
 const uint8_t k_max_compensation_text_length = 254u;
-
 namespace feature {
 namespace hue_saturation {
 typedef struct config {
@@ -157,7 +156,6 @@ command_t *create_stop_move_step(cluster_t *cluster);
 command_t *create_move_color_temperature(cluster_t *cluster);
 command_t *create_step_color_temperature(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     uint8_t color_mode;

@@ -53,7 +53,6 @@ inline constexpr uint32_t Id = 0x01;
 } /* ChangeToModeResponse */
 } /* command */
 
-
 } /* mode_base */
 } /* cluster */
 } /* esp_matter */

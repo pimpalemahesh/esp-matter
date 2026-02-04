@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace pressure_measurement {
 
-
 namespace feature {
 namespace extended {
 typedef struct config {
@@ -48,7 +47,6 @@ attribute_t *create_max_scaled_value(cluster_t *cluster, nullable<int16_t> value
 attribute_t *create_scaled_tolerance(cluster_t *cluster, uint16_t value);
 attribute_t *create_scale(cluster_t *cluster, int8_t value);
 } /* attribute */
-
 
 typedef struct config {
     nullable<int16_t> measured_value;

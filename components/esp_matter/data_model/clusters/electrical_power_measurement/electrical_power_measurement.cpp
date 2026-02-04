@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "electrical_power_measurement_cluster";
 constexpr uint16_t cluster_revision = 3;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace electrical_power_measurement {
@@ -125,7 +124,6 @@ esp_err_t add(cluster_t *cluster)
 } /* power_quality */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_power_mode(cluster_t *cluster, uint8_t value)
@@ -229,7 +227,6 @@ attribute_t *create_neutral_current(cluster_t *cluster, nullable<int64_t> value)
 
 } /* attribute */
 
-
 namespace event {
 event_t *create_measurement_period_ranges(cluster_t *cluster)
 {
@@ -238,7 +235,6 @@ event_t *create_measurement_period_ranges(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -277,7 +273,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_AT_LEAST_ONE("DirectCurrent,AlternatingCurrent",
-                                      feature::direct_current::get_id(), feature::alternating_current::get_id());
+                                       feature::direct_current::get_id(), feature::alternating_current::get_id());
         if (feature_map & feature::direct_current::get_id()) {
             VerifyOrReturnValue(feature::direct_current::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }
@@ -293,6 +289,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         if (feature_map & feature::power_quality::get_id()) {
             VerifyOrReturnValue(feature::power_quality::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterElectricalPowerMeasurementClusterServerInitCallback,
                                                  ESPMatterElectricalPowerMeasurementClusterServerShutdownCallback);
     }

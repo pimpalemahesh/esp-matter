@@ -41,11 +41,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "webrtc_transport_requestor_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace webrtc_transport_requestor {
-
 
 namespace attribute {
 attribute_t *create_current_sessions(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -54,8 +52,6 @@ attribute_t *create_current_sessions(cluster_t *cluster, uint8_t *value, uint16_
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_offer(cluster_t *cluster)
 {
@@ -78,7 +74,6 @@ command_t *create_end(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -104,11 +99,11 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         global::attribute::create_cluster_revision(cluster, cluster_revision);
 
         attribute::create_current_sessions(cluster, NULL, 0, 0);
-
         command::create_offer(cluster);
         command::create_answer(cluster);
         command::create_ice_candidates(cluster);
         command::create_end(cluster);
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterWebRTCTransportRequestorClusterServerInitCallback,
                                                  ESPMatterWebRTCTransportRequestorClusterServerShutdownCallback);
     }

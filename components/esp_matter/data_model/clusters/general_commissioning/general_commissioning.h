@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace general_commissioning {
 
-
 namespace feature {
 namespace terms_and_conditions {
 uint32_t get_id();
@@ -53,7 +52,6 @@ command_t *create_commissioning_complete_response(cluster_t *cluster);
 command_t *create_set_tc_acknowledgements(cluster_t *cluster);
 command_t *create_set_tc_acknowledgements_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     config() {}

@@ -23,7 +23,6 @@ namespace operational_credentials {
 
 inline constexpr uint32_t Id = 0x003E;
 
-
 namespace attribute {
 namespace NOCs {
 inline constexpr uint32_t Id = 0x0000;
@@ -92,7 +91,6 @@ namespace SignVIDVerificationResponse {
 inline constexpr uint32_t Id = 0x0E;
 } /* SignVIDVerificationResponse */
 } /* command */
-
 
 } /* operational_credentials */
 } /* cluster */

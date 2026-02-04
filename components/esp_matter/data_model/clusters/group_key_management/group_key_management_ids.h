@@ -23,7 +23,6 @@ namespace group_key_management {
 
 inline constexpr uint32_t Id = 0x003F;
 
-
 namespace attribute {
 namespace GroupKeyMap {
 inline constexpr uint32_t Id = 0x0000;
@@ -59,7 +58,6 @@ namespace KeySetReadAllIndicesResponse {
 inline constexpr uint32_t Id = 0x05;
 } /* KeySetReadAllIndicesResponse */
 } /* command */
-
 
 } /* group_key_management */
 } /* cluster */

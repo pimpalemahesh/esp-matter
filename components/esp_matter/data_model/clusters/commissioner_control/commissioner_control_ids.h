@@ -23,7 +23,6 @@ namespace commissioner_control {
 
 inline constexpr uint32_t Id = 0x0751;
 
-
 namespace attribute {
 namespace SupportedDeviceCategories {
 inline constexpr uint32_t Id = 0x0000;

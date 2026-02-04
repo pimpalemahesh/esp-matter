@@ -101,7 +101,6 @@ inline constexpr uint32_t Id = 0x08;
 } /* GoToTiltPercentage */
 } /* command */
 
-
 } /* window_covering */
 } /* cluster */
 } /* esp_matter */

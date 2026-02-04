@@ -41,7 +41,7 @@ static const char *TAG = "door_lock_cluster";
 constexpr uint16_t cluster_revision = 9;
 
 static esp_err_t esp_matter_command_callback_lock_door(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                       void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::LockDoor::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -50,8 +50,9 @@ static esp_err_t esp_matter_command_callback_lock_door(const ConcreteCommandPath
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_unlock_door(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                         void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::UnlockDoor::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -60,8 +61,9 @@ static esp_err_t esp_matter_command_callback_unlock_door(const ConcreteCommandPa
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_unlock_with_timeout(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                 void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::UnlockWithTimeout::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -70,8 +72,9 @@ static esp_err_t esp_matter_command_callback_unlock_with_timeout(const ConcreteC
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_set_week_day_schedule(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                   void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::SetWeekDaySchedule::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -80,8 +83,9 @@ static esp_err_t esp_matter_command_callback_set_week_day_schedule(const Concret
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_get_week_day_schedule(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                   void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::GetWeekDaySchedule::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -90,8 +94,9 @@ static esp_err_t esp_matter_command_callback_get_week_day_schedule(const Concret
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_clear_week_day_schedule(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                     void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::ClearWeekDaySchedule::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -100,8 +105,9 @@ static esp_err_t esp_matter_command_callback_clear_week_day_schedule(const Concr
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_set_year_day_schedule(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                   void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::SetYearDaySchedule::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -110,8 +116,9 @@ static esp_err_t esp_matter_command_callback_set_year_day_schedule(const Concret
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_get_year_day_schedule(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                   void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::GetYearDaySchedule::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -120,8 +127,9 @@ static esp_err_t esp_matter_command_callback_get_year_day_schedule(const Concret
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_clear_year_day_schedule(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                     void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::ClearYearDaySchedule::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -130,8 +138,9 @@ static esp_err_t esp_matter_command_callback_clear_year_day_schedule(const Concr
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_set_holiday_schedule(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                  void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::SetHolidaySchedule::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -140,8 +149,9 @@ static esp_err_t esp_matter_command_callback_set_holiday_schedule(const Concrete
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_get_holiday_schedule(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                  void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::GetHolidaySchedule::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -150,8 +160,9 @@ static esp_err_t esp_matter_command_callback_get_holiday_schedule(const Concrete
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_clear_holiday_schedule(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                    void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::ClearHolidaySchedule::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -160,8 +171,9 @@ static esp_err_t esp_matter_command_callback_clear_holiday_schedule(const Concre
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_set_user(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                      void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::SetUser::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -170,8 +182,9 @@ static esp_err_t esp_matter_command_callback_set_user(const ConcreteCommandPath 
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_get_user(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                      void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::GetUser::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -180,8 +193,9 @@ static esp_err_t esp_matter_command_callback_get_user(const ConcreteCommandPath 
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_clear_user(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                        void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::ClearUser::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -190,8 +204,9 @@ static esp_err_t esp_matter_command_callback_clear_user(const ConcreteCommandPat
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_set_credential(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                            void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::SetCredential::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -200,8 +215,9 @@ static esp_err_t esp_matter_command_callback_set_credential(const ConcreteComman
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_get_credential_status(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                   void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::GetCredentialStatus::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -210,8 +226,9 @@ static esp_err_t esp_matter_command_callback_get_credential_status(const Concret
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_clear_credential(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                              void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::ClearCredential::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -220,8 +237,9 @@ static esp_err_t esp_matter_command_callback_clear_credential(const ConcreteComm
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_unbolt_door(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                         void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::UnboltDoor::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -230,8 +248,9 @@ static esp_err_t esp_matter_command_callback_unbolt_door(const ConcreteCommandPa
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_set_aliro_reader_config(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                     void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::SetAliroReaderConfig::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -240,8 +259,9 @@ static esp_err_t esp_matter_command_callback_set_aliro_reader_config(const Concr
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_clear_aliro_reader_config(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                       void *opaque_ptr)
 {
     chip::app::Clusters::DoorLock::Commands::ClearAliroReaderConfig::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -508,7 +528,6 @@ esp_err_t add(cluster_t *cluster)
 } /* aliro_bleuwb */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_lock_state(cluster_t *cluster, nullable<uint8_t> value)
@@ -844,8 +863,6 @@ attribute_t *create_number_of_aliro_endpoint_keys_supported(cluster_t *cluster, 
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_lock_door(cluster_t *cluster)
 {
@@ -1032,7 +1049,6 @@ command_t *create_clear_aliro_reader_config(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_door_lock_alarm(cluster_t *cluster)
 {
@@ -1064,7 +1080,6 @@ event_t *create_lock_user_change(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -1108,7 +1123,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         } else {
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
-
         command::create_lock_door(cluster);
         command::create_unlock_door(cluster);
         /* Events */

@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "time_format_localization_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace time_format_localization {
@@ -66,7 +65,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_hour_format(cluster_t *cluster, uint8_t value)
 {
@@ -88,8 +86,6 @@ attribute_t *create_supported_calendar_types(cluster_t *cluster, uint8_t *value,
 }
 
 } /* attribute */
-
-
 
 const function_generic_t *function_list = NULL;
 

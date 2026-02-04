@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "wi_fi_network_management_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace wi_fi_network_management {
-
 
 namespace attribute {
 attribute_t *create_ssid(cluster_t *cluster, uint8_t *value, uint16_t length)
@@ -58,8 +56,6 @@ attribute_t *create_passphrase_surrogate(cluster_t *cluster, nullable<uint64_t> 
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_network_passphrase_request(cluster_t *cluster)
 {
@@ -72,7 +68,6 @@ command_t *create_network_passphrase_response(cluster_t *cluster)
 }
 
 } /* command */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -101,7 +96,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         attribute::create_ssid(cluster, NULL, 0);
         attribute::create_passphrase_surrogate(cluster, 0);
-
         command::create_network_passphrase_request(cluster);
         command::create_network_passphrase_response(cluster);
     }

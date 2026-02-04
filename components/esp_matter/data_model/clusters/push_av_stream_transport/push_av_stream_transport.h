@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace push_av_stream_transport {
 
-
 namespace feature {
 namespace per_zone_sensitivity {
 uint32_t get_id();
@@ -50,7 +49,6 @@ namespace event {
 event_t *create_push_transport_begin(cluster_t *cluster);
 event_t *create_push_transport_end(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

@@ -41,7 +41,7 @@ static const char *TAG = "account_login_cluster";
 constexpr uint16_t cluster_revision = 2;
 
 static esp_err_t esp_matter_command_callback_get_setup_pin(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                           void *opaque_ptr)
 {
     chip::app::Clusters::AccountLogin::Commands::GetSetupPIN::DecodableType command_data;
     chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
@@ -51,8 +51,9 @@ static esp_err_t esp_matter_command_callback_get_setup_pin(const ConcreteCommand
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_login(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                   void *opaque_ptr)
 {
     chip::app::Clusters::AccountLogin::Commands::Login::DecodableType command_data;
     chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
@@ -62,8 +63,9 @@ static esp_err_t esp_matter_command_callback_login(const ConcreteCommandPath &co
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_logout(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                    void *opaque_ptr)
 {
     chip::app::Clusters::AccountLogin::Commands::Logout::DecodableType command_data;
     chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
@@ -77,7 +79,6 @@ static esp_err_t esp_matter_command_callback_logout(const ConcreteCommandPath &c
 namespace esp_matter {
 namespace cluster {
 namespace account_login {
-
 
 namespace command {
 command_t *create_get_setup_pin(cluster_t *cluster)
@@ -102,7 +103,6 @@ command_t *create_logout(cluster_t *cluster)
 
 } /* command */
 
-
 namespace event {
 event_t *create_logged_out(cluster_t *cluster)
 {
@@ -110,7 +110,6 @@ event_t *create_logged_out(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -140,7 +139,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
-
 
         command::create_get_setup_pin(cluster);
         command::create_get_setup_pin_response(cluster);

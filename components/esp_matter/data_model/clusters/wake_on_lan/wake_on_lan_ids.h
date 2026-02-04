@@ -23,7 +23,6 @@ namespace wake_on_lan {
 
 inline constexpr uint32_t Id = 0x0503;
 
-
 namespace attribute {
 namespace MACAddress {
 inline constexpr uint32_t Id = 0x0000;
@@ -32,8 +31,6 @@ namespace LinkLocalAddress {
 inline constexpr uint32_t Id = 0x0001;
 } /* LinkLocalAddress */
 } /* attribute */
-
-
 
 } /* wake_on_lan */
 } /* cluster */

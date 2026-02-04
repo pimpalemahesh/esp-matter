@@ -98,7 +98,6 @@ inline constexpr uint32_t Id = 0x01;
 } /* Step */
 } /* command */
 
-
 } /* closure_dimension */
 } /* cluster */
 } /* esp_matter */

@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace window_covering {
 
-
 namespace feature {
 namespace lift {
 typedef struct config {
@@ -89,7 +88,6 @@ command_t *create_stop_motion(cluster_t *cluster);
 command_t *create_go_to_lift_percentage(cluster_t *cluster);
 command_t *create_go_to_tilt_percentage(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     uint8_t type;

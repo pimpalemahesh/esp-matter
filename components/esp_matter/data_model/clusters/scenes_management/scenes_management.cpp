@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "scenes_management_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace scenes_management {
@@ -64,7 +63,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_scene_table_size(cluster_t *cluster, uint16_t value)
 {
@@ -79,8 +77,6 @@ attribute_t *create_fabric_scene_info(cluster_t *cluster, uint8_t *value, uint16
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_add_scene(cluster_t *cluster)
 {
@@ -160,7 +156,6 @@ command_t *create_copy_scene_response(cluster_t *cluster)
 
 } /* command */
 
-
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
     binding::config_t config;
@@ -192,7 +187,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
         attribute::create_fabric_scene_info(cluster, NULL, 0, 0);
-
         command::create_add_scene(cluster);
         command::create_add_scene_response(cluster);
         command::create_view_scene(cluster);
@@ -206,6 +200,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         command::create_recall_scene(cluster);
         command::create_get_scene_membership(cluster);
         command::create_get_scene_membership_response(cluster);
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterScenesManagementClusterServerInitCallback,
                                                  ESPMatterScenesManagementClusterServerShutdownCallback);
     }

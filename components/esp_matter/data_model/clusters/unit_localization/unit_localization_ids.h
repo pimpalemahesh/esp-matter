@@ -38,8 +38,6 @@ inline constexpr uint32_t Id = 0x0001;
 } /* SupportedTemperatureUnits */
 } /* attribute */
 
-
-
 } /* unit_localization */
 } /* cluster */
 } /* esp_matter */

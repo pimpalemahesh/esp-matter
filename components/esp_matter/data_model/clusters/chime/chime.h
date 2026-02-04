@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace chime {
 
-
 namespace attribute {
 attribute_t *create_installed_chime_sounds(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_selected_chime(cluster_t *cluster, uint8_t value);
@@ -31,7 +30,6 @@ attribute_t *create_enabled(cluster_t *cluster, bool value);
 namespace command {
 command_t *create_play_chime_sound(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

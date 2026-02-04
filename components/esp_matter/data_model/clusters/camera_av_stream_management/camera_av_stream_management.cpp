@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "camera_av_stream_management_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace camera_av_stream_management {
@@ -262,7 +261,6 @@ esp_err_t add(cluster_t *cluster)
 } /* night_vision */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_max_concurrent_encoders(cluster_t *cluster, uint8_t value)
@@ -529,8 +527,6 @@ attribute_t *create_status_light_brightness(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_audio_stream_allocate(cluster_t *cluster)
 {
@@ -630,7 +626,6 @@ command_t *create_capture_snapshot_response(cluster_t *cluster)
 
 } /* command */
 
-
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
     binding::config_t config;
@@ -664,7 +659,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_AT_LEAST_ONE("Audio,Video,Snapshot",
-                                      feature::audio::get_id(), feature::video::get_id(), feature::snapshot::get_id());
+                                       feature::audio::get_id(), feature::video::get_id(), feature::snapshot::get_id());
         if (feature_map & feature::audio::get_id()) {
             VerifyOrReturnValue(feature::audio::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }

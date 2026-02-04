@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace media_input {
 
-
 namespace feature {
 namespace name_updates {
 uint32_t get_id();
@@ -41,7 +40,6 @@ command_t *create_show_input_status(cluster_t *cluster);
 command_t *create_hide_input_status(cluster_t *cluster);
 command_t *create_rename_input(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;

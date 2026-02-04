@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace camera_av_stream_management {
 
-
 namespace feature {
 namespace audio {
 uint32_t get_id();
@@ -140,7 +139,6 @@ command_t *create_set_stream_priorities(cluster_t *cluster);
 command_t *create_capture_snapshot(cluster_t *cluster);
 command_t *create_capture_snapshot_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     uint32_t feature_flags;

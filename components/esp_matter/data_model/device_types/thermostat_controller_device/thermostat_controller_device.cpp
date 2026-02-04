@@ -60,7 +60,6 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     return ESP_OK;
 }
 
-
 } /* thermostat_controller */
 } /* endpoint */
 } /* esp_matter */

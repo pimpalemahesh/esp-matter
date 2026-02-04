@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace content_launcher {
 
-
 namespace feature {
 namespace content_search {
 uint32_t get_id();
@@ -64,7 +63,6 @@ command_t *create_launch_content(cluster_t *cluster);
 command_t *create_launch_url(cluster_t *cluster);
 command_t *create_launcher_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     config() {}

@@ -41,11 +41,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "operational_credentials_cluster";
 constexpr uint16_t cluster_revision = 2;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace operational_credentials {
-
 
 namespace attribute {
 attribute_t *create_no_cs(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -79,8 +77,6 @@ attribute_t *create_current_fabric_index(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_attestation_request(cluster_t *cluster)
 {
@@ -159,8 +155,6 @@ command_t *create_sign_vid_verification_response(cluster_t *cluster)
 
 } /* command */
 
-
-
 const function_generic_t *function_list = NULL;
 
 const int function_flags = CLUSTER_FLAG_NONE;
@@ -186,7 +180,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_commissioned_fabrics(cluster, 0);
         attribute::create_trusted_root_certificates(cluster, NULL, 0, 0);
         attribute::create_current_fabric_index(cluster, 0);
-
         command::create_attestation_request(cluster);
         command::create_attestation_response(cluster);
         command::create_certificate_chain_request(cluster);
@@ -202,6 +195,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         command::create_set_vid_verification_statement(cluster);
         command::create_sign_vid_verification_request(cluster);
         command::create_sign_vid_verification_response(cluster);
+
         cluster::set_init_and_shutdown_callbacks(cluster, ESPMatterOperationalCredentialsClusterServerInitCallback,
                                                  ESPMatterOperationalCredentialsClusterServerShutdownCallback);
     }

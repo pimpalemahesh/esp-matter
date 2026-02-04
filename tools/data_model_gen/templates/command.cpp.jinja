@@ -1,5 +1,4 @@
 {% if cluster.get_command_list() | length > 0 %}
-
 namespace command {
 {% for command in cluster.get_command_list() %}
 command_t *create_{{ command.func_name | lower }}(cluster_t *cluster)
@@ -15,5 +14,4 @@ command_t *create_{{ command.func_name | lower }}(cluster_t *cluster)
 
 {% endfor %}
 } /* command */
-
 {% endif %}

@@ -23,7 +23,6 @@ namespace actions {
 
 inline constexpr uint32_t Id = 0x0025;
 
-
 namespace attribute {
 namespace ActionList {
 inline constexpr uint32_t Id = 0x0000;

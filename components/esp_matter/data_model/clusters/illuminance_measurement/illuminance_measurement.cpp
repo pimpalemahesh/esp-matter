@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "illuminance_measurement_cluster";
 constexpr uint16_t cluster_revision = 3;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace illuminance_measurement {
-
 
 namespace attribute {
 attribute_t *create_measured_value(cluster_t *cluster, nullable<uint16_t> value)
@@ -84,7 +82,6 @@ attribute_t *create_light_sensor_type(cluster_t *cluster, nullable<uint8_t> valu
 
 } /* attribute */
 
-
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
     binding::config_t config;
@@ -117,7 +114,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         } else {
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
-
     }
 
     if (flags & CLUSTER_FLAG_CLIENT) {

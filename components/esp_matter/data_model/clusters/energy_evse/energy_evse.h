@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace energy_evse {
 
-
 namespace feature {
 namespace charging_preferences {
 uint32_t get_id();
@@ -95,7 +94,6 @@ event_t *create_energy_transfer_stopped(cluster_t *cluster);
 event_t *create_fault(cluster_t *cluster);
 event_t *create_rfid(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

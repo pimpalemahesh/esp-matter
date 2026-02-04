@@ -23,7 +23,6 @@ namespace oven_cavity_operational_state {
 
 inline constexpr uint32_t Id = 0x0048;
 
-
 namespace attribute {
 namespace PhaseList {
 inline constexpr uint32_t Id = 0x0000;

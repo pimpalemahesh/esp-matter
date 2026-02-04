@@ -68,7 +68,6 @@ inline constexpr uint32_t Id = 0x04;
 } /* SetPendingDatasetRequest */
 } /* command */
 
-
 } /* thread_border_router_management */
 } /* cluster */
 } /* esp_matter */

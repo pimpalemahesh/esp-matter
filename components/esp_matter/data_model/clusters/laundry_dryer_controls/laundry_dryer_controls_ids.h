@@ -23,7 +23,6 @@ namespace laundry_dryer_controls {
 
 inline constexpr uint32_t Id = 0x004A;
 
-
 namespace attribute {
 namespace SupportedDrynessLevels {
 inline constexpr uint32_t Id = 0x0000;
@@ -32,8 +31,6 @@ namespace SelectedDrynessLevel {
 inline constexpr uint32_t Id = 0x0001;
 } /* SelectedDrynessLevel */
 } /* attribute */
-
-
 
 } /* laundry_dryer_controls */
 } /* cluster */

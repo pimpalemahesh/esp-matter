@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace meter_identification {
 
-
 namespace feature {
 namespace power_threshold {
 uint32_t get_id();
@@ -37,7 +36,6 @@ attribute_t *create_meter_serial_number(cluster_t *cluster, char * value, uint16
 attribute_t *create_protocol_version(cluster_t *cluster, char * value, uint16_t length);
 attribute_t *create_power_threshold(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 } /* attribute */
-
 
 typedef struct config {
     config() {}

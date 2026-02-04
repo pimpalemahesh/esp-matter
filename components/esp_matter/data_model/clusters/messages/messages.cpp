@@ -41,7 +41,7 @@ static const char *TAG = "messages_cluster";
 constexpr uint16_t cluster_revision = 3;
 
 static esp_err_t esp_matter_command_callback_present_messages_request(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                      void *opaque_ptr)
 {
     chip::app::Clusters::Messages::Commands::PresentMessagesRequest::DecodableType command_data;
     chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
@@ -51,8 +51,9 @@ static esp_err_t esp_matter_command_callback_present_messages_request(const Conc
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_cancel_messages_request(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                     void *opaque_ptr)
 {
     chip::app::Clusters::Messages::Commands::CancelMessagesRequest::DecodableType command_data;
     chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
@@ -130,7 +131,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_messages(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
@@ -143,8 +143,6 @@ attribute_t *create_active_message_i_ds(cluster_t *cluster, uint8_t *value, uint
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_present_messages_request(cluster_t *cluster)
 {
@@ -157,7 +155,6 @@ command_t *create_cancel_messages_request(cluster_t *cluster)
 }
 
 } /* command */
-
 
 namespace event {
 event_t *create_message_queued(cluster_t *cluster)
@@ -176,7 +173,6 @@ event_t *create_message_complete(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -209,7 +205,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         attribute::create_messages(cluster, NULL, 0, 0);
         attribute::create_active_message_i_ds(cluster, NULL, 0, 0);
-
         command::create_present_messages_request(cluster);
         command::create_cancel_messages_request(cluster);
         /* Events */

@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace oven_cavity_operational_state {
 
-
 namespace attribute {
 attribute_t *create_phase_list(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_current_phase(cluster_t *cluster, nullable<uint8_t> value);
@@ -41,7 +40,6 @@ namespace event {
 event_t *create_operational_error(cluster_t *cluster);
 event_t *create_operation_completion(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace thread_network_directory {
 
-
 namespace attribute {
 attribute_t *create_preferred_extended_pan_id(cluster_t *cluster, uint8_t * value, uint16_t length);
 attribute_t *create_thread_networks(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
@@ -34,7 +33,6 @@ command_t *create_remove_network(cluster_t *cluster);
 command_t *create_get_operational_dataset(cluster_t *cluster);
 command_t *create_operational_dataset_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     config() {}

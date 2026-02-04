@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "closure_control_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace closure_control {
@@ -194,7 +193,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_countdown_time(cluster_t *cluster, nullable<uint32_t> value)
 {
@@ -229,8 +227,6 @@ attribute_t *create_latch_control_modes(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_stop(cluster_t *cluster)
 {
@@ -252,7 +248,6 @@ command_t *create_calibrate(cluster_t *cluster)
 }
 
 } /* command */
-
 
 namespace event {
 event_t *create_operational_error(cluster_t *cluster)
@@ -280,7 +275,6 @@ event_t *create_secure_state_changed(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -319,7 +313,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_AT_LEAST_ONE("Positioning,MotionLatching",
-                                      feature::positioning::get_id(), feature::motion_latching::get_id());
+                                       feature::positioning::get_id(), feature::motion_latching::get_id());
         if (feature_map & feature::positioning::get_id()) {
             VerifyOrReturnValue(feature::positioning::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }

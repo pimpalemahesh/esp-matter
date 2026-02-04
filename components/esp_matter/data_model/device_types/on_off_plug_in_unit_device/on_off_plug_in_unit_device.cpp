@@ -64,7 +64,6 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     return ESP_OK;
 }
 
-
 } /* on_off_plug_in_unit */
 } /* endpoint */
 } /* esp_matter */

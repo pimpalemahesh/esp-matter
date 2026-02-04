@@ -40,11 +40,9 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "label_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace label {
-
 
 namespace attribute {
 attribute_t *create_label_list(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -53,9 +51,6 @@ attribute_t *create_label_list(cluster_t *cluster, uint8_t *value, uint16_t leng
 }
 
 } /* attribute */
-
-
-
 
 } /* label */
 } /* cluster */

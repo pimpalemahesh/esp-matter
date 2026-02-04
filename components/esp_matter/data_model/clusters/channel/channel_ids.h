@@ -77,7 +77,6 @@ inline constexpr uint32_t Id = 0x07;
 } /* CancelRecordProgram */
 } /* command */
 
-
 } /* channel */
 } /* cluster */
 } /* esp_matter */

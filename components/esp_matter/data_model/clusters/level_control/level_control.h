@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace level_control {
 
-
 namespace feature {
 namespace on_off {
 uint32_t get_id();
@@ -64,7 +63,6 @@ command_t *create_move_with_on_off(cluster_t *cluster);
 command_t *create_step_with_on_off(cluster_t *cluster);
 command_t *create_stop_with_on_off(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     nullable<uint8_t> current_level;

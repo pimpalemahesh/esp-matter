@@ -23,7 +23,6 @@ namespace identify {
 
 inline constexpr uint32_t Id = 0x0003;
 
-
 namespace attribute {
 namespace IdentifyTime {
 inline constexpr uint32_t Id = 0x0000;
@@ -41,7 +40,6 @@ namespace TriggerEffect {
 inline constexpr uint32_t Id = 0x40;
 } /* TriggerEffect */
 } /* command */
-
 
 } /* identify */
 } /* cluster */

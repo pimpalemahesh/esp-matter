@@ -47,8 +47,6 @@ inline constexpr uint32_t Id = 0x0003;
 } /* SupportedRinses */
 } /* attribute */
 
-
-
 } /* laundry_washer_controls */
 } /* cluster */
 } /* esp_matter */

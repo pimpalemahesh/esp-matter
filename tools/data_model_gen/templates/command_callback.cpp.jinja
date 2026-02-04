@@ -1,7 +1,8 @@
 {% for command in cluster.get_command_list() %}
 {% if command.has_callback %}
+
 static esp_err_t esp_matter_command_callback_{{ command.func_name | lower }}(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                             void *opaque_ptr)
 {
     chip::app::Clusters::{{ cluster.chip_name }}::Commands::{{ command.name }}::DecodableType command_data;
     {% if command.is_fabric_scoped %}

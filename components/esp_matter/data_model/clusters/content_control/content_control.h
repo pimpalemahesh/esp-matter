@@ -23,7 +23,6 @@ namespace content_control {
 
 const uint8_t k_max_on_demand_rating_threshold_length = 8u;
 const uint8_t k_max_scheduled_content_rating_threshold_length = 8u;
-
 namespace feature {
 namespace screen_time {
 typedef struct config {
@@ -122,7 +121,6 @@ namespace event {
 event_t *create_remaining_screen_time_expired(cluster_t *cluster);
 event_t *create_entering_block_content_time_window(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     bool enabled;

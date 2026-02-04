@@ -23,7 +23,6 @@ namespace ota_software_update_requestor {
 
 inline constexpr uint32_t Id = 0x002A;
 
-
 namespace attribute {
 namespace DefaultOTAProviders {
 inline constexpr uint32_t Id = 0x0000;

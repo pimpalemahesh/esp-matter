@@ -41,7 +41,7 @@ static const char *TAG = "smoke_co_alarm_cluster";
 constexpr uint16_t cluster_revision = 1;
 
 static esp_err_t esp_matter_command_callback_self_test_request(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                               void *opaque_ptr)
 {
     chip::app::Clusters::SmokeCoAlarm::Commands::SelfTestRequest::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -99,7 +99,6 @@ esp_err_t add(cluster_t *cluster, config_t *config)
 } /* co_alarm */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_expressed_state(cluster_t *cluster, uint8_t value)
@@ -194,8 +193,6 @@ attribute_t *create_expiry_date(cluster_t *cluster, uint32_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_self_test_request(cluster_t *cluster)
 {
@@ -203,7 +200,6 @@ command_t *create_self_test_request(cluster_t *cluster)
 }
 
 } /* command */
-
 
 namespace event {
 event_t *create_smoke_alarm(cluster_t *cluster)
@@ -267,7 +263,6 @@ event_t *create_all_clear(cluster_t *cluster)
 
 } /* event */
 
-
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
     binding::config_t config;
@@ -306,7 +301,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_AT_LEAST_ONE("SmokeAlarm,COAlarm",
-                                      feature::smoke_alarm::get_id(), feature::co_alarm::get_id());
+                                       feature::smoke_alarm::get_id(), feature::co_alarm::get_id());
         if (feature_map & feature::smoke_alarm::get_id()) {
             VerifyOrReturnValue(feature::smoke_alarm::add(cluster, &(config->features.smoke_alarm)) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }

@@ -41,7 +41,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "descriptor_cluster";
 constexpr uint16_t cluster_revision = 3;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace descriptor {
@@ -64,7 +63,6 @@ esp_err_t add(cluster_t *cluster)
 } /* tag_list */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_device_type_list(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -100,8 +98,6 @@ attribute_t *create_endpoint_unique_id(cluster_t *cluster, char *value, uint16_t
 }
 
 } /* attribute */
-
-
 
 const function_generic_t *function_list = NULL;
 

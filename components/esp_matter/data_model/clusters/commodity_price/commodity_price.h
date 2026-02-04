@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace commodity_price {
 
-
 namespace feature {
 namespace forecasting {
 uint32_t get_id();
@@ -47,7 +46,6 @@ command_t *create_get_detailed_forecast_response(cluster_t *cluster);
 namespace event {
 event_t *create_price_change(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     void *delegate;

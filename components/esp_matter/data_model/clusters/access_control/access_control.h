@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace access_control {
 
-
 namespace feature {
 namespace extension {
 uint32_t get_id();
@@ -55,7 +54,6 @@ event_t *create_access_control_entry_changed(cluster_t *cluster);
 event_t *create_access_control_extension_changed(cluster_t *cluster);
 event_t *create_fabric_restriction_review_update(cluster_t *cluster);
 } /* event */
-
 
 typedef struct config {
     config() {}

@@ -41,7 +41,7 @@ static const char *TAG = "ota_software_update_requestor_cluster";
 constexpr uint16_t cluster_revision = 1;
 
 static esp_err_t esp_matter_command_callback_announce_ota_provider(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                   void *opaque_ptr)
 {
     chip::app::Clusters::OtaSoftwareUpdateRequestor::Commands::AnnounceOTAProvider::DecodableType command_data;
     CHIP_ERROR error = Decode(tlv_data, command_data);
@@ -54,7 +54,6 @@ static esp_err_t esp_matter_command_callback_announce_ota_provider(const Concret
 namespace esp_matter {
 namespace cluster {
 namespace ota_software_update_requestor {
-
 
 namespace attribute {
 attribute_t *create_default_ota_providers(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
@@ -82,8 +81,6 @@ attribute_t *create_update_state_progress(cluster_t *cluster, nullable<uint8_t> 
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_announce_ota_provider(cluster_t *cluster)
 {
@@ -91,7 +88,6 @@ command_t *create_announce_ota_provider(cluster_t *cluster)
 }
 
 } /* command */
-
 
 namespace event {
 event_t *create_state_transition(cluster_t *cluster)
@@ -110,8 +106,6 @@ event_t *create_download_error(cluster_t *cluster)
 }
 
 } /* event */
-
-
 
 const function_generic_t *function_list = NULL;
 
@@ -140,7 +134,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
         attribute::create_default_ota_providers(cluster, NULL, 0, 0);
-
         /* Events */
         event::create_state_transition(cluster);
         event::create_version_applied(cluster);

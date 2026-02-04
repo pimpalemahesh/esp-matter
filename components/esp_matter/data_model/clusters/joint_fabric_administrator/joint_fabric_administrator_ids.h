@@ -23,10 +23,6 @@ namespace joint_fabric_administrator {
 
 inline constexpr uint32_t Id = 0x0753;
 
-
-
-
-
 } /* joint_fabric_administrator */
 } /* cluster */
 } /* esp_matter */

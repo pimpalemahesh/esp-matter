@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "pump_configuration_and_control_cluster";
 constexpr uint16_t cluster_revision = 4;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace pump_configuration_and_control {
@@ -196,7 +195,6 @@ esp_err_t add(cluster_t *cluster)
 } /* local_operation */
 
 } /* feature */
-
 
 namespace attribute {
 attribute_t *create_max_pressure(cluster_t *cluster, nullable<int16_t> value)
@@ -362,7 +360,6 @@ attribute_t *create_control_mode(cluster_t *cluster, uint8_t value)
 
 } /* attribute */
 
-
 namespace event {
 event_t *create_supply_voltage_low(cluster_t *cluster)
 {
@@ -451,7 +448,6 @@ event_t *create_turbine_operation(cluster_t *cluster)
 
 } /* event */
 
-
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
     binding::config_t config;
@@ -496,7 +492,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         uint32_t feature_map = config->feature_flags;
         VALIDATE_FEATURES_AT_LEAST_ONE("ConstantPressure,ConstantTemperature,CompensatedPressure,ConstantFlow,ConstantSpeed",
-                                      feature::constant_pressure::get_id(), feature::constant_temperature::get_id(), feature::compensated_pressure::get_id(), feature::constant_flow::get_id(), feature::constant_speed::get_id());
+                                       feature::constant_pressure::get_id(), feature::constant_temperature::get_id(), feature::compensated_pressure::get_id(), feature::constant_flow::get_id(), feature::constant_speed::get_id());
         if (feature_map & feature::constant_pressure::get_id()) {
             VerifyOrReturnValue(feature::constant_pressure::add(cluster, &(config->features.constant_pressure)) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }

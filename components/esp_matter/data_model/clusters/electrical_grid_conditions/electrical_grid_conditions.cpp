@@ -40,7 +40,6 @@ using namespace esp_matter::cluster::delegate_cb;
 static const char *TAG = "electrical_grid_conditions_cluster";
 constexpr uint16_t cluster_revision = 1;
 
-
 namespace esp_matter {
 namespace cluster {
 namespace electrical_grid_conditions {
@@ -64,7 +63,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_local_generation_available(cluster_t *cluster, nullable<bool> value)
 {
@@ -85,7 +83,6 @@ attribute_t *create_forecast_conditions(cluster_t *cluster, uint8_t *value, uint
 
 } /* attribute */
 
-
 namespace event {
 event_t *create_current_conditions_changed(cluster_t *cluster)
 {
@@ -93,7 +90,6 @@ event_t *create_current_conditions_changed(cluster_t *cluster)
 }
 
 } /* event */
-
 
 static void create_default_binding_cluster(endpoint_t *endpoint)
 {
@@ -126,7 +122,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 
         attribute::create_local_generation_available(cluster, false);
         attribute::create_current_conditions(cluster, NULL, 0, 0);
-
     }
 
     if (flags & CLUSTER_FLAG_CLIENT) {

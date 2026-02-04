@@ -41,7 +41,7 @@ static const char *TAG = "groups_cluster";
 constexpr uint16_t cluster_revision = 4;
 
 static esp_err_t esp_matter_command_callback_add_group(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                       void *opaque_ptr)
 {
     chip::app::Clusters::Groups::Commands::AddGroup::DecodableType command_data;
     chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
@@ -51,8 +51,9 @@ static esp_err_t esp_matter_command_callback_add_group(const ConcreteCommandPath
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_view_group(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                        void *opaque_ptr)
 {
     chip::app::Clusters::Groups::Commands::ViewGroup::DecodableType command_data;
     chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
@@ -62,8 +63,9 @@ static esp_err_t esp_matter_command_callback_view_group(const ConcreteCommandPat
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_get_group_membership(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                  void *opaque_ptr)
 {
     chip::app::Clusters::Groups::Commands::GetGroupMembership::DecodableType command_data;
     chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
@@ -73,8 +75,9 @@ static esp_err_t esp_matter_command_callback_get_group_membership(const Concrete
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_remove_group(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                          void *opaque_ptr)
 {
     chip::app::Clusters::Groups::Commands::RemoveGroup::DecodableType command_data;
     chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
@@ -84,8 +87,9 @@ static esp_err_t esp_matter_command_callback_remove_group(const ConcreteCommandP
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_remove_all_groups(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                               void *opaque_ptr)
 {
     chip::app::Clusters::Groups::Commands::RemoveAllGroups::DecodableType command_data;
     chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
@@ -95,8 +99,9 @@ static esp_err_t esp_matter_command_callback_remove_all_groups(const ConcreteCom
     }
     return ESP_OK;
 }
+
 static esp_err_t esp_matter_command_callback_add_group_if_identifying(const ConcreteCommandPath &command_path, TLVReader &tlv_data,
-                                                                         void *opaque_ptr)
+                                                                      void *opaque_ptr)
 {
     chip::app::Clusters::Groups::Commands::AddGroupIfIdentifying::DecodableType command_data;
     chip::app::CommandHandler *command_obj = (chip::app::CommandHandler *)opaque_ptr;
@@ -129,7 +134,6 @@ esp_err_t add(cluster_t *cluster)
 
 } /* feature */
 
-
 namespace attribute {
 attribute_t *create_name_support(cluster_t *cluster, uint8_t value)
 {
@@ -139,8 +143,6 @@ attribute_t *create_name_support(cluster_t *cluster, uint8_t value)
 }
 
 } /* attribute */
-
-
 namespace command {
 command_t *create_add_group(cluster_t *cluster)
 {
@@ -194,8 +196,6 @@ command_t *create_add_group_if_identifying(cluster_t *cluster)
 
 } /* command */
 
-
-
 const function_generic_t function_list[] = {
     (function_generic_t)emberAfGroupsClusterServerInitCallback,
 };
@@ -222,7 +222,6 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         } else {
             ESP_LOGE(TAG, "Config is NULL. Cannot add some attributes.");
         }
-
         command::create_add_group(cluster);
         command::create_add_group_response(cluster);
         command::create_view_group(cluster);

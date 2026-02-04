@@ -101,7 +101,6 @@ inline constexpr uint32_t Id = 0x0012;
 } /* NeutralCurrent */
 } /* attribute */
 
-
 namespace event {
 namespace MeasurementPeriodRanges {
 inline constexpr uint32_t Id = 0x00;

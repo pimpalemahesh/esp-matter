@@ -21,7 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace commodity_tariff {
 
-
 namespace feature {
 namespace pricing {
 uint32_t get_id();
@@ -83,7 +82,6 @@ command_t *create_get_tariff_component_response(cluster_t *cluster);
 command_t *create_get_day_entry(cluster_t *cluster);
 command_t *create_get_day_entry_response(cluster_t *cluster);
 } /* command */
-
 
 typedef struct config {
     void *delegate;
