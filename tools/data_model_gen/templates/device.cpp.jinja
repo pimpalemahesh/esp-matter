@@ -108,7 +108,7 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     {% endif %}
     {% if cluster.device_mandatory_events | length > 0 %}
     {% for mandatory_event in cluster.device_mandatory_events %}
-    cluster::{{ cluster.esp_name }}::event::create_{{ mandatory_event }}({{cluster.func_name}});
+    cluster::{{ cluster.esp_name }}::event::create_{{ mandatory_event.func_name }}({{cluster.func_name}});
     {% endfor %}
     {% endif %}
     {% else %}

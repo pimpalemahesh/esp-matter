@@ -55,7 +55,9 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
 
     cluster::microwave_oven_mode::create(endpoint, &(config->microwave_oven_mode), CLUSTER_FLAG_SERVER);
     cluster::microwave_oven_control::create(endpoint, &(config->microwave_oven_control), CLUSTER_FLAG_SERVER);
-    cluster::operational_state::create(endpoint, &(config->operational_state), CLUSTER_FLAG_SERVER);
+    cluster_t *operational_state = cluster::operational_state::create(endpoint, &(config->operational_state), CLUSTER_FLAG_SERVER);
+    cluster::operational_state::attribute::create_countdown_time(operational_state, 0);
+    cluster::operational_state::event::create_operation_completion(operational_state);
 
     return ESP_OK;
 }

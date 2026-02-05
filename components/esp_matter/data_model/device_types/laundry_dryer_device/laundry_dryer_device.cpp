@@ -53,7 +53,8 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     esp_err_t err = add_device_type(endpoint, ESP_MATTER_LAUNDRY_DRYER_DEVICE_TYPE_ID, ESP_MATTER_LAUNDRY_DRYER_DEVICE_TYPE_VERSION);
     VerifyOrReturnError(err == ESP_OK, err);
 
-    cluster::operational_state::create(endpoint, &(config->operational_state), CLUSTER_FLAG_SERVER);
+    cluster_t *operational_state = cluster::operational_state::create(endpoint, &(config->operational_state), CLUSTER_FLAG_SERVER);
+    cluster::operational_state::event::create_operation_completion(operational_state);
 
     return ESP_OK;
 }

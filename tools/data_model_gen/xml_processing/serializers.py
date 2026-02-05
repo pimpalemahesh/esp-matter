@@ -341,6 +341,7 @@ class DeviceSerializer:
                     "features": safe_get_attr(cluster, "feature_name_list", []),
                     "commands": safe_get_attr(cluster, "command_name_list", []),
                     "attributes": safe_get_attr(cluster, "attribute_name_list", []),
+                    "events": safe_get_attr(cluster, "event_name_list", []),
                 }
                 for cluster in (
                     device.get_clusters()

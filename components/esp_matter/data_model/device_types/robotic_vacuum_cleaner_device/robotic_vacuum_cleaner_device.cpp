@@ -55,7 +55,8 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
 
     cluster::identify::create(endpoint, &(config->identify), CLUSTER_FLAG_SERVER);
     cluster::rvc_run_mode::create(endpoint, &(config->rvc_run_mode), CLUSTER_FLAG_SERVER);
-    cluster::rvc_operational_state::create(endpoint, &(config->rvc_operational_state), CLUSTER_FLAG_SERVER);
+    cluster_t *rvc_operational_state = cluster::rvc_operational_state::create(endpoint, &(config->rvc_operational_state), CLUSTER_FLAG_SERVER);
+    cluster::rvc_operational_state::event::create_operation_completion(rvc_operational_state);
 
     return ESP_OK;
 }
