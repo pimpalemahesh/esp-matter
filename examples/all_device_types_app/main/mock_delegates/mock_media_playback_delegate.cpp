@@ -36,7 +36,7 @@ uint64_t MockMediaPlaybackDelegate::HandleGetDuration()
     return 0;
 }
 
-CHIP_ERROR MockMediaPlaybackDelegate::HandleGetSampledPosition(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockMediaPlaybackDelegate::HandleGetSampledPosition(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -64,35 +64,35 @@ uint64_t MockMediaPlaybackDelegate::HandleGetSeekRangeEnd()
     return 0;
 }
 
-CHIP_ERROR MockMediaPlaybackDelegate::HandleGetActiveAudioTrack(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockMediaPlaybackDelegate::HandleGetActiveAudioTrack(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return aEncoder.EncodeNull();
 }
 
-CHIP_ERROR MockMediaPlaybackDelegate::HandleGetAvailableAudioTracks(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockMediaPlaybackDelegate::HandleGetAvailableAudioTracks(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return aEncoder.EncodeEmptyList();
 }
 
-CHIP_ERROR MockMediaPlaybackDelegate::HandleGetActiveTextTrack(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockMediaPlaybackDelegate::HandleGetActiveTextTrack(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return aEncoder.EncodeNull();
 }
 
-CHIP_ERROR MockMediaPlaybackDelegate::HandleGetAvailableTextTracks(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockMediaPlaybackDelegate::HandleGetAvailableTextTracks(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return aEncoder.EncodeEmptyList();
 }
 
-void MockMediaPlaybackDelegate::HandlePlay(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper)
+void MockMediaPlaybackDelegate::HandlePlay(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -101,7 +101,7 @@ void MockMediaPlaybackDelegate::HandlePlay(CommandResponseHelper<Commands::Playb
     helper.Success(response);
 }
 
-void MockMediaPlaybackDelegate::HandlePause(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper)
+void MockMediaPlaybackDelegate::HandlePause(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -110,7 +110,7 @@ void MockMediaPlaybackDelegate::HandlePause(CommandResponseHelper<Commands::Play
     helper.Success(response);
 }
 
-void MockMediaPlaybackDelegate::HandleStop(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper)
+void MockMediaPlaybackDelegate::HandleStop(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -119,8 +119,8 @@ void MockMediaPlaybackDelegate::HandleStop(CommandResponseHelper<Commands::Playb
     helper.Success(response);
 }
 
-void MockMediaPlaybackDelegate::HandleFastForward(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper,
-                                                 const chip::Optional<bool> & audioAdvanceUnmuted)
+void MockMediaPlaybackDelegate::HandleFastForward(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper,
+                                                  const chip::Optional<bool>  &audioAdvanceUnmuted)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -129,7 +129,7 @@ void MockMediaPlaybackDelegate::HandleFastForward(CommandResponseHelper<Commands
     helper.Success(response);
 }
 
-void MockMediaPlaybackDelegate::HandlePrevious(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper)
+void MockMediaPlaybackDelegate::HandlePrevious(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -138,8 +138,8 @@ void MockMediaPlaybackDelegate::HandlePrevious(CommandResponseHelper<Commands::P
     helper.Success(response);
 }
 
-void MockMediaPlaybackDelegate::HandleRewind(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper,
-                                            const chip::Optional<bool> & audioAdvanceUnmuted)
+void MockMediaPlaybackDelegate::HandleRewind(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper,
+                                             const chip::Optional<bool>  &audioAdvanceUnmuted)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -148,8 +148,8 @@ void MockMediaPlaybackDelegate::HandleRewind(CommandResponseHelper<Commands::Pla
     helper.Success(response);
 }
 
-void MockMediaPlaybackDelegate::HandleSkipBackward(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper,
-                                                  const uint64_t & deltaPositionMilliseconds)
+void MockMediaPlaybackDelegate::HandleSkipBackward(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper,
+                                                   const uint64_t  &deltaPositionMilliseconds)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -158,8 +158,8 @@ void MockMediaPlaybackDelegate::HandleSkipBackward(CommandResponseHelper<Command
     helper.Success(response);
 }
 
-void MockMediaPlaybackDelegate::HandleSkipForward(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper,
-                                                 const uint64_t & deltaPositionMilliseconds)
+void MockMediaPlaybackDelegate::HandleSkipForward(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper,
+                                                  const uint64_t  &deltaPositionMilliseconds)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -168,8 +168,8 @@ void MockMediaPlaybackDelegate::HandleSkipForward(CommandResponseHelper<Commands
     helper.Success(response);
 }
 
-void MockMediaPlaybackDelegate::HandleSeek(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper,
-                                          const uint64_t & positionMilliseconds)
+void MockMediaPlaybackDelegate::HandleSeek(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper,
+                                           const uint64_t  &positionMilliseconds)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -178,7 +178,7 @@ void MockMediaPlaybackDelegate::HandleSeek(CommandResponseHelper<Commands::Playb
     helper.Success(response);
 }
 
-void MockMediaPlaybackDelegate::HandleNext(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper)
+void MockMediaPlaybackDelegate::HandleNext(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -187,7 +187,7 @@ void MockMediaPlaybackDelegate::HandleNext(CommandResponseHelper<Commands::Playb
     helper.Success(response);
 }
 
-void MockMediaPlaybackDelegate::HandleStartOver(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper)
+void MockMediaPlaybackDelegate::HandleStartOver(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -196,14 +196,14 @@ void MockMediaPlaybackDelegate::HandleStartOver(CommandResponseHelper<Commands::
     helper.Success(response);
 }
 
-bool MockMediaPlaybackDelegate::HandleActivateAudioTrack(const chip::CharSpan & trackId, const uint8_t & audioOutputIndex)
+bool MockMediaPlaybackDelegate::HandleActivateAudioTrack(const chip::CharSpan  &trackId, const uint8_t  &audioOutputIndex)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return true;
 }
 
-bool MockMediaPlaybackDelegate::HandleActivateTextTrack(const chip::CharSpan & trackId)
+bool MockMediaPlaybackDelegate::HandleActivateTextTrack(const chip::CharSpan  &trackId)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -234,4 +234,4 @@ uint16_t MockMediaPlaybackDelegate::GetClusterRevision(chip::EndpointId endpoint
 } // namespace MediaPlayback
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

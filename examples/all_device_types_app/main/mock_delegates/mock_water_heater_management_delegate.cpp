@@ -16,8 +16,8 @@ namespace Clusters {
 namespace WaterHeaterManagement {
 
 Protocols::InteractionModel::Status MockWaterHeaterManagementDelegate::HandleBoost(uint32_t duration, Optional<bool> oneShot,
-                                                                                  Optional<bool> emergencyBoost, Optional<int16_t> temporarySetpoint,
-                                                                                  Optional<Percent> targetPercentage, Optional<Percent> targetReheat)
+                                                                                   Optional<bool> emergencyBoost, Optional<int16_t> temporarySetpoint,
+                                                                                   Optional<Percent> targetPercentage, Optional<Percent> targetReheat)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -76,4 +76,4 @@ BoostStateEnum MockWaterHeaterManagementDelegate::GetBoostState()
 } // namespace WaterHeaterManagement
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

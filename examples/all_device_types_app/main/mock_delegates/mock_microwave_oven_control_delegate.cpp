@@ -32,7 +32,7 @@ Protocols::InteractionModel::Status MockMicrowaveOvenControlDelegate::HandleModi
     return Protocols::InteractionModel::Status::Success;
 }
 
-CHIP_ERROR MockMicrowaveOvenControlDelegate::GetWattSettingByIndex(uint8_t index, uint16_t & wattSetting)
+CHIP_ERROR MockMicrowaveOvenControlDelegate::GetWattSettingByIndex(uint8_t index, uint16_t  &wattSetting)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -91,4 +91,4 @@ uint16_t MockMicrowaveOvenControlDelegate::GetWattRating() const
 } // namespace MicrowaveOvenControl
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

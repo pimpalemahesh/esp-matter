@@ -15,8 +15,8 @@ namespace app {
 namespace Clusters {
 namespace WebRTCTransportProvider {
 
-CHIP_ERROR MockWebRTCTransportProviderDelegate::HandleSolicitOffer(const OfferRequestArgs & args, WebRTCSessionStruct & outSession,
-                                                                   bool & outDeferredOffer)
+CHIP_ERROR MockWebRTCTransportProviderDelegate::HandleSolicitOffer(const OfferRequestArgs  &args, WebRTCSessionStruct  &outSession,
+                                                                   bool  &outDeferredOffer)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -24,21 +24,21 @@ CHIP_ERROR MockWebRTCTransportProviderDelegate::HandleSolicitOffer(const OfferRe
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockWebRTCTransportProviderDelegate::HandleProvideOffer(const ProvideOfferRequestArgs & args, WebRTCSessionStruct & outSession)
+CHIP_ERROR MockWebRTCTransportProviderDelegate::HandleProvideOffer(const ProvideOfferRequestArgs  &args, WebRTCSessionStruct  &outSession)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockWebRTCTransportProviderDelegate::HandleProvideAnswer(uint16_t sessionId, const std::string & sdpAnswer)
+CHIP_ERROR MockWebRTCTransportProviderDelegate::HandleProvideAnswer(uint16_t sessionId, const std::string  &sdpAnswer)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockWebRTCTransportProviderDelegate::HandleProvideICECandidates(uint16_t sessionId, const std::vector<ICECandidateStruct> & candidates)
+CHIP_ERROR MockWebRTCTransportProviderDelegate::HandleProvideICECandidates(uint16_t sessionId, const std::vector<ICECandidateStruct>  &candidates)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -55,8 +55,8 @@ CHIP_ERROR MockWebRTCTransportProviderDelegate::HandleEndSession(uint16_t sessio
 }
 
 CHIP_ERROR MockWebRTCTransportProviderDelegate::ValidateStreamUsage(StreamUsageEnum streamUsage,
-                                                                    Optional<DataModel::Nullable<uint16_t>> & videoStreamId,
-                                                                    Optional<DataModel::Nullable<uint16_t>> & audioStreamId)
+                                                                    Optional<DataModel::Nullable<uint16_t>>  &videoStreamId,
+                                                                    Optional<DataModel::Nullable<uint16_t>>  &audioStreamId)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -66,4 +66,4 @@ CHIP_ERROR MockWebRTCTransportProviderDelegate::ValidateStreamUsage(StreamUsageE
 } // namespace WebRTCTransportProvider
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

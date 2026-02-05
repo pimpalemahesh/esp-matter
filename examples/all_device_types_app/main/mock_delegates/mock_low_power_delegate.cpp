@@ -25,4 +25,4 @@ bool MockLowPowerDelegate::HandleSleep()
 } // namespace LowPower
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

@@ -15,12 +15,12 @@ namespace app {
 namespace Clusters {
 namespace ContentAppObserver {
 
-void MockContentAppObserverDelegate::HandleContentAppMessage(CommandResponseHelper<Commands::ContentAppMessageResponse::Type> & helper,
-                                                             const chip::Optional<chip::CharSpan> & data, const chip::CharSpan & encodingHint)
+void MockContentAppObserverDelegate::HandleContentAppMessage(CommandResponseHelper<Commands::ContentAppMessageResponse::Type>  &helper,
+                                                             const chip::Optional<chip::CharSpan>  &data, const chip::CharSpan  &encodingHint)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
-    
+
     Commands::ContentAppMessageResponse::Type response;
     helper.Success(response);
     return;
@@ -29,4 +29,4 @@ void MockContentAppObserverDelegate::HandleContentAppMessage(CommandResponseHelp
 } // namespace ContentAppObserver
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

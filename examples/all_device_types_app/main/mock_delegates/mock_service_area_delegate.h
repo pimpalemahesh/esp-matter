@@ -25,18 +25,17 @@ namespace app {
 namespace Clusters {
 namespace ServiceArea {
 
-class MockServiceAreaDelegate : public Delegate
-{
+class MockServiceAreaDelegate : public Delegate {
 public:
     MockServiceAreaDelegate() : Delegate() {}
     virtual ~MockServiceAreaDelegate() = default;
 
     // Service area management
     CHIP_ERROR Init() override;
-    bool IsSetSelectedAreasAllowed(MutableCharSpan & statusText) override;
-    bool IsValidSelectAreasSet(const Span<const uint32_t> & selectedAreas, SelectAreasStatus & locationStatus,
-                                MutableCharSpan & statusText) override;
-    bool HandleSkipArea(uint32_t skippedArea, MutableCharSpan & skipStatusText) override;
+    bool IsSetSelectedAreasAllowed(MutableCharSpan  &statusText) override;
+    bool IsValidSelectAreasSet(const Span<const uint32_t>  &selectedAreas, SelectAreasStatus  &locationStatus,
+                               MutableCharSpan  &statusText) override;
+    bool HandleSkipArea(uint32_t skippedArea, MutableCharSpan  &skipStatusText) override;
 
 private:
     static constexpr const char * LOG_TAG = "MockServiceAreaDelegate";
@@ -45,4 +44,4 @@ private:
 } // namespace ServiceArea
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

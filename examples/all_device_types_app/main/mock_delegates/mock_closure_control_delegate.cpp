@@ -22,9 +22,9 @@ Protocols::InteractionModel::Status MockClosureControlDelegate::HandleStopComman
     return Protocols::InteractionModel::Status::Success;
 }
 
-Protocols::InteractionModel::Status MockClosureControlDelegate::HandleMoveToCommand(const Optional<TargetPositionEnum> & position,
-                                                                                   const Optional<bool> & latch,
-                                                                                   const Optional<Globals::ThreeLevelAutoEnum> & speed)
+Protocols::InteractionModel::Status MockClosureControlDelegate::HandleMoveToCommand(const Optional<TargetPositionEnum>  &position,
+                                                                                    const Optional<bool>  &latch,
+                                                                                    const Optional<Globals::ThreeLevelAutoEnum>  &speed)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -65,4 +65,4 @@ ElapsedS MockClosureControlDelegate::GetWaitingForMotionCountdownTime()
 } // namespace ClosureControl
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

@@ -25,22 +25,21 @@ namespace app {
 namespace Clusters {
 namespace DoorLock {
 
-class MockDoorLockDelegate : public Delegate
-{
+class MockDoorLockDelegate : public Delegate {
 public:
     MockDoorLockDelegate() = default;
 
-    CHIP_ERROR GetAliroReaderVerificationKey(MutableByteSpan & verificationKey) override;
-    CHIP_ERROR GetAliroReaderGroupIdentifier(MutableByteSpan & groupIdentifier) override;
-    CHIP_ERROR GetAliroReaderGroupSubIdentifier(MutableByteSpan & groupSubIdentifier) override;
-    CHIP_ERROR GetAliroExpeditedTransactionSupportedProtocolVersionAtIndex(size_t index, MutableByteSpan & protocolVersion) override;
-    CHIP_ERROR GetAliroGroupResolvingKey(MutableByteSpan & groupResolvingKey) override;
-    CHIP_ERROR GetAliroSupportedBLEUWBProtocolVersionAtIndex(size_t index, MutableByteSpan & protocolVersion) override;
+    CHIP_ERROR GetAliroReaderVerificationKey(MutableByteSpan  &verificationKey) override;
+    CHIP_ERROR GetAliroReaderGroupIdentifier(MutableByteSpan  &groupIdentifier) override;
+    CHIP_ERROR GetAliroReaderGroupSubIdentifier(MutableByteSpan  &groupSubIdentifier) override;
+    CHIP_ERROR GetAliroExpeditedTransactionSupportedProtocolVersionAtIndex(size_t index, MutableByteSpan  &protocolVersion) override;
+    CHIP_ERROR GetAliroGroupResolvingKey(MutableByteSpan  &groupResolvingKey) override;
+    CHIP_ERROR GetAliroSupportedBLEUWBProtocolVersionAtIndex(size_t index, MutableByteSpan  &protocolVersion) override;
     uint8_t GetAliroBLEAdvertisingVersion() override;
     uint16_t GetNumberOfAliroCredentialIssuerKeysSupported() override;
     uint16_t GetNumberOfAliroEndpointKeysSupported() override;
-    CHIP_ERROR SetAliroReaderConfig(const ByteSpan & signingKey, const ByteSpan & verificationKey,
-                                    const ByteSpan & groupIdentifier, const Optional<ByteSpan> & groupResolvingKey) override;
+    CHIP_ERROR SetAliroReaderConfig(const ByteSpan  &signingKey, const ByteSpan  &verificationKey,
+                                    const ByteSpan  &groupIdentifier, const Optional<ByteSpan>  &groupResolvingKey) override;
     CHIP_ERROR ClearAliroReaderConfig() override;
 
 private:
@@ -50,4 +49,4 @@ private:
 } // namespace DoorLock
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

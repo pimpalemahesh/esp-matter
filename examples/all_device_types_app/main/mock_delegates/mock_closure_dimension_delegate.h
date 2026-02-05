@@ -26,18 +26,17 @@ namespace app {
 namespace Clusters {
 namespace ClosureDimension {
 
-class MockClosureDimensionDelegate : public DelegateBase
-{
+class MockClosureDimensionDelegate : public DelegateBase {
 public:
     MockClosureDimensionDelegate() : DelegateBase() {}
     virtual ~MockClosureDimensionDelegate() = default;
 
     // Closure dimension command handlers
-    Protocols::InteractionModel::Status HandleSetTarget(const Optional<Percent100ths> & position,
-                                                        const Optional<bool> & latch,
-                                                        const Optional<Globals::ThreeLevelAutoEnum> & speed) override;
-    Protocols::InteractionModel::Status HandleStep(const StepDirectionEnum & direction, const uint16_t & numberOfSteps,
-                                                   const Optional<Globals::ThreeLevelAutoEnum> & speed) override;
+    Protocols::InteractionModel::Status HandleSetTarget(const Optional<Percent100ths>  &position,
+                                                        const Optional<bool>  &latch,
+                                                        const Optional<Globals::ThreeLevelAutoEnum>  &speed) override;
+    Protocols::InteractionModel::Status HandleStep(const StepDirectionEnum  &direction, const uint16_t  &numberOfSteps,
+                                                   const Optional<Globals::ThreeLevelAutoEnum>  &speed) override;
 
 private:
     static constexpr const char * LOG_TAG = "MockClosureDimensionDelegate";

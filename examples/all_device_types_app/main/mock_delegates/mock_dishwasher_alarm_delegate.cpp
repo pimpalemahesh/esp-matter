@@ -32,4 +32,4 @@ bool MockDishwasherAlarmDelegate::ResetAlarmsCallback(const BitMask<AlarmMap> al
 } // namespace DishwasherAlarm
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

@@ -25,35 +25,34 @@ namespace app {
 namespace Clusters {
 namespace Thermostat {
 
-class MockThermostatDelegate : public Delegate
-{
+class MockThermostatDelegate : public Delegate {
 public:
     MockThermostatDelegate() = default;
 
     std::optional<System::Clock::Milliseconds16> GetMaxAtomicWriteTimeout(chip::AttributeId attributeId) override;
-    CHIP_ERROR GetPresetTypeAtIndex(size_t index, Structs::PresetTypeStruct::Type & presetType) override;
+    CHIP_ERROR GetPresetTypeAtIndex(size_t index, Structs::PresetTypeStruct::Type  &presetType) override;
     uint8_t GetNumberOfPresets() override;
-    CHIP_ERROR GetPresetAtIndex(size_t index, PresetStructWithOwnedMembers & preset) override;
-    CHIP_ERROR GetActivePresetHandle(DataModel::Nullable<MutableByteSpan> & activePresetHandle) override;
-    CHIP_ERROR SetActivePresetHandle(const DataModel::Nullable<ByteSpan> & newActivePresetHandle) override;
+    CHIP_ERROR GetPresetAtIndex(size_t index, PresetStructWithOwnedMembers  &preset) override;
+    CHIP_ERROR GetActivePresetHandle(DataModel::Nullable<MutableByteSpan>  &activePresetHandle) override;
+    CHIP_ERROR SetActivePresetHandle(const DataModel::Nullable<ByteSpan>  &newActivePresetHandle) override;
     void InitializePendingPresets() override;
-    CHIP_ERROR AppendToPendingPresetList(const PresetStructWithOwnedMembers & preset) override;
-    CHIP_ERROR GetPendingPresetAtIndex(size_t index, PresetStructWithOwnedMembers & preset) override;
+    CHIP_ERROR AppendToPendingPresetList(const PresetStructWithOwnedMembers  &preset) override;
+    CHIP_ERROR GetPendingPresetAtIndex(size_t index, PresetStructWithOwnedMembers  &preset) override;
     CHIP_ERROR CommitPendingPresets() override;
     void ClearPendingPresetList() override;
     uint8_t GetMaxThermostatSuggestions() override;
     uint8_t GetNumberOfThermostatSuggestions() override;
     CHIP_ERROR GetThermostatSuggestionAtIndex(size_t index,
-                                              ThermostatSuggestionStructWithOwnedMembers & thermostatSuggestion) override;
+                                              ThermostatSuggestionStructWithOwnedMembers  &thermostatSuggestion) override;
     void GetCurrentThermostatSuggestion(
-        DataModel::Nullable<ThermostatSuggestionStructWithOwnedMembers> & currentThermostatSuggestion) override;
+        DataModel::Nullable<ThermostatSuggestionStructWithOwnedMembers>  &currentThermostatSuggestion) override;
     DataModel::Nullable<ThermostatSuggestionNotFollowingReasonBitmap> GetThermostatSuggestionNotFollowingReason() override;
     CHIP_ERROR
-    AppendToThermostatSuggestionsList(const Structs::ThermostatSuggestionStruct::Type & thermostatSuggestion) override;
+    AppendToThermostatSuggestionsList(const Structs::ThermostatSuggestionStruct::Type  &thermostatSuggestion) override;
     CHIP_ERROR RemoveFromThermostatSuggestionsList(size_t indexToRemove) override;
-    CHIP_ERROR GetUniqueID(uint8_t & uniqueID) override;
+    CHIP_ERROR GetUniqueID(uint8_t  &uniqueID) override;
     CHIP_ERROR ReEvaluateCurrentSuggestion() override;
-    CHIP_ERROR GetScheduleTypeAtIndex(size_t index, Structs::ScheduleTypeStruct::Type & scheduleType) override;
+    CHIP_ERROR GetScheduleTypeAtIndex(size_t index, Structs::ScheduleTypeStruct::Type  &scheduleType) override;
 
 private:
     const char *LOG_TAG = "thermostat";
@@ -62,4 +61,4 @@ private:
 } // namespace Thermostat
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

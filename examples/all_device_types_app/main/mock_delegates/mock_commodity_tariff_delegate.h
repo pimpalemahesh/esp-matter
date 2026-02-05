@@ -22,8 +22,7 @@ namespace app {
 namespace Clusters {
 namespace CommodityTariff {
 
-class MockCommodityTariffDelegate : public Delegate
-{
+class MockCommodityTariffDelegate : public Delegate {
 public:
     MockCommodityTariffDelegate() = default;
     virtual ~MockCommodityTariffDelegate() = default;

@@ -22,7 +22,7 @@ bool MockContentControlDelegate::HandleGetEnabled()
     return false;
 }
 
-CHIP_ERROR MockContentControlDelegate::HandleGetOnDemandRatings(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockContentControlDelegate::HandleGetOnDemandRatings(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -36,7 +36,7 @@ chip::CharSpan MockContentControlDelegate::HandleGetOnDemandRatingThreshold()
     return chip::CharSpan();
 }
 
-CHIP_ERROR MockContentControlDelegate::HandleGetScheduledContentRatings(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockContentControlDelegate::HandleGetScheduledContentRatings(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -78,7 +78,7 @@ void MockContentControlDelegate::HandleUpdatePIN(chip::CharSpan oldPIN, chip::Ch
     return;
 }
 
-void MockContentControlDelegate::HandleResetPIN(CommandResponseHelper<Commands::ResetPINResponse::Type> & helper)
+void MockContentControlDelegate::HandleResetPIN(CommandResponseHelper<Commands::ResetPINResponse::Type>  &helper)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -152,4 +152,4 @@ uint32_t MockContentControlDelegate::GetFeatureMap(chip::EndpointId endpoint)
 } // namespace ContentControl
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

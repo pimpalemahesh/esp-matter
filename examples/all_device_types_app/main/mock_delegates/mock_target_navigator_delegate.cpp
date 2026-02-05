@@ -15,7 +15,7 @@ namespace app {
 namespace Clusters {
 namespace TargetNavigator {
 
-CHIP_ERROR MockTargetNavigatorDelegate::HandleGetTargetList(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockTargetNavigatorDelegate::HandleGetTargetList(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -29,8 +29,8 @@ uint8_t MockTargetNavigatorDelegate::HandleGetCurrentTarget()
     return 0;
 }
 
-void MockTargetNavigatorDelegate::HandleNavigateTarget(CommandResponseHelper<Commands::NavigateTargetResponse::Type> & helper,
-                                                      const uint64_t & target, const CharSpan & data)
+void MockTargetNavigatorDelegate::HandleNavigateTarget(CommandResponseHelper<Commands::NavigateTargetResponse::Type>  &helper,
+                                                       const uint64_t  &target, const CharSpan  &data)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -49,4 +49,4 @@ uint16_t MockTargetNavigatorDelegate::GetClusterRevision(chip::EndpointId endpoi
 } // namespace TargetNavigator
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

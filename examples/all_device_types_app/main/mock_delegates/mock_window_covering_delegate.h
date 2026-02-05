@@ -25,8 +25,7 @@ namespace app {
 namespace Clusters {
 namespace WindowCovering {
 
-class MockWindowCoveringDelegate : public Delegate
-{
+class MockWindowCoveringDelegate : public Delegate {
 public:
     MockWindowCoveringDelegate() = default;
 
@@ -40,4 +39,4 @@ private:
 } // namespace WindowCovering
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

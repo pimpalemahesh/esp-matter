@@ -15,7 +15,7 @@ namespace app {
 namespace Clusters {
 namespace CommissionerControl {
 
-CHIP_ERROR MockCommissionerControlDelegate::HandleCommissioningApprovalRequest(const CommissioningApprovalRequest & request)
+CHIP_ERROR MockCommissionerControlDelegate::HandleCommissioningApprovalRequest(const CommissioningApprovalRequest  &request)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -29,14 +29,14 @@ CHIP_ERROR MockCommissionerControlDelegate::ValidateCommissionNodeCommand(NodeId
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockCommissionerControlDelegate::GetCommissioningWindowParams(CommissioningWindowParams & outParams)
+CHIP_ERROR MockCommissionerControlDelegate::GetCommissioningWindowParams(CommissioningWindowParams  &outParams)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockCommissionerControlDelegate::HandleCommissionNode(const CommissioningWindowParams & params)
+CHIP_ERROR MockCommissionerControlDelegate::HandleCommissionNode(const CommissioningWindowParams  &params)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -46,4 +46,4 @@ CHIP_ERROR MockCommissionerControlDelegate::HandleCommissionNode(const Commissio
 } // namespace CommissionerControl
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

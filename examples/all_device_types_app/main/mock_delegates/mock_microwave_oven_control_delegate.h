@@ -25,21 +25,20 @@ namespace app {
 namespace Clusters {
 namespace MicrowaveOvenControl {
 
-class MockMicrowaveOvenControlDelegate : public Delegate
-{
+class MockMicrowaveOvenControlDelegate : public Delegate {
 public:
     MockMicrowaveOvenControlDelegate() = default;
     virtual ~MockMicrowaveOvenControlDelegate() = default;
 
     // Delegate interface
     Protocols::InteractionModel::Status HandleSetCookingParametersCallback(uint8_t cookMode, uint32_t cookTimeSec,
-                                                                          bool startAfterSetting,
-                                                                          Optional<uint8_t> powerSettingNum,
-                                                                          Optional<uint8_t> wattSettingIndex) override;
+                                                                           bool startAfterSetting,
+                                                                           Optional<uint8_t> powerSettingNum,
+                                                                           Optional<uint8_t> wattSettingIndex) override;
 
     Protocols::InteractionModel::Status HandleModifyCookTimeSecondsCallback(uint32_t finalCookTimeSec) override;
 
-    CHIP_ERROR GetWattSettingByIndex(uint8_t index, uint16_t & wattSetting) override;
+    CHIP_ERROR GetWattSettingByIndex(uint8_t index, uint16_t  &wattSetting) override;
 
     uint32_t GetMaxCookTimeSec() const override;
     uint8_t GetPowerSettingNum() const override;
@@ -55,4 +54,4 @@ private:
 } // namespace MicrowaveOvenControl
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

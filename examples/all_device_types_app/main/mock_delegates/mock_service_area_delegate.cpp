@@ -22,15 +22,15 @@ CHIP_ERROR MockServiceAreaDelegate::Init()
     return CHIP_NO_ERROR;
 }
 
-bool MockServiceAreaDelegate::IsSetSelectedAreasAllowed(MutableCharSpan & statusText)
+bool MockServiceAreaDelegate::IsSetSelectedAreasAllowed(MutableCharSpan  &statusText)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return true;
 }
 
-bool MockServiceAreaDelegate::IsValidSelectAreasSet(const Span<const uint32_t> & selectedAreas, SelectAreasStatus & locationStatus,
-                                                    MutableCharSpan & statusText)
+bool MockServiceAreaDelegate::IsValidSelectAreasSet(const Span<const uint32_t>  &selectedAreas, SelectAreasStatus  &locationStatus,
+                                                    MutableCharSpan  &statusText)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -38,7 +38,7 @@ bool MockServiceAreaDelegate::IsValidSelectAreasSet(const Span<const uint32_t> &
     return true;
 }
 
-bool MockServiceAreaDelegate::HandleSkipArea(uint32_t skippedArea, MutableCharSpan & skipStatusText)
+bool MockServiceAreaDelegate::HandleSkipArea(uint32_t skippedArea, MutableCharSpan  &skipStatusText)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -48,4 +48,4 @@ bool MockServiceAreaDelegate::HandleSkipArea(uint32_t skippedArea, MutableCharSp
 } // namespace ServiceArea
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

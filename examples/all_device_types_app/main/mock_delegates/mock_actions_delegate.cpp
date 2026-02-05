@@ -15,21 +15,21 @@ namespace app {
 namespace Clusters {
 namespace Actions {
 
-CHIP_ERROR MockActionsDelegate::ReadActionAtIndex(uint16_t index, ActionStructStorage & action)
+CHIP_ERROR MockActionsDelegate::ReadActionAtIndex(uint16_t index, ActionStructStorage  &action)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_PROVIDER_LIST_EXHAUSTED;
 }
 
-CHIP_ERROR MockActionsDelegate::ReadEndpointListAtIndex(uint16_t index, EndpointListStorage & epList)
+CHIP_ERROR MockActionsDelegate::ReadEndpointListAtIndex(uint16_t index, EndpointListStorage  &epList)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_PROVIDER_LIST_EXHAUSTED;
 }
 
-bool MockActionsDelegate::HaveActionWithId(uint16_t aActionId, uint16_t & aActionIndex)
+bool MockActionsDelegate::HaveActionWithId(uint16_t aActionId, uint16_t  &aActionIndex)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -44,7 +44,7 @@ Protocols::InteractionModel::Status MockActionsDelegate::HandleInstantAction(uin
 }
 
 Protocols::InteractionModel::Status MockActionsDelegate::HandleInstantActionWithTransition(uint16_t actionId, uint16_t transitionTime,
-                                                                                         Optional<uint32_t> invokeId)
+                                                                                           Optional<uint32_t> invokeId)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -59,7 +59,7 @@ Protocols::InteractionModel::Status MockActionsDelegate::HandleStartAction(uint1
 }
 
 Protocols::InteractionModel::Status MockActionsDelegate::HandleStartActionWithDuration(uint16_t actionId, uint32_t duration,
-                                                                                      Optional<uint32_t> invokeId)
+                                                                                       Optional<uint32_t> invokeId)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -81,7 +81,7 @@ Protocols::InteractionModel::Status MockActionsDelegate::HandlePauseAction(uint1
 }
 
 Protocols::InteractionModel::Status MockActionsDelegate::HandlePauseActionWithDuration(uint16_t actionId, uint32_t duration,
-                                                                                      Optional<uint32_t> invokeId)
+                                                                                       Optional<uint32_t> invokeId)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -103,7 +103,7 @@ Protocols::InteractionModel::Status MockActionsDelegate::HandleEnableAction(uint
 }
 
 Protocols::InteractionModel::Status MockActionsDelegate::HandleEnableActionWithDuration(uint16_t actionId, uint32_t duration,
-                                                                                       Optional<uint32_t> invokeId)
+                                                                                        Optional<uint32_t> invokeId)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -118,7 +118,7 @@ Protocols::InteractionModel::Status MockActionsDelegate::HandleDisableAction(uin
 }
 
 Protocols::InteractionModel::Status MockActionsDelegate::HandleDisableActionWithDuration(uint16_t actionId, uint32_t duration,
-                                                                                        Optional<uint32_t> invokeId)
+                                                                                         Optional<uint32_t> invokeId)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -128,4 +128,4 @@ Protocols::InteractionModel::Status MockActionsDelegate::HandleDisableActionWith
 } // namespace Actions
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

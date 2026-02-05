@@ -15,8 +15,8 @@ namespace app {
 namespace Clusters {
 namespace CameraAvStreamManagement {
 
-Protocols::InteractionModel::Status MockCameraAVStreamManagementDelegate::VideoStreamAllocate(const VideoStreamStruct & allocateArgs,
-                                                                                              uint16_t & outStreamID)
+Protocols::InteractionModel::Status MockCameraAVStreamManagementDelegate::VideoStreamAllocate(const VideoStreamStruct  &allocateArgs,
+                                                                                              uint16_t  &outStreamID)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -24,7 +24,7 @@ Protocols::InteractionModel::Status MockCameraAVStreamManagementDelegate::VideoS
     return Protocols::InteractionModel::Status::Success;
 }
 
-void MockCameraAVStreamManagementDelegate::OnVideoStreamAllocated(const VideoStreamStruct & allocatedStream, StreamAllocationAction action)
+void MockCameraAVStreamManagementDelegate::OnVideoStreamAllocated(const VideoStreamStruct  &allocatedStream, StreamAllocationAction action)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -46,8 +46,8 @@ Protocols::InteractionModel::Status MockCameraAVStreamManagementDelegate::VideoS
     return Protocols::InteractionModel::Status::Success;
 }
 
-Protocols::InteractionModel::Status MockCameraAVStreamManagementDelegate::AudioStreamAllocate(const AudioStreamStruct & allocateArgs,
-                                                                                              uint16_t & outStreamID)
+Protocols::InteractionModel::Status MockCameraAVStreamManagementDelegate::AudioStreamAllocate(const AudioStreamStruct  &allocateArgs,
+                                                                                              uint16_t  &outStreamID)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -62,8 +62,8 @@ Protocols::InteractionModel::Status MockCameraAVStreamManagementDelegate::AudioS
     return Protocols::InteractionModel::Status::Success;
 }
 
-Protocols::InteractionModel::Status MockCameraAVStreamManagementDelegate::SnapshotStreamAllocate(const SnapshotStreamAllocateArgs & allocateArgs,
-                                                                                                 uint16_t & outStreamID)
+Protocols::InteractionModel::Status MockCameraAVStreamManagementDelegate::SnapshotStreamAllocate(const SnapshotStreamAllocateArgs  &allocateArgs,
+                                                                                                 uint16_t  &outStreamID)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -101,8 +101,8 @@ void MockCameraAVStreamManagementDelegate::OnAttributeChanged(AttributeId attrib
 }
 
 Protocols::InteractionModel::Status MockCameraAVStreamManagementDelegate::CaptureSnapshot(const DataModel::Nullable<uint16_t> streamID,
-                                                                                          const VideoResolutionStruct & resolution,
-                                                                                          ImageSnapshot & outImageSnapshot)
+                                                                                          const VideoResolutionStruct  &resolution,
+                                                                                          ImageSnapshot  &outImageSnapshot)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -130,12 +130,12 @@ CHIP_ERROR MockCameraAVStreamManagementDelegate::OnTransportReleaseAudioVideoStr
     return CHIP_NO_ERROR;
 }
 
-const std::vector<VideoStreamStruct> & MockCameraAVStreamManagementDelegate::GetAllocatedVideoStreams() const
+const std::vector<VideoStreamStruct>  &MockCameraAVStreamManagementDelegate::GetAllocatedVideoStreams() const
 {
     return mAllocatedVideoStreams;
 }
 
-const std::vector<AudioStreamStruct> & MockCameraAVStreamManagementDelegate::GetAllocatedAudioStreams() const
+const std::vector<AudioStreamStruct>  &MockCameraAVStreamManagementDelegate::GetAllocatedAudioStreams() const
 {
     return mAllocatedAudioStreams;
 }
@@ -144,4 +144,3 @@ const std::vector<AudioStreamStruct> & MockCameraAVStreamManagementDelegate::Get
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

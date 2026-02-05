@@ -24,15 +24,14 @@ namespace app {
 namespace Clusters {
 namespace PowerTopology {
 
-class MockPowerTopologyDelegate : public Delegate
-{
+class MockPowerTopologyDelegate : public Delegate {
 public:
     MockPowerTopologyDelegate() = default;
     virtual ~MockPowerTopologyDelegate() = default;
 
     // Delegate interface
-    CHIP_ERROR GetAvailableEndpointAtIndex(size_t index, EndpointId & endpointId) override;
-    CHIP_ERROR GetActiveEndpointAtIndex(size_t index, EndpointId & endpointId) override;
+    CHIP_ERROR GetAvailableEndpointAtIndex(size_t index, EndpointId  &endpointId) override;
+    CHIP_ERROR GetActiveEndpointAtIndex(size_t index, EndpointId  &endpointId) override;
 
 private:
     static constexpr const char * LOG_TAG = "MockPowerTopologyDelegate";
@@ -41,4 +40,4 @@ private:
 } // namespace PowerTopology
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

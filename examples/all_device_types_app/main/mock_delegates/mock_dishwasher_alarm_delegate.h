@@ -24,8 +24,7 @@ namespace app {
 namespace Clusters {
 namespace DishwasherAlarm {
 
-class MockDishwasherAlarmDelegate : public Delegate
-{
+class MockDishwasherAlarmDelegate : public Delegate {
 public:
     MockDishwasherAlarmDelegate() : Delegate() {}
     MockDishwasherAlarmDelegate(EndpointId endpoint) : Delegate(endpoint) {}
@@ -42,4 +41,4 @@ private:
 } // namespace DishwasherAlarm
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

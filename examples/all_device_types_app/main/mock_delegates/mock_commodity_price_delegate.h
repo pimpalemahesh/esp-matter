@@ -23,8 +23,7 @@ namespace app {
 namespace Clusters {
 namespace CommodityPrice {
 
-class MockCommodityPriceDelegate : public Delegate
-{
+class MockCommodityPriceDelegate : public Delegate {
 public:
     MockCommodityPriceDelegate() = default;
     virtual ~MockCommodityPriceDelegate() = default;
@@ -37,4 +36,4 @@ public:
 } // namespace CommodityPrice
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

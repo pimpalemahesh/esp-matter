@@ -15,14 +15,14 @@ namespace app {
 namespace Clusters {
 namespace PowerTopology {
 
-CHIP_ERROR MockPowerTopologyDelegate::GetAvailableEndpointAtIndex(size_t index, EndpointId & endpointId)
+CHIP_ERROR MockPowerTopologyDelegate::GetAvailableEndpointAtIndex(size_t index, EndpointId  &endpointId)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_PROVIDER_LIST_EXHAUSTED;
 }
 
-CHIP_ERROR MockPowerTopologyDelegate::GetActiveEndpointAtIndex(size_t index, EndpointId & endpointId)
+CHIP_ERROR MockPowerTopologyDelegate::GetActiveEndpointAtIndex(size_t index, EndpointId  &endpointId)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -32,4 +32,4 @@ CHIP_ERROR MockPowerTopologyDelegate::GetActiveEndpointAtIndex(size_t index, End
 } // namespace PowerTopology
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

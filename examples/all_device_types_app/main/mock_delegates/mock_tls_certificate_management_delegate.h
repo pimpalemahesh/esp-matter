@@ -8,22 +8,21 @@
 
 #pragma once
 
-#include <app/clusters/tls-certificate-management-server/tls-certificate-management-server.h>
+#include <app/clusters/tls-certificate-management-server/TlsCertificateManagementCluster.h>
 #include <protocols/interaction_model/StatusCode.h>
 
 namespace chip {
 namespace app {
 namespace Clusters {
 
-class MockTlsCertificateManagementDelegate : public TlsCertificateManagementDelegate
-{
+class MockTlsCertificateManagementDelegate : public TlsCertificateManagementDelegate {
 public:
     MockTlsCertificateManagementDelegate() = default;
     virtual ~MockTlsCertificateManagementDelegate() = default;
 
     Protocols::InteractionModel::Status ProvisionRootCert(EndpointId matterEndpoint, FabricIndex fabric,
-                                                          const ProvisionRootCertificateType & provisionReq,
-                                                          Tls::TLSCAID & outCaid) override;
+                                                          const ProvisionRootCertificateType  &provisionReq,
+                                                          Tls::TLSCAID  &outCaid) override;
 
     CHIP_ERROR LoadedRootCerts(EndpointId matterEndpoint, FabricIndex fabric,
                                LoadedRootCertificateCallback loadedCallback) const override;
@@ -34,20 +33,20 @@ public:
     CHIP_ERROR FindRootCert(EndpointId matterEndpoint, FabricIndex fabric, Tls::TLSCAID id,
                             LoadedRootCertificateCallback loadedCallback) const override;
 
-    CHIP_ERROR LookupRootCertByFingerprint(EndpointId matterEndpoint, FabricIndex fabric, const ByteSpan & fingerprint,
+    CHIP_ERROR LookupRootCertByFingerprint(EndpointId matterEndpoint, FabricIndex fabric, const ByteSpan  &fingerprint,
                                            LoadedRootCertificateCallback loadedCallback) const override;
 
-    CHIP_ERROR LookupRootCert(EndpointId matterEndpoint, FabricIndex fabric, const ByteSpan & cert,
+    CHIP_ERROR LookupRootCert(EndpointId matterEndpoint, FabricIndex fabric, const ByteSpan  &cert,
                               LoadedRootCertificateCallback loadedCallback) const override;
 
     Protocols::InteractionModel::Status RemoveRootCert(EndpointId matterEndpoint, FabricIndex fabric, Tls::TLSCAID id) override;
 
     Protocols::InteractionModel::Status GenerateClientCsr(EndpointId matterEndpoint, FabricIndex fabric,
-                                                          const ClientCsrType & request,
+                                                          const ClientCsrType  &request,
                                                           GeneratedCsrCallback loadedCallback) const override;
 
     Protocols::InteractionModel::Status ProvisionClientCert(EndpointId matterEndpoint, FabricIndex fabric,
-                                                            const ProvisionClientCertificateType & provisionReq) override;
+                                                            const ProvisionClientCertificateType  &provisionReq) override;
 
     CHIP_ERROR LoadedClientCerts(EndpointId matterEndpoint, FabricIndex fabric,
                                  LoadedClientCertificateCallback loadedCallback) const override;
@@ -58,10 +57,10 @@ public:
     CHIP_ERROR FindClientCert(EndpointId matterEndpoint, FabricIndex fabric, Tls::TLSCCDID id,
                               LoadedClientCertificateCallback loadedCallback) const override;
 
-    CHIP_ERROR LookupClientCertByFingerprint(EndpointId matterEndpoint, FabricIndex fabric, const ByteSpan & fingerprint,
+    CHIP_ERROR LookupClientCertByFingerprint(EndpointId matterEndpoint, FabricIndex fabric, const ByteSpan  &fingerprint,
                                              LoadedClientCertificateCallback loadedCallback) const override;
 
-    CHIP_ERROR LookupClientCert(EndpointId matterEndpoint, FabricIndex fabric, const ByteSpan & certificate,
+    CHIP_ERROR LookupClientCert(EndpointId matterEndpoint, FabricIndex fabric, const ByteSpan  &certificate,
                                 LoadedClientCertificateCallback loadedCallback) const override;
 
     Protocols::InteractionModel::Status RemoveClientCert(EndpointId matterEndpoint, FabricIndex fabric, Tls::TLSCCDID id) override;
@@ -73,4 +72,3 @@ private:
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

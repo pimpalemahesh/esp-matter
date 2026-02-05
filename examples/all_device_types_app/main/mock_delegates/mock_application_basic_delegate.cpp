@@ -15,7 +15,7 @@ namespace app {
 namespace Clusters {
 namespace ApplicationBasic {
 
-CHIP_ERROR MockApplicationBasicDelegate::HandleGetVendorName(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockApplicationBasicDelegate::HandleGetVendorName(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -29,7 +29,7 @@ uint16_t MockApplicationBasicDelegate::HandleGetVendorId()
     return 0;
 }
 
-CHIP_ERROR MockApplicationBasicDelegate::HandleGetApplicationName(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockApplicationBasicDelegate::HandleGetApplicationName(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -43,14 +43,14 @@ uint16_t MockApplicationBasicDelegate::HandleGetProductId()
     return 0;
 }
 
-CHIP_ERROR MockApplicationBasicDelegate::HandleGetApplicationVersion(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockApplicationBasicDelegate::HandleGetApplicationVersion(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return aEncoder.EncodeNull();
 }
 
-CHIP_ERROR MockApplicationBasicDelegate::HandleGetAllowedVendorList(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockApplicationBasicDelegate::HandleGetAllowedVendorList(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -67,4 +67,4 @@ std::list<uint16_t> MockApplicationBasicDelegate::GetAllowedVendorList()
 } // namespace ApplicationBasic
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

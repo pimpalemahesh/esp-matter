@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <app/clusters/camera-av-stream-management-server/camera-av-stream-management-server.h>
+#include <app/clusters/camera-av-stream-management-server/CameraAVStreamManagementCluster.h>
 #include <protocols/interaction_model/StatusCode.h>
 
 /*
@@ -24,28 +24,27 @@ namespace app {
 namespace Clusters {
 namespace CameraAvStreamManagement {
 
-class MockCameraAVStreamManagementDelegate : public CameraAVStreamMgmtDelegate
-{
+class MockCameraAVStreamManagementDelegate : public CameraAVStreamManagementDelegate {
 public:
     MockCameraAVStreamManagementDelegate() = default;
     virtual ~MockCameraAVStreamManagementDelegate() = default;
 
     // Video stream handlers
-    Protocols::InteractionModel::Status VideoStreamAllocate(const VideoStreamStruct & allocateArgs,
-                                                            uint16_t & outStreamID) override;
-    void OnVideoStreamAllocated(const VideoStreamStruct & allocatedStream, StreamAllocationAction action) override;
+    Protocols::InteractionModel::Status VideoStreamAllocate(const VideoStreamStruct  &allocateArgs,
+                                                            uint16_t  &outStreamID) override;
+    void OnVideoStreamAllocated(const VideoStreamStruct  &allocatedStream, StreamAllocationAction action) override;
     Protocols::InteractionModel::Status VideoStreamModify(const uint16_t streamID, const Optional<bool> waterMarkEnabled,
                                                           const Optional<bool> osdEnabled) override;
     Protocols::InteractionModel::Status VideoStreamDeallocate(const uint16_t streamID) override;
 
     // Audio stream handlers
-    Protocols::InteractionModel::Status AudioStreamAllocate(const AudioStreamStruct & allocateArgs,
-                                                            uint16_t & outStreamID) override;
+    Protocols::InteractionModel::Status AudioStreamAllocate(const AudioStreamStruct  &allocateArgs,
+                                                            uint16_t  &outStreamID) override;
     Protocols::InteractionModel::Status AudioStreamDeallocate(const uint16_t streamID) override;
 
     // Snapshot stream handlers
-    Protocols::InteractionModel::Status SnapshotStreamAllocate(const SnapshotStreamAllocateArgs & allocateArgs,
-                                                               uint16_t & outStreamID) override;
+    Protocols::InteractionModel::Status SnapshotStreamAllocate(const SnapshotStreamAllocateArgs  &allocateArgs,
+                                                               uint16_t  &outStreamID) override;
     Protocols::InteractionModel::Status SnapshotStreamModify(const uint16_t streamID, const Optional<bool> waterMarkEnabled,
                                                              const Optional<bool> osdEnabled) override;
     Protocols::InteractionModel::Status SnapshotStreamDeallocate(const uint16_t streamID) override;
@@ -56,8 +55,8 @@ public:
 
     // Capture snapshot
     Protocols::InteractionModel::Status CaptureSnapshot(const DataModel::Nullable<uint16_t> streamID,
-                                                        const VideoResolutionStruct & resolution,
-                                                        ImageSnapshot & outImageSnapshot) override;
+                                                        const VideoResolutionStruct  &resolution,
+                                                        ImageSnapshot  &outImageSnapshot) override;
 
     // Persistent attributes callback
     CHIP_ERROR PersistentAttributesLoadedCallback() override;
@@ -67,8 +66,8 @@ public:
     CHIP_ERROR OnTransportReleaseAudioVideoStreams(uint16_t audioStreamID, uint16_t videoStreamID) override;
 
     // Stream accessors
-    const std::vector<VideoStreamStruct> & GetAllocatedVideoStreams() const override;
-    const std::vector<AudioStreamStruct> & GetAllocatedAudioStreams() const override;
+    const std::vector<VideoStreamStruct>  &GetAllocatedVideoStreams() const override;
+    const std::vector<AudioStreamStruct>  &GetAllocatedAudioStreams() const override;
 
 private:
     static constexpr const char * LOG_TAG = "MockCameraAVStreamMgmtDelegate";
@@ -80,4 +79,3 @@ private:
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

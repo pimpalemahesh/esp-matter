@@ -15,10 +15,10 @@ namespace app {
 namespace Clusters {
 namespace ContentLauncher {
 
-void MockContentLauncherDelegate::HandleLaunchContent(CommandResponseHelper<Commands::LauncherResponse::Type> & helper,
-                                                     const DataModel::DecodableList<Parameter> & parameterList, bool autoplay,
-                                                     const CharSpan & data, const Optional<PlaybackPreferences> playbackPreferences,
-                                                     bool useCurrentContext)
+void MockContentLauncherDelegate::HandleLaunchContent(CommandResponseHelper<Commands::LauncherResponse::Type>  &helper,
+                                                      const DataModel::DecodableList<Parameter>  &parameterList, bool autoplay,
+                                                      const CharSpan  &data, const Optional<PlaybackPreferences> playbackPreferences,
+                                                      bool useCurrentContext)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -27,8 +27,8 @@ void MockContentLauncherDelegate::HandleLaunchContent(CommandResponseHelper<Comm
     helper.Success(response);
 }
 
-void MockContentLauncherDelegate::HandleLaunchUrl(CommandResponseHelper<Commands::LauncherResponse::Type> & helper, const CharSpan & contentUrl,
-                                                 const CharSpan & displayString, const BrandingInformation & brandingInformation)
+void MockContentLauncherDelegate::HandleLaunchUrl(CommandResponseHelper<Commands::LauncherResponse::Type>  &helper, const CharSpan  &contentUrl,
+                                                  const CharSpan  &displayString, const BrandingInformation  &brandingInformation)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -37,7 +37,7 @@ void MockContentLauncherDelegate::HandleLaunchUrl(CommandResponseHelper<Commands
     helper.Success(response);
 }
 
-CHIP_ERROR MockContentLauncherDelegate::HandleGetAcceptHeaderList(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockContentLauncherDelegate::HandleGetAcceptHeaderList(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -68,4 +68,4 @@ uint16_t MockContentLauncherDelegate::GetClusterRevision(chip::EndpointId endpoi
 } // namespace ContentLauncher
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

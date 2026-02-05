@@ -25,12 +25,11 @@ namespace app {
 namespace Clusters {
 namespace WakeOnLan {
 
-class MockWakeOnLanDelegate : public Delegate
-{
+class MockWakeOnLanDelegate : public Delegate {
 public:
     MockWakeOnLanDelegate() = default;
 
-    CHIP_ERROR HandleGetMacAddress(app::AttributeValueEncoder & aEncoder) override;
+    CHIP_ERROR HandleGetMacAddress(app::AttributeValueEncoder  &aEncoder) override;
 
 private:
     const char *LOG_TAG = "wake_on_lan";
@@ -39,4 +38,4 @@ private:
 } // namespace WakeOnLan
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

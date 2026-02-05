@@ -24,8 +24,7 @@ namespace app {
 namespace Clusters {
 namespace ThreadBorderRouterManagement {
 
-class MockThreadBorderRouterManagementDelegate : public Delegate
-{
+class MockThreadBorderRouterManagementDelegate : public Delegate {
 public:
     MockThreadBorderRouterManagementDelegate() : Delegate() {}
     virtual ~MockThreadBorderRouterManagementDelegate() = default;
@@ -33,16 +32,16 @@ public:
     // Thread Border Router management
     CHIP_ERROR Init(AttributeChangeCallback * attributeChangeCallback) override;
     bool GetPanChangeSupported() override;
-    void GetBorderRouterName(MutableCharSpan & borderRouterName) override;
-    CHIP_ERROR GetBorderAgentId(MutableByteSpan & borderAgentId) override;
+    void GetBorderRouterName(MutableCharSpan  &borderRouterName) override;
+    CHIP_ERROR GetBorderAgentId(MutableByteSpan  &borderAgentId) override;
     uint16_t GetThreadVersion() override;
     bool GetInterfaceEnabled() override;
-    CHIP_ERROR GetDataset(Thread::OperationalDataset & dataset, DatasetType type) override;
-    void SetActiveDataset(const Thread::OperationalDataset & activeDataset, uint32_t sequenceNum,
+    CHIP_ERROR GetDataset(Thread::OperationalDataset  &dataset, DatasetType type) override;
+    void SetActiveDataset(const Thread::OperationalDataset  &activeDataset, uint32_t sequenceNum,
                           ActivateDatasetCallback * callback) override;
     CHIP_ERROR CommitActiveDataset() override;
     CHIP_ERROR RevertActiveDataset() override;
-    CHIP_ERROR SetPendingDataset(const Thread::OperationalDataset & pendingDataset) override;
+    CHIP_ERROR SetPendingDataset(const Thread::OperationalDataset  &pendingDataset) override;
 
 private:
     static constexpr const char * LOG_TAG = "MockThreadBRMgmtDelegate";
@@ -52,4 +51,3 @@ private:
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

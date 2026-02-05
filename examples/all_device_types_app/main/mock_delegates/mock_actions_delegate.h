@@ -26,35 +26,34 @@ namespace app {
 namespace Clusters {
 namespace Actions {
 
-class MockActionsDelegate : public Delegate
-{
+class MockActionsDelegate : public Delegate {
 public:
     MockActionsDelegate() = default;
     virtual ~MockActionsDelegate() = default;
 
     // Action list management
-    CHIP_ERROR ReadActionAtIndex(uint16_t index, ActionStructStorage & action) override;
-    CHIP_ERROR ReadEndpointListAtIndex(uint16_t index, EndpointListStorage & epList) override;
-    bool HaveActionWithId(uint16_t aActionId, uint16_t & aActionIndex) override;
+    CHIP_ERROR ReadActionAtIndex(uint16_t index, ActionStructStorage  &action) override;
+    CHIP_ERROR ReadEndpointListAtIndex(uint16_t index, EndpointListStorage  &epList) override;
+    bool HaveActionWithId(uint16_t aActionId, uint16_t  &aActionIndex) override;
 
     // Action command handlers
     Protocols::InteractionModel::Status HandleInstantAction(uint16_t actionId, Optional<uint32_t> invokeId) override;
     Protocols::InteractionModel::Status HandleInstantActionWithTransition(uint16_t actionId, uint16_t transitionTime,
-                                                                        Optional<uint32_t> invokeId) override;
+                                                                          Optional<uint32_t> invokeId) override;
     Protocols::InteractionModel::Status HandleStartAction(uint16_t actionId, Optional<uint32_t> invokeId) override;
     Protocols::InteractionModel::Status HandleStartActionWithDuration(uint16_t actionId, uint32_t duration,
-                                                                     Optional<uint32_t> invokeId) override;
+                                                                      Optional<uint32_t> invokeId) override;
     Protocols::InteractionModel::Status HandleStopAction(uint16_t actionId, Optional<uint32_t> invokeId) override;
     Protocols::InteractionModel::Status HandlePauseAction(uint16_t actionId, Optional<uint32_t> invokeId) override;
     Protocols::InteractionModel::Status HandlePauseActionWithDuration(uint16_t actionId, uint32_t duration,
-                                                                     Optional<uint32_t> invokeId) override;
+                                                                      Optional<uint32_t> invokeId) override;
     Protocols::InteractionModel::Status HandleResumeAction(uint16_t actionId, Optional<uint32_t> invokeId) override;
     Protocols::InteractionModel::Status HandleEnableAction(uint16_t actionId, Optional<uint32_t> invokeId) override;
     Protocols::InteractionModel::Status HandleEnableActionWithDuration(uint16_t actionId, uint32_t duration,
-                                                                      Optional<uint32_t> invokeId) override;
+                                                                       Optional<uint32_t> invokeId) override;
     Protocols::InteractionModel::Status HandleDisableAction(uint16_t actionId, Optional<uint32_t> invokeId) override;
     Protocols::InteractionModel::Status HandleDisableActionWithDuration(uint16_t actionId, uint32_t duration,
-                                                                       Optional<uint32_t> invokeId) override;
+                                                                        Optional<uint32_t> invokeId) override;
 
 private:
     static constexpr const char * LOG_TAG = "MockActionsDelegate";
@@ -63,4 +62,4 @@ private:
 } // namespace Actions
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

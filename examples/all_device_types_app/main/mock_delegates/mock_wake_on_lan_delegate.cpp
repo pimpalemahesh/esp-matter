@@ -15,7 +15,7 @@ namespace app {
 namespace Clusters {
 namespace WakeOnLan {
 
-CHIP_ERROR MockWakeOnLanDelegate::HandleGetMacAddress(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockWakeOnLanDelegate::HandleGetMacAddress(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -25,4 +25,4 @@ CHIP_ERROR MockWakeOnLanDelegate::HandleGetMacAddress(app::AttributeValueEncoder
 } // namespace WakeOnLan
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

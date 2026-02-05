@@ -15,7 +15,7 @@ namespace app {
 namespace Clusters {
 namespace LaundryDryerControls {
 
-CHIP_ERROR MockLaundryDryerControlsDelegate::GetSupportedDrynessLevelAtIndex(size_t index, DrynessLevelEnum & supportedDryness)
+CHIP_ERROR MockLaundryDryerControlsDelegate::GetSupportedDrynessLevelAtIndex(size_t index, DrynessLevelEnum  &supportedDryness)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -25,4 +25,4 @@ CHIP_ERROR MockLaundryDryerControlsDelegate::GetSupportedDrynessLevelAtIndex(siz
 } // namespace LaundryDryerControls
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

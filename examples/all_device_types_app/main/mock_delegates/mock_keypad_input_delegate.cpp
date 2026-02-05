@@ -15,7 +15,7 @@ namespace app {
 namespace Clusters {
 namespace KeypadInput {
 
-void MockKeypadInputDelegate::HandleSendKey(CommandResponseHelper<Commands::SendKeyResponse::Type> & helper, const CECKeyCodeEnum & keyCode)
+void MockKeypadInputDelegate::HandleSendKey(CommandResponseHelper<Commands::SendKeyResponse::Type>  &helper, const CECKeyCodeEnum  &keyCode)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -34,4 +34,4 @@ uint32_t MockKeypadInputDelegate::GetFeatureMap(chip::EndpointId endpoint)
 } // namespace KeypadInput
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

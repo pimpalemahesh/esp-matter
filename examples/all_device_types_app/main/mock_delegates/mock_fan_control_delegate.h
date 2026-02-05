@@ -25,8 +25,7 @@ namespace app {
 namespace Clusters {
 namespace FanControl {
 
-class MockFanControlDelegate : public Delegate
-{
+class MockFanControlDelegate : public Delegate {
 public:
     MockFanControlDelegate() : Delegate(kInvalidEndpointId) {}
     MockFanControlDelegate(EndpointId aEndpoint) : Delegate(aEndpoint) {}
@@ -42,4 +41,4 @@ private:
 } // namespace FanControl
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

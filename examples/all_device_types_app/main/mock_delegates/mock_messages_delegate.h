@@ -25,21 +25,20 @@ namespace app {
 namespace Clusters {
 namespace Messages {
 
-class MockMessagesDelegate : public Delegate
-{
+class MockMessagesDelegate : public Delegate {
 public:
     MockMessagesDelegate() = default;
 
     CHIP_ERROR HandlePresentMessagesRequest(
-        const ByteSpan & messageId, const MessagePriorityEnum & priority,
-        const chip::BitMask<MessageControlBitmap> & messageControl, const DataModel::Nullable<uint32_t> & startTime,
-        const DataModel::Nullable<uint64_t> & duration, const CharSpan & messageText,
+        const ByteSpan  &messageId, const MessagePriorityEnum  &priority,
+        const chip::BitMask<MessageControlBitmap>  &messageControl, const DataModel::Nullable<uint32_t>  &startTime,
+        const DataModel::Nullable<uint64_t>  &duration, const CharSpan  &messageText,
         const chip::Optional<DataModel::DecodableList<chip::app::Clusters::Messages::Structs::MessageResponseOptionStruct::Type>> &
-            responses) override;
-    CHIP_ERROR HandleCancelMessagesRequest(const DataModel::DecodableList<chip::ByteSpan> & messageIds) override;
+        responses) override;
+    CHIP_ERROR HandleCancelMessagesRequest(const DataModel::DecodableList<chip::ByteSpan>  &messageIds) override;
 
-    CHIP_ERROR HandleGetMessages(app::AttributeValueEncoder & aEncoder) override;
-    CHIP_ERROR HandleGetActiveMessageIds(app::AttributeValueEncoder & aEncoder) override;
+    CHIP_ERROR HandleGetMessages(app::AttributeValueEncoder  &aEncoder) override;
+    CHIP_ERROR HandleGetActiveMessageIds(app::AttributeValueEncoder  &aEncoder) override;
 
     uint32_t GetFeatureMap(chip::EndpointId endpoint) override;
 
@@ -50,4 +49,4 @@ private:
 } // namespace Messages
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

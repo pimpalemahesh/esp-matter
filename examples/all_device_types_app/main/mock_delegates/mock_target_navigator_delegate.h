@@ -27,15 +27,14 @@ namespace app {
 namespace Clusters {
 namespace TargetNavigator {
 
-class MockTargetNavigatorDelegate : public Delegate
-{
+class MockTargetNavigatorDelegate : public Delegate {
 public:
     MockTargetNavigatorDelegate() = default;
 
-    CHIP_ERROR HandleGetTargetList(app::AttributeValueEncoder & aEncoder) override;
+    CHIP_ERROR HandleGetTargetList(app::AttributeValueEncoder  &aEncoder) override;
     uint8_t HandleGetCurrentTarget() override;
-    void HandleNavigateTarget(CommandResponseHelper<Commands::NavigateTargetResponse::Type> & helper,
-                              const uint64_t & target, const CharSpan & data) override;
+    void HandleNavigateTarget(CommandResponseHelper<Commands::NavigateTargetResponse::Type>  &helper,
+                              const uint64_t  &target, const CharSpan  &data) override;
     uint16_t GetClusterRevision(chip::EndpointId endpoint) override;
 
 private:
@@ -45,4 +44,4 @@ private:
 } // namespace TargetNavigator
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

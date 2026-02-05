@@ -26,17 +26,16 @@ namespace app {
 namespace Clusters {
 namespace ClosureControl {
 
-class MockClosureControlDelegate : public DelegateBase
-{
+class MockClosureControlDelegate : public DelegateBase {
 public:
     MockClosureControlDelegate() : DelegateBase() {}
     virtual ~MockClosureControlDelegate() = default;
 
     // Closure control command handlers
     Protocols::InteractionModel::Status HandleStopCommand() override;
-    Protocols::InteractionModel::Status HandleMoveToCommand(const Optional<TargetPositionEnum> & position,
-                                                          const Optional<bool> & latch,
-                                                          const Optional<Globals::ThreeLevelAutoEnum> & speed) override;
+    Protocols::InteractionModel::Status HandleMoveToCommand(const Optional<TargetPositionEnum>  &position,
+                                                            const Optional<bool>  &latch,
+                                                            const Optional<Globals::ThreeLevelAutoEnum>  &speed) override;
     Protocols::InteractionModel::Status HandleCalibrateCommand() override;
 
     // Attribute getters
@@ -52,4 +51,4 @@ private:
 } // namespace ClosureControl
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

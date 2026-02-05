@@ -22,4 +22,4 @@ namespace CommodityPrice {
 } // namespace CommodityPrice
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

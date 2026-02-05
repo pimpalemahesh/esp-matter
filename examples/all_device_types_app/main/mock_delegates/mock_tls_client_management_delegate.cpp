@@ -14,7 +14,7 @@ namespace chip {
 namespace app {
 namespace Clusters {
 
-CHIP_ERROR MockTlsClientManagementDelegate::Init(PersistentStorageDelegate & storage)
+CHIP_ERROR MockTlsClientManagementDelegate::Init(PersistentStorageDelegate  &storage)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_NO_ERROR;
@@ -36,7 +36,7 @@ CHIP_ERROR MockTlsClientManagementDelegate::FindProvisionedEndpointByID(Endpoint
 
 Protocols::InteractionModel::ClusterStatusCode MockTlsClientManagementDelegate::ProvisionEndpoint(
     EndpointId matterEndpoint, FabricIndex fabric,
-    const TlsClientManagement::Commands::ProvisionEndpoint::DecodableType & provisionReq, uint16_t & endpointID)
+    const TlsClientManagement::Commands::ProvisionEndpoint::DecodableType  &provisionReq, uint16_t  &endpointID)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     endpointID = 0;
@@ -79,4 +79,3 @@ CHIP_ERROR MockTlsClientManagementDelegate::ClientCertCanBeRemoved(EndpointId ma
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

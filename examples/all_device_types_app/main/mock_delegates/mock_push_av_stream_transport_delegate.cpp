@@ -15,7 +15,7 @@ namespace app {
 namespace Clusters {
 
 Protocols::InteractionModel::Status MockPushAvStreamTransportDelegate::AllocatePushTransport(
-    const PushAvStreamTransport::Structs::TransportOptionsStruct::Type & transportOptions, const uint16_t connectionID,
+    const PushAvStreamTransport::Structs::TransportOptionsStruct::Type  &transportOptions, const uint16_t connectionID,
     FabricIndex accessingFabricIndex)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -45,7 +45,7 @@ MockPushAvStreamTransportDelegate::SetTransportStatus(const std::vector<uint16_t
 
 Protocols::InteractionModel::Status MockPushAvStreamTransportDelegate::ManuallyTriggerTransport(
     const uint16_t connectionID, PushAvStreamTransport::TriggerActivationReasonEnum activationReason,
-    const Optional<PushAvStreamTransport::Structs::TransportMotionTriggerTimeControlStruct::Type> & timeControl)
+    const Optional<PushAvStreamTransport::Structs::TransportMotionTriggerTimeControlStruct::Type>  &timeControl)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return Protocols::InteractionModel::Status::Success;
@@ -58,7 +58,7 @@ bool MockPushAvStreamTransportDelegate::ValidateStreamUsage(PushAvStreamTranspor
 }
 
 bool MockPushAvStreamTransportDelegate::ValidateSegmentDuration(uint16_t segmentDuration,
-                                                                const Optional<DataModel::Nullable<uint16_t>> & videoStreamId)
+                                                                const Optional<DataModel::Nullable<uint16_t>>  &videoStreamId)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return true;
@@ -66,15 +66,15 @@ bool MockPushAvStreamTransportDelegate::ValidateSegmentDuration(uint16_t segment
 
 Protocols::InteractionModel::Status
 MockPushAvStreamTransportDelegate::ValidateBandwidthLimit(PushAvStreamTransport::StreamUsageEnum streamUsage,
-                                                          const Optional<DataModel::Nullable<uint16_t>> & videoStreamId,
-                                                          const Optional<DataModel::Nullable<uint16_t>> & audioStreamId)
+                                                          const Optional<DataModel::Nullable<uint16_t>>  &videoStreamId,
+                                                          const Optional<DataModel::Nullable<uint16_t>>  &audioStreamId)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return Protocols::InteractionModel::Status::Success;
 }
 
 Protocols::InteractionModel::Status
-MockPushAvStreamTransportDelegate::SelectVideoStream(PushAvStreamTransport::StreamUsageEnum streamUsage, uint16_t & videoStreamId)
+MockPushAvStreamTransportDelegate::SelectVideoStream(PushAvStreamTransport::StreamUsageEnum streamUsage, uint16_t  &videoStreamId)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     videoStreamId = 0;
@@ -82,7 +82,7 @@ MockPushAvStreamTransportDelegate::SelectVideoStream(PushAvStreamTransport::Stre
 }
 
 Protocols::InteractionModel::Status
-MockPushAvStreamTransportDelegate::SelectAudioStream(PushAvStreamTransport::StreamUsageEnum streamUsage, uint16_t & audioStreamId)
+MockPushAvStreamTransportDelegate::SelectAudioStream(PushAvStreamTransport::StreamUsageEnum streamUsage, uint16_t  &audioStreamId)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     audioStreamId = 0;
@@ -127,7 +127,7 @@ void MockPushAvStreamTransportDelegate::OnAttributeChanged(AttributeId attribute
 }
 
 CHIP_ERROR MockPushAvStreamTransportDelegate::LoadCurrentConnections(
-    std::vector<PushAvStreamTransport::TransportConfigurationStorage> & currentConnections)
+    std::vector<PushAvStreamTransport::TransportConfigurationStorage>  &currentConnections)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_NO_ERROR;
@@ -139,28 +139,28 @@ CHIP_ERROR MockPushAvStreamTransportDelegate::PersistentAttributesLoadedCallback
     return CHIP_NO_ERROR;
 }
 
-void MockPushAvStreamTransportDelegate::SetTLSCerts(Tls::CertificateTable::BufferedClientCert & clientCertEntry,
-                                                    Tls::CertificateTable::BufferedRootCert & rootCertEntry)
+void MockPushAvStreamTransportDelegate::SetTLSCerts(Tls::CertificateTable::BufferedClientCert  &clientCertEntry,
+                                                    Tls::CertificateTable::BufferedRootCert  &rootCertEntry)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return;
 }
 
-CHIP_ERROR MockPushAvStreamTransportDelegate::IsHardPrivacyModeActive(bool & isActive)
+CHIP_ERROR MockPushAvStreamTransportDelegate::IsHardPrivacyModeActive(bool  &isActive)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     isActive = false;
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockPushAvStreamTransportDelegate::IsSoftRecordingPrivacyModeActive(bool & isActive)
+CHIP_ERROR MockPushAvStreamTransportDelegate::IsSoftRecordingPrivacyModeActive(bool  &isActive)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     isActive = false;
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockPushAvStreamTransportDelegate::IsSoftLivestreamPrivacyModeActive(bool & isActive)
+CHIP_ERROR MockPushAvStreamTransportDelegate::IsSoftLivestreamPrivacyModeActive(bool  &isActive)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     isActive = false;
@@ -177,4 +177,3 @@ void MockPushAvStreamTransportDelegate::SetPushAvStreamTransportServer(PushAvStr
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

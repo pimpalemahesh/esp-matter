@@ -15,15 +15,15 @@ namespace app {
 namespace Clusters {
 namespace ApplicationLauncher {
 
-CHIP_ERROR MockApplicationLauncherDelegate::HandleGetCatalogList(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockApplicationLauncherDelegate::HandleGetCatalogList(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return aEncoder.EncodeEmptyList();
 }
 
-void MockApplicationLauncherDelegate::HandleLaunchApp(CommandResponseHelper<LauncherResponseType> & helper, const ByteSpan & data,
-                                                     const Application & application)
+void MockApplicationLauncherDelegate::HandleLaunchApp(CommandResponseHelper<LauncherResponseType>  &helper, const ByteSpan  &data,
+                                                      const Application  &application)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -32,7 +32,7 @@ void MockApplicationLauncherDelegate::HandleLaunchApp(CommandResponseHelper<Laun
     helper.Success(response);
 }
 
-void MockApplicationLauncherDelegate::HandleStopApp(CommandResponseHelper<LauncherResponseType> & helper, const Application & application)
+void MockApplicationLauncherDelegate::HandleStopApp(CommandResponseHelper<LauncherResponseType>  &helper, const Application  &application)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -41,7 +41,7 @@ void MockApplicationLauncherDelegate::HandleStopApp(CommandResponseHelper<Launch
     helper.Success(response);
 }
 
-void MockApplicationLauncherDelegate::HandleHideApp(CommandResponseHelper<LauncherResponseType> & helper, const Application & application)
+void MockApplicationLauncherDelegate::HandleHideApp(CommandResponseHelper<LauncherResponseType>  &helper, const Application  &application)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -53,4 +53,4 @@ void MockApplicationLauncherDelegate::HandleHideApp(CommandResponseHelper<Launch
 } // namespace ApplicationLauncher
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

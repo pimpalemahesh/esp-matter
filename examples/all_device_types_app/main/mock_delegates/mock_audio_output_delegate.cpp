@@ -22,21 +22,21 @@ uint8_t MockAudioOutputDelegate::HandleGetCurrentOutput()
     return 0;
 }
 
-CHIP_ERROR MockAudioOutputDelegate::HandleGetOutputList(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockAudioOutputDelegate::HandleGetOutputList(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return aEncoder.EncodeEmptyList();
 }
 
-bool MockAudioOutputDelegate::HandleRenameOutput(const uint8_t & index, const chip::CharSpan & name)
+bool MockAudioOutputDelegate::HandleRenameOutput(const uint8_t  &index, const chip::CharSpan  &name)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return true;
 }
 
-bool MockAudioOutputDelegate::HandleSelectOutput(const uint8_t & index)
+bool MockAudioOutputDelegate::HandleSelectOutput(const uint8_t  &index)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -46,4 +46,4 @@ bool MockAudioOutputDelegate::HandleSelectOutput(const uint8_t & index)
 } // namespace AudioOutput
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

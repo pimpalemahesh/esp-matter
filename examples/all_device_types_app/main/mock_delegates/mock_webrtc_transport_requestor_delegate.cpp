@@ -15,28 +15,28 @@ namespace app {
 namespace Clusters {
 namespace WebRTCTransportRequestor {
 
-CHIP_ERROR MockWebRTCTransportRequestorDelegate::HandleOffer(uint16_t sessionId, const OfferArgs & args)
+CHIP_ERROR MockWebRTCTransportRequestorDelegate::HandleOffer(const WebRTCSessionStruct  &session, const OfferArgs  &args)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockWebRTCTransportRequestorDelegate::HandleAnswer(uint16_t sessionId, const std::string & sdpAnswer)
+CHIP_ERROR MockWebRTCTransportRequestorDelegate::HandleAnswer(const WebRTCSessionStruct  &session, const std::string  &sdpAnswer)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockWebRTCTransportRequestorDelegate::HandleICECandidates(uint16_t sessionId, const std::vector<ICECandidateStruct> & candidates)
+CHIP_ERROR MockWebRTCTransportRequestorDelegate::HandleICECandidates(const WebRTCSessionStruct  &session, const std::vector<ICECandidateStruct>  &candidates)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockWebRTCTransportRequestorDelegate::HandleEnd(uint16_t sessionId, WebRTCEndReasonEnum reasonCode)
+CHIP_ERROR MockWebRTCTransportRequestorDelegate::HandleEnd(const WebRTCSessionStruct  &session, WebRTCEndReasonEnum reasonCode)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -47,4 +47,3 @@ CHIP_ERROR MockWebRTCTransportRequestorDelegate::HandleEnd(uint16_t sessionId, W
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

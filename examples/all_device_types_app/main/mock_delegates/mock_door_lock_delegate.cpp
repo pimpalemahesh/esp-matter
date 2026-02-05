@@ -15,7 +15,7 @@ namespace app {
 namespace Clusters {
 namespace DoorLock {
 
-CHIP_ERROR MockDoorLockDelegate::GetAliroReaderVerificationKey(MutableByteSpan & verificationKey)
+CHIP_ERROR MockDoorLockDelegate::GetAliroReaderVerificationKey(MutableByteSpan  &verificationKey)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -23,7 +23,7 @@ CHIP_ERROR MockDoorLockDelegate::GetAliroReaderVerificationKey(MutableByteSpan &
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockDoorLockDelegate::GetAliroReaderGroupIdentifier(MutableByteSpan & groupIdentifier)
+CHIP_ERROR MockDoorLockDelegate::GetAliroReaderGroupIdentifier(MutableByteSpan  &groupIdentifier)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -31,21 +31,21 @@ CHIP_ERROR MockDoorLockDelegate::GetAliroReaderGroupIdentifier(MutableByteSpan &
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockDoorLockDelegate::GetAliroReaderGroupSubIdentifier(MutableByteSpan & groupSubIdentifier)
+CHIP_ERROR MockDoorLockDelegate::GetAliroReaderGroupSubIdentifier(MutableByteSpan  &groupSubIdentifier)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_NOT_FOUND;
 }
 
-CHIP_ERROR MockDoorLockDelegate::GetAliroExpeditedTransactionSupportedProtocolVersionAtIndex(size_t index, MutableByteSpan & protocolVersion)
+CHIP_ERROR MockDoorLockDelegate::GetAliroExpeditedTransactionSupportedProtocolVersionAtIndex(size_t index, MutableByteSpan  &protocolVersion)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_PROVIDER_LIST_EXHAUSTED;
 }
 
-CHIP_ERROR MockDoorLockDelegate::GetAliroGroupResolvingKey(MutableByteSpan & groupResolvingKey)
+CHIP_ERROR MockDoorLockDelegate::GetAliroGroupResolvingKey(MutableByteSpan  &groupResolvingKey)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -53,7 +53,7 @@ CHIP_ERROR MockDoorLockDelegate::GetAliroGroupResolvingKey(MutableByteSpan & gro
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockDoorLockDelegate::GetAliroSupportedBLEUWBProtocolVersionAtIndex(size_t index, MutableByteSpan & protocolVersion)
+CHIP_ERROR MockDoorLockDelegate::GetAliroSupportedBLEUWBProtocolVersionAtIndex(size_t index, MutableByteSpan  &protocolVersion)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -81,8 +81,8 @@ uint16_t MockDoorLockDelegate::GetNumberOfAliroEndpointKeysSupported()
     return 0;
 }
 
-CHIP_ERROR MockDoorLockDelegate::SetAliroReaderConfig(const ByteSpan & signingKey, const ByteSpan & verificationKey,
-                                                      const ByteSpan & groupIdentifier, const Optional<ByteSpan> & groupResolvingKey)
+CHIP_ERROR MockDoorLockDelegate::SetAliroReaderConfig(const ByteSpan  &signingKey, const ByteSpan  &verificationKey,
+                                                      const ByteSpan  &groupIdentifier, const Optional<ByteSpan>  &groupResolvingKey)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -99,4 +99,4 @@ CHIP_ERROR MockDoorLockDelegate::ClearAliroReaderConfig()
 } // namespace DoorLock
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

@@ -25,14 +25,13 @@ namespace app {
 namespace Clusters {
 namespace LaundryDryerControls {
 
-class MockLaundryDryerControlsDelegate : public Delegate
-{
+class MockLaundryDryerControlsDelegate : public Delegate {
 public:
     MockLaundryDryerControlsDelegate() : Delegate() {}
     virtual ~MockLaundryDryerControlsDelegate() = default;
 
     // Laundry dryer controls management
-    CHIP_ERROR GetSupportedDrynessLevelAtIndex(size_t index, DrynessLevelEnum & supportedDryness) override;
+    CHIP_ERROR GetSupportedDrynessLevelAtIndex(size_t index, DrynessLevelEnum  &supportedDryness) override;
 
 private:
     static constexpr const char * LOG_TAG = "MockLaundryDryerControlsDelegate";
@@ -41,4 +40,4 @@ private:
 } // namespace LaundryDryerControls
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

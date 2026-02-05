@@ -15,8 +15,8 @@ namespace app {
 namespace Clusters {
 namespace ZoneManagement {
 
-Protocols::InteractionModel::Status MockZoneManagementDelegate::CreateTwoDCartesianZone(const TwoDCartesianZoneStorage & zone,
-                                                                                        uint16_t & outZoneID)
+Protocols::InteractionModel::Status MockZoneManagementDelegate::CreateTwoDCartesianZone(const TwoDCartesianZoneStorage  &zone,
+                                                                                        uint16_t  &outZoneID)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -24,7 +24,7 @@ Protocols::InteractionModel::Status MockZoneManagementDelegate::CreateTwoDCartes
     return Protocols::InteractionModel::Status::Success;
 }
 
-Protocols::InteractionModel::Status MockZoneManagementDelegate::UpdateTwoDCartesianZone(uint16_t zoneID, const TwoDCartesianZoneStorage & zone)
+Protocols::InteractionModel::Status MockZoneManagementDelegate::UpdateTwoDCartesianZone(uint16_t zoneID, const TwoDCartesianZoneStorage  &zone)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -38,14 +38,14 @@ Protocols::InteractionModel::Status MockZoneManagementDelegate::RemoveZone(uint1
     return Protocols::InteractionModel::Status::Success;
 }
 
-Protocols::InteractionModel::Status MockZoneManagementDelegate::CreateTrigger(const ZoneTriggerControlStruct & zoneTrigger)
+Protocols::InteractionModel::Status MockZoneManagementDelegate::CreateTrigger(const ZoneTriggerControlStruct  &zoneTrigger)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return Protocols::InteractionModel::Status::Success;
 }
 
-Protocols::InteractionModel::Status MockZoneManagementDelegate::UpdateTrigger(const ZoneTriggerControlStruct & zoneTrigger)
+Protocols::InteractionModel::Status MockZoneManagementDelegate::UpdateTrigger(const ZoneTriggerControlStruct  &zoneTrigger)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -73,7 +73,7 @@ CHIP_ERROR MockZoneManagementDelegate::PersistentAttributesLoadedCallback()
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockZoneManagementDelegate::LoadZones(std::vector<ZoneInformationStorage> & aZones)
+CHIP_ERROR MockZoneManagementDelegate::LoadZones(std::vector<ZoneInformationStorage>  &aZones)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -81,7 +81,7 @@ CHIP_ERROR MockZoneManagementDelegate::LoadZones(std::vector<ZoneInformationStor
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockZoneManagementDelegate::LoadTriggers(std::vector<ZoneTriggerControlStruct> & aTriggers)
+CHIP_ERROR MockZoneManagementDelegate::LoadTriggers(std::vector<ZoneTriggerControlStruct>  &aTriggers)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -93,4 +93,3 @@ CHIP_ERROR MockZoneManagementDelegate::LoadTriggers(std::vector<ZoneTriggerContr
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

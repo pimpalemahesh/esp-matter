@@ -39,4 +39,4 @@ void MockValveConfigurationAndControlDelegate::HandleRemainingDurationTick(uint3
 } // namespace ValveConfigurationAndControl
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

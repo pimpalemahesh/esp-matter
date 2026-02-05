@@ -25,8 +25,7 @@ namespace app {
 namespace Clusters {
 namespace ResourceMonitoring {
 
-class MockResourceMonitoringDelegate : public Delegate
-{
+class MockResourceMonitoringDelegate : public Delegate {
 public:
     MockResourceMonitoringDelegate() = default;
     virtual ~MockResourceMonitoringDelegate() = default;
@@ -44,4 +43,4 @@ private:
 } // namespace ResourceMonitoring
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

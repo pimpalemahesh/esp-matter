@@ -23,15 +23,14 @@ namespace app {
 namespace Clusters {
 namespace ContentAppObserver {
 
-class MockContentAppObserverDelegate : public Delegate
-{
+class MockContentAppObserverDelegate : public Delegate {
 public:
     MockContentAppObserverDelegate() = default;
     virtual ~MockContentAppObserverDelegate() = default;
 
     // Content app observer command handlers
-    void HandleContentAppMessage(CommandResponseHelper<Commands::ContentAppMessageResponse::Type> & helper,
-                                 const chip::Optional<chip::CharSpan> & data, const chip::CharSpan & encodingHint) override;
+    void HandleContentAppMessage(CommandResponseHelper<Commands::ContentAppMessageResponse::Type>  &helper,
+                                 const chip::Optional<chip::CharSpan>  &data, const chip::CharSpan  &encodingHint) override;
 
 private:
     static constexpr const char * LOG_TAG = "MockContentAppObserverDelegate";
@@ -40,4 +39,4 @@ private:
 } // namespace ContentAppObserver
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

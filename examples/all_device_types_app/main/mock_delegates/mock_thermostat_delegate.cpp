@@ -22,7 +22,7 @@ std::optional<System::Clock::Milliseconds16> MockThermostatDelegate::GetMaxAtomi
     return std::nullopt;
 }
 
-CHIP_ERROR MockThermostatDelegate::GetPresetTypeAtIndex(size_t index, Structs::PresetTypeStruct::Type & presetType)
+CHIP_ERROR MockThermostatDelegate::GetPresetTypeAtIndex(size_t index, Structs::PresetTypeStruct::Type  &presetType)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -36,14 +36,14 @@ uint8_t MockThermostatDelegate::GetNumberOfPresets()
     return 0;
 }
 
-CHIP_ERROR MockThermostatDelegate::GetPresetAtIndex(size_t index, PresetStructWithOwnedMembers & preset)
+CHIP_ERROR MockThermostatDelegate::GetPresetAtIndex(size_t index, PresetStructWithOwnedMembers  &preset)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_PROVIDER_LIST_EXHAUSTED;
 }
 
-CHIP_ERROR MockThermostatDelegate::GetActivePresetHandle(DataModel::Nullable<MutableByteSpan> & activePresetHandle)
+CHIP_ERROR MockThermostatDelegate::GetActivePresetHandle(DataModel::Nullable<MutableByteSpan>  &activePresetHandle)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -51,7 +51,7 @@ CHIP_ERROR MockThermostatDelegate::GetActivePresetHandle(DataModel::Nullable<Mut
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockThermostatDelegate::SetActivePresetHandle(const DataModel::Nullable<ByteSpan> & newActivePresetHandle)
+CHIP_ERROR MockThermostatDelegate::SetActivePresetHandle(const DataModel::Nullable<ByteSpan>  &newActivePresetHandle)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -65,14 +65,14 @@ void MockThermostatDelegate::InitializePendingPresets()
     return;
 }
 
-CHIP_ERROR MockThermostatDelegate::AppendToPendingPresetList(const PresetStructWithOwnedMembers & preset)
+CHIP_ERROR MockThermostatDelegate::AppendToPendingPresetList(const PresetStructWithOwnedMembers  &preset)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockThermostatDelegate::GetPendingPresetAtIndex(size_t index, PresetStructWithOwnedMembers & preset)
+CHIP_ERROR MockThermostatDelegate::GetPendingPresetAtIndex(size_t index, PresetStructWithOwnedMembers  &preset)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -106,14 +106,14 @@ uint8_t MockThermostatDelegate::GetNumberOfThermostatSuggestions()
 }
 
 CHIP_ERROR MockThermostatDelegate::GetThermostatSuggestionAtIndex(
-    size_t index, ThermostatSuggestionStructWithOwnedMembers & thermostatSuggestion)
+    size_t index, ThermostatSuggestionStructWithOwnedMembers  &thermostatSuggestion)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_PROVIDER_LIST_EXHAUSTED;
 }
 
 void MockThermostatDelegate::GetCurrentThermostatSuggestion(
-    DataModel::Nullable<ThermostatSuggestionStructWithOwnedMembers> & currentThermostatSuggestion)
+    DataModel::Nullable<ThermostatSuggestionStructWithOwnedMembers>  &currentThermostatSuggestion)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     currentThermostatSuggestion.SetNull();
@@ -128,7 +128,7 @@ MockThermostatDelegate::GetThermostatSuggestionNotFollowingReason()
 }
 
 CHIP_ERROR
-MockThermostatDelegate::AppendToThermostatSuggestionsList(const Structs::ThermostatSuggestionStruct::Type & thermostatSuggestion)
+MockThermostatDelegate::AppendToThermostatSuggestionsList(const Structs::ThermostatSuggestionStruct::Type  &thermostatSuggestion)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_NO_ERROR;
@@ -140,7 +140,7 @@ CHIP_ERROR MockThermostatDelegate::RemoveFromThermostatSuggestionsList(size_t in
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockThermostatDelegate::GetUniqueID(uint8_t & uniqueID)
+CHIP_ERROR MockThermostatDelegate::GetUniqueID(uint8_t  &uniqueID)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     uniqueID = 0;
@@ -153,7 +153,7 @@ CHIP_ERROR MockThermostatDelegate::ReEvaluateCurrentSuggestion()
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockThermostatDelegate::GetScheduleTypeAtIndex(size_t index, Structs::ScheduleTypeStruct::Type & scheduleType)
+CHIP_ERROR MockThermostatDelegate::GetScheduleTypeAtIndex(size_t index, Structs::ScheduleTypeStruct::Type  &scheduleType)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_PROVIDER_LIST_EXHAUSTED;
@@ -162,4 +162,4 @@ CHIP_ERROR MockThermostatDelegate::GetScheduleTypeAtIndex(size_t index, Structs:
 } // namespace Thermostat
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

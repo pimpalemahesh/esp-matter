@@ -15,18 +15,18 @@ namespace app {
 namespace Clusters {
 namespace ClosureDimension {
 
-Protocols::InteractionModel::Status MockClosureDimensionDelegate::HandleSetTarget(const Optional<Percent100ths> & position,
-                                                                                   const Optional<bool> & latch,
-                                                                                   const Optional<Globals::ThreeLevelAutoEnum> & speed)
+Protocols::InteractionModel::Status MockClosureDimensionDelegate::HandleSetTarget(const Optional<Percent100ths>  &position,
+                                                                                  const Optional<bool>  &latch,
+                                                                                  const Optional<Globals::ThreeLevelAutoEnum>  &speed)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return Protocols::InteractionModel::Status::Success;
 }
 
-Protocols::InteractionModel::Status MockClosureDimensionDelegate::HandleStep(const StepDirectionEnum & direction,
-                                                                              const uint16_t & numberOfSteps,
-                                                                              const Optional<Globals::ThreeLevelAutoEnum> & speed)
+Protocols::InteractionModel::Status MockClosureDimensionDelegate::HandleStep(const StepDirectionEnum  &direction,
+                                                                             const uint16_t  &numberOfSteps,
+                                                                             const Optional<Globals::ThreeLevelAutoEnum>  &speed)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);

@@ -22,28 +22,28 @@ CHIP_ERROR MockModeBaseDelegate::Init()
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockModeBaseDelegate::GetModeLabelByIndex(uint8_t modeIndex, MutableCharSpan & label)
+CHIP_ERROR MockModeBaseDelegate::GetModeLabelByIndex(uint8_t modeIndex, MutableCharSpan  &label)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_PROVIDER_LIST_EXHAUSTED;
 }
 
-CHIP_ERROR MockModeBaseDelegate::GetModeValueByIndex(uint8_t modeIndex, uint8_t & value)
+CHIP_ERROR MockModeBaseDelegate::GetModeValueByIndex(uint8_t modeIndex, uint8_t  &value)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_PROVIDER_LIST_EXHAUSTED;
 }
 
-CHIP_ERROR MockModeBaseDelegate::GetModeTagsByIndex(uint8_t modeIndex, DataModel::List<detail::Structs::ModeTagStruct::Type> & modeTags)
+CHIP_ERROR MockModeBaseDelegate::GetModeTagsByIndex(uint8_t modeIndex, DataModel::List<detail::Structs::ModeTagStruct::Type>  &modeTags)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_PROVIDER_LIST_EXHAUSTED;
 }
 
-void MockModeBaseDelegate::HandleChangeToMode(uint8_t NewMode, ModeBase::Commands::ChangeToModeResponse::Type & response)
+void MockModeBaseDelegate::HandleChangeToMode(uint8_t NewMode, ModeBase::Commands::ChangeToModeResponse::Type  &response)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);

@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <app/clusters/camera-av-settings-user-level-management-server/camera-av-settings-user-level-management-server.h>
+#include <app/clusters/camera-av-settings-user-level-management-server/CameraAvSettingsUserLevelManagementCluster.h>
 #include <protocols/interaction_model/StatusCode.h>
 
 /*
@@ -26,10 +26,9 @@ namespace app {
 namespace Clusters {
 namespace CameraAvSettingsUserLevelManagement {
 
-class MockCameraAVSettingsUserLevelManagementDelegate : public Delegate
-{
+class MockCameraAVSettingsUserLevelManagementDelegate : public CameraAvSettingsUserLevelManagementDelegate {
 public:
-    MockCameraAVSettingsUserLevelManagementDelegate() : Delegate() {}
+    MockCameraAVSettingsUserLevelManagementDelegate() : CameraAvSettingsUserLevelManagementDelegate() {}
     virtual ~MockCameraAVSettingsUserLevelManagementDelegate() = default;
 
     // Shutdown handler
@@ -58,14 +57,14 @@ public:
                                                         Globals::Structs::ViewportStruct::Type aViewport) override;
     Protocols::InteractionModel::Status DPTZRelativeMove(uint16_t aVideoStreamID, Optional<int16_t> aDeltaX,
                                                          Optional<int16_t> aDeltaY, Optional<int8_t> aZoomDelta,
-                                                         Globals::Structs::ViewportStruct::Type & aViewport) override;
+                                                         Globals::Structs::ViewportStruct::Type  &aViewport) override;
 
     // Persistent attributes callback
     CHIP_ERROR PersistentAttributesLoadedCallback() override;
 
     // Load handlers
-    CHIP_ERROR LoadMPTZPresets(std::vector<MPTZPresetHelper> & mptzPresetHelpers) override;
-    CHIP_ERROR LoadDPTZStreams(std::vector<DPTZStruct> & dptzStreams) override;
+    CHIP_ERROR LoadMPTZPresets(std::vector<MPTZPresetHelper>  &mptzPresetHelpers) override;
+    CHIP_ERROR LoadDPTZStreams(std::vector<DPTZStruct>  &dptzStreams) override;
 
 private:
     static constexpr const char * LOG_TAG = "MockCameraAVSettingsUserLevelMgmtDelegate";

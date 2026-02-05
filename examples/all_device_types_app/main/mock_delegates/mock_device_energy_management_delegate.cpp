@@ -16,7 +16,7 @@ namespace Clusters {
 namespace DeviceEnergyManagement {
 
 Protocols::InteractionModel::Status MockDeviceEnergyManagementDelegate::PowerAdjustRequest(const int64_t power, const uint32_t duration,
-                                                                                          AdjustmentCauseEnum cause)
+                                                                                           AdjustmentCauseEnum cause)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -31,7 +31,7 @@ Protocols::InteractionModel::Status MockDeviceEnergyManagementDelegate::CancelPo
 }
 
 Protocols::InteractionModel::Status MockDeviceEnergyManagementDelegate::StartTimeAdjustRequest(const uint32_t requestedStartTime,
-                                                                                             AdjustmentCauseEnum cause)
+                                                                                               AdjustmentCauseEnum cause)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -54,8 +54,8 @@ Protocols::InteractionModel::Status MockDeviceEnergyManagementDelegate::ResumeRe
 
 Protocols::InteractionModel::Status
 MockDeviceEnergyManagementDelegate::ModifyForecastRequest(const uint32_t forecastID,
-                                                         const DataModel::DecodableList<Structs::SlotAdjustmentStruct::Type> & slotAdjustments,
-                                                         AdjustmentCauseEnum cause)
+                                                          const DataModel::DecodableList<Structs::SlotAdjustmentStruct::Type>  &slotAdjustments,
+                                                          AdjustmentCauseEnum cause)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -63,8 +63,8 @@ MockDeviceEnergyManagementDelegate::ModifyForecastRequest(const uint32_t forecas
 }
 
 Protocols::InteractionModel::Status
-MockDeviceEnergyManagementDelegate::RequestConstraintBasedForecast(const DataModel::DecodableList<Structs::ConstraintsStruct::Type> & constraints,
-                                                                 AdjustmentCauseEnum cause)
+MockDeviceEnergyManagementDelegate::RequestConstraintBasedForecast(const DataModel::DecodableList<Structs::ConstraintsStruct::Type>  &constraints,
+                                                                   AdjustmentCauseEnum cause)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -113,13 +113,13 @@ OptOutStateEnum MockDeviceEnergyManagementDelegate::GetOptOutState()
     return OptOutStateEnum::kNoOptOut;
 }
 
-const DataModel::Nullable<Structs::PowerAdjustCapabilityStruct::Type> & MockDeviceEnergyManagementDelegate::GetPowerAdjustmentCapability()
+const DataModel::Nullable<Structs::PowerAdjustCapabilityStruct::Type>  &MockDeviceEnergyManagementDelegate::GetPowerAdjustmentCapability()
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return mPowerAdjustCapability;
 }
 
-const DataModel::Nullable<Structs::ForecastStruct::Type> & MockDeviceEnergyManagementDelegate::GetForecast()
+const DataModel::Nullable<Structs::ForecastStruct::Type>  &MockDeviceEnergyManagementDelegate::GetForecast()
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return mForecast;
@@ -134,4 +134,4 @@ CHIP_ERROR MockDeviceEnergyManagementDelegate::SetESAState(ESAStateEnum esaState
 } // namespace DeviceEnergyManagement
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

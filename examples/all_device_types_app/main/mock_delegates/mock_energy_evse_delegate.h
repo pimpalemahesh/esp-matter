@@ -25,35 +25,33 @@ namespace app {
 namespace Clusters {
 namespace EnergyEvse {
 
-class MockEnergyEVSEDelegate : public Delegate
-{
+class MockEnergyEVSEDelegate : public Delegate {
 public:
     MockEnergyEVSEDelegate() = default;
 
-   
     Protocols::InteractionModel::Status Disable() override;
-    
-    Protocols::InteractionModel::Status EnableCharging(const DataModel::Nullable<uint32_t> & enableChargeTime,
-                                                                const int64_t & minimumChargeCurrent,
-                                                                const int64_t & maximumChargeCurrent) override;
 
-    Protocols::InteractionModel::Status EnableDischarging(const DataModel::Nullable<uint32_t> & enableDischargeTime,
-                                                                   const int64_t & maximumDischargeCurrent) override;
- 
+    Protocols::InteractionModel::Status EnableCharging(const DataModel::Nullable<uint32_t>  &enableChargeTime,
+                                                       const int64_t  &minimumChargeCurrent,
+                                                       const int64_t  &maximumChargeCurrent) override;
+
+    Protocols::InteractionModel::Status EnableDischarging(const DataModel::Nullable<uint32_t>  &enableDischargeTime,
+                                                          const int64_t  &maximumDischargeCurrent) override;
+
     Protocols::InteractionModel::Status StartDiagnostics() override;
- 
+
     Protocols::InteractionModel::Status
-     SetTargets(const DataModel::DecodableList<Structs::ChargingTargetScheduleStruct::DecodableType> & chargingTargetSchedules) override;
- 
+    SetTargets(const DataModel::DecodableList<Structs::ChargingTargetScheduleStruct::DecodableType>  &chargingTargetSchedules) override;
+
     Protocols::InteractionModel::Status LoadTargets() override;
- 
+
     Protocols::InteractionModel::Status
-     GetTargets(DataModel::List<const Structs::ChargingTargetScheduleStruct::Type> & chargingTargetSchedules) override;
- 
+    GetTargets(DataModel::List<const Structs::ChargingTargetScheduleStruct::Type>  &chargingTargetSchedules) override;
+
     Protocols::InteractionModel::Status ClearTargets() override;
- 
-     // ------------------------------------------------------------------
-     // Get attribute methods
+
+    // ------------------------------------------------------------------
+    // Get attribute methods
     StateEnum GetState() override;
     SupplyStateEnum GetSupplyState() override;
     FaultStateEnum GetFaultState() override;
@@ -65,28 +63,28 @@ public:
     int64_t GetMaximumDischargeCurrent() override;
     int64_t GetUserMaximumChargeCurrent() override;
     uint32_t GetRandomizationDelayWindow() override;
-     /* PREF attributes */
+    /* PREF attributes */
     DataModel::Nullable<uint32_t> GetNextChargeStartTime() override;
     DataModel::Nullable<uint32_t> GetNextChargeTargetTime() override;
     DataModel::Nullable<int64_t> GetNextChargeRequiredEnergy() override;
     DataModel::Nullable<Percent> GetNextChargeTargetSoC() override;
     DataModel::Nullable<uint16_t> GetApproximateEVEfficiency() override;
- 
-     /* SOC attributes */
+
+    /* SOC attributes */
     DataModel::Nullable<Percent> GetStateOfCharge() override;
     DataModel::Nullable<int64_t> GetBatteryCapacity() override;
- 
-     /* PNC attributes*/
+
+    /* PNC attributes*/
     DataModel::Nullable<CharSpan> GetVehicleID() override;
- 
-     /* Session SESS attributes */
+
+    /* Session SESS attributes */
     DataModel::Nullable<uint32_t> GetSessionID() override;
     DataModel::Nullable<uint32_t> GetSessionDuration() override;
     DataModel::Nullable<int64_t> GetSessionEnergyCharged() override;
     DataModel::Nullable<int64_t> GetSessionEnergyDischarged() override;
- 
-     // ------------------------------------------------------------------
-     // Set attribute methods
+
+    // ------------------------------------------------------------------
+    // Set attribute methods
     CHIP_ERROR SetUserMaximumChargeCurrent(int64_t aNewValue) override;
     CHIP_ERROR SetRandomizationDelayWindow(uint32_t aNewValue) override;
     CHIP_ERROR SetApproximateEVEfficiency(DataModel::Nullable<uint16_t> aNewValue) override;

@@ -55,8 +55,7 @@ Protocols::InteractionModel::Status MockCameraAVSettingsUserLevelManagementDeleg
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
-    if (callback)
-    {
+    if (callback) {
         callback->OnPhysicalMovementComplete(Protocols::InteractionModel::Status::Success);
     }
     return Protocols::InteractionModel::Status::Success;
@@ -67,20 +66,18 @@ Protocols::InteractionModel::Status MockCameraAVSettingsUserLevelManagementDeleg
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
-    if (callback)
-    {
+    if (callback) {
         callback->OnPhysicalMovementComplete(Protocols::InteractionModel::Status::Success);
     }
     return Protocols::InteractionModel::Status::Success;
 }
 
 Protocols::InteractionModel::Status MockCameraAVSettingsUserLevelManagementDelegate::MPTZMoveToPreset(uint8_t aPreset, Optional<int16_t> aPan, Optional<int16_t> aTilt,
-                                                                                                       Optional<uint8_t> aZoom, PhysicalPTZCallback * callback)
+                                                                                                      Optional<uint8_t> aZoom, PhysicalPTZCallback * callback)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
-    if (callback)
-    {
+    if (callback) {
         callback->OnPhysicalMovementComplete(Protocols::InteractionModel::Status::Success);
     }
     return Protocols::InteractionModel::Status::Success;
@@ -110,7 +107,7 @@ Protocols::InteractionModel::Status MockCameraAVSettingsUserLevelManagementDeleg
 
 Protocols::InteractionModel::Status MockCameraAVSettingsUserLevelManagementDelegate::DPTZRelativeMove(uint16_t aVideoStreamID, Optional<int16_t> aDeltaX,
                                                                                                       Optional<int16_t> aDeltaY, Optional<int8_t> aZoomDelta,
-                                                                                                      Globals::Structs::ViewportStruct::Type & aViewport)
+                                                                                                      Globals::Structs::ViewportStruct::Type  &aViewport)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -124,7 +121,7 @@ CHIP_ERROR MockCameraAVSettingsUserLevelManagementDelegate::PersistentAttributes
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockCameraAVSettingsUserLevelManagementDelegate::LoadMPTZPresets(std::vector<MPTZPresetHelper> & mptzPresetHelpers)
+CHIP_ERROR MockCameraAVSettingsUserLevelManagementDelegate::LoadMPTZPresets(std::vector<MPTZPresetHelper>  &mptzPresetHelpers)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -132,7 +129,7 @@ CHIP_ERROR MockCameraAVSettingsUserLevelManagementDelegate::LoadMPTZPresets(std:
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockCameraAVSettingsUserLevelManagementDelegate::LoadDPTZStreams(std::vector<DPTZStruct> & dptzStreams)
+CHIP_ERROR MockCameraAVSettingsUserLevelManagementDelegate::LoadDPTZStreams(std::vector<DPTZStruct>  &dptzStreams)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);

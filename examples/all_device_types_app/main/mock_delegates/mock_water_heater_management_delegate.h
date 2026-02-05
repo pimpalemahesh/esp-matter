@@ -25,16 +25,15 @@ namespace app {
 namespace Clusters {
 namespace WaterHeaterManagement {
 
-class MockWaterHeaterManagementDelegate : public Delegate
-{
+class MockWaterHeaterManagementDelegate : public Delegate {
 public:
     MockWaterHeaterManagementDelegate() = default;
     virtual ~MockWaterHeaterManagementDelegate() = default;
 
     // Delegate interface
     Protocols::InteractionModel::Status HandleBoost(uint32_t duration, Optional<bool> oneShot,
-                                                   Optional<bool> emergencyBoost, Optional<int16_t> temporarySetpoint,
-                                                   Optional<Percent> targetPercentage, Optional<Percent> targetReheat) override;
+                                                    Optional<bool> emergencyBoost, Optional<int16_t> temporarySetpoint,
+                                                    Optional<Percent> targetPercentage, Optional<Percent> targetReheat) override;
 
     Protocols::InteractionModel::Status HandleCancelBoost() override;
 
@@ -53,4 +52,4 @@ private:
 } // namespace WaterHeaterManagement
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

@@ -27,18 +27,17 @@ namespace app {
 namespace Clusters {
 namespace ContentLauncher {
 
-class MockContentLauncherDelegate : public Delegate
-{
+class MockContentLauncherDelegate : public Delegate {
 public:
     MockContentLauncherDelegate() = default;
 
-    void HandleLaunchContent(CommandResponseHelper<Commands::LauncherResponse::Type> & helper,
-                             const DataModel::DecodableList<Parameter> & parameterList, bool autoplay,
-                             const CharSpan & data, const Optional<PlaybackPreferences> playbackPreferences,
+    void HandleLaunchContent(CommandResponseHelper<Commands::LauncherResponse::Type>  &helper,
+                             const DataModel::DecodableList<Parameter>  &parameterList, bool autoplay,
+                             const CharSpan  &data, const Optional<PlaybackPreferences> playbackPreferences,
                              bool useCurrentContext) override;
-    void HandleLaunchUrl(CommandResponseHelper<Commands::LauncherResponse::Type> & helper, const CharSpan & contentUrl,
-                         const CharSpan & displayString, const BrandingInformation & brandingInformation) override;
-    CHIP_ERROR HandleGetAcceptHeaderList(app::AttributeValueEncoder & aEncoder) override;
+    void HandleLaunchUrl(CommandResponseHelper<Commands::LauncherResponse::Type>  &helper, const CharSpan  &contentUrl,
+                         const CharSpan  &displayString, const BrandingInformation  &brandingInformation) override;
+    CHIP_ERROR HandleGetAcceptHeaderList(app::AttributeValueEncoder  &aEncoder) override;
     uint32_t HandleGetSupportedStreamingProtocols() override;
     uint32_t GetFeatureMap(chip::EndpointId endpoint) override;
     uint16_t GetClusterRevision(chip::EndpointId endpoint) override;
@@ -50,4 +49,4 @@ private:
 } // namespace ContentLauncher
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

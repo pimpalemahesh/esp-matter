@@ -25,8 +25,7 @@ namespace app {
 namespace Clusters {
 namespace ElectricalGridConditions {
 
-class MockElectricalGridConditionsDelegate : public Delegate
-{
+class MockElectricalGridConditionsDelegate : public Delegate {
 public:
     MockElectricalGridConditionsDelegate() : Delegate() {}
     virtual ~MockElectricalGridConditionsDelegate() = default;
@@ -41,4 +40,4 @@ private:
 } // namespace ElectricalGridConditions
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

@@ -24,8 +24,7 @@ namespace app {
 namespace Clusters {
 namespace BooleanStateConfiguration {
 
-class MockBooleanStateConfigurationDelegate : public Delegate
-{
+class MockBooleanStateConfigurationDelegate : public Delegate {
 public:
     MockBooleanStateConfigurationDelegate() : Delegate() {}
     virtual ~MockBooleanStateConfigurationDelegate() = default;
@@ -41,4 +40,4 @@ private:
 } // namespace BooleanStateConfiguration
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

@@ -25,41 +25,40 @@ namespace app {
 namespace Clusters {
 namespace MediaPlayback {
 
-class MockMediaPlaybackDelegate : public Delegate
-{
+class MockMediaPlaybackDelegate : public Delegate {
 public:
     MockMediaPlaybackDelegate() = default;
 
     PlaybackStateEnum HandleGetCurrentState() override;
     uint64_t HandleGetStartTime() override;
     uint64_t HandleGetDuration() override;
-    CHIP_ERROR HandleGetSampledPosition(app::AttributeValueEncoder & aEncoder) override;
+    CHIP_ERROR HandleGetSampledPosition(app::AttributeValueEncoder  &aEncoder) override;
     float HandleGetPlaybackSpeed() override;
     uint64_t HandleGetSeekRangeStart() override;
     uint64_t HandleGetSeekRangeEnd() override;
-    CHIP_ERROR HandleGetActiveAudioTrack(app::AttributeValueEncoder & aEncoder) override;
-    CHIP_ERROR HandleGetAvailableAudioTracks(app::AttributeValueEncoder & aEncoder) override;
-    CHIP_ERROR HandleGetActiveTextTrack(app::AttributeValueEncoder & aEncoder) override;
-    CHIP_ERROR HandleGetAvailableTextTracks(app::AttributeValueEncoder & aEncoder) override;
+    CHIP_ERROR HandleGetActiveAudioTrack(app::AttributeValueEncoder  &aEncoder) override;
+    CHIP_ERROR HandleGetAvailableAudioTracks(app::AttributeValueEncoder  &aEncoder) override;
+    CHIP_ERROR HandleGetActiveTextTrack(app::AttributeValueEncoder  &aEncoder) override;
+    CHIP_ERROR HandleGetAvailableTextTracks(app::AttributeValueEncoder  &aEncoder) override;
 
-    void HandlePlay(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper) override;
-    void HandlePause(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper) override;
-    void HandleStop(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper) override;
-    void HandleFastForward(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper,
-                           const chip::Optional<bool> & audioAdvanceUnmuted) override;
-    void HandlePrevious(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper) override;
-    void HandleRewind(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper,
-                      const chip::Optional<bool> & audioAdvanceUnmuted) override;
-    void HandleSkipBackward(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper,
-                            const uint64_t & deltaPositionMilliseconds) override;
-    void HandleSkipForward(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper,
-                           const uint64_t & deltaPositionMilliseconds) override;
-    void HandleSeek(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper,
-                    const uint64_t & positionMilliseconds) override;
-    void HandleNext(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper) override;
-    void HandleStartOver(CommandResponseHelper<Commands::PlaybackResponse::Type> & helper) override;
-    bool HandleActivateAudioTrack(const chip::CharSpan & trackId, const uint8_t & audioOutputIndex) override;
-    bool HandleActivateTextTrack(const chip::CharSpan & trackId) override;
+    void HandlePlay(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper) override;
+    void HandlePause(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper) override;
+    void HandleStop(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper) override;
+    void HandleFastForward(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper,
+                           const chip::Optional<bool>  &audioAdvanceUnmuted) override;
+    void HandlePrevious(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper) override;
+    void HandleRewind(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper,
+                      const chip::Optional<bool>  &audioAdvanceUnmuted) override;
+    void HandleSkipBackward(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper,
+                            const uint64_t  &deltaPositionMilliseconds) override;
+    void HandleSkipForward(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper,
+                           const uint64_t  &deltaPositionMilliseconds) override;
+    void HandleSeek(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper,
+                    const uint64_t  &positionMilliseconds) override;
+    void HandleNext(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper) override;
+    void HandleStartOver(CommandResponseHelper<Commands::PlaybackResponse::Type>  &helper) override;
+    bool HandleActivateAudioTrack(const chip::CharSpan  &trackId, const uint8_t  &audioOutputIndex) override;
+    bool HandleActivateTextTrack(const chip::CharSpan  &trackId) override;
     bool HandleDeactivateTextTrack() override;
 
     uint32_t GetFeatureMap(chip::EndpointId endpoint) override;
@@ -72,4 +71,4 @@ private:
 } // namespace MediaPlayback
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

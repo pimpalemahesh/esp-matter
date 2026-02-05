@@ -27,12 +27,11 @@ namespace app {
 namespace Clusters {
 namespace KeypadInput {
 
-class MockKeypadInputDelegate : public Delegate
-{
+class MockKeypadInputDelegate : public Delegate {
 public:
     MockKeypadInputDelegate() = default;
 
-    void HandleSendKey(CommandResponseHelper<Commands::SendKeyResponse::Type> & helper, const CECKeyCodeEnum & keyCode) override;
+    void HandleSendKey(CommandResponseHelper<Commands::SendKeyResponse::Type>  &helper, const CECKeyCodeEnum  &keyCode) override;
     uint32_t GetFeatureMap(chip::EndpointId endpoint) override;
 
 private:
@@ -42,4 +41,4 @@ private:
 } // namespace KeypadInput
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

@@ -25,17 +25,16 @@ namespace app {
 namespace Clusters {
 namespace MediaInput {
 
-class MockMediaInputDelegate : public Delegate
-{
+class MockMediaInputDelegate : public Delegate {
 public:
     MockMediaInputDelegate() = default;
 
-    CHIP_ERROR HandleGetInputList(app::AttributeValueEncoder & aEncoder) override;
+    CHIP_ERROR HandleGetInputList(app::AttributeValueEncoder  &aEncoder) override;
     uint8_t HandleGetCurrentInput() override;
     bool HandleSelectInput(const uint8_t index) override;
     bool HandleShowInputStatus() override;
     bool HandleHideInputStatus() override;
-    bool HandleRenameInput(const uint8_t index, const chip::CharSpan & name) override;
+    bool HandleRenameInput(const uint8_t index, const chip::CharSpan  &name) override;
 
 private:
     const char *LOG_TAG = "media_input";
@@ -44,4 +43,4 @@ private:
 } // namespace MediaInput
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

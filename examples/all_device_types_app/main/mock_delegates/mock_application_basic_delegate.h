@@ -25,21 +25,20 @@ namespace app {
 namespace Clusters {
 namespace ApplicationBasic {
 
-class MockApplicationBasicDelegate : public Delegate
-{
+class MockApplicationBasicDelegate : public Delegate {
 public:
     MockApplicationBasicDelegate() : Delegate() {}
-    MockApplicationBasicDelegate(uint16_t szCatalogVendorId, const char * szApplicationId) 
+    MockApplicationBasicDelegate(uint16_t szCatalogVendorId, const char * szApplicationId)
         : Delegate(szCatalogVendorId, szApplicationId) {}
     virtual ~MockApplicationBasicDelegate() = default;
 
     // Application basic attribute handlers
-    CHIP_ERROR HandleGetVendorName(app::AttributeValueEncoder & aEncoder) override;
+    CHIP_ERROR HandleGetVendorName(app::AttributeValueEncoder  &aEncoder) override;
     uint16_t HandleGetVendorId() override;
-    CHIP_ERROR HandleGetApplicationName(app::AttributeValueEncoder & aEncoder) override;
+    CHIP_ERROR HandleGetApplicationName(app::AttributeValueEncoder  &aEncoder) override;
     uint16_t HandleGetProductId() override;
-    CHIP_ERROR HandleGetApplicationVersion(app::AttributeValueEncoder & aEncoder) override;
-    CHIP_ERROR HandleGetAllowedVendorList(app::AttributeValueEncoder & aEncoder) override;
+    CHIP_ERROR HandleGetApplicationVersion(app::AttributeValueEncoder  &aEncoder) override;
+    CHIP_ERROR HandleGetAllowedVendorList(app::AttributeValueEncoder  &aEncoder) override;
     std::list<uint16_t> GetAllowedVendorList() override;
 
 private:
@@ -49,4 +48,4 @@ private:
 } // namespace ApplicationBasic
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

@@ -25,15 +25,14 @@ namespace app {
 namespace Clusters {
 namespace LaundryWasherControls {
 
-class MockLaundryWasherControlsDelegate : public Delegate
-{
+class MockLaundryWasherControlsDelegate : public Delegate {
 public:
     MockLaundryWasherControlsDelegate() : Delegate() {}
     virtual ~MockLaundryWasherControlsDelegate() = default;
 
     // Laundry washer controls management
-    CHIP_ERROR GetSpinSpeedAtIndex(size_t index, MutableCharSpan & spinSpeed) override;
-    CHIP_ERROR GetSupportedRinseAtIndex(size_t index, NumberOfRinsesEnum & supportedRinse) override;
+    CHIP_ERROR GetSpinSpeedAtIndex(size_t index, MutableCharSpan  &spinSpeed) override;
+    CHIP_ERROR GetSupportedRinseAtIndex(size_t index, NumberOfRinsesEnum  &supportedRinse) override;
 
 private:
     static constexpr const char * LOG_TAG = "MockLaundryWasherControlsDelegate";
@@ -42,4 +41,4 @@ private:
 } // namespace LaundryWasherControls
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

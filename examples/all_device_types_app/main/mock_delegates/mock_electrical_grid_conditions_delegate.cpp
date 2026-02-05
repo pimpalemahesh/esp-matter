@@ -21,4 +21,4 @@ namespace ElectricalGridConditions {
 } // namespace ElectricalGridConditions
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

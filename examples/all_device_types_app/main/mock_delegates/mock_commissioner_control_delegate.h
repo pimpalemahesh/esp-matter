@@ -25,17 +25,16 @@ namespace app {
 namespace Clusters {
 namespace CommissionerControl {
 
-class MockCommissionerControlDelegate : public Delegate
-{
+class MockCommissionerControlDelegate : public Delegate {
 public:
     MockCommissionerControlDelegate() = default;
     virtual ~MockCommissionerControlDelegate() = default;
 
     // Commissioner control management
-    CHIP_ERROR HandleCommissioningApprovalRequest(const CommissioningApprovalRequest & request) override;
+    CHIP_ERROR HandleCommissioningApprovalRequest(const CommissioningApprovalRequest  &request) override;
     CHIP_ERROR ValidateCommissionNodeCommand(NodeId clientNodeId, uint64_t requestId) override;
-    CHIP_ERROR GetCommissioningWindowParams(CommissioningWindowParams & outParams) override;
-    CHIP_ERROR HandleCommissionNode(const CommissioningWindowParams & params) override;
+    CHIP_ERROR GetCommissioningWindowParams(CommissioningWindowParams  &outParams) override;
+    CHIP_ERROR HandleCommissionNode(const CommissioningWindowParams  &params) override;
 
 private:
     static constexpr const char * LOG_TAG = "MockCommissionerControlDelegate";
@@ -44,4 +43,4 @@ private:
 } // namespace CommissionerControl
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

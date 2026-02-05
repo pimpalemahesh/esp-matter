@@ -29,7 +29,7 @@ bool MockThreadBorderRouterManagementDelegate::GetPanChangeSupported()
     return false;
 }
 
-void MockThreadBorderRouterManagementDelegate::GetBorderRouterName(MutableCharSpan & borderRouterName)
+void MockThreadBorderRouterManagementDelegate::GetBorderRouterName(MutableCharSpan  &borderRouterName)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -37,7 +37,7 @@ void MockThreadBorderRouterManagementDelegate::GetBorderRouterName(MutableCharSp
     return;
 }
 
-CHIP_ERROR MockThreadBorderRouterManagementDelegate::GetBorderAgentId(MutableByteSpan & borderAgentId)
+CHIP_ERROR MockThreadBorderRouterManagementDelegate::GetBorderAgentId(MutableByteSpan  &borderAgentId)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -58,14 +58,14 @@ bool MockThreadBorderRouterManagementDelegate::GetInterfaceEnabled()
     return false;
 }
 
-CHIP_ERROR MockThreadBorderRouterManagementDelegate::GetDataset(Thread::OperationalDataset & dataset, DatasetType type)
+CHIP_ERROR MockThreadBorderRouterManagementDelegate::GetDataset(Thread::OperationalDataset  &dataset, DatasetType type)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_NOT_FOUND;
 }
 
-void MockThreadBorderRouterManagementDelegate::SetActiveDataset(const Thread::OperationalDataset & activeDataset, uint32_t sequenceNum,
+void MockThreadBorderRouterManagementDelegate::SetActiveDataset(const Thread::OperationalDataset  &activeDataset, uint32_t sequenceNum,
                                                                 ActivateDatasetCallback * callback)
 {
     // Implement your own logic here.
@@ -87,7 +87,7 @@ CHIP_ERROR MockThreadBorderRouterManagementDelegate::RevertActiveDataset()
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockThreadBorderRouterManagementDelegate::SetPendingDataset(const Thread::OperationalDataset & pendingDataset)
+CHIP_ERROR MockThreadBorderRouterManagementDelegate::SetPendingDataset(const Thread::OperationalDataset  &pendingDataset)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -98,4 +98,3 @@ CHIP_ERROR MockThreadBorderRouterManagementDelegate::SetPendingDataset(const Thr
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

@@ -27,17 +27,16 @@ namespace app {
 namespace Clusters {
 namespace ApplicationLauncher {
 
-class MockApplicationLauncherDelegate : public Delegate
-{
+class MockApplicationLauncherDelegate : public Delegate {
 public:
     MockApplicationLauncherDelegate() = default;
     MockApplicationLauncherDelegate(bool featureMapContentPlatform) : Delegate(featureMapContentPlatform) {}
 
-    CHIP_ERROR HandleGetCatalogList(app::AttributeValueEncoder & aEncoder) override;
-    void HandleLaunchApp(CommandResponseHelper<LauncherResponseType> & helper, const ByteSpan & data,
-                         const Application & application) override;
-    void HandleStopApp(CommandResponseHelper<LauncherResponseType> & helper, const Application & application) override;
-    void HandleHideApp(CommandResponseHelper<LauncherResponseType> & helper, const Application & application) override;
+    CHIP_ERROR HandleGetCatalogList(app::AttributeValueEncoder  &aEncoder) override;
+    void HandleLaunchApp(CommandResponseHelper<LauncherResponseType>  &helper, const ByteSpan  &data,
+                         const Application  &application) override;
+    void HandleStopApp(CommandResponseHelper<LauncherResponseType>  &helper, const Application  &application) override;
+    void HandleHideApp(CommandResponseHelper<LauncherResponseType>  &helper, const Application  &application) override;
 
 private:
     const char *LOG_TAG = "application_launcher";
@@ -46,4 +45,4 @@ private:
 } // namespace ApplicationLauncher
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

@@ -25,8 +25,7 @@ namespace app {
 namespace Clusters {
 namespace LowPower {
 
-class MockLowPowerDelegate : public Delegate
-{
+class MockLowPowerDelegate : public Delegate {
 public:
     MockLowPowerDelegate() = default;
 
@@ -39,4 +38,4 @@ private:
 } // namespace LowPower
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

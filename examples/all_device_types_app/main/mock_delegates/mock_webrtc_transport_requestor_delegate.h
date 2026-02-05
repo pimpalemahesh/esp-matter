@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <app/clusters/webrtc-transport-requestor-server/webrtc-transport-requestor-cluster.h>
+#include <app/clusters/webrtc-transport-requestor-server/WebRTCTransportRequestorCluster.h>
 #include <protocols/interaction_model/StatusCode.h>
 
 /*
@@ -24,17 +24,17 @@ namespace app {
 namespace Clusters {
 namespace WebRTCTransportRequestor {
 
-class MockWebRTCTransportRequestorDelegate : public Delegate
-{
+class MockWebRTCTransportRequestorDelegate : public Delegate {
 public:
     MockWebRTCTransportRequestorDelegate() : Delegate() {}
     virtual ~MockWebRTCTransportRequestorDelegate() = default;
 
     // WebRTC transport requestor handlers
-    CHIP_ERROR HandleOffer(uint16_t sessionId, const OfferArgs & args) override;
-    CHIP_ERROR HandleAnswer(uint16_t sessionId, const std::string & sdpAnswer) override;
-    CHIP_ERROR HandleICECandidates(uint16_t sessionId, const std::vector<ICECandidateStruct> & candidates) override;
-    CHIP_ERROR HandleEnd(uint16_t sessionId, WebRTCEndReasonEnum reasonCode) override;
+    CHIP_ERROR HandleOffer(const WebRTCSessionStruct  &session, const OfferArgs  &args) override;
+    CHIP_ERROR HandleAnswer(const WebRTCSessionStruct  &session, const std::string  &sdpAnswer) override;
+    CHIP_ERROR HandleICECandidates(const WebRTCSessionStruct  &session,
+                                   const std::vector<ICECandidateStruct>  &candidates) override;
+    CHIP_ERROR HandleEnd(const WebRTCSessionStruct  &session, WebRTCEndReasonEnum reasonCode) override;
 
 private:
     static constexpr const char * LOG_TAG = "MockWebRTCTransportRequestorDelegate";
@@ -44,4 +44,3 @@ private:
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

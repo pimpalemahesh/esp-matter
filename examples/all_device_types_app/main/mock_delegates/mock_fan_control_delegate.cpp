@@ -25,4 +25,4 @@ Protocols::InteractionModel::Status MockFanControlDelegate::HandleStep(StepDirec
 } // namespace FanControl
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

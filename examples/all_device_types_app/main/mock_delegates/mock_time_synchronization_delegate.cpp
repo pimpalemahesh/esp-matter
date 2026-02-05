@@ -50,8 +50,8 @@ CHIP_ERROR MockTimeSynchronizationDelegate::UpdateTimeFromPlatformSource(chip::C
     return CHIP_ERROR_NOT_IMPLEMENTED;
 }
 
-CHIP_ERROR MockTimeSynchronizationDelegate::UpdateTimeUsingNTPFallback(const CharSpan & fallbackNTP,
-                                                                        chip::Callback::Callback<OnFallbackNTPCompletion> * callback)
+CHIP_ERROR MockTimeSynchronizationDelegate::UpdateTimeUsingNTPFallback(const CharSpan  &fallbackNTP,
+                                                                       chip::Callback::Callback<OnFallbackNTPCompletion> * callback)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -82,4 +82,4 @@ void MockTimeSynchronizationDelegate::NotifyTimeFailure()
 } // namespace TimeSynchronization
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

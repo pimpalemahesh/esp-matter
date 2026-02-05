@@ -15,14 +15,14 @@ namespace app {
 namespace Clusters {
 namespace LaundryWasherControls {
 
-CHIP_ERROR MockLaundryWasherControlsDelegate::GetSpinSpeedAtIndex(size_t index, MutableCharSpan & spinSpeed)
+CHIP_ERROR MockLaundryWasherControlsDelegate::GetSpinSpeedAtIndex(size_t index, MutableCharSpan  &spinSpeed)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_PROVIDER_LIST_EXHAUSTED;
 }
 
-CHIP_ERROR MockLaundryWasherControlsDelegate::GetSupportedRinseAtIndex(size_t index, NumberOfRinsesEnum & supportedRinse)
+CHIP_ERROR MockLaundryWasherControlsDelegate::GetSupportedRinseAtIndex(size_t index, NumberOfRinsesEnum  &supportedRinse)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -32,4 +32,4 @@ CHIP_ERROR MockLaundryWasherControlsDelegate::GetSupportedRinseAtIndex(size_t in
 } // namespace LaundryWasherControls
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

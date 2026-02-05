@@ -46,4 +46,4 @@ Protocols::InteractionModel::Status MockResourceMonitoringDelegate::PostResetCon
 } // namespace ResourceMonitoring
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

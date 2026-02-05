@@ -8,20 +8,19 @@
 
 #pragma once
 
-#include <app/clusters/tls-client-management-server/tls-client-management-server.h>
+#include <app/clusters/tls-client-management-server/TlsClientManagementCluster.h>
 #include <protocols/interaction_model/StatusCode.h>
 
 namespace chip {
 namespace app {
 namespace Clusters {
 
-class MockTlsClientManagementDelegate : public TlsClientManagementDelegate
-{
+class MockTlsClientManagementDelegate : public TlsClientManagementDelegate {
 public:
     MockTlsClientManagementDelegate() = default;
     virtual ~MockTlsClientManagementDelegate() = default;
 
-    CHIP_ERROR Init(PersistentStorageDelegate & storage) override;
+    CHIP_ERROR Init(PersistentStorageDelegate  &storage) override;
 
     CHIP_ERROR ForEachEndpoint(EndpointId matterEndpoint, FabricIndex fabric, LoadedEndpointCallback callback) override;
 
@@ -30,8 +29,8 @@ public:
 
     Protocols::InteractionModel::ClusterStatusCode
     ProvisionEndpoint(EndpointId matterEndpoint, FabricIndex fabric,
-                      const TlsClientManagement::Commands::ProvisionEndpoint::DecodableType & provisionReq,
-                      uint16_t & endpointID) override;
+                      const TlsClientManagement::Commands::ProvisionEndpoint::DecodableType  &provisionReq,
+                      uint16_t  &endpointID) override;
 
     Protocols::InteractionModel::Status RemoveProvisionedEndpointByID(EndpointId matterEndpoint, FabricIndex fabric,
                                                                       uint16_t endpointID) override;
@@ -53,4 +52,3 @@ private:
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

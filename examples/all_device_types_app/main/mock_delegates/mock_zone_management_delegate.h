@@ -24,19 +24,18 @@ namespace app {
 namespace Clusters {
 namespace ZoneManagement {
 
-class MockZoneManagementDelegate : public Delegate
-{
+class MockZoneManagementDelegate : public Delegate {
 public:
     MockZoneManagementDelegate() : Delegate() {}
     virtual ~MockZoneManagementDelegate() = default;
 
     // Zone management command handlers
-    Protocols::InteractionModel::Status CreateTwoDCartesianZone(const TwoDCartesianZoneStorage & zone,
-                                                                uint16_t & outZoneID) override;
-    Protocols::InteractionModel::Status UpdateTwoDCartesianZone(uint16_t zoneID, const TwoDCartesianZoneStorage & zone) override;
+    Protocols::InteractionModel::Status CreateTwoDCartesianZone(const TwoDCartesianZoneStorage  &zone,
+                                                                uint16_t  &outZoneID) override;
+    Protocols::InteractionModel::Status UpdateTwoDCartesianZone(uint16_t zoneID, const TwoDCartesianZoneStorage  &zone) override;
     Protocols::InteractionModel::Status RemoveZone(uint16_t zoneID) override;
-    Protocols::InteractionModel::Status CreateTrigger(const ZoneTriggerControlStruct & zoneTrigger) override;
-    Protocols::InteractionModel::Status UpdateTrigger(const ZoneTriggerControlStruct & zoneTrigger) override;
+    Protocols::InteractionModel::Status CreateTrigger(const ZoneTriggerControlStruct  &zoneTrigger) override;
+    Protocols::InteractionModel::Status UpdateTrigger(const ZoneTriggerControlStruct  &zoneTrigger) override;
     Protocols::InteractionModel::Status RemoveTrigger(uint16_t zoneID) override;
 
     // Callback handlers
@@ -44,8 +43,8 @@ public:
     CHIP_ERROR PersistentAttributesLoadedCallback() override;
 
     // Load handlers
-    CHIP_ERROR LoadZones(std::vector<ZoneInformationStorage> & aZones) override;
-    CHIP_ERROR LoadTriggers(std::vector<ZoneTriggerControlStruct> & aTriggers) override;
+    CHIP_ERROR LoadZones(std::vector<ZoneInformationStorage>  &aZones) override;
+    CHIP_ERROR LoadTriggers(std::vector<ZoneTriggerControlStruct>  &aTriggers) override;
 
 private:
     static constexpr const char * LOG_TAG = "MockZoneManagementDelegate";
@@ -55,4 +54,3 @@ private:
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

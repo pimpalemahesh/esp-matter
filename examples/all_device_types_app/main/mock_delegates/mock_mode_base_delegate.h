@@ -62,16 +62,15 @@ namespace app {
 namespace Clusters {
 namespace ModeBase {
 
-class MockModeBaseDelegate : public Delegate
-{
+class MockModeBaseDelegate : public Delegate {
 public:
     MockModeBaseDelegate() = default;
 
     CHIP_ERROR Init() override;
-    CHIP_ERROR GetModeLabelByIndex(uint8_t modeIndex, MutableCharSpan & label) override;
-    CHIP_ERROR GetModeValueByIndex(uint8_t modeIndex, uint8_t & value) override;
-    CHIP_ERROR GetModeTagsByIndex(uint8_t modeIndex, DataModel::List<detail::Structs::ModeTagStruct::Type> & modeTags) override;
-    void HandleChangeToMode(uint8_t NewMode, ModeBase::Commands::ChangeToModeResponse::Type & response) override;
+    CHIP_ERROR GetModeLabelByIndex(uint8_t modeIndex, MutableCharSpan  &label) override;
+    CHIP_ERROR GetModeValueByIndex(uint8_t modeIndex, uint8_t  &value) override;
+    CHIP_ERROR GetModeTagsByIndex(uint8_t modeIndex, DataModel::List<detail::Structs::ModeTagStruct::Type>  &modeTags) override;
+    void HandleChangeToMode(uint8_t NewMode, ModeBase::Commands::ChangeToModeResponse::Type  &response) override;
 
 private:
     const char *LOG_TAG = "mode_base";
@@ -81,4 +80,3 @@ private:
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

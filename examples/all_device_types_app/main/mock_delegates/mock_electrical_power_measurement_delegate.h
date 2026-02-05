@@ -8,14 +8,14 @@
 
 #pragma once
 
-#include <app/clusters/electrical-power-measurement-server/electrical-power-measurement-server.h>
+#include <app/clusters/electrical-power-measurement-server/ElectricalPowerMeasurementDelegate.h>
 
 /*
  * Mock ElectricalPowerMeasurement Delegate Implementation
  * This file provides a mock implementation of the ElectricalPowerMeasurement::Delegate interface
  * that returns success for all methods.
  * For more details, take a look at the delegate interface in the Matter SDK.
- * 1. Delegate Interface: https://github.com/project-chip/connectedhomeip/blob/d144bbb/src/app/clusters/electrical-power-measurement-server/electrical-power-measurement-server.h
+ * 1. Delegate Interface: https://github.com/project-chip/connectedhomeip/blob/d144bbb/src/app/clusters/electrical-power-measurement-server/ElectricalPowerMeasurementDelegate.h
  * 2. Delegate Implementation: https://github.com/project-chip/connectedhomeip/blob/d144bbb/examples/energy-management-app/energy-management-common/energy-reporting/include/ElectricalPowerMeasurementDelegate.h and
  *    https://github.com/project-chip/connectedhomeip/blob/d144bbb/examples/energy-management-app/energy-management-common/energy-reporting/src/ElectricalPowerMeasurementDelegate.cpp
  */
@@ -25,8 +25,7 @@ namespace app {
 namespace Clusters {
 namespace ElectricalPowerMeasurement {
 
-class MockElectricalPowerMeasurementDelegate : public Delegate
-{
+class MockElectricalPowerMeasurementDelegate : public Delegate {
 public:
     MockElectricalPowerMeasurementDelegate() = default;
     virtual ~MockElectricalPowerMeasurementDelegate() = default;
@@ -36,19 +35,19 @@ public:
     uint8_t GetNumberOfMeasurementTypes() override;
 
     CHIP_ERROR StartAccuracyRead() override;
-    CHIP_ERROR GetAccuracyByIndex(uint8_t index, Structs::MeasurementAccuracyStruct::Type & accuracy) override;
+    CHIP_ERROR GetAccuracyByIndex(uint8_t index, Structs::MeasurementAccuracyStruct::Type  &accuracy) override;
     CHIP_ERROR EndAccuracyRead() override;
 
     CHIP_ERROR StartRangesRead() override;
-    CHIP_ERROR GetRangeByIndex(uint8_t index, Structs::MeasurementRangeStruct::Type & range) override;
+    CHIP_ERROR GetRangeByIndex(uint8_t index, Structs::MeasurementRangeStruct::Type  &range) override;
     CHIP_ERROR EndRangesRead() override;
 
     CHIP_ERROR StartHarmonicCurrentsRead() override;
-    CHIP_ERROR GetHarmonicCurrentsByIndex(uint8_t index, Structs::HarmonicMeasurementStruct::Type & harmonic) override;
+    CHIP_ERROR GetHarmonicCurrentsByIndex(uint8_t index, Structs::HarmonicMeasurementStruct::Type  &harmonic) override;
     CHIP_ERROR EndHarmonicCurrentsRead() override;
 
     CHIP_ERROR StartHarmonicPhasesRead() override;
-    CHIP_ERROR GetHarmonicPhasesByIndex(uint8_t index, Structs::HarmonicMeasurementStruct::Type & harmonic) override;
+    CHIP_ERROR GetHarmonicPhasesByIndex(uint8_t index, Structs::HarmonicMeasurementStruct::Type  &harmonic) override;
     CHIP_ERROR EndHarmonicPhasesRead() override;
 
     DataModel::Nullable<int64_t> GetVoltage() override;
@@ -71,4 +70,4 @@ private:
 } // namespace ElectricalPowerMeasurement
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

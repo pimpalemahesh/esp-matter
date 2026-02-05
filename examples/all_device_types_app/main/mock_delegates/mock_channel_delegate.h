@@ -27,34 +27,33 @@ namespace app {
 namespace Clusters {
 namespace Channel {
 
-class MockChannelDelegate : public Delegate
-{
+class MockChannelDelegate : public Delegate {
 public:
     MockChannelDelegate() = default;
 
-    CHIP_ERROR HandleGetChannelList(app::AttributeValueEncoder & aEncoder) override;
-    CHIP_ERROR HandleGetLineup(app::AttributeValueEncoder & aEncoder) override;
-    CHIP_ERROR HandleGetCurrentChannel(app::AttributeValueEncoder & aEncoder) override;
+    CHIP_ERROR HandleGetChannelList(app::AttributeValueEncoder  &aEncoder) override;
+    CHIP_ERROR HandleGetLineup(app::AttributeValueEncoder  &aEncoder) override;
+    CHIP_ERROR HandleGetCurrentChannel(app::AttributeValueEncoder  &aEncoder) override;
 
-    void HandleChangeChannel(CommandResponseHelper<Commands::ChangeChannelResponse::Type> & helper,
-                             const chip::CharSpan & match) override;
-    bool HandleChangeChannelByNumber(const uint16_t & majorNumber, const uint16_t & minorNumber) override;
-    bool HandleSkipChannel(const int16_t & count) override;
-    void HandleGetProgramGuide(CommandResponseHelper<Commands::ProgramGuideResponse::Type> & helper,
-                               const chip::Optional<uint32_t> & startTime, const chip::Optional<uint32_t> & endTime,
-                               const chip::Optional<DataModel::DecodableList<ChannelInfo>> & channelList,
-                               const chip::Optional<PageToken> & pageToken,
-                               const chip::Optional<chip::BitMask<RecordingFlagBitmap>> & recordingFlag,
-                               const chip::Optional<DataModel::DecodableList<AdditionalInfo>> & externalIdList,
-                               const chip::Optional<chip::ByteSpan> & data) override;
+    void HandleChangeChannel(CommandResponseHelper<Commands::ChangeChannelResponse::Type>  &helper,
+                             const chip::CharSpan  &match) override;
+    bool HandleChangeChannelByNumber(const uint16_t  &majorNumber, const uint16_t  &minorNumber) override;
+    bool HandleSkipChannel(const int16_t  &count) override;
+    void HandleGetProgramGuide(CommandResponseHelper<Commands::ProgramGuideResponse::Type>  &helper,
+                               const chip::Optional<uint32_t>  &startTime, const chip::Optional<uint32_t>  &endTime,
+                               const chip::Optional<DataModel::DecodableList<ChannelInfo>>  &channelList,
+                               const chip::Optional<PageToken>  &pageToken,
+                               const chip::Optional<chip::BitMask<RecordingFlagBitmap>>  &recordingFlag,
+                               const chip::Optional<DataModel::DecodableList<AdditionalInfo>>  &externalIdList,
+                               const chip::Optional<chip::ByteSpan>  &data) override;
 
-    bool HandleRecordProgram(const chip::CharSpan & programIdentifier, bool shouldRecordSeries,
-                             const DataModel::DecodableList<AdditionalInfo> & externalIdList,
-                             const chip::ByteSpan & data) override;
+    bool HandleRecordProgram(const chip::CharSpan  &programIdentifier, bool shouldRecordSeries,
+                             const DataModel::DecodableList<AdditionalInfo>  &externalIdList,
+                             const chip::ByteSpan  &data) override;
 
-    bool HandleCancelRecordProgram(const chip::CharSpan & programIdentifier, bool shouldRecordSeries,
-                                   const DataModel::DecodableList<AdditionalInfo> & externalIdList,
-                                   const chip::ByteSpan & data) override;
+    bool HandleCancelRecordProgram(const chip::CharSpan  &programIdentifier, bool shouldRecordSeries,
+                                   const DataModel::DecodableList<AdditionalInfo>  &externalIdList,
+                                   const chip::ByteSpan  &data) override;
 
     uint32_t GetFeatureMap(chip::EndpointId endpoint) override;
     uint16_t GetClusterRevision(chip::EndpointId endpoint) override;
@@ -66,4 +65,4 @@ private:
 } // namespace Channel
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

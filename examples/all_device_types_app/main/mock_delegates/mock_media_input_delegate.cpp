@@ -15,7 +15,7 @@ namespace app {
 namespace Clusters {
 namespace MediaInput {
 
-CHIP_ERROR MockMediaInputDelegate::HandleGetInputList(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockMediaInputDelegate::HandleGetInputList(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -50,7 +50,7 @@ bool MockMediaInputDelegate::HandleHideInputStatus()
     return true;
 }
 
-bool MockMediaInputDelegate::HandleRenameInput(const uint8_t index, const chip::CharSpan & name)
+bool MockMediaInputDelegate::HandleRenameInput(const uint8_t index, const chip::CharSpan  &name)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -60,4 +60,4 @@ bool MockMediaInputDelegate::HandleRenameInput(const uint8_t index, const chip::
 } // namespace MediaInput
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

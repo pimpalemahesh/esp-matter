@@ -25,8 +25,7 @@ namespace app {
 namespace Clusters {
 namespace TimeSynchronization {
 
-class MockTimeSynchronizationDelegate : public Delegate
-{
+class MockTimeSynchronizationDelegate : public Delegate {
 public:
     MockTimeSynchronizationDelegate() : Delegate() {}
     virtual ~MockTimeSynchronizationDelegate() = default;
@@ -37,7 +36,7 @@ public:
     bool IsNTPAddressValid(const CharSpan ntp) override;
     bool IsNTPAddressDomain(const CharSpan ntp) override;
     CHIP_ERROR UpdateTimeFromPlatformSource(chip::Callback::Callback<OnTimeSyncCompletion> * callback) override;
-    CHIP_ERROR UpdateTimeUsingNTPFallback(const CharSpan & fallbackNTP,
+    CHIP_ERROR UpdateTimeUsingNTPFallback(const CharSpan  &fallbackNTP,
                                           chip::Callback::Callback<OnFallbackNTPCompletion> * callback) override;
     void UTCTimeAvailabilityChanged(uint64_t time) override;
     void TrustedTimeSourceAvailabilityChanged(bool available, GranularityEnum granularity) override;

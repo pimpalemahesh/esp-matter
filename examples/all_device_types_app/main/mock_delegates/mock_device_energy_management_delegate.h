@@ -25,20 +25,19 @@ namespace app {
 namespace Clusters {
 namespace DeviceEnergyManagement {
 
-class MockDeviceEnergyManagementDelegate : public Delegate
-{
+class MockDeviceEnergyManagementDelegate : public Delegate {
 public:
     MockDeviceEnergyManagementDelegate() = default;
     virtual ~MockDeviceEnergyManagementDelegate() = default;
 
     // Command handlers
     Protocols::InteractionModel::Status PowerAdjustRequest(const int64_t power, const uint32_t duration,
-                                                          AdjustmentCauseEnum cause) override;
+                                                           AdjustmentCauseEnum cause) override;
 
     Protocols::InteractionModel::Status CancelPowerAdjustRequest() override;
 
     Protocols::InteractionModel::Status StartTimeAdjustRequest(const uint32_t requestedStartTime,
-                                                              AdjustmentCauseEnum cause) override;
+                                                               AdjustmentCauseEnum cause) override;
 
     Protocols::InteractionModel::Status PauseRequest(const uint32_t duration, AdjustmentCauseEnum cause) override;
 
@@ -46,12 +45,12 @@ public:
 
     Protocols::InteractionModel::Status
     ModifyForecastRequest(const uint32_t forecastID,
-                          const DataModel::DecodableList<Structs::SlotAdjustmentStruct::Type> & slotAdjustments,
+                          const DataModel::DecodableList<Structs::SlotAdjustmentStruct::Type>  &slotAdjustments,
                           AdjustmentCauseEnum cause) override;
 
     Protocols::InteractionModel::Status
-    RequestConstraintBasedForecast(const DataModel::DecodableList<Structs::ConstraintsStruct::Type> & constraints,
-                                  AdjustmentCauseEnum cause) override;
+    RequestConstraintBasedForecast(const DataModel::DecodableList<Structs::ConstraintsStruct::Type>  &constraints,
+                                   AdjustmentCauseEnum cause) override;
 
     Protocols::InteractionModel::Status CancelRequest() override;
 
@@ -62,8 +61,8 @@ public:
     int64_t GetAbsMinPower() override;
     int64_t GetAbsMaxPower() override;
     OptOutStateEnum GetOptOutState() override;
-    const DataModel::Nullable<Structs::PowerAdjustCapabilityStruct::Type> & GetPowerAdjustmentCapability() override;
-    const DataModel::Nullable<Structs::ForecastStruct::Type> & GetForecast() override;
+    const DataModel::Nullable<Structs::PowerAdjustCapabilityStruct::Type>  &GetPowerAdjustmentCapability() override;
+    const DataModel::Nullable<Structs::ForecastStruct::Type>  &GetForecast() override;
 
     // Attribute setter
     CHIP_ERROR SetESAState(ESAStateEnum esaState) override;
@@ -77,4 +76,4 @@ private:
 } // namespace DeviceEnergyManagement
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

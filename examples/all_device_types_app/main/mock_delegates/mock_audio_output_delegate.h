@@ -27,15 +27,14 @@ namespace app {
 namespace Clusters {
 namespace AudioOutput {
 
-class MockAudioOutputDelegate : public Delegate
-{
+class MockAudioOutputDelegate : public Delegate {
 public:
     MockAudioOutputDelegate() = default;
 
     uint8_t HandleGetCurrentOutput() override;
-    CHIP_ERROR HandleGetOutputList(app::AttributeValueEncoder & aEncoder) override;
-    bool HandleRenameOutput(const uint8_t & index, const chip::CharSpan & name) override;
-    bool HandleSelectOutput(const uint8_t & index) override;
+    CHIP_ERROR HandleGetOutputList(app::AttributeValueEncoder  &aEncoder) override;
+    bool HandleRenameOutput(const uint8_t  &index, const chip::CharSpan  &name) override;
+    bool HandleSelectOutput(const uint8_t  &index) override;
 
 private:
     const char *LOG_TAG = "audio_output";
@@ -44,4 +43,4 @@ private:
 } // namespace AudioOutput
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

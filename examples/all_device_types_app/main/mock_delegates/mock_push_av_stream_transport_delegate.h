@@ -15,14 +15,13 @@ namespace chip {
 namespace app {
 namespace Clusters {
 
-class MockPushAvStreamTransportDelegate : public PushAvStreamTransportDelegate
-{
+class MockPushAvStreamTransportDelegate : public PushAvStreamTransportDelegate {
 public:
     MockPushAvStreamTransportDelegate() = default;
     virtual ~MockPushAvStreamTransportDelegate() = default;
 
     Protocols::InteractionModel::Status
-    AllocatePushTransport(const PushAvStreamTransport::Structs::TransportOptionsStruct::Type & transportOptions,
+    AllocatePushTransport(const PushAvStreamTransport::Structs::TransportOptionsStruct::Type  &transportOptions,
                           const uint16_t connectionID, FabricIndex accessingFabricIndex) override;
 
     Protocols::InteractionModel::Status DeallocatePushTransport(const uint16_t connectionID) override;
@@ -36,23 +35,23 @@ public:
 
     Protocols::InteractionModel::Status ManuallyTriggerTransport(
         const uint16_t connectionID, PushAvStreamTransport::TriggerActivationReasonEnum activationReason,
-        const Optional<PushAvStreamTransport::Structs::TransportMotionTriggerTimeControlStruct::Type> & timeControl) override;
+        const Optional<PushAvStreamTransport::Structs::TransportMotionTriggerTimeControlStruct::Type>  &timeControl) override;
 
     bool ValidateStreamUsage(PushAvStreamTransport::StreamUsageEnum streamUsage) override;
 
     bool ValidateSegmentDuration(uint16_t segmentDuration,
-                                 const Optional<DataModel::Nullable<uint16_t>> & videoStreamId) override;
+                                 const Optional<DataModel::Nullable<uint16_t>>  &videoStreamId) override;
 
     Protocols::InteractionModel::Status
     ValidateBandwidthLimit(PushAvStreamTransport::StreamUsageEnum streamUsage,
-                           const Optional<DataModel::Nullable<uint16_t>> & videoStreamId,
-                           const Optional<DataModel::Nullable<uint16_t>> & audioStreamId) override;
+                           const Optional<DataModel::Nullable<uint16_t>>  &videoStreamId,
+                           const Optional<DataModel::Nullable<uint16_t>>  &audioStreamId) override;
 
     Protocols::InteractionModel::Status SelectVideoStream(PushAvStreamTransport::StreamUsageEnum streamUsage,
-                                                          uint16_t & videoStreamId) override;
+                                                          uint16_t  &videoStreamId) override;
 
     Protocols::InteractionModel::Status SelectAudioStream(PushAvStreamTransport::StreamUsageEnum streamUsage,
-                                                          uint16_t & audioStreamId) override;
+                                                          uint16_t  &audioStreamId) override;
 
     Protocols::InteractionModel::Status SetVideoStream(uint16_t videoStreamId) override;
 
@@ -67,18 +66,18 @@ public:
     void OnAttributeChanged(AttributeId attributeId) override;
 
     CHIP_ERROR
-    LoadCurrentConnections(std::vector<PushAvStreamTransport::TransportConfigurationStorage> & currentConnections) override;
+    LoadCurrentConnections(std::vector<PushAvStreamTransport::TransportConfigurationStorage>  &currentConnections) override;
 
     CHIP_ERROR PersistentAttributesLoadedCallback() override;
 
-    void SetTLSCerts(Tls::CertificateTable::BufferedClientCert & clientCertEntry,
-                     Tls::CertificateTable::BufferedRootCert & rootCertEntry) override;
+    void SetTLSCerts(Tls::CertificateTable::BufferedClientCert  &clientCertEntry,
+                     Tls::CertificateTable::BufferedRootCert  &rootCertEntry) override;
 
-    CHIP_ERROR IsHardPrivacyModeActive(bool & isActive) override;
+    CHIP_ERROR IsHardPrivacyModeActive(bool  &isActive) override;
 
-    CHIP_ERROR IsSoftRecordingPrivacyModeActive(bool & isActive) override;
+    CHIP_ERROR IsSoftRecordingPrivacyModeActive(bool  &isActive) override;
 
-    CHIP_ERROR IsSoftLivestreamPrivacyModeActive(bool & isActive) override;
+    CHIP_ERROR IsSoftLivestreamPrivacyModeActive(bool  &isActive) override;
 
     void SetPushAvStreamTransportServer(PushAvStreamTransportServer * server) override;
 
@@ -90,4 +89,3 @@ private:
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

@@ -22,22 +22,21 @@ namespace app {
 namespace Clusters {
 namespace ContentControl {
 
-class MockContentControlDelegate : public Delegate
-{
+class MockContentControlDelegate : public Delegate {
 public:
     MockContentControlDelegate() = default;
 
     bool HandleGetEnabled() override;
-    CHIP_ERROR HandleGetOnDemandRatings(app::AttributeValueEncoder & aEncoder) override;
+    CHIP_ERROR HandleGetOnDemandRatings(app::AttributeValueEncoder  &aEncoder) override;
     chip::CharSpan HandleGetOnDemandRatingThreshold() override;
-    CHIP_ERROR HandleGetScheduledContentRatings(app::AttributeValueEncoder & aEncoder) override;
+    CHIP_ERROR HandleGetScheduledContentRatings(app::AttributeValueEncoder  &aEncoder) override;
     chip::CharSpan HandleGetScheduledContentRatingThreshold() override;
     uint32_t HandleGetScreenDailyTime() override;
     uint32_t HandleGetRemainingScreenTime() override;
     bool HandleGetBlockUnrated() override;
 
     void HandleUpdatePIN(chip::CharSpan oldPIN, chip::CharSpan newPIN) override;
-    void HandleResetPIN(CommandResponseHelper<Commands::ResetPINResponse::Type> & helper) override;
+    void HandleResetPIN(CommandResponseHelper<Commands::ResetPINResponse::Type>  &helper) override;
     void HandleEnable() override;
     void HandleDisable() override;
     void HandleAddBonusTime(Optional<chip::CharSpan> PINCode, uint32_t bonusTime) override;
@@ -56,4 +55,4 @@ private:
 } // namespace ContentControl
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

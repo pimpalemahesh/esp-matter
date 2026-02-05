@@ -16,7 +16,7 @@ namespace Clusters {
 
 Protocols::InteractionModel::Status
 MockTlsCertificateManagementDelegate::ProvisionRootCert(EndpointId matterEndpoint, FabricIndex fabric,
-                                                        const ProvisionRootCertificateType & provisionReq, Tls::TLSCAID & outCaid)
+                                                        const ProvisionRootCertificateType  &provisionReq, Tls::TLSCAID  &outCaid)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     outCaid = 0;
@@ -45,7 +45,7 @@ CHIP_ERROR MockTlsCertificateManagementDelegate::FindRootCert(EndpointId matterE
 }
 
 CHIP_ERROR MockTlsCertificateManagementDelegate::LookupRootCertByFingerprint(EndpointId matterEndpoint, FabricIndex fabric,
-                                                                             const ByteSpan & fingerprint,
+                                                                             const ByteSpan  &fingerprint,
                                                                              LoadedRootCertificateCallback loadedCallback) const
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -53,7 +53,7 @@ CHIP_ERROR MockTlsCertificateManagementDelegate::LookupRootCertByFingerprint(End
 }
 
 CHIP_ERROR MockTlsCertificateManagementDelegate::LookupRootCert(EndpointId matterEndpoint, FabricIndex fabric,
-                                                                const ByteSpan & cert,
+                                                                const ByteSpan  &cert,
                                                                 LoadedRootCertificateCallback loadedCallback) const
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -69,7 +69,7 @@ Protocols::InteractionModel::Status MockTlsCertificateManagementDelegate::Remove
 
 Protocols::InteractionModel::Status MockTlsCertificateManagementDelegate::GenerateClientCsr(EndpointId matterEndpoint,
                                                                                             FabricIndex fabric,
-                                                                                            const ClientCsrType & request,
+                                                                                            const ClientCsrType  &request,
                                                                                             GeneratedCsrCallback loadedCallback) const
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -78,7 +78,7 @@ Protocols::InteractionModel::Status MockTlsCertificateManagementDelegate::Genera
 
 Protocols::InteractionModel::Status
 MockTlsCertificateManagementDelegate::ProvisionClientCert(EndpointId matterEndpoint, FabricIndex fabric,
-                                                          const ProvisionClientCertificateType & provisionReq)
+                                                          const ProvisionClientCertificateType  &provisionReq)
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return Protocols::InteractionModel::Status::Success;
@@ -106,7 +106,7 @@ CHIP_ERROR MockTlsCertificateManagementDelegate::FindClientCert(EndpointId matte
 }
 
 CHIP_ERROR MockTlsCertificateManagementDelegate::LookupClientCertByFingerprint(EndpointId matterEndpoint, FabricIndex fabric,
-                                                                               const ByteSpan & fingerprint,
+                                                                               const ByteSpan  &fingerprint,
                                                                                LoadedClientCertificateCallback loadedCallback) const
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -114,7 +114,7 @@ CHIP_ERROR MockTlsCertificateManagementDelegate::LookupClientCertByFingerprint(E
 }
 
 CHIP_ERROR MockTlsCertificateManagementDelegate::LookupClientCert(EndpointId matterEndpoint, FabricIndex fabric,
-                                                                  const ByteSpan & certificate,
+                                                                  const ByteSpan  &certificate,
                                                                   LoadedClientCertificateCallback loadedCallback) const
 {
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -131,4 +131,3 @@ Protocols::InteractionModel::Status MockTlsCertificateManagementDelegate::Remove
 } // namespace Clusters
 } // namespace app
 } // namespace chip
-

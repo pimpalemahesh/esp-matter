@@ -36,7 +36,7 @@ CHIP_ERROR MockElectricalPowerMeasurementDelegate::StartAccuracyRead()
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockElectricalPowerMeasurementDelegate::GetAccuracyByIndex(uint8_t index, Structs::MeasurementAccuracyStruct::Type & accuracy)
+CHIP_ERROR MockElectricalPowerMeasurementDelegate::GetAccuracyByIndex(uint8_t index, Structs::MeasurementAccuracyStruct::Type  &accuracy)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -57,7 +57,7 @@ CHIP_ERROR MockElectricalPowerMeasurementDelegate::StartRangesRead()
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockElectricalPowerMeasurementDelegate::GetRangeByIndex(uint8_t index, Structs::MeasurementRangeStruct::Type & range)
+CHIP_ERROR MockElectricalPowerMeasurementDelegate::GetRangeByIndex(uint8_t index, Structs::MeasurementRangeStruct::Type  &range)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -78,7 +78,7 @@ CHIP_ERROR MockElectricalPowerMeasurementDelegate::StartHarmonicCurrentsRead()
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockElectricalPowerMeasurementDelegate::GetHarmonicCurrentsByIndex(uint8_t index, Structs::HarmonicMeasurementStruct::Type & harmonic)
+CHIP_ERROR MockElectricalPowerMeasurementDelegate::GetHarmonicCurrentsByIndex(uint8_t index, Structs::HarmonicMeasurementStruct::Type  &harmonic)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -99,7 +99,7 @@ CHIP_ERROR MockElectricalPowerMeasurementDelegate::StartHarmonicPhasesRead()
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockElectricalPowerMeasurementDelegate::GetHarmonicPhasesByIndex(uint8_t index, Structs::HarmonicMeasurementStruct::Type & harmonic)
+CHIP_ERROR MockElectricalPowerMeasurementDelegate::GetHarmonicPhasesByIndex(uint8_t index, Structs::HarmonicMeasurementStruct::Type  &harmonic)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -207,4 +207,4 @@ DataModel::Nullable<int64_t> MockElectricalPowerMeasurementDelegate::GetNeutralC
 } // namespace ElectricalPowerMeasurement
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

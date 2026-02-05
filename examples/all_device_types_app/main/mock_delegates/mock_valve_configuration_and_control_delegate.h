@@ -25,8 +25,7 @@ namespace app {
 namespace Clusters {
 namespace ValveConfigurationAndControl {
 
-class MockValveConfigurationAndControlDelegate : public Delegate
-{
+class MockValveConfigurationAndControlDelegate : public Delegate {
 public:
     MockValveConfigurationAndControlDelegate() : Delegate() {}
     virtual ~MockValveConfigurationAndControlDelegate() = default;
@@ -43,4 +42,4 @@ private:
 } // namespace ValveConfigurationAndControl
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

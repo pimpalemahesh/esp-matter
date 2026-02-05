@@ -32,4 +32,4 @@ CHIP_ERROR MockBooleanStateConfigurationDelegate::HandleEnableDisableAlarms(chip
 } // namespace BooleanStateConfiguration
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

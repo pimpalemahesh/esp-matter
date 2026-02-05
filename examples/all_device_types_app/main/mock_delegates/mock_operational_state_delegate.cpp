@@ -22,21 +22,21 @@ app::DataModel::Nullable<uint32_t> MockOperationalStateDelegate::GetCountdownTim
     return app::DataModel::Nullable<uint32_t>();
 }
 
-CHIP_ERROR MockOperationalStateDelegate::GetOperationalStateAtIndex(size_t index, GenericOperationalState & operationalState)
+CHIP_ERROR MockOperationalStateDelegate::GetOperationalStateAtIndex(size_t index, GenericOperationalState  &operationalState)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_NOT_FOUND;
 }
 
-CHIP_ERROR MockOperationalStateDelegate::GetOperationalPhaseAtIndex(size_t index, MutableCharSpan & operationalPhase)
+CHIP_ERROR MockOperationalStateDelegate::GetOperationalPhaseAtIndex(size_t index, MutableCharSpan  &operationalPhase)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_ERROR_NOT_FOUND;
 }
 
-void MockOperationalStateDelegate::HandlePauseStateCallback(GenericOperationalError & err)
+void MockOperationalStateDelegate::HandlePauseStateCallback(GenericOperationalError  &err)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -44,7 +44,7 @@ void MockOperationalStateDelegate::HandlePauseStateCallback(GenericOperationalEr
     return;
 }
 
-void MockOperationalStateDelegate::HandleResumeStateCallback(GenericOperationalError & err)
+void MockOperationalStateDelegate::HandleResumeStateCallback(GenericOperationalError  &err)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -52,7 +52,7 @@ void MockOperationalStateDelegate::HandleResumeStateCallback(GenericOperationalE
     return;
 }
 
-void MockOperationalStateDelegate::HandleStartStateCallback(GenericOperationalError & err)
+void MockOperationalStateDelegate::HandleStartStateCallback(GenericOperationalError  &err)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -60,7 +60,7 @@ void MockOperationalStateDelegate::HandleStartStateCallback(GenericOperationalEr
     return;
 }
 
-void MockOperationalStateDelegate::HandleStopStateCallback(GenericOperationalError & err)
+void MockOperationalStateDelegate::HandleStopStateCallback(GenericOperationalError  &err)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -71,4 +71,4 @@ void MockOperationalStateDelegate::HandleStopStateCallback(GenericOperationalErr
 } // namespace OperationalState
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip

@@ -16,32 +16,32 @@ namespace Clusters {
 namespace Messages {
 
 CHIP_ERROR MockMessagesDelegate::HandlePresentMessagesRequest(
-    const ByteSpan & messageId, const MessagePriorityEnum & priority,
-    const chip::BitMask<MessageControlBitmap> & messageControl, const DataModel::Nullable<uint32_t> & startTime,
-    const DataModel::Nullable<uint64_t> & duration, const CharSpan & messageText,
+    const ByteSpan  &messageId, const MessagePriorityEnum  &priority,
+    const chip::BitMask<MessageControlBitmap>  &messageControl, const DataModel::Nullable<uint32_t>  &startTime,
+    const DataModel::Nullable<uint64_t>  &duration, const CharSpan  &messageText,
     const chip::Optional<DataModel::DecodableList<chip::app::Clusters::Messages::Structs::MessageResponseOptionStruct::Type>> &
-        responses)
+    responses)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockMessagesDelegate::HandleCancelMessagesRequest(const DataModel::DecodableList<chip::ByteSpan> & messageIds)
+CHIP_ERROR MockMessagesDelegate::HandleCancelMessagesRequest(const DataModel::DecodableList<chip::ByteSpan>  &messageIds)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return CHIP_NO_ERROR;
 }
 
-CHIP_ERROR MockMessagesDelegate::HandleGetMessages(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockMessagesDelegate::HandleGetMessages(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
     return aEncoder.EncodeEmptyList();
 }
 
-CHIP_ERROR MockMessagesDelegate::HandleGetActiveMessageIds(app::AttributeValueEncoder & aEncoder)
+CHIP_ERROR MockMessagesDelegate::HandleGetActiveMessageIds(app::AttributeValueEncoder  &aEncoder)
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
@@ -58,4 +58,4 @@ uint32_t MockMessagesDelegate::GetFeatureMap(chip::EndpointId endpoint)
 } // namespace Messages
 } // namespace Clusters
 } // namespace app
-} // namespace chip 
+} // namespace chip
