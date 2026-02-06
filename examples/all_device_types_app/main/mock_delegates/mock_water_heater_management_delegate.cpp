@@ -70,7 +70,7 @@ BoostStateEnum MockWaterHeaterManagementDelegate::GetBoostState()
 {
     // Implement your own logic here.
     ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
-    return BoostStateEnum::kUnknownEnumValue;
+    return BoostStateEnum::kInactive;
 }
 
 } // namespace WaterHeaterManagement

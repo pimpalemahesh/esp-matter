@@ -324,47 +324,6 @@ int create(uint8_t device_type_index)
         endpoint = esp_matter::endpoint::window_covering::create(node, &window_covering_config, ENDPOINT_FLAG_NONE, NULL);
         cluster_t *cluster = cluster::get(endpoint, chip::app::Clusters::WindowCovering::Id);
         cluster::window_covering::feature::position_aware_lift::config_t position_aware_lift;
-        app_endpoint_id = endpoint::get_id(endpoint);
-        break;
-    }
-    case ESP_MATTER_THERMOSTAT: {
-        esp_matter::endpoint::thermostat::config_t thermostat_config;
-        static chip::app::Clusters::Thermostat::MockThermostatDelegate thermostatDelegate;
-        thermostat_config.thermostat.delegate = &thermostatDelegate;
-        thermostat_config.thermostat.feature_flags = cluster::thermostat::feature::auto_mode::get_id();
-        endpoint = esp_matter::endpoint::thermostat::create(node, &thermostat_config, ENDPOINT_FLAG_NONE, NULL);
-        break;
-    }
-    case ESP_MATTER_AGGREGATOR: {
-        esp_matter::endpoint::aggregator::config_t aggregator_config;
-        endpoint = esp_matter::endpoint::aggregator::create(node, &aggregator_config, ENDPOINT_FLAG_NONE, NULL);
-        break;
-    }
-    case ESP_MATTER_BRIDGED_NODE: {
-        esp_matter::endpoint::bridged_node::config_t bridged_node_config;
-        endpoint = esp_matter::endpoint::bridged_node::create(node, &bridged_node_config, ENDPOINT_FLAG_NONE, NULL);
-        break;
-    }
-    case ESP_MATTER_CONTROL_BRIDGE: {
-        esp_matter::endpoint::control_bridge::config_t control_bridge_config;
-        endpoint = esp_matter::endpoint::control_bridge::create(node, &control_bridge_config, ENDPOINT_FLAG_NONE, NULL);
-        break;
-    }
-    case ESP_MATTER_DOOR_LOCK: {
-        esp_matter::endpoint::door_lock::config_t door_lock_config;
-        static chip::app::Clusters::DoorLock::MockDoorLockDelegate doorLockDelegate;
-        door_lock_config.door_lock.delegate = &doorLockDelegate;
-        endpoint = esp_matter::endpoint::door_lock::create(node, &door_lock_config, ENDPOINT_FLAG_NONE, NULL);
-        break;
-    }
-    case ESP_MATTER_WINDOW_COVERING_DEVICE: {
-        esp_matter::endpoint::window_covering::config_t window_covering_config;
-        static chip::app::Clusters::WindowCovering::MockWindowCoveringDelegate windowCoveringDelegate;
-        window_covering_config.window_covering.delegate = &windowCoveringDelegate;
-        window_covering_config.window_covering.feature_flags = cluster::window_covering::feature::lift::get_id();
-        endpoint = esp_matter::endpoint::window_covering::create(node, &window_covering_config, ENDPOINT_FLAG_NONE, NULL);
-        cluster_t *cluster = cluster::get(endpoint, chip::app::Clusters::WindowCovering::Id);
-        cluster::window_covering::feature::position_aware_lift::config_t position_aware_lift;
 
         nullable<uint16_t> percentage_100ths = nullable<uint16_t>(0);
         position_aware_lift.target_position_lift_percent_100ths = percentage_100ths;
@@ -418,7 +377,6 @@ int create(uint8_t device_type_index)
     case ESP_MATTER_MODE_SELECT_DEVICE: {
         esp_matter::endpoint::mode_select::config_t mode_select_config;
         static chip::app::Clusters::ModeBase::MockModeBaseDelegate modeSelectDelegate;
-        mode_select_config.mode_select.delegate = &modeSelectDelegate;
         endpoint = esp_matter::endpoint::mode_select::create(node, &mode_select_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
@@ -481,6 +439,8 @@ int create(uint8_t device_type_index)
         esp_matter::endpoint::robotic_vacuum_cleaner::config_t robotic_vacuum_cleaner_config;
         static chip::app::Clusters::ModeBase::MockModeBaseDelegate rvcRunModeDelegate;
         robotic_vacuum_cleaner_config.rvc_run_mode.delegate = &rvcRunModeDelegate;
+        static chip::app::Clusters::OperationalState::MockOperationalStateDelegate rvcOpStateDelegate;
+        robotic_vacuum_cleaner_config.rvc_operational_state.delegate = &rvcOpStateDelegate;
         endpoint = esp_matter::endpoint::robotic_vacuum_cleaner::create(node, &robotic_vacuum_cleaner_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
@@ -584,7 +544,6 @@ int create(uint8_t device_type_index)
         static chip::app::Clusters::DeviceEnergyManagement::MockDeviceEnergyManagementDelegate evseDemDelegate;
         energy_evse_config.energy_evse.delegate = &energyEvseDelegate;
         energy_evse_config.energy_evse_mode.delegate = &evseModeDelegate;
-        energy_evse_config.device_energy_management.delegate = &evseDemDelegate;
         endpoint = esp_matter::endpoint::energy_evse::create(node, &energy_evse_config, ENDPOINT_FLAG_NONE, NULL);
         cluster_t *energy_evse_cluster = cluster::get(endpoint, chip::app::Clusters::EnergyEvse::Id);
         cluster::energy_evse::feature::charging_preferences::add(energy_evse_cluster);
@@ -611,6 +570,7 @@ int create(uint8_t device_type_index)
         microwave_oven_config.microwave_oven_control.delegate = &microwaveOvenControlDelegate;
         microwave_oven_config.operational_state.delegate = &operationalStateDelegate;
         microwave_oven_config.microwave_oven_mode.delegate = &microwaveOvenModeDelegate;
+        microwave_oven_config.microwave_oven_control.feature_flags = esp_matter::cluster::microwave_oven_control::feature::power_as_number::get_id();
         endpoint = esp_matter::endpoint::microwave_oven::create(node, &microwave_oven_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
@@ -639,8 +599,8 @@ int create(uint8_t device_type_index)
         esp_matter::endpoint::device_energy_management::config_t device_energy_management_config;
         static chip::app::Clusters::ModeBase::MockModeBaseDelegate demModeDelegate;
         static chip::app::Clusters::DeviceEnergyManagement::MockDeviceEnergyManagementDelegate demDelegate;
-        device_energy_management_config.device_energy_management_mode.delegate = &demModeDelegate;
         device_energy_management_config.device_energy_management.delegate = &demDelegate;
+        device_energy_management_config.device_energy_management.feature_flags = esp_matter::cluster::device_energy_management::feature::power_forecast_reporting::get_id();
         endpoint = esp_matter::endpoint::device_energy_management::create(node, &device_energy_management_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
@@ -649,62 +609,8 @@ int create(uint8_t device_type_index)
         endpoint = esp_matter::endpoint::pump_controller::create(node, &pump_controller_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-    if (!ps_endpoint) {
-        ESP_LOGE(TAG, "Matter create endpoint failed");
-        return 1;
-    }
-    break;
-    }
-case ESP_MATTER_MICROWAVE_OVEN: {
-        esp_matter::endpoint::microwave_oven::config_t microwave_oven_config;
-        static chip::app::Clusters::MicrowaveOvenControl::MockMicrowaveOvenControlDelegate microwaveOvenControlDelegate;
-        static chip::app::Clusters::OperationalState::MockOperationalStateDelegate operationalStateDelegate;
-        static chip::app::Clusters::ModeBase::MockModeBaseDelegate microwaveOvenModeDelegate;
-        microwave_oven_config.microwave_oven_control.delegate = &microwaveOvenControlDelegate;
-        microwave_oven_config.operational_state.delegate = &operationalStateDelegate;
-        microwave_oven_config.microwave_oven_mode.delegate = &microwaveOvenModeDelegate;
-        microwave_oven_config.microwave_oven_control.feature_flags = esp_matter::cluster::microwave_oven_control::feature::power_as_number::get_id();
-        endpoint = esp_matter::endpoint::microwave_oven::create(node, &microwave_oven_config, ENDPOINT_FLAG_NONE, NULL);
-        break;
-    }
-case ESP_MATTER_EXTRACTOR_HOOD: {
-        esp_matter::endpoint::extractor_hood::config_t extractor_hood_config;
-        static chip::app::Clusters::FanControl::MockFanControlDelegate extractorHoodFanDelegate;
-        extractor_hood_config.fan_control.delegate = &extractorHoodFanDelegate;
-        endpoint = esp_matter::endpoint::extractor_hood::create(node, &extractor_hood_config, ENDPOINT_FLAG_NONE, NULL);
-        break;
-    }
-case ESP_MATTER_LAUNDRY_DRYER: {
-        esp_matter::endpoint::laundry_dryer::config_t laundry_dryer_config;
-        static chip::app::Clusters::OperationalState::MockOperationalStateDelegate laundryDryerOpStateDelegate;
-        laundry_dryer_config.operational_state.delegate = &laundryDryerOpStateDelegate;
-        endpoint = esp_matter::endpoint::laundry_dryer::create(node, &laundry_dryer_config, ENDPOINT_FLAG_NONE, NULL);
-        break;
-    }
-case ESP_MATTER_WATER_VALVE: {
-        esp_matter::endpoint::water_valve::config_t water_valve_config;
-        static chip::app::Clusters::ValveConfigurationAndControl::MockValveConfigurationAndControlDelegate valveDelegate;
-        water_valve_config.valve_configuration_and_control.delegate = &valveDelegate;
-        endpoint = esp_matter::endpoint::water_valve::create(node, &water_valve_config, ENDPOINT_FLAG_NONE, NULL);
-        break;
-    }
-case ESP_MATTER_DEVICE_ENERGY_MANAGEMENT: {
-        esp_matter::endpoint::device_energy_management::config_t device_energy_management_config;
-        static chip::app::Clusters::ModeBase::MockModeBaseDelegate demModeDelegate;
-        static chip::app::Clusters::DeviceEnergyManagement::MockDeviceEnergyManagementDelegate demDelegate;
-        device_energy_management_config.device_energy_management_mode.delegate = &demModeDelegate;
-        device_energy_management_config.device_energy_management.delegate = &demDelegate;
-        device_energy_management_config.device_energy_management.feature_flags = esp_matter::cluster::device_energy_management::feature::power_forecast_reporting::get_id();
-        endpoint = esp_matter::endpoint::device_energy_management::create(node, &device_energy_management_config, ENDPOINT_FLAG_NONE, NULL);
-        break;
-    }
-case ESP_MATTER_PUMP_CONTROLLER: {
-        esp_matter::endpoint::pump_controller::config_t pump_controller_config;
-        endpoint = esp_matter::endpoint::pump_controller::create(node, &pump_controller_config, ENDPOINT_FLAG_NONE, NULL);
-        break;
-    }
 #ifdef CONFIG_OPENTHREAD_BORDER_ROUTER
-case ESP_MATTER_THREAD_BORDER_ROUTER: {
+    case ESP_MATTER_THREAD_BORDER_ROUTER: {
         static chip::KvsPersistentStorageDelegate tbr_storage_delegate;
         chip::DeviceLayer::PersistedStorage::KeyValueStoreManager  &kvsManager = chip::DeviceLayer::PersistedStorage::KeyValueStoreMgr();
         tbr_storage_delegate.Init(&kvsManager);
@@ -721,17 +627,17 @@ case ESP_MATTER_THREAD_BORDER_ROUTER: {
         break;
     }
 #endif
-case ESP_MATTER_MOUNTED_ON_OFF_CONTROL: {
+    case ESP_MATTER_MOUNTED_ON_OFF_CONTROL: {
         esp_matter::endpoint::mounted_on_off_control::config_t mounted_on_off_control_config;
         endpoint = esp_matter::endpoint::mounted_on_off_control::create(node, &mounted_on_off_control_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-case ESP_MATTER_MOUNTED_DIMMABLE_LOAD_CONTROL: {
+    case ESP_MATTER_MOUNTED_DIMMABLE_LOAD_CONTROL: {
         esp_matter::endpoint::mounted_dimmable_load_control::config_t mounted_dimmable_load_control_config;
         endpoint = esp_matter::endpoint::mounted_dimmable_load_control::create(node, &mounted_dimmable_load_control_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-case ESP_MATTER_WATER_HEATER: {
+    case ESP_MATTER_WATER_HEATER: {
         esp_matter::endpoint::water_heater::config_t water_heater_config;
         static chip::app::Clusters::WaterHeaterManagement::MockWaterHeaterManagementDelegate waterHeaterManagementDelegate;
         static chip::app::Clusters::Thermostat::MockThermostatDelegate waterHeaterThermostatDelegate;
@@ -743,39 +649,39 @@ case ESP_MATTER_WATER_HEATER: {
         endpoint = esp_matter::endpoint::water_heater::create(node, &water_heater_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-case ESP_MATTER_SOLAR_POWER: {
+    case ESP_MATTER_SOLAR_POWER: {
         esp_matter::endpoint::solar_power::config_t solar_power_config;
         endpoint = esp_matter::endpoint::solar_power::create(node, &solar_power_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-case ESP_MATTER_BATTERY_STORAGE: {
+    case ESP_MATTER_BATTERY_STORAGE: {
         esp_matter::endpoint::battery_storage::config_t battery_storage_config;
         endpoint = esp_matter::endpoint::battery_storage::create(node, &battery_storage_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-case ESP_MATTER_HEAT_PUMP: {
+    case ESP_MATTER_HEAT_PUMP: {
         esp_matter::endpoint::heat_pump::config_t heat_pump_config;
         endpoint = esp_matter::endpoint::heat_pump::create(node, &heat_pump_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-case ESP_MATTER_CHIME: {
+    case ESP_MATTER_CHIME: {
         esp_matter::endpoint::chime::config_t chime_config;
         static chip::app::Clusters::Chime::MockChimeDelegate chimeDelegate;
         chime_config.chime.delegate = &chimeDelegate;
         endpoint = esp_matter::endpoint::chime::create(node, &chime_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-case ESP_MATTER_THERMOSTAT_CONTROLLER: {
+    case ESP_MATTER_THERMOSTAT_CONTROLLER: {
         esp_matter::endpoint::thermostat_controller::config_t thermostat_controller_config;
         endpoint = esp_matter::endpoint::thermostat_controller::create(node, &thermostat_controller_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-case ESP_MATTER_CLOSURE_CONTROLLER: {
+    case ESP_MATTER_CLOSURE_CONTROLLER: {
         esp_matter::endpoint::closure_controller::config_t closure_controller_config;
         endpoint = esp_matter::endpoint::closure_controller::create(node, &closure_controller_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-case ESP_MATTER_CLOSURE: {
+    case ESP_MATTER_CLOSURE: {
         esp_matter::endpoint::closure::config_t closure_config;
         static chip::app::Clusters::ClosureControl::MockClosureControlDelegate closureControlDelegate;
         closure_config.closure_control.delegate = &closureControlDelegate;
@@ -783,7 +689,7 @@ case ESP_MATTER_CLOSURE: {
         endpoint = esp_matter::endpoint::closure::create(node, &closure_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-case ESP_MATTER_CLOSURE_PANEL: {
+    case ESP_MATTER_CLOSURE_PANEL: {
         esp_matter::endpoint::closure_panel::config_t closure_panel_config;
         static chip::app::Clusters::ClosureDimension::MockClosureDimensionDelegate closureDimensionDelegate;
         closure_panel_config.closure_dimension.delegate = &closureDimensionDelegate;
@@ -791,7 +697,7 @@ case ESP_MATTER_CLOSURE_PANEL: {
         endpoint = esp_matter::endpoint::closure_panel::create(node, &closure_panel_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-case ESP_MATTER_ELECTRICAL_ENERGY_TARIFF: {
+    case ESP_MATTER_ELECTRICAL_ENERGY_TARIFF: {
         esp_matter::endpoint::electrical_energy_tariff::config_t electrical_energy_tariff_config;
         endpoint = esp_matter::endpoint::electrical_energy_tariff::create(node, &electrical_energy_tariff_config, ENDPOINT_FLAG_NONE, NULL);
 
@@ -808,7 +714,7 @@ case ESP_MATTER_ELECTRICAL_ENERGY_TARIFF: {
 
         break;
     }
-case ESP_MATTER_ELECTRICAL_METER: {
+    case ESP_MATTER_ELECTRICAL_METER: {
         esp_matter::endpoint::electrical_meter::config_t electrical_meter_config;
         static chip::app::Clusters::ElectricalPowerMeasurement::MockElectricalPowerMeasurementDelegate electricalMeterPowerDelegate;
         electrical_meter_config.electrical_power_measurement.feature_flags = cluster::electrical_power_measurement::feature::direct_current::get_id();
@@ -820,12 +726,12 @@ case ESP_MATTER_ELECTRICAL_METER: {
         endpoint = esp_matter::endpoint::electrical_meter::create(node, &electrical_meter_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-case ESP_MATTER_ELECTRICAL_UTILITY_METER: {
+    case ESP_MATTER_ELECTRICAL_UTILITY_METER: {
         esp_matter::endpoint::electrical_utility_meter::config_t electrical_utility_meter_config;
         endpoint = esp_matter::endpoint::electrical_utility_meter::create(node, &electrical_utility_meter_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
-case ESP_MATTER_SOIL_SENSOR: {
+    case ESP_MATTER_SOIL_SENSOR: {
         esp_matter::endpoint::soil_sensor::config_t soil_sensor_config;
         endpoint = esp_matter::endpoint::soil_sensor::create(node, &soil_sensor_config, ENDPOINT_FLAG_NONE, NULL);
         const Globals::Structs::MeasurementAccuracyRangeStruct::Type accuracyRange = {
@@ -848,33 +754,31 @@ case ESP_MATTER_SOIL_SENSOR: {
         chip::app::Clusters::SoilMeasurement::SetSoilMoistureLimits(esp_matter::endpoint::get_id(endpoint), limits);
         break;
     }
-default: {
+    default: {
         ESP_LOGE(TAG, "Please input a valid device type");
         break;
     }
-}
+    }
 
-if (!endpoint)
-{
-    ESP_LOGE(TAG, "Matter create endpoint failed");
-    return 1;
-} else
-{
-    ESP_LOGI(TAG, "%s created with endpoint_id %d", device_type_list[device_type_index - 1].device_name, endpoint::get_id(endpoint));
-    if (esp_matter::nvs_helpers::get_device_type_from_nvs(&device_type_index) != ESP_OK) {
-        err = esp_matter::nvs_helpers::set_device_type_in_nvs(device_type_index);
-        if (err != ESP_OK) {
-            ESP_LOGE(TAG, "Failed to store device type in nvs");
-            return 1;
+    if (!endpoint) {
+        ESP_LOGE(TAG, "Matter create endpoint failed");
+        return 1;
+    } else {
+        ESP_LOGI(TAG, "%s created with endpoint_id %d", device_type_list[device_type_index - 1].device_name, endpoint::get_id(endpoint));
+        if (esp_matter::nvs_helpers::get_device_type_from_nvs(&device_type_index) != ESP_OK) {
+            err = esp_matter::nvs_helpers::set_device_type_in_nvs(device_type_index);
+            if (err != ESP_OK) {
+                ESP_LOGE(TAG, "Failed to store device type in nvs");
+                return 1;
+            }
+        }
+
+        if (semaphoreHandle) {
+            xSemaphoreGive(semaphoreHandle);
         }
     }
 
-    if (semaphoreHandle) {
-        xSemaphoreGive(semaphoreHandle);
-    }
-}
-
-return 0;
+    return 0;
 }
 
 } /* namespace data_model */
