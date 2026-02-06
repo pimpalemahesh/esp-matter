@@ -554,6 +554,8 @@ int create(uint8_t device_type_index)
         esp_matter::endpoint::electrical_sensor::config_t electrical_sensor_config;
         electrical_sensor_config.power_topology.feature_flags = esp_matter::cluster::power_topology::feature::node_topology::get_id();
         electrical_sensor_config.electrical_power_measurement.feature_flags = esp_matter::cluster::electrical_power_measurement::feature::alternating_current::get_id();
+        static chip::app::Clusters::ElectricalPowerMeasurement::MockElectricalPowerMeasurementDelegate electricalPowerMeasurementDelegate;
+        electrical_sensor_config.electrical_power_measurement.delegate = &electricalPowerMeasurementDelegate;
         esp_matter::endpoint::electrical_sensor::add(ps_endpoint, &electrical_sensor_config);
 
         if (!ps_endpoint) {

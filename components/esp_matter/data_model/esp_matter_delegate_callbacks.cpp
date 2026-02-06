@@ -540,6 +540,10 @@ void ClosureControlDelegateInitCB(void *delegate, uint16_t endpoint_id)
     ClosureControl::DelegateBase *closure_control_delegate = static_cast<ClosureControl::DelegateBase*>(delegate);
     ClosureControl::MatterContext *matter_context = new ClosureControl::MatterContext(endpoint_id);
     ClosureControl::ClusterLogic *cluster_logic = new ClosureControl::ClusterLogic(*closure_control_delegate, *matter_context);
+    ClosureControl::ClusterConformance cluster_conformance;
+    cluster_conformance.FeatureMap().SetRaw(get_feature_map_value(endpoint_id, ClosureControl::Id));
+    ClosureControl::ClusterInitParameters init_params;
+    (void)cluster_logic->Init(cluster_conformance, init_params);
     ClosureControl::Interface *server_interface = new ClosureControl::Interface(endpoint_id, *cluster_logic);
     (void)server_interface->Init();
 }
@@ -550,6 +554,23 @@ void ClosureDimensionDelegateInitCB(void *delegate, uint16_t endpoint_id)
     ClosureDimension::DelegateBase *closure_dimension_delegate = static_cast<ClosureDimension::DelegateBase*>(delegate);
     ClosureDimension::MatterContext *matter_context = new ClosureDimension::MatterContext(endpoint_id);
     ClosureDimension::ClusterLogic *cluster_logic = new ClosureDimension::ClusterLogic(*closure_dimension_delegate, *matter_context);
+    ClosureDimension::ClusterConformance cluster_conformance;
+    cluster_conformance.FeatureMap().SetRaw(get_feature_map_value(endpoint_id, ClosureDimension::Id));
+    ClosureDimension::ClusterInitParameters init_params;
+    // Set valid enum values when corresponding features are enabled; Init() fails if they are kUnknownEnumValue.
+    if (cluster_conformance.HasFeature(ClosureDimension::Feature::kTranslation)) {
+        init_params.translationDirection = ClosureDimension::TranslationDirectionEnum::kBackward;
+    }
+    if (cluster_conformance.HasFeature(ClosureDimension::Feature::kRotation)) {
+        init_params.rotationAxis = ClosureDimension::RotationAxisEnum::kCenteredHorizontal;
+    }
+    if (cluster_conformance.HasFeature(ClosureDimension::Feature::kModulation)) {
+        init_params.modulationType = ClosureDimension::ModulationTypeEnum::kOpacity;
+    }
+    VerifyOrReturn(cluster_logic->Init(cluster_conformance, init_params) == CHIP_NO_ERROR);
+    if (cluster_conformance.HasFeature(ClosureDimension::Feature::kRotation)) {
+        cluster_logic->SetOverflow(ClosureDimension::OverflowEnum::kBottomInside);
+    }
     ClosureDimension::Interface *server_interface = new ClosureDimension::Interface(endpoint_id, *cluster_logic);
     (void)server_interface->Init();
 }
@@ -654,7 +675,7 @@ void RefrigeratorAndTemperatureControlledCabinetModeDelegateInitCB(void *delegat
 }
 void RvcOperationalStateDelegateInitCB(void *delegate, uint16_t endpoint_id)
 {
-    // TODO: Implement
+    OperationalStateDelegateInitCB(delegate, endpoint_id);
 }
 void TargetNavigatorDelegateInitCB(void *delegate, uint16_t endpoint_id)
 {

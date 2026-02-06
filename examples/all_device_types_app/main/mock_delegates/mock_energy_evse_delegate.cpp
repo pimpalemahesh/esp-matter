@@ -58,13 +58,13 @@ Protocols::InteractionModel::Status MockEnergyEVSEDelegate::ClearTargets()
 StateEnum MockEnergyEVSEDelegate::GetState()
 {
     ESP_LOGI(LOG_TAG, "%s is not implemented", __func__);
-    return StateEnum::kUnknownEnumValue;
+    return StateEnum::kNotPluggedIn;
 }
 
 SupplyStateEnum MockEnergyEVSEDelegate::GetSupplyState()
 {
     ESP_LOGI(LOG_TAG, "%s is not implemented", __func__);
-    return SupplyStateEnum::kUnknownEnumValue;
+    return SupplyStateEnum::kDisabled;
 }
 
 FaultStateEnum MockEnergyEVSEDelegate::GetFaultState()
