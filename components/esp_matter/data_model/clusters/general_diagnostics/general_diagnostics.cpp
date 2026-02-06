@@ -36,6 +36,10 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::general_diagnostics::feature;
+using namespace esp_matter::cluster::general_diagnostics::attribute;
+using namespace esp_matter::cluster::general_diagnostics::command;
+using namespace esp_matter::cluster::general_diagnostics::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "general_diagnostics_cluster";

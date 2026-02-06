@@ -36,6 +36,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::electrical_power_measurement::feature;
+using namespace esp_matter::cluster::electrical_power_measurement::attribute;
+using namespace esp_matter::cluster::electrical_power_measurement::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "electrical_power_measurement_cluster";
@@ -230,7 +233,7 @@ attribute_t *create_neutral_current(cluster_t *cluster, nullable<int64_t> value)
 namespace event {
 event_t *create_measurement_period_ranges(cluster_t *cluster)
 {
-    VerifyOrReturnValue(esp_matter::attribute::get(cluster, 0x0003) != nullptr, NULL);
+    VerifyOrReturnValue(esp_matter::attribute::get(cluster, Ranges::Id) != nullptr, NULL);
     return esp_matter::event::create(cluster, MeasurementPeriodRanges::Id);
 }
 

@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::level_control::feature;
+using namespace esp_matter::cluster::level_control::attribute;
+using namespace esp_matter::cluster::level_control::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "level_control_cluster";

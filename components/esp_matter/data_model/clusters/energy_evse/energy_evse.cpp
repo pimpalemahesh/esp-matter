@@ -35,6 +35,10 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::energy_evse::feature;
+using namespace esp_matter::cluster::energy_evse::attribute;
+using namespace esp_matter::cluster::energy_evse::command;
+using namespace esp_matter::cluster::energy_evse::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "energy_evse_cluster";

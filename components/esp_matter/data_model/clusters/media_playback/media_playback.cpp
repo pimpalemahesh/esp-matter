@@ -35,6 +35,10 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::media_playback::feature;
+using namespace esp_matter::cluster::media_playback::attribute;
+using namespace esp_matter::cluster::media_playback::command;
+using namespace esp_matter::cluster::media_playback::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "media_playback_cluster";

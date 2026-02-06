@@ -36,6 +36,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::occupancy_sensing::feature;
+using namespace esp_matter::cluster::occupancy_sensing::attribute;
+using namespace esp_matter::cluster::occupancy_sensing::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "occupancy_sensing_cluster";
@@ -209,7 +212,7 @@ attribute_t *create_hold_time(cluster_t *cluster, uint16_t value)
 
 attribute_t *create_hold_time_limits(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
-    VerifyOrReturnValue(esp_matter::attribute::get(cluster, 0x0003) != nullptr, NULL);
+    VerifyOrReturnValue(esp_matter::attribute::get(cluster, HoldTime::Id) != nullptr, NULL);
     return esp_matter::attribute::create(cluster, HoldTimeLimits::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 

@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::commodity_tariff::feature;
+using namespace esp_matter::cluster::commodity_tariff::attribute;
+using namespace esp_matter::cluster::commodity_tariff::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "commodity_tariff_cluster";

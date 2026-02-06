@@ -139,7 +139,7 @@ class ClusterDeserializer:
                 id=cmd_data["id"],
                 is_mandatory=cmd_data.get("mandatory", False),
                 direction=cmd_data.get("direction", ""),
-                response=cmd_data.get("response", ""),
+                response=self.get_command_response(cmd_data),
             )
 
             cmd._flag = cmd_data.get("flags", "")
@@ -153,6 +153,14 @@ class ClusterDeserializer:
             commands.append(cmd)
 
         return commands
+
+    def get_command_response(self, cmd_data: Dict[str, Any]) -> str:
+        """Get the response command for a given command"""
+        if cmd_data.get("response") is None:
+            return None
+        if cmd_data.get("response") == "Y" or cmd_data.get("response") == "N":
+            return None
+        return cmd_data.get("response")
 
     def _deserialize_events(self, events_data: List[Dict[str, Any]]) -> List[Event]:
         """Deserialize events from cluster JSON data"""

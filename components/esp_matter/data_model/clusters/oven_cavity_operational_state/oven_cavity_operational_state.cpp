@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::oven_cavity_operational_state::attribute;
+using namespace esp_matter::cluster::oven_cavity_operational_state::command;
+using namespace esp_matter::cluster::oven_cavity_operational_state::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "oven_cavity_operational_state_cluster";

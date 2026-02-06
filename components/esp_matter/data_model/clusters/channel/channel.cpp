@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::channel::feature;
+using namespace esp_matter::cluster::channel::attribute;
+using namespace esp_matter::cluster::channel::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "channel_cluster";

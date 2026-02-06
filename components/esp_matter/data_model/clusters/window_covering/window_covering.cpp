@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::window_covering::feature;
+using namespace esp_matter::cluster::window_covering::attribute;
+using namespace esp_matter::cluster::window_covering::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "window_covering_cluster";

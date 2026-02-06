@@ -36,6 +36,10 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::boolean_state_configuration::feature;
+using namespace esp_matter::cluster::boolean_state_configuration::attribute;
+using namespace esp_matter::cluster::boolean_state_configuration::command;
+using namespace esp_matter::cluster::boolean_state_configuration::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "boolean_state_configuration_cluster";

@@ -35,6 +35,10 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::refrigerator_alarm::feature;
+using namespace esp_matter::cluster::refrigerator_alarm::attribute;
+using namespace esp_matter::cluster::refrigerator_alarm::command;
+using namespace esp_matter::cluster::refrigerator_alarm::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "refrigerator_alarm_cluster";

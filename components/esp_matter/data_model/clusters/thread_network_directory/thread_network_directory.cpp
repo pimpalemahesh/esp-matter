@@ -35,6 +35,8 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::thread_network_directory::attribute;
+using namespace esp_matter::cluster::thread_network_directory::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "thread_network_directory_cluster";

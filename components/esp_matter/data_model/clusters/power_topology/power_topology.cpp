@@ -36,6 +36,8 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::power_topology::feature;
+using namespace esp_matter::cluster::power_topology::attribute;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "power_topology_cluster";

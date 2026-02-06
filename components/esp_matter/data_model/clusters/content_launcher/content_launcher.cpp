@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::content_launcher::feature;
+using namespace esp_matter::cluster::content_launcher::attribute;
+using namespace esp_matter::cluster::content_launcher::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "content_launcher_cluster";

@@ -35,6 +35,7 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::low_power::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "low_power_cluster";

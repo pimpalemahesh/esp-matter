@@ -35,6 +35,8 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::total_volatile_organic_compounds_concentration_measurement::feature;
+using namespace esp_matter::cluster::total_volatile_organic_compounds_concentration_measurement::attribute;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "total_volatile_organic_compounds_concentration_measurement_cluster";

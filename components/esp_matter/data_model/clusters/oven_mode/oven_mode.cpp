@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::oven_mode::feature;
+using namespace esp_matter::cluster::oven_mode::attribute;
+using namespace esp_matter::cluster::oven_mode::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "oven_mode_cluster";

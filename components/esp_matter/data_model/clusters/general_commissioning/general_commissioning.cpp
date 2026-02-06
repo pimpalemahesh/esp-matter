@@ -36,6 +36,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::general_commissioning::feature;
+using namespace esp_matter::cluster::general_commissioning::attribute;
+using namespace esp_matter::cluster::general_commissioning::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "general_commissioning_cluster";

@@ -36,6 +36,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::icd_management::feature;
+using namespace esp_matter::cluster::icd_management::attribute;
+using namespace esp_matter::cluster::icd_management::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "icd_management_cluster";

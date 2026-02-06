@@ -35,6 +35,10 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::zone_management::feature;
+using namespace esp_matter::cluster::zone_management::attribute;
+using namespace esp_matter::cluster::zone_management::command;
+using namespace esp_matter::cluster::zone_management::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "zone_management_cluster";

@@ -35,6 +35,8 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::tls_client_management::attribute;
+using namespace esp_matter::cluster::tls_client_management::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "tls_client_management_cluster";

@@ -35,6 +35,7 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::wake_on_lan::attribute;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "wake_on_lan_cluster";

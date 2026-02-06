@@ -36,6 +36,7 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::localization_configuration::attribute;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "localization_configuration_cluster";

@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::target_navigator::attribute;
+using namespace esp_matter::cluster::target_navigator::command;
+using namespace esp_matter::cluster::target_navigator::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "target_navigator_cluster";

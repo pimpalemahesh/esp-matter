@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::thread_border_router_management::feature;
+using namespace esp_matter::cluster::thread_border_router_management::attribute;
+using namespace esp_matter::cluster::thread_border_router_management::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "thread_border_router_management_cluster";

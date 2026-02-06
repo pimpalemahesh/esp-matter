@@ -36,6 +36,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::electrical_energy_measurement::feature;
+using namespace esp_matter::cluster::electrical_energy_measurement::attribute;
+using namespace esp_matter::cluster::electrical_energy_measurement::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "electrical_energy_measurement_cluster";

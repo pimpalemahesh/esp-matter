@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::operational_state::attribute;
+using namespace esp_matter::cluster::operational_state::command;
+using namespace esp_matter::cluster::operational_state::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "operational_state_cluster";
@@ -99,7 +102,7 @@ command_t *create_resume(cluster_t *cluster)
 
 command_t *create_operational_command_response(cluster_t *cluster)
 {
-    VerifyOrReturnValue(((esp_matter::command::get(cluster, 0x00, COMMAND_FLAG_ACCEPTED) != nullptr) || (esp_matter::command::get(cluster, 0x01, COMMAND_FLAG_ACCEPTED) != nullptr) || (esp_matter::command::get(cluster, 0x02, COMMAND_FLAG_ACCEPTED) != nullptr) || (esp_matter::command::get(cluster, 0x03, COMMAND_FLAG_ACCEPTED) != nullptr)), NULL);
+    VerifyOrReturnValue(((esp_matter::command::get(cluster, Pause::Id, COMMAND_FLAG_ACCEPTED) != nullptr) || (esp_matter::command::get(cluster, Stop::Id, COMMAND_FLAG_ACCEPTED) != nullptr) || (esp_matter::command::get(cluster, Start::Id, COMMAND_FLAG_ACCEPTED) != nullptr) || (esp_matter::command::get(cluster, Resume::Id, COMMAND_FLAG_ACCEPTED) != nullptr)), NULL);
     return esp_matter::command::create(cluster, OperationalCommandResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 

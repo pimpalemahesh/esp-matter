@@ -36,6 +36,10 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::push_av_stream_transport::feature;
+using namespace esp_matter::cluster::push_av_stream_transport::attribute;
+using namespace esp_matter::cluster::push_av_stream_transport::command;
+using namespace esp_matter::cluster::push_av_stream_transport::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "push_av_stream_transport_cluster";

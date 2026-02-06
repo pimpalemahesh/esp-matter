@@ -36,6 +36,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::scenes_management::feature;
+using namespace esp_matter::cluster::scenes_management::attribute;
+using namespace esp_matter::cluster::scenes_management::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "scenes_management_cluster";
@@ -150,7 +153,7 @@ command_t *create_copy_scene(cluster_t *cluster)
 
 command_t *create_copy_scene_response(cluster_t *cluster)
 {
-    VerifyOrReturnValue(esp_matter::command::get(cluster, 0x40, COMMAND_FLAG_ACCEPTED) != nullptr, NULL);
+    VerifyOrReturnValue(esp_matter::command::get(cluster, CopyScene::Id, COMMAND_FLAG_ACCEPTED) != nullptr, NULL);
     return esp_matter::command::create(cluster, CopySceneResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 

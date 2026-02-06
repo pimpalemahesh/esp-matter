@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::rvc_run_mode::feature;
+using namespace esp_matter::cluster::rvc_run_mode::attribute;
+using namespace esp_matter::cluster::rvc_run_mode::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "rvc_run_mode_cluster";

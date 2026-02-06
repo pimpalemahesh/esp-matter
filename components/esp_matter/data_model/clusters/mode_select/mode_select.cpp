@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::mode_select::feature;
+using namespace esp_matter::cluster::mode_select::attribute;
+using namespace esp_matter::cluster::mode_select::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "mode_select_cluster";

@@ -35,6 +35,10 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::dish_washer_alarm::feature;
+using namespace esp_matter::cluster::dish_washer_alarm::attribute;
+using namespace esp_matter::cluster::dish_washer_alarm::command;
+using namespace esp_matter::cluster::dish_washer_alarm::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "dish_washer_alarm_cluster";

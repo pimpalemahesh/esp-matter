@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::water_heater_mode::feature;
+using namespace esp_matter::cluster::water_heater_mode::attribute;
+using namespace esp_matter::cluster::water_heater_mode::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "water_heater_mode_cluster";

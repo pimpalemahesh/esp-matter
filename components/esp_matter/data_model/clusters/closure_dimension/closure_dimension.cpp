@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::closure_dimension::feature;
+using namespace esp_matter::cluster::closure_dimension::attribute;
+using namespace esp_matter::cluster::closure_dimension::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "closure_dimension_cluster";

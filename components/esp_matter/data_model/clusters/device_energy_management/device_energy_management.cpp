@@ -36,6 +36,10 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::device_energy_management::feature;
+using namespace esp_matter::cluster::device_energy_management::attribute;
+using namespace esp_matter::cluster::device_energy_management::command;
+using namespace esp_matter::cluster::device_energy_management::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "device_energy_management_cluster";

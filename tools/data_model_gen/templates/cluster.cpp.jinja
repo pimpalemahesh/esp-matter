@@ -44,6 +44,18 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+{% if cluster.get_feature_list() | length > 0 %}
+using namespace esp_matter::cluster::{{ cluster.esp_name }}::feature;
+{% endif %}
+{% if cluster.get_attribute_list() | length > 0 %}
+using namespace esp_matter::cluster::{{ cluster.esp_name }}::attribute;
+{% endif %}
+{% if cluster.get_command_list() | length > 0 %}
+using namespace esp_matter::cluster::{{ cluster.esp_name }}::command;
+{% endif %}
+{% if cluster.get_event_list() | length > 0 %}
+using namespace esp_matter::cluster::{{ cluster.esp_name }}::event;
+{% endif %}
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "{{ cluster.esp_name }}_cluster";

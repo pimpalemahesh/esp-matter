@@ -36,6 +36,8 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::basic_information::attribute;
+using namespace esp_matter::cluster::basic_information::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "basic_information_cluster";
@@ -181,7 +183,7 @@ event_t *create_leave(cluster_t *cluster)
 
 event_t *create_reachable_changed(cluster_t *cluster)
 {
-    VerifyOrReturnValue(esp_matter::attribute::get(cluster, 0x0011) != nullptr, NULL);
+    VerifyOrReturnValue(esp_matter::attribute::get(cluster, Reachable::Id) != nullptr, NULL);
     return esp_matter::event::create(cluster, ReachableChanged::Id);
 }
 

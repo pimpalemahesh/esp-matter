@@ -181,14 +181,14 @@ def replace_references(condition, reference_map):
     if isinstance(condition, dict):
         attr_name = condition.get(ATTRIBUTE_TAG)
         if attr_name and attr_name in reference_map:
-            return {ATTRIBUTE_TAG: reference_map.get(attr_name)}
+            return {ATTRIBUTE_TAG: attr_name}
         cmd_name = condition.get(COMMAND_TAG)
         if cmd_name and cmd_name in reference_map:
             cmd_data = reference_map.get(cmd_name)
             if isinstance(cmd_data, tuple):
-                return {COMMAND_TAG: cmd_data[0], COMMAND_FLAG_TAG: cmd_data[1]}
+                return {COMMAND_TAG: cmd_name, COMMAND_FLAG_TAG: cmd_data[1]}
             else:
-                return {COMMAND_TAG: cmd_data}
+                return {COMMAND_TAG: cmd_name}
         return {
             key: replace_references(value, reference_map)
             for key, value in condition.items()

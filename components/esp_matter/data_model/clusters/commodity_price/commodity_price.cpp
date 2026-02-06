@@ -35,6 +35,10 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::commodity_price::feature;
+using namespace esp_matter::cluster::commodity_price::attribute;
+using namespace esp_matter::cluster::commodity_price::command;
+using namespace esp_matter::cluster::commodity_price::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "commodity_price_cluster";
@@ -95,7 +99,7 @@ command_t *create_get_detailed_price_request(cluster_t *cluster)
 
 command_t *create_get_detailed_price_response(cluster_t *cluster)
 {
-    VerifyOrReturnValue(esp_matter::command::get(cluster, 0x00, COMMAND_FLAG_ACCEPTED) != nullptr, NULL);
+    VerifyOrReturnValue(esp_matter::command::get(cluster, GetDetailedPriceRequest::Id, COMMAND_FLAG_ACCEPTED) != nullptr, NULL);
     return esp_matter::command::create(cluster, GetDetailedPriceResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
@@ -106,7 +110,7 @@ command_t *create_get_detailed_forecast_request(cluster_t *cluster)
 
 command_t *create_get_detailed_forecast_response(cluster_t *cluster)
 {
-    VerifyOrReturnValue(esp_matter::command::get(cluster, 0x02, COMMAND_FLAG_ACCEPTED) != nullptr, NULL);
+    VerifyOrReturnValue(esp_matter::command::get(cluster, GetDetailedForecastRequest::Id, COMMAND_FLAG_ACCEPTED) != nullptr, NULL);
     return esp_matter::command::create(cluster, GetDetailedForecastResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 

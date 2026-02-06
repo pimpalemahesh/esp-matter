@@ -36,6 +36,8 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::time_format_localization::feature;
+using namespace esp_matter::cluster::time_format_localization::attribute;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "time_format_localization_cluster";

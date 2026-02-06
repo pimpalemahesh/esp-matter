@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::temperature_control::feature;
+using namespace esp_matter::cluster::temperature_control::attribute;
+using namespace esp_matter::cluster::temperature_control::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "temperature_control_cluster";

@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::service_area::feature;
+using namespace esp_matter::cluster::service_area::attribute;
+using namespace esp_matter::cluster::service_area::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "service_area_cluster";
@@ -148,7 +151,7 @@ command_t *create_skip_area(cluster_t *cluster)
 
 command_t *create_skip_area_response(cluster_t *cluster)
 {
-    VerifyOrReturnValue(esp_matter::command::get(cluster, 0x02, COMMAND_FLAG_ACCEPTED) != nullptr, NULL);
+    VerifyOrReturnValue(esp_matter::command::get(cluster, SkipArea::Id, COMMAND_FLAG_ACCEPTED) != nullptr, NULL);
     return esp_matter::command::create(cluster, SkipAreaResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 

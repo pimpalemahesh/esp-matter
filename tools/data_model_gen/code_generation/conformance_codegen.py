@@ -120,23 +120,23 @@ class FalseExpr(Expr):
 
 
 class AttributeExpr(Expr):
-    def __init__(self, attr_id: str):
-        self.attr_id = attr_id
+    def __init__(self, attr_name: str):
+        self.attr_name = attr_name
 
     def __call__(self) -> str:
-        return f"esp_matter::attribute::get(cluster, {self.attr_id}) != nullptr"
+        return f"esp_matter::attribute::get(cluster, {self.attr_name}::Id) != nullptr"
 
     def iterate(self, iterator: ExprIterator):
         iterator.iterate_attribute(self)
 
 
 class CommandExpr(Expr):
-    def __init__(self, command_id: str, flag: str):
-        self.command_id = command_id
+    def __init__(self, command_name: str, flag: str):
+        self.command_name = command_name
         self.flag = flag
 
     def __call__(self) -> str:
-        return f"esp_matter::command::get(cluster, {self.command_id}, {self.flag}) != nullptr"
+        return f"esp_matter::command::get(cluster, {self.command_name}::Id, {self.flag}) != nullptr"
 
     def iterate(self, iterator: ExprIterator):
         iterator.iterate_command(self)

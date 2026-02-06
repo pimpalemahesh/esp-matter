@@ -35,6 +35,7 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::ecosystem_information::attribute;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "ecosystem_information_cluster";

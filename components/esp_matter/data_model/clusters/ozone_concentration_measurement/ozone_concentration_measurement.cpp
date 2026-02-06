@@ -35,6 +35,8 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::ozone_concentration_measurement::feature;
+using namespace esp_matter::cluster::ozone_concentration_measurement::attribute;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "ozone_concentration_measurement_cluster";

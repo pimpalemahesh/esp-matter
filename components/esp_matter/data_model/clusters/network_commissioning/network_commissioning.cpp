@@ -36,6 +36,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::network_commissioning::feature;
+using namespace esp_matter::cluster::network_commissioning::attribute;
+using namespace esp_matter::cluster::network_commissioning::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "network_commissioning_cluster";

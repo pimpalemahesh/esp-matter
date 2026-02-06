@@ -35,6 +35,8 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::laundry_washer_controls::feature;
+using namespace esp_matter::cluster::laundry_washer_controls::attribute;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "laundry_washer_controls_cluster";

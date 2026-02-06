@@ -35,6 +35,10 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::content_control::feature;
+using namespace esp_matter::cluster::content_control::attribute;
+using namespace esp_matter::cluster::content_control::command;
+using namespace esp_matter::cluster::content_control::event;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "content_control_cluster";

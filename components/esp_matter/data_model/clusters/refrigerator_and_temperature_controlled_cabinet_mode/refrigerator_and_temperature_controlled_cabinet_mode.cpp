@@ -35,6 +35,9 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::refrigerator_and_temperature_controlled_cabinet_mode::feature;
+using namespace esp_matter::cluster::refrigerator_and_temperature_controlled_cabinet_mode::attribute;
+using namespace esp_matter::cluster::refrigerator_and_temperature_controlled_cabinet_mode::command;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "refrigerator_and_temperature_controlled_cabinet_mode_cluster";

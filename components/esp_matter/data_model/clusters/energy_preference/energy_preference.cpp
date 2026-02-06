@@ -35,6 +35,8 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::energy_preference::feature;
+using namespace esp_matter::cluster::energy_preference::attribute;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "energy_preference_cluster";

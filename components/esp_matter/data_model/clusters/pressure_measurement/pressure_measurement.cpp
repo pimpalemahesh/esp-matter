@@ -35,6 +35,8 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
+using namespace esp_matter::cluster::pressure_measurement::feature;
+using namespace esp_matter::cluster::pressure_measurement::attribute;
 using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "pressure_measurement_cluster";
