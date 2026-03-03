@@ -492,12 +492,8 @@ int create(uint8_t device_type_index)
         esp_matter::endpoint::electrical_sensor::config_t electrical_sensor_config;
         static chip::app::Clusters::PowerTopology::PowerTopologyDelegate powerTopologyDelegate;
         static chip::app::Clusters::ElectricalPowerMeasurement::MockElectricalPowerMeasurementDelegate electricalPowerMeasurementDelegate;
-        electrical_sensor_config.power_topology.feature_flags = esp_matter::cluster::power_topology::feature::set_topology::get_id();
+        electrical_sensor_config.power_topology.feature_flags = esp_matter::cluster::power_topology::feature::node_topology::get_id();
         electrical_sensor_config.power_topology.delegate = &powerTopologyDelegate;
-        electrical_sensor_config.electrical_power_measurement.feature_flags =
-            esp_matter::cluster::electrical_power_measurement::feature::direct_current::get_id() |
-            esp_matter::cluster::electrical_power_measurement::feature::alternating_current::get_id();
-        electrical_sensor_config.electrical_power_measurement.delegate = &electricalPowerMeasurementDelegate;
         endpoint = esp_matter::endpoint::electrical_sensor::create(node, &electrical_sensor_config, ENDPOINT_FLAG_NONE, NULL);
 
         if (endpoint) {
@@ -511,18 +507,20 @@ int create(uint8_t device_type_index)
             esp_matter::cluster_t *energy_cluster = esp_matter::cluster::electrical_energy_measurement::create(endpoint, &electrical_energy_measurement,
                                                                                                                CLUSTER_FLAG_SERVER);
 
-            if (!energy_cluster) {
-                ESP_LOGE(TAG, "Failed to create electrical energy measurement cluster");
-            }
-            esp_matter::cluster_t *power_cluster = esp_matter::cluster::get(endpoint, chip::app::Clusters::ElectricalPowerMeasurement::Id);
-            if (power_cluster) {
-                esp_matter::cluster::electrical_power_measurement::attribute::create_voltage(power_cluster, nullable<int64_t>());
-                esp_matter::cluster::electrical_power_measurement::attribute::create_active_current(power_cluster, nullable<int64_t>());
-            }
-            if (power_cluster && energy_cluster) {
-                g_electrical_sensor_created = true;
-                app_endpoint_id = endpoint::get_id(endpoint);
-            }
+            VerifyOrReturnValue(energy_cluster, 1, ESP_LOGE(TAG, "Failed to create electrical energy measurement cluster"));
+
+            esp_matter::cluster::electrical_power_measurement::config_t electrical_power_measurement;
+            electrical_power_measurement.feature_flags =
+                esp_matter::cluster::electrical_power_measurement::feature::direct_current::get_id() |
+                esp_matter::cluster::electrical_power_measurement::feature::alternating_current::get_id();
+            electrical_power_measurement.delegate = &electricalPowerMeasurementDelegate;
+            esp_matter::cluster_t *power_cluster = esp_matter::cluster::electrical_power_measurement::create(endpoint, &electrical_power_measurement, CLUSTER_FLAG_SERVER);
+            VerifyOrReturnValue(power_cluster, 1, ESP_LOGE(TAG, "Failed to create electrical power measurement cluster"));
+            esp_matter::cluster::electrical_power_measurement::attribute::create_voltage(power_cluster, nullable<int64_t>());
+            esp_matter::cluster::electrical_power_measurement::attribute::create_active_current(power_cluster, nullable<int64_t>());
+
+            g_electrical_sensor_created = true;
+            app_endpoint_id = endpoint::get_id(endpoint);
         }
         break;
     }
@@ -542,14 +540,19 @@ int create(uint8_t device_type_index)
         endpoint = esp_matter::endpoint::energy_evse::create(node, &energy_evse_config, ENDPOINT_FLAG_NONE, NULL);
 
         esp_matter::endpoint::power_source::config_t power_source_config;
+        power_source_config.power_source.feature_flags = esp_matter::cluster::power_source::feature::wired::get_id();
         esp_matter::endpoint_t *ps_endpoint = esp_matter::endpoint::power_source::create(node, &power_source_config, ENDPOINT_FLAG_NONE, NULL);
         esp_matter::endpoint::electrical_sensor::config_t electrical_sensor_config;
+        electrical_sensor_config.power_topology.feature_flags = esp_matter::cluster::power_topology::feature::node_topology::get_id();
         esp_matter::endpoint::electrical_sensor::add(ps_endpoint, &electrical_sensor_config);
 
-        if (!ps_endpoint) {
-            ESP_LOGE(TAG, "Matter create endpoint failed");
-            return 1;
-        }
+        esp_matter::cluster::electrical_power_measurement::config_t electrical_power_measurement;
+        electrical_power_measurement.feature_flags = esp_matter::cluster::electrical_power_measurement::feature::alternating_current::get_id();
+        esp_matter::cluster_t *power_cluster = esp_matter::cluster::electrical_power_measurement::create(ps_endpoint, &electrical_power_measurement, CLUSTER_FLAG_SERVER);
+        VerifyOrReturnValue(power_cluster, 1, ESP_LOGE(TAG, "Failed to create electrical power measurement cluster"));
+
+        VerifyOrReturnValue(ps_endpoint, 1, ESP_LOGE(TAG, "Matter create endpoint failed"));
+
         break;
     }
     case ESP_MATTER_MICROWAVE_OVEN: {
@@ -640,6 +643,10 @@ int create(uint8_t device_type_index)
     }
     case ESP_MATTER_SOLAR_POWER: {
         esp_matter::endpoint::solar_power::config_t solar_power_config;
+        static chip::app::Clusters::ElectricalPowerMeasurement::MockElectricalPowerMeasurementDelegate electricalPowerMeasurementDelegate;
+        solar_power_config.electrical_sensor.power_topology.feature_flags = esp_matter::cluster::power_topology::feature::node_topology::get_id();
+        solar_power_config.electrical_power_measurement.feature_flags = esp_matter::cluster::electrical_power_measurement::feature::alternating_current::get_id();
+        solar_power_config.electrical_power_measurement.delegate = &electricalPowerMeasurementDelegate;
         endpoint = esp_matter::endpoint::solar_power::create(node, &solar_power_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }
@@ -650,6 +657,7 @@ int create(uint8_t device_type_index)
     }
     case ESP_MATTER_HEAT_PUMP: {
         esp_matter::endpoint::heat_pump::config_t heat_pump_config;
+        heat_pump_config.electrical_sensor.power_topology.feature_flags = esp_matter::cluster::power_topology::feature::node_topology::get_id();
         endpoint = esp_matter::endpoint::heat_pump::create(node, &heat_pump_config, ENDPOINT_FLAG_NONE, NULL);
         break;
     }

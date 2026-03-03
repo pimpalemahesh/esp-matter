@@ -848,7 +848,6 @@ namespace electrical_sensor {
 typedef struct config {
     cluster::descriptor::config_t descriptor;
     cluster::power_topology::config_t power_topology;
-    cluster::electrical_power_measurement::config_t electrical_power_measurement;
 } config_t;
 
 uint32_t get_device_type_id();
@@ -1013,7 +1012,8 @@ namespace solar_power {
 typedef struct config {
     cluster::descriptor::config_t descriptor;
     endpoint::power_source::config_t power_source_device;
-    electrical_sensor::config_t electrical_sensor;
+    endpoint::electrical_sensor::config_t electrical_sensor;
+    cluster::electrical_power_measurement::config_t electrical_power_measurement;
     cluster::electrical_energy_measurement::config_t electrical_energy_measurement;
 } config_t;
 
@@ -1054,8 +1054,9 @@ namespace heat_pump {
 typedef struct config {
     cluster::descriptor::config_t descriptor;
     endpoint::power_source::config_t power_source_device;
-    electrical_sensor::config_t electrical_sensor;
-    device_energy_management::config_t device_energy_management;
+    endpoint::electrical_sensor::config_t electrical_sensor;
+    endpoint::device_energy_management::config_t device_energy_management;
+    cluster::electrical_power_measurement::config_t electrical_power_measurement;
     cluster::electrical_energy_measurement::config_t electrical_energy_measurement;
 
     nullable<int64_t> voltage;
