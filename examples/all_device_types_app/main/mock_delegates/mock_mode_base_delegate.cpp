@@ -31,9 +31,14 @@ CHIP_ERROR MockModeBaseDelegate::GetModeLabelByIndex(uint8_t modeIndex, MutableC
 
 CHIP_ERROR MockModeBaseDelegate::GetModeValueByIndex(uint8_t modeIndex, uint8_t  &value)
 {
-    // Implement your own logic here.
-    ESP_LOGE(LOG_TAG, "%s is not implemented", __func__);
-    return CHIP_ERROR_PROVIDER_LIST_EXHAUSTED;
+    // ModeBase initialization will fail if no modes are available.
+    // ModeBase::Init() expects current mode value which should be from supported modes list.
+    // Retuning default value 0 to avoid initialization failure.
+    if (modeIndex > 0) {
+        return CHIP_ERROR_PROVIDER_LIST_EXHAUSTED;
+    }
+    value = 0;
+    return CHIP_NO_ERROR;
 }
 
 CHIP_ERROR MockModeBaseDelegate::GetModeTagsByIndex(uint8_t modeIndex, DataModel::List<detail::Structs::ModeTagStruct::Type>  &modeTags)
