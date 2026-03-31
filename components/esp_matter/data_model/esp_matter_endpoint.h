@@ -17,5 +17,5 @@
 #if CONFIG_ENABLE_GENERATED_DATA_MODEL
 #include "generated/device_types/all_device_types.h"
 #else
-#include "legacy/esp_matter_endpoint_legacy.h"
+#include "legacy/esp_matter_endpoint_impl.h"
 #endif

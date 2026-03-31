@@ -15,14 +15,14 @@
 #include <cassert>
 #include <esp_log.h>
 #include <esp_matter.h>
-#include <esp_matter_attribute_legacy.h>
-#include <esp_matter_cluster_legacy.h>
-#include <esp_matter_command_legacy.h>
+#include <esp_matter_attribute_impl.h>
+#include <esp_matter_cluster_impl.h>
+#include <esp_matter_command_impl.h>
 #include <esp_matter_core.h>
 #include <esp_matter_data_model.h>
 #include <esp_matter_delegate_callbacks.h>
 #include <esp_matter_cluster_revisions.h>
-#include <esp_matter_attribute_bounds_legacy.h>
+#include <esp_matter_attribute_bounds.h>
 
 #include <app-common/zap-generated/callback.h>
 #include <app-common/zap-generated/cluster-enums.h>

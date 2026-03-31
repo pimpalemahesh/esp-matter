@@ -22,7 +22,7 @@ application.
 #ifdef CONFIG_ESP_MATTER_ENABLE_MATTER_SERVER
 #ifdef CONFIG_ESP_MATTER_ENABLE_DATA_MODEL
 #ifdef CONFIG_ENABLE_GENERATED_DATA_MODEL
-#include <esp_matter_generated_data_model_utils.h>
+#include <generated/esp_matter_data_model_utils.h>
 #endif // CONFIG_ENABLE_GENERATED_DATA_MODEL
 #include <esp_matter_attribute.h>
 #include <esp_matter_attribute_utils.h>

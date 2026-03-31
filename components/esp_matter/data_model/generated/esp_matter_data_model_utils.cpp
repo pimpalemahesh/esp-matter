@@ -37,7 +37,7 @@
 #include <credentials/GroupDataProviderImpl.h>
 #include <lib/core/DataModelTypes.h>
 #include <app-common/zap-generated/cluster-enums.h>
-#include <esp_matter_generated_data_model_utils.h>
+#include <generated/esp_matter_data_model_utils.h>
 #include <root_node_device.h>
 
 #define ESP_MATTER_MAX_DEVICE_TYPE_COUNT CONFIG_ESP_MATTER_MAX_DEVICE_TYPE_COUNT

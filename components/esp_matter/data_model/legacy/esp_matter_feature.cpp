@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "esp_matter_attribute_legacy.h"
-#include "esp_matter_command_legacy.h"
+#include "esp_matter_attribute_impl.h"
+#include "esp_matter_command_impl.h"
 #include <esp_log.h>
 #include <esp_matter.h>
-#include <esp_matter_feature_legacy.h>
+#include <esp_matter_feature_impl.h>
 #include <esp_matter_data_model_priv.h>
 
 #include <app-common/zap-generated/cluster-enums.h>

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 #include <esp_log.h>
-#include <esp_matter_attribute_legacy.h>
+#include <esp_matter_attribute_impl.h>
 #include <esp_matter.h>
 #include <esp_matter_core.h>
 #include <app/clusters/mode-base-server/mode-base-cluster-objects.h>

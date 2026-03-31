@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "esp_matter_cluster_legacy.h"
+#include "esp_matter_cluster_impl.h"
 #include <esp_log.h>
 #include <esp_matter.h>
-#include <esp_matter_endpoint_legacy.h>
+#include <esp_matter_endpoint_impl.h>
 #include <esp_matter_icd_configuration.h>
 
 static const char *TAG = "esp_matter_endpoint";

@@ -14,7 +14,7 @@
 
 #include <esp_log.h>
 #include <esp_matter.h>
-#include <esp_matter_command_legacy.h>
+#include <esp_matter_command_impl.h>
 #include <esp_matter_core.h>
 
 #include <app-common/zap-generated/callback.h>

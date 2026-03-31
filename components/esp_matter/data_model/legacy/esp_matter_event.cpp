@@ -13,7 +13,7 @@
 // limitations under the License.
 
 #include <esp_log.h>
-#include <esp_matter_event_legacy.h>
+#include <esp_matter_event_impl.h>
 
 #include <app/clusters/switch-server/switch-server.h>
 #include <platform/DeviceControlServer.h>

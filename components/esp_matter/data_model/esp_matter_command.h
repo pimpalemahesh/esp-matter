@@ -17,5 +17,5 @@
 #if CONFIG_ENABLE_GENERATED_DATA_MODEL
 #include "generated/clusters/all_clusters.h"
 #else
-#include "legacy/esp_matter_command_legacy.h"
+#include "legacy/esp_matter_command_impl.h"
 #endif
