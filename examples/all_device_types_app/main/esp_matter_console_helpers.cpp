@@ -494,10 +494,15 @@ int create(uint8_t device_type_index)
         static chip::app::Clusters::ElectricalPowerMeasurement::MockElectricalPowerMeasurementDelegate electricalPowerMeasurementDelegate;
         electrical_sensor_config.power_topology.feature_flags = esp_matter::cluster::power_topology::feature::set_topology::get_id();
         electrical_sensor_config.power_topology.delegate = &powerTopologyDelegate;
+#ifndef CONFIG_ENABLE_GENERATED_DATA_MODEL
+        // Electrical power measurement and ElectricalEnergyMeasurement cluster have choice features O.a+
+        // Generated data model does not consider such clusters as mandatory for device type.
+        // TODO: Remove this from handwritten code as well.
         electrical_sensor_config.electrical_power_measurement.feature_flags =
             esp_matter::cluster::electrical_power_measurement::feature::direct_current::get_id() |
             esp_matter::cluster::electrical_power_measurement::feature::alternating_current::get_id();
         electrical_sensor_config.electrical_power_measurement.delegate = &electricalPowerMeasurementDelegate;
+#endif // CONFIG_ENABLE_GENERATED_DATA_MODEL
         endpoint = esp_matter::endpoint::electrical_sensor::create(node, &electrical_sensor_config, ENDPOINT_FLAG_NONE, NULL);
 
         if (endpoint) {
@@ -538,8 +543,13 @@ int create(uint8_t device_type_index)
         static chip::app::Clusters::DeviceEnergyManagement::MockDeviceEnergyManagementDelegate evseDemDelegate;
         energy_evse_config.energy_evse.delegate = &energyEvseDelegate;
         energy_evse_config.energy_evse_mode.delegate = &evseModeDelegate;
+#ifndef CONFIG_ENABLE_GENERATED_DATA_MODEL
+        // Energy EVSE is composite device type with DeviceEnergyManagement.
+        // Generated data model does not generate config for composite device types
+        // TODO: Remove this once composite devices handled separately.
         energy_evse_config.device_energy_management.delegate = &evseDemDelegate;
         energy_evse_config.device_energy_management.feature_flags = cluster::device_energy_management::feature::power_adjustment::get_id();
+#endif // CONFIG_ENABLE_GENERATED_DATA_MODEL
         endpoint = esp_matter::endpoint::energy_evse::create(node, &energy_evse_config, ENDPOINT_FLAG_NONE, NULL);
 
         esp_matter::endpoint::power_source::config_t power_source_config;
@@ -589,7 +599,12 @@ int create(uint8_t device_type_index)
         esp_matter::endpoint::device_energy_management::config_t device_energy_management_config;
         static chip::app::Clusters::ModeBase::MockModeBaseDelegate demModeDelegate;
         static chip::app::Clusters::DeviceEnergyManagement::MockDeviceEnergyManagementDelegate demDelegate;
+#ifndef CONFIG_ENABLE_GENERATED_DATA_MODEL
+        // Device energy management mode cluster is Optional with condition=ControllableESA
+        // Generated data model does not consider such clusters as mandatory for device type.
+        // TODO: Consider such clusters as optional in handwritten code as well.
         device_energy_management_config.device_energy_management_mode.delegate = &demModeDelegate;
+#endif // CONFIG_ENABLE_GENERATED_DATA_MODEL
         device_energy_management_config.device_energy_management.delegate = &demDelegate;
         device_energy_management_config.device_energy_management.feature_flags = cluster::device_energy_management::feature::power_adjustment::get_id();
         endpoint = esp_matter::endpoint::device_energy_management::create(node, &device_energy_management_config, ENDPOINT_FLAG_NONE, NULL);
