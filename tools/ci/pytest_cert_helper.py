@@ -93,8 +93,8 @@ def execute_test_command(full_command, dut:Dut, retry_attempts=2):
                 time.sleep(10)
     return False
 
-def generate_markdown_results(results_table, chunk_id=None):
-    summary_title = f"Python Certification Test Results {chunk_id}" if chunk_id else "Test Results"
+def generate_markdown_results(results_table, chunk_id=None, data_model_type="Handwritten"):
+    summary_title = f"Python Certification Test Results {chunk_id} ({data_model_type} Data Model)" if chunk_id else f"Test Results ({data_model_type} Data Model)"
     markdown_results = [
         "<!-- Expandable Section -->",
         f"<details><summary>{summary_title}</summary>",
@@ -107,11 +107,11 @@ def generate_markdown_results(results_table, chunk_id=None):
     markdown_results.extend(["", "</details>", "<!-- End Expandable Section -->"])
     return "\n".join(markdown_results)
 
-def update_mr_description_with_results(markdown_content, chunk_id=None):
+def update_mr_description_with_results(markdown_content, chunk_id=None, data_model_type="Handwritten"):
     try:
         gitlab_api = GitLabAPI()
         description = gitlab_api.fetch_merge_request_description()
-        updated_description = ResultsFormatter.update_cert_test_results_section(description, markdown_content, chunk_id=chunk_id)
+        updated_description = ResultsFormatter.update_cert_test_results_section(description, markdown_content, chunk_id=chunk_id, data_model_type=data_model_type)
         gitlab_api.update_merge_request_description(updated_description)
         print("Successfully updated MR description with test results.")
     except Exception as e:
@@ -136,6 +136,9 @@ def run_python_certification_tests(dut:Dut, certification_tests:str, ci_branch:s
     test_chunk_key = os.getenv("TEST_CHUNK", "1")
     selected_commands = command_chunks.get(test_chunk_key, [])
 
+    # Determine data model type based on job name or environment variable
+    data_model_type = "Generated" if "generated_data_model" in os.getenv("CI_JOB_NAME", "").lower() else "Standard"
+
     for index, test_item in enumerate(selected_commands, start=1):
         test_case_name = test_item["name"]
         test_command = test_item["command"]
@@ -148,5 +151,5 @@ def run_python_certification_tests(dut:Dut, certification_tests:str, ci_branch:s
         light.write('matter esp factoryreset')
         time.sleep(10)
 
-    markdown_content = generate_markdown_results(results_table, chunk_id=test_chunk_key)
-    update_mr_description_with_results(markdown_content, chunk_id=test_chunk_key)
+    markdown_content = generate_markdown_results(results_table, chunk_id=test_chunk_key, data_model_type=data_model_type)
+    update_mr_description_with_results(markdown_content, chunk_id=test_chunk_key, data_model_type=data_model_type)

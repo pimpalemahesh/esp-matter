@@ -75,11 +75,12 @@ class ResultsFormatter:
         return tabulate(parsed_logs, headers=headers, tablefmt="grid")
 
     @staticmethod
-    def update_cert_test_results_section(description, markdown_content, chunk_id=None):
-        # Use chunk-specific markers
+    def update_cert_test_results_section(description, markdown_content, chunk_id=None, data_model_type="Standard"):
+        # Use chunk-specific and data model type specific markers
         marker_id = f" {chunk_id}" if chunk_id else ""
-        marker_start = f"<!-- START: Cert Test Results{marker_id} -->"
-        marker_end = f"<!-- END: Cert Test Results{marker_id} -->"
+        data_model_id = f" {data_model_type}"
+        marker_start = f"<!-- START: Cert Test Results{marker_id}{data_model_id} -->"
+        marker_end = f"<!-- END: Cert Test Results{marker_id}{data_model_id} -->"
         cert_section = f"{marker_start}\n{markdown_content}\n{marker_end}"
 
         if marker_start in description and marker_end in description:
