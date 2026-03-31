@@ -13,7 +13,7 @@
 // limitations under the License.
 
 #include <esp_log.h>
-#include <esp_matter_attribute_bounds_legacy.h>
+#include <esp_matter_attribute_bounds.h>
 #include <esp_matter_data_model_priv.h>
 
 #include <app-common/zap-generated/ids/Attributes.h>
