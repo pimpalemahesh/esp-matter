@@ -374,57 +374,20 @@ build_esp_matter_examples_pytest_C2:
         python tools/ci/memory_analyzer.py --chip esp32c2 --job_name "build_esp_matter_examples_pytest_C2" --ref_map_file light_mr_base.map --example "light"
       fi
 
-build_esp_matter_examples_pytest_C6_generated_data_model:
-  stage: build
-  extends:
-        - .build_examples_template
-  artifacts:
-    paths:
-      - "examples/**/build*/size.json"
-      - "examples/**/build*/build_log.txt"
-      - "examples/**/build*/*.map"
-      - "examples/**/build*/*.bin"
-      - "examples/**/build*/flasher_args.json"
-      - "examples/**/build*/config/sdkconfig.json"
-      - "examples/**/build*/bootloader/*.bin"
-      - "examples/**/build*/partition_table/*.bin"
-    when: always
-    expire_in: 4 days
-  script:
-    - cd ${ESP_MATTER_PATH}
-    # Enable generated data model for the light example
-    - echo "CONFIG_ENABLE_GENERATED_DATA_MODEL=y" >> ${ESP_MATTER_PATH}/examples/light/sdkconfig.defaults
-    - pip install -r tools/ci/requirements-build.txt
-    - python tools/ci/build_apps.py ./examples --pytest_c6
-
-build_all_device_types_app_H2_generated_data_model:
-  stage: build
-  extends:
-        - .build_examples_template
-  artifacts:
-    paths:
-      - "examples/**/build*/size.json"
-      - "examples/**/build*/build_log.txt"
-      - "examples/**/build*/*.map"
-      - "examples/**/build*/*.bin"
-      - "examples/**/build*/flasher_args.json"
-      - "examples/**/build*/config/sdkconfig.json"
-      - "examples/**/build*/bootloader/*.bin"
-      - "examples/**/build*/partition_table/*.bin"
-      - "${IDF_PATH}/examples/openthread/ot_rcp/build/*.bin"
-      - "${IDF_PATH}/examples/openthread/ot_rcp/build/partition_table/*.bin"
-      - "${IDF_PATH}/examples/openthread/ot_rcp/build/bootloader/*.bin"
-      - "${IDF_PATH}/examples/openthread/ot_rcp/build/config/sdkconfig.json"
-      - "${IDF_PATH}/examples/openthread/ot_rcp/build/flasher_args.json"
-    when: always
-    expire_in: 15 days
-  script:
+.build_generated_data_model_all_device_types_app_H2: &build_generated_data_model_all_device_types_app_H2
     - *setup_ot_rcp
     - cd ${ESP_MATTER_PATH}/examples/all_device_types_app
     # Enable generated data model for the thread border router example
     - echo "CONFIG_ENABLE_GENERATED_DATA_MODEL=y" >> sdkconfig.defaults
     - idf.py set-target esp32h2
     - idf.py build
+
+.build_generated_data_model_examples_pytest_C3: &build_generated_data_model_examples_pytest_C3
+    - cd ${ESP_MATTER_PATH}
+    # Enable generated data model for the light example
+    - echo "CONFIG_ENABLE_GENERATED_DATA_MODEL=y" >> ${ESP_MATTER_PATH}/examples/light/sdkconfig.defaults
+    - pip install -r tools/ci/requirements-build.txt
+    - python tools/ci/build_apps.py ./examples --pytest_c3
 
 build_override_sdkconfig_examples:
   resource_group: build_override_sdkconfig_examples
@@ -436,6 +399,8 @@ build_override_sdkconfig_examples:
     - *build_esp32c6_wifi_thread_example
     - *build_controller_otbr_example
     - *build_lit_icd_example
+    - *build_generated_data_model_examples_pytest_C3
+    - *build_generated_data_model_all_device_types_app_H2
 
 build_zap_light_example:
   resource_group: build_zap_light_example
@@ -518,42 +483,6 @@ build_nopytest_remaining_examples_manual:
       --parallel-index ${CI_NODE_INDEX:-1}
   parallel: 2
 
-build_nopytest_remaining_examples_generated_data_model:
-  stage: build
-  extends:
-        - .build_examples_template
-  rules:
-    - if: $CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE == "push"
-      when: on_success
-    - if: $CI_COMMIT_BRANCH != "main"
-      when: manual
-      allow_failure: true
-  artifacts:
-    paths:
-      - "examples/**/build*/size.json"
-      - "examples/**/build*/build_log.txt"
-      - "examples/**/build*/*.bin"
-      - "examples/**/build*/flasher_args.json"
-      - "examples/**/build*/config/sdkconfig.json"
-      - "examples/**/build*/bootloader/*.bin"
-      - "examples/**/build*/partition_table/*.bin"
-    when: always
-    expire_in: 4 days
-  script:
-    - cd ${ESP_MATTER_PATH}
-    # Enable generated data model for all examples before building
-    - |
-      for d in $(find examples -maxdepth 3 -type d -not -path "*/build*"); do
-        if [ -f "$d/sdkconfig.defaults" ]; then
-          echo "CONFIG_ENABLE_GENERATED_DATA_MODEL=y" >> "$d/sdkconfig.defaults"
-        fi
-      done
-    - pip install -r tools/ci/requirements-build.txt
-    - python tools/ci/build_apps.py ./examples --no_pytest_remaining
-      --parallel-count ${CI_NODE_TOTAL:-1}
-      --parallel-index ${CI_NODE_INDEX:-1}
-  parallel: 2
-
 build_esp_matter_examples_pytest_C3:
   resource_group: build_esp_matter_examples_pytest_C3
   extends:
@@ -573,30 +502,6 @@ build_esp_matter_examples_pytest_C3:
     expire_in: 4 days
   script:
     - cd ${ESP_MATTER_PATH}
-    - pip install -r tools/ci/requirements-build.txt
-    - python tools/ci/build_apps.py ./examples --pytest_c3
-
-build_esp_matter_examples_pytest_C3_generated_data_model:
-  stage: build
-  extends:
-        - .build_examples_template
-  image: ${DOCKER_IMAGE_NAME}:chip_${CHIP_SHORT_HASH}_idf_${IDF_CHECKOUT_REF}
-  artifacts:
-    paths:
-      - "examples/**/build*/size.json"
-      - "examples/**/build*/build_log.txt"
-      - "examples/**/build*/*.map"
-      - "examples/**/build*/*.bin"
-      - "examples/**/build*/flasher_args.json"
-      - "examples/**/build*/config/sdkconfig.json"
-      - "examples/**/build*/bootloader/*.bin"
-      - "examples/**/build*/partition_table/*.bin"
-    when: always
-    expire_in: 4 days
-  script:
-    - cd ${ESP_MATTER_PATH}
-    # Enable generated data model for the light example
-    - echo "CONFIG_ENABLE_GENERATED_DATA_MODEL=y" >> ${ESP_MATTER_PATH}/examples/light/sdkconfig.defaults
     - pip install -r tools/ci/requirements-build.txt
     - python tools/ci/build_apps.py ./examples --pytest_c3
 
