@@ -153,6 +153,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(feature_map & feature::lift::get_id(), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_target_position_lift_percent_100ths(cluster, config->target_position_lift_percent_100ths);
@@ -175,6 +177,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(feature_map & feature::tilt::get_id(), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_target_position_tilt_percent_100ths(cluster, config->target_position_tilt_percent_100ths);

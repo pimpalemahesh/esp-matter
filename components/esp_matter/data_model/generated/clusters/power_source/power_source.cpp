@@ -96,6 +96,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(feature_map & feature::battery::get_id(), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_bat_charge_state(cluster, config->bat_charge_state);
@@ -117,6 +119,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(feature_map & feature::battery::get_id(), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_bat_replacement_description(cluster, config->bat_replacement_description, sizeof(config->bat_replacement_description));

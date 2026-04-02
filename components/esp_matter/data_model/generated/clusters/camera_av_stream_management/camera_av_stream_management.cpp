@@ -149,6 +149,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(feature_map & feature::audio::get_id(), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_speaker_capabilities(cluster, NULL, 0, 0);
     attribute::create_two_way_talk_support(cluster, 0);
@@ -170,6 +172,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(((feature_map & feature::video::get_id()) || (feature_map & feature::snapshot::get_id())), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
 
     return ESP_OK;
@@ -185,6 +189,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(((feature_map & feature::video::get_id()) || (feature_map & feature::snapshot::get_id())), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     command::create_video_stream_modify(cluster);
     command::create_snapshot_stream_modify(cluster);
@@ -202,6 +208,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(((feature_map & feature::video::get_id()) || (feature_map & feature::snapshot::get_id())), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     command::create_video_stream_modify(cluster);
     command::create_snapshot_stream_modify(cluster);
@@ -236,6 +244,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(((feature_map & feature::video::get_id()) || (feature_map & feature::snapshot::get_id())), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_hdr_mode_enabled(cluster, false);
 
@@ -252,6 +262,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(((feature_map & feature::video::get_id()) || (feature_map & feature::snapshot::get_id())), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_night_vision_uses_infrared(cluster, false);
     attribute::create_night_vision(cluster, 0);

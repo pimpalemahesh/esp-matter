@@ -13,6 +13,10 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster{% if has_config %}, config_t *config{% endif %})
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+{% if feature.get_conformance_condition() %}
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError({{ feature.get_conformance_condition() }}, ESP_ERR_INVALID_ARG);
+{% endif %}
     update_feature_map(cluster, get_id());
     {# --- Attributes --- #}
     {% set attrs = feature.get_attributes() %}

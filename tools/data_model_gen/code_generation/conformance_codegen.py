@@ -380,7 +380,7 @@ class Conformance(BaseConformance, Expr):
             condition = self.conformance.get(ConformanceTAG.CONDITION.value, {})
             if not condition:
                 return None
-            return OptionalExpr(parse_expr(condition))
+            return OptionalExpr(parse_expr(condition))()
         elif self.type == ConformanceDecision.OTHERWISE:
             optional_condition = self.conformance.get(
                 ConformanceTAG.CONDITION.value, {}

@@ -426,6 +426,10 @@ class Feature(BaseFeature):
         """Get the list of events sorted by ID and name"""
         return sorted(self.events, key=get_id_name_lambda())
 
+    def get_conformance_condition(self):
+        """Get the conformance condition"""
+        return self.conformance.get_optional_condition()
+
 
 class Event(BaseEvent):
     """Event class that inherits from BaseEvent"""

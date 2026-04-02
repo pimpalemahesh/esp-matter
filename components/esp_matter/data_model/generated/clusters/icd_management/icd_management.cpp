@@ -123,6 +123,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(feature_map & feature::long_idle_time_support::get_id(), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
 
     return ESP_OK;

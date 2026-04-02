@@ -85,6 +85,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(feature_map & feature::alternating_current::get_id(), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
 
     return ESP_OK;
@@ -100,6 +102,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(feature_map & feature::alternating_current::get_id(), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_harmonic_currents(cluster, NULL, 0, 0);
 
@@ -116,6 +120,8 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    uint32_t feature_map = get_feature_map_value(cluster);
+    VerifyOrReturnError(feature_map & feature::alternating_current::get_id(), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_harmonic_phases(cluster, NULL, 0, 0);
 
