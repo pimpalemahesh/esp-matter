@@ -363,9 +363,12 @@ class Attribute(BaseAttribute):
     def get_default_value_type(self):
         """Get the ESP type for the default value"""
         value = self.get_default_value()
-        if value <= 255:
+        int_value = convert_to_int(value)
+        if int_value is None:
+            return "uint32_t"
+        elif int_value <= 255:
             return "uint8_t"
-        elif value <= 65535:
+        elif int_value <= 65535:
             return "uint16_t"
         return "uint32_t"
 

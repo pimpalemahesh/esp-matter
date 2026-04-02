@@ -2331,6 +2331,8 @@ namespace node {
 node_t *create(config_t *config, attribute::callback_t attribute_callback,
                identification::callback_t identification_callback, void* priv_data)
 {
+    ESP_LOGW(TAG, "Please use generated data model via enabling CONFIG_ENABLE_GENERATED_DATA_MODEL");
+
     node_t *node = create_raw();
     /* Initialize esp-matter nvs partition */
     VerifyOrReturnValue(esp_matter_nvs_init() == ESP_OK, NULL, ESP_LOGE(TAG, "Failed to init esp-matter nvs partition"));

@@ -144,7 +144,7 @@ def _bounds_from_constraint(attr, attribute_elem: Element) -> None:
     allowed = constraint_elem.find("allowed")
     if allowed is not None:
         allowed_value = convert_to_int(allowed.get("value", None))
-        if allowed_value != 0:
+        if allowed_value is not None:
             attr.max_value = allowed_value
             attr.min_value = 0
 

@@ -21,10 +21,7 @@
 enum class feature_policy {
     k_exact_one = 0,        // O.a
     k_at_least_one = 1,     // 0.a+
-    k_at_most_one = 2,      // 0.a-
 };
-
-const char feature_policy_strs[3][16] = {"Exactly one", "At least one", "At most one"};
 
 bool validate_features(uint32_t feature_flag, feature_policy policy, const char *feature_name,
                        std::initializer_list<uint32_t> features);
@@ -98,21 +95,6 @@ uint32_t get_feature_map_value(cluster_t *cluster);
  * @return NULL in case of failure.
  */
 cluster_t *ABORT_CLUSTER_CREATE(cluster_t *cluster);
-
-/**
- * @brief Call plugin init callback for all clusters on all endpoints
- */
-void plugin_init_callback_common();
-
-/**
- * @brief Call delegate init callback for all clusters on the given endpoint
- */
-void delegate_init_callback_common(endpoint_t *endpoint);
-
-/**
- * @brief Call add bounds callback for all clusters on all endpoints
- */
-void add_bounds_callback_common();
 
 } // namespace cluster
 } // namespace esp_matter

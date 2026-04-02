@@ -48,12 +48,11 @@ if (CONFIG_ESP_MATTER_ENABLE_MATTER_SERVER)
         list(APPEND PRIV_INCLUDE_DIRS_LIST "data_model/private")
 
         if(CONFIG_ENABLE_GENERATED_DATA_MODEL)
-            # Generated data model paths
             foreach(PATH "device_types" "clusters")
                 list(APPEND SRC_DIRS_LIST "data_model/generated/${PATH}")
                 list(APPEND INCLUDE_DIRS_LIST "data_model/generated/${PATH}")
 
-                file(GLOB DIRS "data_model/generated/${PATH}/*")
+                file(GLOB DIRS CONFIGURE_DEPENDS "data_model/generated/${PATH}/*")
                 foreach(DIR ${DIRS})
                     if(IS_DIRECTORY ${DIR})
                         list(APPEND SRC_DIRS_LIST ${DIR})
@@ -61,6 +60,7 @@ if (CONFIG_ESP_MATTER_ENABLE_MATTER_SERVER)
                     endif()
                 endforeach()
             endforeach()
+
             list(APPEND PRIV_INCLUDE_DIRS_LIST "data_model/generated")
             list(APPEND SRC_DIRS_LIST "data_model/generated/")
         else()

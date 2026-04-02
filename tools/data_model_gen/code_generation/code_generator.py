@@ -201,11 +201,6 @@ def generate_header_file(output_file_path: str, objects: List[str]):
     :param output_file_path: The filepath to save the header file.
     :param objects: A list of cluster or device names.
     """
-    if len(objects) == 0:
-        logger.warning(
-            "List of cluster or device names is empty, skipping header file generation"
-        )
-        return
     os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
     header_content = ["""// Copyright 2026 Espressif Systems (Shanghai) PTE LTD
 //

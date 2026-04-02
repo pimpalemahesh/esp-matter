@@ -154,16 +154,16 @@ def convert_to_int(value):
     Args:
         value: The value to convert
     Returns:
-        The converted value or 0 if the value is not a valid integer
+        The converted value or None if the value is not a valid integer
     """
     if isinstance(value, int):
         return value
     try:
         if isinstance(value, str):
             return int(value, 16)
-        return 0
+        return None
     except ValueError:
-        return 0
+        return None
 
 
 def write_to_file(file_path, data, type="default") -> bool:

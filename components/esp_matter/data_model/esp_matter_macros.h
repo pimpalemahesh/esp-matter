@@ -36,7 +36,3 @@
 #define VALIDATE_FEATURES_AT_LEAST_ONE(name, ...) \
     do { if (!validate_features(config->feature_flags, feature_policy::k_at_least_one, name, {__VA_ARGS__})) \
         return ABORT_CLUSTER_CREATE(cluster); } while(0)
-
-#define VALIDATE_FEATURES_AT_MOST_ONE(name, ...) \
-    do { if (!validate_features(config->feature_flags, feature_policy::k_at_most_one, name, {__VA_ARGS__})) \
-        return ABORT_CLUSTER_CREATE(cluster); } while(0)

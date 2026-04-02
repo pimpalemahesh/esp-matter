@@ -60,6 +60,8 @@ using namespace esp_matter::cluster;
 using namespace esp_matter::node;
 using namespace esp_matter::command;
 
+const char feature_policy_strs[3][16] = {"Exactly one", "At least one", "At most one"};
+
 bool validate_features(uint32_t feature_flag, feature_policy policy,
                        const char *feature_name, std::initializer_list<uint32_t> features)
 {
@@ -78,9 +80,6 @@ bool validate_features(uint32_t feature_flag, feature_policy policy,
         break;
     case feature_policy::k_at_least_one:
         result = count >= 1;
-        break;
-    case feature_policy::k_at_most_one:
-        result = count <= 1;
         break;
     }
 
@@ -167,58 +166,6 @@ cluster_t *ABORT_CLUSTER_CREATE(cluster_t *cluster)
     return NULL;
 }
 
-void plugin_init_callback_common()
-{
-    ESP_LOGI(TAG, "Cluster plugin init common callback");
-    node_t *node = node::get();
-    /* Skip plugin_init_callback_common when ESP Matter data model is not used */
-    VerifyOrReturn(node);
-    endpoint_t *endpoint = endpoint::get_first(node);
-    while (endpoint) {
-        cluster_t *cluster = get_first(endpoint);
-        while (cluster) {
-            /* Plugin server init callback */
-            plugin_server_init_callback_t plugin_server_init_callback = get_plugin_server_init_callback(cluster);
-            if (plugin_server_init_callback) {
-                plugin_server_init_callback();
-            }
-            cluster = get_next(cluster);
-        }
-        endpoint = endpoint::get_next(endpoint);
-    }
-}
-
-void delegate_init_callback_common(endpoint_t *endpoint)
-{
-    uint16_t endpoint_id = endpoint::get_id(endpoint);
-    cluster_t *cluster = get_first(endpoint);
-    while (cluster) {
-        /* Delegate server init callback */
-        delegate_init_callback_t delegate_init_callback = get_delegate_init_callback(cluster);
-        if (delegate_init_callback) {
-            delegate_init_callback(get_delegate_impl(cluster), endpoint_id);
-        }
-        cluster = get_next(cluster);
-    }
-}
-
-void add_bounds_callback_common()
-{
-    node_t *node = node::get();
-    VerifyOrReturn(node);
-    endpoint_t *endpoint = endpoint::get_first(node);
-    while (endpoint) {
-        cluster_t *cluster = get_first(endpoint);
-        while (cluster) {
-            add_bounds_callback_t add_bounds_callback = get_add_bounds_callback(cluster);
-            if (add_bounds_callback) {
-                add_bounds_callback(cluster);
-            }
-            cluster = get_next(cluster);
-        }
-        endpoint = endpoint::get_next(endpoint);
-    }
-}
 } // namespace cluster
 
 namespace command {
