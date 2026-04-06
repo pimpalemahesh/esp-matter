@@ -23,6 +23,7 @@ from utils.base_elements import (
 )
 from .conformance_codegen import Conformance, ConformanceDecision, FeatureConformance
 from typing import Dict, List, Tuple
+from utils.helper import convert_to_int
 from utils.overrides import (
     get_overridden_cluster_init_callback_name,
     get_overridden_cluster_shutdown_callback_name,
