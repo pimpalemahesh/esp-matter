@@ -1,9 +1,10 @@
-# 1-April-2026
+# 6-April-2026
 ### Generated Data Model (CONFIG_ENABLE_GENERATED_DATA_MODEL)
 - Introduced experimental support for generated data model based on Matter Specification XMLs.
-- Generated code available under data_model/generated/; legacy implementation moved to data_model/legacy/.
+- Generated code available under `components/esp_matter/data_model/generated/`
+- legacy handwritten data model implementation moved to `components/esp_matter/data_model/legacy/`
 - Enabled via menuconfig (ESP Matter → Generated Data Model).
-- Regenerate using: python tools/data_model_gen/data_model_gen.py.
+- Regenerate using: `python tools/data_model_gen/data_model_gen.py`
 
 # 5-Mar-2026
 ### API Changes
