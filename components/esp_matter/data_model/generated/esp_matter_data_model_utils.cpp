@@ -60,7 +60,7 @@ using namespace esp_matter::cluster;
 using namespace esp_matter::node;
 using namespace esp_matter::command;
 
-const char feature_policy_strs[3][16] = {"Exactly one", "At least one", "At most one"};
+const char feature_policy_strs[3][16] = {"Exactly one", "At least one"};
 
 bool validate_features(uint32_t feature_flag, feature_policy policy,
                        const char *feature_name, std::initializer_list<uint32_t> features)

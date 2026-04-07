@@ -50,7 +50,7 @@ endpoint_t *create(node_t *node, config_t *config, uint8_t flags, void *priv_dat
 
 esp_err_t add(endpoint_t *endpoint, config_t *config)
 {
-    esp_err_t err = add_device_type(endpoint, get_device_type_id(), get_device_type_id());
+    esp_err_t err = add_device_type(endpoint, get_device_type_id(), get_device_type_version());
     VerifyOrReturnError(err == ESP_OK, err);
 
     config->camera_av_stream_management.feature_flags |= cluster::camera_av_stream_management::feature::audio::get_id();

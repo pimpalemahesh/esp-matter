@@ -50,7 +50,7 @@ endpoint_t *create(node_t *node, config_t *config, uint8_t flags, void *priv_dat
 
 esp_err_t add(endpoint_t *endpoint, config_t *config)
 {
-    esp_err_t err = add_device_type(endpoint, get_device_type_id(), get_device_type_id());
+    esp_err_t err = add_device_type(endpoint, get_device_type_id(), get_device_type_version());
     VerifyOrReturnError(err == ESP_OK, err);
 
     cluster::closure_dimension::create(endpoint, &(config->closure_dimension), CLUSTER_FLAG_SERVER);
