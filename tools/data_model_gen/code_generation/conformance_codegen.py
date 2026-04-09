@@ -444,7 +444,8 @@ class Conformance(BaseConformance, Expr):
             )
 
     def iterate(self, iterator: ExprIterator):
-        self.condition.iterate(iterator)
+        if self.condition:
+            self.condition.iterate(iterator)
 
 
 class FeatureConformance(Conformance):

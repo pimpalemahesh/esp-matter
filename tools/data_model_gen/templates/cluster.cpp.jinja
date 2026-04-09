@@ -22,8 +22,12 @@
 #include <app-common/zap-generated/callback.h>
 #include <app/InteractionModelEngine.h>
 #include <zap_common/app/PluginApplicationCallbacks.h>
+{% if "mode" in cluster.esp_name %}
 #include <app/clusters/mode-base-server/mode-base-cluster-objects.h>
+{% endif %}
+{% if cluster.delegate_init_callback_available %}
 #include <esp_matter_delegate_callbacks.h>
+{% endif %}
 #include <{{ cluster.esp_name }}.h>
 #include <{{ cluster.esp_name }}_ids.h>
 #include <binding.h>

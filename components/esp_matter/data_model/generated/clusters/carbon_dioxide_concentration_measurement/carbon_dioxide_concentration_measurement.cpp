@@ -22,8 +22,6 @@
 #include <app-common/zap-generated/callback.h>
 #include <app/InteractionModelEngine.h>
 #include <zap_common/app/PluginApplicationCallbacks.h>
-#include <app/clusters/mode-base-server/mode-base-cluster-objects.h>
-#include <esp_matter_delegate_callbacks.h>
 #include <carbon_dioxide_concentration_measurement.h>
 #include <carbon_dioxide_concentration_measurement_ids.h>
 #include <binding.h>

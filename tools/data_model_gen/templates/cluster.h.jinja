@@ -23,7 +23,7 @@ namespace {{ cluster.esp_name }} {
 
 {% for attribute in cluster.get_attributes() %}
 {% if not attribute.is_internally_managed %}
-{% if attribute.type in "string" or attribute.type == "octstr" %}
+{% if attribute.type == "string" or attribute.type == "octstr" %}
 const {{ attribute.get_default_value_type() }} k_max_{{ attribute.func_name }}_length = {{ attribute.get_max_value() }}u;
 {% endif %}
 {% endif %}

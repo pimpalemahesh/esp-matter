@@ -33,8 +33,10 @@ def get_id_name_lambda():
 class BaseElement(ABC):
     """Base class for all elements in the Matter data model"""
 
-    def __init__(self, name, id):
+    def __init__(self, name, id, element_type):
         assert name, "Name is required"
+        self.element_type = element_type
+        self.name = self._process_name(name)
         self.name = name.replace(" ", "_")
         self.id = id
         self.esp_name = esp_name(name)
@@ -48,8 +50,8 @@ class BaseElement(ABC):
         return self.id
 
     def _process_name(self, name):
-        if name and is_cpp_reserved_word(name):
-            name = f"{name}_Cluster"
+        if name and is_cpp_reserved_word(name.lower()):
+            name = f"{name}_{self.element_type}"
         if name:
             name = normalize_cluster_display_name(name)
             name = normalize_element_name(name)
@@ -65,12 +67,12 @@ class BaseElement(ABC):
 class BaseClusterElement(BaseElement):
     """Base class for elements within a cluster"""
 
-    def __init__(self, name, id, is_mandatory):
+    def __init__(self, name, id, is_mandatory, element_type):
         if name and is_cpp_reserved_word(name):
-            name = f"{name}_Cluster"
+            name = f"{name}_{element_type}"
         if name:
             name = normalize_cluster_display_name(name)
-        super().__init__(name=name, id=id)
+        super().__init__(name=name, id=id, element_type=element_type)
         self.is_mandatory = is_mandatory
 
 
@@ -78,9 +80,7 @@ class BaseAttribute(BaseClusterElement):
     """Base class for attributes"""
 
     def __init__(self, name, id, type_, is_mandatory, default_value):
-        if name and is_cpp_reserved_word(name):
-            name = f"{name}_Attribute"
-        super().__init__(name=name, id=id, is_mandatory=is_mandatory)
+        super().__init__(name=name, id=id, is_mandatory=is_mandatory, element_type="Attribute")
         self.type = type_
         self.default_value = default_value
         self.is_nullable = False
@@ -90,9 +90,7 @@ class BaseCommand(BaseClusterElement):
     """Base class for commands"""
 
     def __init__(self, name, id, is_mandatory, direction, response):
-        if name and is_cpp_reserved_word(name):
-            name = f"{name}_Command"
-        super().__init__(name=name, id=id, is_mandatory=is_mandatory)
+        super().__init__(name=name, id=id, is_mandatory=is_mandatory, element_type="Command")
         self.direction = direction
         self.response = response
 
@@ -101,9 +99,7 @@ class BaseEvent(BaseClusterElement):
     """Base class for events"""
 
     def __init__(self, name, id, is_mandatory):
-        if name and is_cpp_reserved_word(name):
-            name = f"{name}_Event"
-        super().__init__(name=name, id=id, is_mandatory=is_mandatory)
+        super().__init__(name=name, id=id, is_mandatory=is_mandatory, element_type="Event")
 
 
 class BaseFeature(BaseClusterElement):
@@ -111,9 +107,7 @@ class BaseFeature(BaseClusterElement):
 
     def __init__(self, name, id, is_mandatory):
         name = normalize_feature_name(name)
-        if name and is_cpp_reserved_word(name):
-            name = f"{name}_Feature"
-        super().__init__(name=name, id=id, is_mandatory=is_mandatory)
+        super().__init__(name=name, id=id, is_mandatory=is_mandatory, element_type="Feature")
 
     @abstractmethod
     def get_attributes(self) -> List[BaseAttribute]:
@@ -135,7 +129,7 @@ class BaseCluster(BaseClusterElement):
     """Base class for clusters"""
 
     def __init__(self, name, id, revision, is_mandatory):
-        super().__init__(name=name, id=id, is_mandatory=is_mandatory)
+        super().__init__(name=name, id=id, is_mandatory=is_mandatory, element_type="Cluster")
         self.revision = revision
         self.server_cluster = False
         self.client_cluster = False
@@ -181,7 +175,7 @@ class BaseDevice(BaseElement):
 
     def __init__(self, name, id, revision):
         name = normalize_device_type_name(name)
-        super().__init__(name=name, id=id)
+        super().__init__(name=name, id=id, element_type="Device")
         self.filename = self.esp_name + "_device"
         self.revision = revision
 
@@ -203,5 +197,5 @@ class BaseElementParser(ABC):
     """Base class for element parsers"""
 
     @abstractmethod
-    def parse(element: ElementTree.Element):
+    def parse(self, element: ElementTree.Element):
         raise NotImplementedError
