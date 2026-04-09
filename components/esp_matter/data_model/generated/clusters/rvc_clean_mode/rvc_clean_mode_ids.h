@@ -24,9 +24,6 @@ namespace rvc_clean_mode {
 inline constexpr uint32_t Id = 0x0055;
 
 namespace feature {
-namespace OnOff {
-inline constexpr uint32_t Id = 0x1;
-} /* OnOff */
 namespace DirectModeChange {
 inline constexpr uint32_t Id = 0x100000;
 } /* DirectModeChange */

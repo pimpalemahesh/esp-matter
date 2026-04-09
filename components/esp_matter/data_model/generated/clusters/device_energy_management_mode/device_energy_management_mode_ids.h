@@ -23,12 +23,6 @@ namespace device_energy_management_mode {
 
 inline constexpr uint32_t Id = 0x009F;
 
-namespace feature {
-namespace OnOff {
-inline constexpr uint32_t Id = 0x1;
-} /* OnOff */
-} /* feature */
-
 namespace attribute {
 namespace SupportedModes {
 inline constexpr uint32_t Id = 0x0000;

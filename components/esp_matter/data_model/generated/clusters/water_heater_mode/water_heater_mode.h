@@ -21,14 +21,6 @@ namespace esp_matter {
 namespace cluster {
 namespace water_heater_mode {
 
-namespace feature {
-namespace on_off {
-uint32_t get_id();
-esp_err_t add(cluster_t *cluster);
-} /* on_off */
-
-} /* feature */
-
 namespace attribute {
 attribute_t *create_supported_modes(cluster_t *cluster, uint8_t * value, uint16_t length, uint16_t count);
 attribute_t *create_current_mode(cluster_t *cluster, uint8_t value);

@@ -45,21 +45,6 @@ namespace cluster {
 namespace rvc_run_mode {
 
 namespace feature {
-namespace on_off {
-uint32_t get_id()
-{
-    return OnOff::Id;
-}
-
-esp_err_t add(cluster_t *cluster)
-{
-    VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
-    update_feature_map(cluster, get_id());
-
-    return ESP_OK;
-}
-} /* on_off */
-
 namespace direct_mode_change {
 uint32_t get_id()
 {

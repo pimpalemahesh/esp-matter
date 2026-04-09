@@ -44,24 +44,6 @@ namespace esp_matter {
 namespace cluster {
 namespace device_energy_management_mode {
 
-namespace feature {
-namespace on_off {
-uint32_t get_id()
-{
-    return OnOff::Id;
-}
-
-esp_err_t add(cluster_t *cluster)
-{
-    VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
-    update_feature_map(cluster, get_id());
-
-    return ESP_OK;
-}
-} /* on_off */
-
-} /* feature */
-
 namespace attribute {
 attribute_t *create_supported_modes(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {

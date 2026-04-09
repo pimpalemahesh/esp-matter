@@ -21,6 +21,7 @@ from utils.conformance import (
     ConformanceDecision,
     BaseConformance,
     Choice,
+    SUPPORTED_CONFORMANCE_TAGS,
 )
 from typing import Optional
 from utils import config
@@ -34,14 +35,7 @@ PROVISIONAL_CONFORM = "provisionalConform"
 MANDATORY_CONFORM = "mandatoryConform"
 DEPRECATE_CONFORM = "deprecateConform"
 DISALLOW_CONFORM = "disallowConform"
-TOP_LEVEL_CONFORMANCE_TAGS = {
-    OTHERWISE_CONFORM,
-    OPTIONAL_CONFORM,
-    PROVISIONAL_CONFORM,
-    MANDATORY_CONFORM,
-    DEPRECATE_CONFORM,
-    DISALLOW_CONFORM,
-}
+
 
 BOOLEAN_TERMS = {
     "andTerm": ConformanceTAG.AND.value,
@@ -101,7 +95,7 @@ class Conformance(BaseConformance):
     def _parse_otherwise_conformance(self, conformance_elem: Element):
         sub_conditions = {}
         for child in conformance_elem:
-            if child.tag not in TOP_LEVEL_CONFORMANCE_TAGS:
+            if child.tag not in SUPPORTED_CONFORMANCE_TAGS:
                 continue
             child_type = get_conformance_type(child.tag).to_string()
             sub_condition = self._build_sub_condition(child, child_type)
@@ -239,16 +233,12 @@ def parse_conformance(conformance_elem, feature_map):
     """Parse conformance from XML; single entry point for attaching conformance to cluster elements."""
     if conformance_elem is None:
         return None
-    mandatory_conform = conformance_elem.find("mandatoryConform")
-    optional_conform = conformance_elem.find("optionalConform")
-    otherwise_conform = conformance_elem.find("otherwiseConform")
-
-    if mandatory_conform is not None:
-        return Conformance(feature_map).parse(mandatory_conform)
-    elif optional_conform is not None:
-        return Conformance(feature_map).parse(optional_conform)
-    elif otherwise_conform is not None:
-        return Conformance(feature_map).parse(otherwise_conform)
+    for tag in SUPPORTED_CONFORMANCE_TAGS:
+        conformance = conformance_elem.find(tag)
+        if conformance is not None:
+            return Conformance(feature_map).parse(conformance)
+    logger.debug(f"Unknown conformance tag for element {conformance_elem}")
+    return None
 
 
 def parse_children(parent_elem, feature_map):

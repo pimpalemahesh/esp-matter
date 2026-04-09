@@ -24,9 +24,6 @@ namespace rvc_run_mode {
 inline constexpr uint32_t Id = 0x0054;
 
 namespace feature {
-namespace OnOff {
-inline constexpr uint32_t Id = 0x1;
-} /* OnOff */
 namespace DirectModeChange {
 inline constexpr uint32_t Id = 0x100000;
 } /* DirectModeChange */

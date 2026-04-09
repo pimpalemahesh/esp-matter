@@ -26,7 +26,7 @@ class FeatureParser(ClusterElementBaseParser):
     """Parses cluster features from XML and links them to attributes/commands/events via conformance."""
 
     def __init__(self, root: Element, cluster, base_features: List[Feature]):
-        self.feature_map = self._generate_feature_map(root)
+        self.feature_map = self._generate_feature_map(root, base_features)
         super().__init__(cluster, self.feature_map, [], base_features)
 
     def parse(self, root: Element):
@@ -47,7 +47,7 @@ class FeatureParser(ClusterElementBaseParser):
         for base_feature in self.base_elements:
             if (
                 base_feature.name not in self.processed
-                and base_feature.code not in self.feature_map
+                and base_feature.code in self.feature_map.keys()
             ):
                 self.cluster.features.add(base_feature)
 
@@ -58,7 +58,7 @@ class FeatureParser(ClusterElementBaseParser):
         feature = Feature(name=name, code=code, id=feature_id)
         return feature
 
-    def _generate_feature_map(self, root: Element) -> dict:
+    def _generate_feature_map(self, root: Element, base_features: List[Feature]) -> dict:
         """Build valid {code: Feature} map"""
         logger.debug(
             f"Creating feature map for the cluster {root.get('name', 'Unknown')}"
@@ -70,6 +70,9 @@ class FeatureParser(ClusterElementBaseParser):
         for feature_elem in root.findall("features/feature"):
             if is_restricted_by_conformance(feature_map, feature_elem):
                 feature_map.pop(feature_elem.get("code"), None)
+        for base_feature in base_features:
+            if base_feature.code not in feature_map:
+                feature_map[base_feature.code] = base_feature
         return feature_map
 
     def _generate_feature_id(self, elem: Element) -> hex:

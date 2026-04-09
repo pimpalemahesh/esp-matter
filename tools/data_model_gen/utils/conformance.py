@@ -18,6 +18,15 @@ from typing import Optional
 
 logger = logging.getLogger(__name__)
 
+SUPPORTED_CONFORMANCE_TAGS = {
+    "mandatoryConform",
+    "optionalConform",
+    "otherwiseConform",
+    "deprecateConform",
+    "disallowConform",
+    "provisionalConform",
+    "describedConform",
+}
 
 class ConformanceException(Exception):
     """Exception raised when conformance parsing fails"""
@@ -34,6 +43,7 @@ class ConformanceDecision(Enum):
     DEPRECATED = auto()
     DISALLOWED = auto()
     PROVISIONAL = auto()
+    DESCRIBED = auto()
     NOT_APPLICABLE = auto()
 
     def to_string(self):
@@ -66,10 +76,12 @@ def get_conformance_type(type: str) -> ConformanceDecision:
         return ConformanceDecision.OTHERWISE
     elif type == "deprecated" or type == "deprecateConform":
         return ConformanceDecision.DEPRECATED
-    elif type == "disallowed" or type == "disallowedConform":
+    elif type == "disallow" or type == "disallowConform":
         return ConformanceDecision.DISALLOWED
     elif type == "provisional" or type == "provisionalConform":
         return ConformanceDecision.PROVISIONAL
+    elif type == "described" or type == "describedConform":
+        return ConformanceDecision.DESCRIBED
     else:
         logger.warning(f"Unknown conformance type: {type}")
         return ConformanceDecision.NOT_APPLICABLE

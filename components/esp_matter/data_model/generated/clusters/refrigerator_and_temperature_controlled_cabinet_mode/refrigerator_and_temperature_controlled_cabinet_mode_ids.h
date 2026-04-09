@@ -23,12 +23,6 @@ namespace refrigerator_and_temperature_controlled_cabinet_mode {
 
 inline constexpr uint32_t Id = 0x0052;
 
-namespace feature {
-namespace OnOff {
-inline constexpr uint32_t Id = 0x1;
-} /* OnOff */
-} /* feature */
-
 namespace attribute {
 namespace SupportedModes {
 inline constexpr uint32_t Id = 0x0000;

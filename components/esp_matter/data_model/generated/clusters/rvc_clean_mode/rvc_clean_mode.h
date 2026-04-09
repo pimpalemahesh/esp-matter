@@ -22,11 +22,6 @@ namespace cluster {
 namespace rvc_clean_mode {
 
 namespace feature {
-namespace on_off {
-uint32_t get_id();
-esp_err_t add(cluster_t *cluster);
-} /* on_off */
-
 namespace direct_mode_change {
 uint32_t get_id();
 esp_err_t add(cluster_t *cluster);
