@@ -14,7 +14,7 @@
 
 #pragma once
 #include <sdkconfig.h>
-#if CONFIG_ENABLE_GENERATED_DATA_MODEL
+#if CONFIG_ENABLE_ESP_MATTER_GENERATED_DATA_MODEL
 #include "generated/clusters/all_clusters.h"
 #else
 #include "legacy/esp_matter_command_impl.h"

@@ -21,9 +21,9 @@ application.
 #include <sdkconfig.h>
 #ifdef CONFIG_ESP_MATTER_ENABLE_MATTER_SERVER
 #ifdef CONFIG_ESP_MATTER_ENABLE_DATA_MODEL
-#ifdef CONFIG_ENABLE_GENERATED_DATA_MODEL
+#ifdef CONFIG_ENABLE_ESP_MATTER_GENERATED_DATA_MODEL
 #include <generated/esp_matter_data_model_utils.h>
-#endif // CONFIG_ENABLE_GENERATED_DATA_MODEL
+#endif // CONFIG_ENABLE_ESP_MATTER_GENERATED_DATA_MODEL
 #include <esp_matter_attribute.h>
 #include <esp_matter_attribute_utils.h>
 #include <esp_matter_cluster.h>

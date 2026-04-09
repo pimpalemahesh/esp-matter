@@ -1,5 +1,5 @@
 # 6-April-2026
-### Generated Data Model (CONFIG_ENABLE_GENERATED_DATA_MODEL)
+### Generated Data Model (CONFIG_ENABLE_ESP_MATTER_GENERATED_DATA_MODEL)
 - Introduced experimental support for generated data model based on Matter Specification XMLs.
 - Generated code available under `components/esp_matter/data_model/generated/`
 - legacy handwritten data model implementation moved to `components/esp_matter/data_model/legacy/`

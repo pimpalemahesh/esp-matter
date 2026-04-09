@@ -14,7 +14,7 @@
 
 #pragma once
 #include <sdkconfig.h>
-#if CONFIG_ENABLE_GENERATED_DATA_MODEL
+#if CONFIG_ENABLE_ESP_MATTER_GENERATED_DATA_MODEL
 #include "generated/device_types/all_device_types.h"
 #else
 #include "legacy/esp_matter_endpoint_impl.h"

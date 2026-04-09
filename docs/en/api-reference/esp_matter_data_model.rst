@@ -7,7 +7,7 @@ Generated Data Model
 ====================
 
 When **Enable Generated Data Model** is enabled in ``menuconfig``
-(``CONFIG_ENABLE_GENERATED_DATA_MODEL``), ESP-Matter uses the
+(``CONFIG_ENABLE_ESP_MATTER_GENERATED_DATA_MODEL``), ESP-Matter uses the
 auto-generated data model instead of the legacy (manually implemented) one.
 
 Source Selection
@@ -66,7 +66,7 @@ For more details, refer to::
 Summary
 -------
 
-- Enable ``CONFIG_ENABLE_GENERATED_DATA_MODEL`` to use generated clusters and device types.
+- Enable ``CONFIG_ENABLE_ESP_MATTER_GENERATED_DATA_MODEL`` to use generated clusters and device types.
 - Disable it to use the legacy implementation.
 - The generated model improves maintainability and alignment with the data model definition as per the Matter specification.
 

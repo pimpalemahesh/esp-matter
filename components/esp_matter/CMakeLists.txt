@@ -47,7 +47,7 @@ if (CONFIG_ESP_MATTER_ENABLE_MATTER_SERVER)
                                       "data_model")
         list(APPEND PRIV_INCLUDE_DIRS_LIST "data_model/private")
 
-        if(CONFIG_ENABLE_GENERATED_DATA_MODEL)
+        if(CONFIG_ENABLE_ESP_MATTER_GENERATED_DATA_MODEL)
             foreach(PATH "device_types" "clusters")
                 list(APPEND SRC_DIRS_LIST "data_model/generated/${PATH}")
                 list(APPEND INCLUDE_DIRS_LIST "data_model/generated/${PATH}")
