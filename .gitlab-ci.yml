@@ -832,3 +832,43 @@ data_model_gen_unit_tests:
     - python tests/run_tests.py -v
   tags:
     - build
+
+data_model_gen_check:
+  image: ${DOCKER_IMAGE_NAME}:chip_${CHIP_SHORT_HASH}_idf_${IDF_CHECKOUT_REF}
+  stage: pre_check
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "push" || $CI_COMMIT_BRANCH == "main"
+  script:
+    # Link CHIP submodule from Docker image cache
+    - rm -rf ${ESP_MATTER_PATH}/connectedhomeip/connectedhomeip
+    - ln -s ${CHIP_SUBMODULE_PATH} ${ESP_MATTER_PATH}/connectedhomeip/connectedhomeip
+    # Install data_model_gen dependencies and pre-commit
+    - pip install -r ${ESP_MATTER_PATH}/tools/data_model_gen/requirements.txt
+    - pip install pre-commit
+    # Regenerate data model from scratch
+    - cd ${ESP_MATTER_PATH}/tools/data_model_gen
+    - python data_model_gen.py --clean --no-colored-logs
+    # Format generated code with pre-commit hooks (astyle, codespell, etc.)
+    - cd ${ESP_MATTER_PATH}
+    - pre-commit install-hooks
+    - find components/esp_matter/data_model/generated -name '*.cpp' -o -name '*.h' | xargs pre-commit run --files || true
+    # Fail if generated+formatted files differ from what is committed
+    - |
+      UNTRACKED=$(git ls-files --others --exclude-standard components/esp_matter/data_model/generated/)
+      if ! git diff --quiet components/esp_matter/data_model/generated/ || [ -n "$UNTRACKED" ]; then
+        echo "ERROR: Generated data model code is out of date or not properly formatted."
+        echo ""
+        echo "To fix: run the following locally and commit the result:"
+        echo "  cd tools/data_model_gen && python data_model_gen.py --clean"
+        echo "  pre-commit run --files \$(find components/esp_matter/data_model/generated -name '*.cpp' -o -name '*.h')"
+        echo ""
+        git diff --stat components/esp_matter/data_model/generated/
+        if [ -n "$UNTRACKED" ]; then
+          echo "Untracked files:"
+          echo "$UNTRACKED"
+        fi
+        exit 1
+      fi
+      echo "Generated data model files are up to date and properly formatted."
+  tags:
+    - build
