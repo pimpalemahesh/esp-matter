@@ -127,7 +127,7 @@ esp_err_t add(cluster_t *cluster)
     VerifyOrReturnError(feature_map & feature::numeric_measurement::get_id(), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_peak_measured_value(cluster, 0);
-    attribute::create_peak_measured_value_window(cluster, 604800);
+    attribute::create_peak_measured_value_window(cluster, 0);
 
     return ESP_OK;
 }
@@ -146,7 +146,7 @@ esp_err_t add(cluster_t *cluster)
     VerifyOrReturnError(feature_map & feature::numeric_measurement::get_id(), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_average_measured_value(cluster, 0);
-    attribute::create_average_measured_value_window(cluster, 604800);
+    attribute::create_average_measured_value_window(cluster, 0);
 
     return ESP_OK;
 }

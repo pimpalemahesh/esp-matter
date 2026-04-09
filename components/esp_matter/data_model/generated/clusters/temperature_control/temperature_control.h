@@ -36,7 +36,7 @@ esp_err_t add(cluster_t *cluster, config_t *config);
 namespace temperature_level {
 typedef struct config {
     uint8_t selected_temperature_level;
-    config() : selected_temperature_level(31) {}
+    config() : selected_temperature_level(0) {}
 } config_t;
 uint32_t get_id();
 esp_err_t add(cluster_t *cluster, config_t *config);

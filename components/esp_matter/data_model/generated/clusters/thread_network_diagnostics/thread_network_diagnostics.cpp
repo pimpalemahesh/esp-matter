@@ -490,10 +490,10 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_neighbor_table(cluster, NULL, 0, 0);
         attribute::create_route_table(cluster, NULL, 0, 0);
         attribute::create_partition_id(cluster, 0);
-        attribute::create_weighting(cluster, 255);
-        attribute::create_data_version(cluster, 255);
-        attribute::create_stable_data_version(cluster, 255);
-        attribute::create_leader_router_id(cluster, 62);
+        attribute::create_weighting(cluster, 0);
+        attribute::create_data_version(cluster, 0);
+        attribute::create_stable_data_version(cluster, 0);
+        attribute::create_leader_router_id(cluster, 0);
         attribute::create_security_policy(cluster, NULL, 0, 0);
         attribute::create_channel_page_0_mask(cluster, NULL, 0);
         attribute::create_operational_dataset_components(cluster, NULL, 0, 0);

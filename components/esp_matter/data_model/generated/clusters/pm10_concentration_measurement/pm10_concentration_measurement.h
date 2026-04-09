@@ -57,7 +57,7 @@ namespace peak_measurement {
 typedef struct config {
     nullable<float> peak_measured_value;
     uint32_t peak_measured_value_window;
-    config() : peak_measured_value(0), peak_measured_value_window(604800) {}
+    config() : peak_measured_value(0), peak_measured_value_window(0) {}
 } config_t;
 uint32_t get_id();
 esp_err_t add(cluster_t *cluster, config_t *config);
@@ -67,7 +67,7 @@ namespace average_measurement {
 typedef struct config {
     nullable<float> average_measured_value;
     uint32_t average_measured_value_window;
-    config() : average_measured_value(0), average_measured_value_window(604800) {}
+    config() : average_measured_value(0), average_measured_value_window(0) {}
 } config_t;
 uint32_t get_id();
 esp_err_t add(cluster_t *cluster, config_t *config);

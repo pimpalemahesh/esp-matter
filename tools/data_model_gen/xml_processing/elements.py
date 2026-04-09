@@ -29,7 +29,7 @@ from utils.overrides import (
     should_skip_plugin_callback,
     should_include_delegate_callback,
 )
-from utils.helper import safe_get_attr
+from utils.helper import safe_get_attr, convert_to_int
 from .serializers import (
     DeviceSerializer,
     EventSerializer,
@@ -397,10 +397,7 @@ class Attribute(BaseAttribute):
 
         if "enum" in self.type.lower() or "bitmap" in self.type.lower():
             if self.default_value is not None:
-                if self.default_value.isdigit():
-                    return int(self.default_value)
-                if "0x" in self.default_value:
-                    return int(self.default_value, 16)
+                return convert_to_int(self.default_value, default="0")
             return "0"
 
         if self.default_value is not None and "°" in self.default_value:
@@ -414,19 +411,7 @@ class Attribute(BaseAttribute):
             if first_part.isdigit():
                 return int(first_part)
 
-        if (
-            self.default_value is None
-            and self.constraint is not None
-            and getattr(self.constraint, "value", None)
-            and self.constraint.value.isdigit()
-        ):
-            return int(self.constraint.value)
-
-        return (
-            int(self.default_value)
-            if self.default_value and self.default_value.isdigit()
-            else "0"
-        )
+        return convert_to_int(self.default_value, default="0")
 
     def get_max_value(self):
         """Get the max value of the attribute"""

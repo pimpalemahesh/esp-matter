@@ -98,7 +98,7 @@ esp_err_t add(cluster_t *cluster)
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnError(feature_map & feature::two_dimensional_cartesian_zone::get_id(), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
-    attribute::create_max_user_defined_zones(cluster, 5);
+    attribute::create_max_user_defined_zones(cluster, 0);
     command::create_create_two_d_cartesian_zone(cluster);
     command::create_create_two_d_cartesian_zone_response(cluster);
     command::create_update_two_d_cartesian_zone(cluster);
@@ -249,7 +249,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         /* Attributes not managed internally */
         global::attribute::create_cluster_revision(cluster, cluster_revision);
 
-        attribute::create_max_zones(cluster, 1);
+        attribute::create_max_zones(cluster, 0);
         attribute::create_zones(cluster, NULL, 0, 0);
         attribute::create_triggers(cluster, NULL, 0, 0);
         attribute::create_sensitivity_max(cluster, 0);

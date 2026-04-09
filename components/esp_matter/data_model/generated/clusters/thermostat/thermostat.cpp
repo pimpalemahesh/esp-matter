@@ -248,7 +248,7 @@ esp_err_t add(cluster_t *cluster)
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_preset_types(cluster, NULL, 0, 0);
-    attribute::create_number_of_presets(cluster, 1);
+    attribute::create_number_of_presets(cluster, 0);
     attribute::create_active_preset_handle(cluster, NULL, 0);
     attribute::create_presets(cluster, NULL, 0, 0);
     command::create_set_active_preset_request(cluster);

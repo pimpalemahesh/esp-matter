@@ -99,7 +99,7 @@ typedef struct config {
     nullable<uint8_t> percent_setting;
     uint8_t percent_current;
     void *delegate;
-    config() : fan_mode(0), fan_mode_sequence(0), percent_setting(100), percent_current(100), delegate(nullptr) {}
+    config() : fan_mode(0), fan_mode_sequence(0), percent_setting(0), percent_current(0), delegate(nullptr) {}
 } config_t;
 
 cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags);

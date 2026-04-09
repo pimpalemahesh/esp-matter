@@ -95,7 +95,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         attribute::create_metered_quantity(cluster, NULL, 0, 0);
         attribute::create_metered_quantity_timestamp(cluster, 0);
         attribute::create_tariff_unit(cluster, 0);
-        attribute::create_maximum_metered_quantities(cluster, 1);
+        attribute::create_maximum_metered_quantities(cluster, 0);
     }
 
     if (flags & CLUSTER_FLAG_CLIENT) {

@@ -148,22 +148,28 @@ def format_hex_value(hex_value):
     return hex_value
 
 
-def convert_to_int(value):
+def convert_to_int(value, default=None):
     """Convert a value to an integer.
 
     Args:
         value: The value to convert
+        default: The default value to return if the value is not a valid integer
     Returns:
         The converted value or None if the value is not a valid integer
     """
-    if isinstance(value, int):
-        return value
+    if value is None:
+        return default
     try:
-        if isinstance(value, str):
+        if isinstance(value, str) and value.startswith("0x"):
             return int(value, 16)
-        return None
+        elif isinstance(value, str):
+            return int(value)
+        elif isinstance(value, int):
+            return value
+        else:
+            return default
     except ValueError:
-        return None
+        return default
 
 
 def write_to_file(file_path, data, type="default") -> bool:

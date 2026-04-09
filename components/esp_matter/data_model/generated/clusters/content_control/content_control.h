@@ -28,7 +28,7 @@ namespace screen_time {
 typedef struct config {
     uint32_t screen_daily_time;
     uint32_t remaining_screen_time;
-    config() : screen_daily_time(86400), remaining_screen_time(86400) {}
+    config() : screen_daily_time(0), remaining_screen_time(0) {}
 } config_t;
 uint32_t get_id();
 esp_err_t add(cluster_t *cluster, config_t *config);
