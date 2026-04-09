@@ -23,19 +23,25 @@ namespace dish_washer_alarm {
 
 namespace feature {
 namespace reset {
+typedef struct config {
+    uint32_t latch;
+    config() : latch(0) {}
+} config_t;
 uint32_t get_id();
-esp_err_t add(cluster_t *cluster);
+esp_err_t add(cluster_t *cluster, config_t *config);
 } /* reset */
 
 } /* feature */
 
 namespace attribute {
 attribute_t *create_mask(cluster_t *cluster, uint32_t value);
+attribute_t *create_latch(cluster_t *cluster, uint32_t value);
 attribute_t *create_state(cluster_t *cluster, uint32_t value);
 attribute_t *create_supported(cluster_t *cluster, uint32_t value);
 } /* attribute */
 
 namespace command {
+command_t *create_reset(cluster_t *cluster);
 command_t *create_modify_enabled_alarms(cluster_t *cluster);
 } /* command */
 

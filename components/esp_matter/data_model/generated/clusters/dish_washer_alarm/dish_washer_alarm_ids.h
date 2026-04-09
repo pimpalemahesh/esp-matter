@@ -33,6 +33,9 @@ namespace attribute {
 namespace Mask {
 inline constexpr uint32_t Id = 0x0000;
 } /* Mask */
+namespace Latch {
+inline constexpr uint32_t Id = 0x0001;
+} /* Latch */
 namespace State {
 inline constexpr uint32_t Id = 0x0002;
 } /* State */
@@ -42,6 +45,9 @@ inline constexpr uint32_t Id = 0x0003;
 } /* attribute */
 
 namespace command {
+namespace Reset {
+inline constexpr uint32_t Id = 0x00;
+} /* Reset */
 namespace ModifyEnabledAlarms {
 inline constexpr uint32_t Id = 0x01;
 } /* ModifyEnabledAlarms */

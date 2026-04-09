@@ -67,12 +67,12 @@ class FeatureParser(ClusterElementBaseParser):
         for feature_elem in root.findall("features/feature"):
             feature = self.create(feature_elem)
             feature_map[feature.code] = feature
-        for feature_elem in root.findall("features/feature"):
-            if is_restricted_by_conformance(feature_map, feature_elem):
-                feature_map.pop(feature_elem.get("code"), None)
         for base_feature in base_features:
             if base_feature.code not in feature_map:
                 feature_map[base_feature.code] = base_feature
+        for feature_elem in root.findall("features/feature"):
+            if is_restricted_by_conformance(feature_map, feature_elem):
+                feature_map.pop(feature_elem.get("code"), None)
         return feature_map
 
     def _generate_feature_id(self, elem: Element) -> hex:

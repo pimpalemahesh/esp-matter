@@ -130,7 +130,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 {% if command.has_special_config() %}
 #if {{ command.get_special_config() }}
 {% endif %}
-        {{ tab_space }}command::create_{{ command.func_name | lower }}(cluster);
+        command::create_{{ command.func_name | lower }}(cluster);
 {% if command.has_special_config() %}
 #endif // {{ command.get_special_config() }}
 {% endif %}
@@ -142,7 +142,7 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 {% if event.has_special_config() %}
 #if {{ event.get_special_config() }}
 {% endif %}
-        {{ tab_space }}event::create_{{ event.func_name | lower }}(cluster);
+        event::create_{{ event.func_name | lower }}(cluster);
 {% if event.has_special_config() %}
 #endif // {{ event.get_special_config() }}
 {% endif %}
@@ -170,3 +170,4 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
 } /* {{ cluster.esp_name }} */
 } /* cluster */
 } /* esp_matter */
+

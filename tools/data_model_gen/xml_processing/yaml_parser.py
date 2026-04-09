@@ -26,7 +26,8 @@ class YamlParser:
             file_path: Path to the YAML file
         """
         self.file_path = file_path
-        self.config = yaml.safe_load(open(file_path, "r"))
+        with open(file_path, "r") as file:
+            self.config = yaml.safe_load(file)
 
     def is_present(self, key: str) -> bool:
         """Check if a key exists in the YAML configuration

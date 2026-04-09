@@ -171,10 +171,16 @@ class Conformance(BaseConformance):
 
     def is_disallowed(self):
         """Check if the conformance is disallowed or depends on unavailable features."""
-        if self.type in get_restricted_tags():
+        if self.type.value in [get_conformance_type(tag).value for tag in get_restricted_tags()]:
             return True
         features = self.get_dependent_features(self.condition)
-        return any(feature not in self.feature_map for feature in features)
+        return any(self._get_code_from_feature_name(feature) not in self.feature_map for feature in features)
+
+    def _get_code_from_feature_name(self, feature_name):
+        for feature_code, feature in self.feature_map.items():
+            if feature.func_name == feature_name:
+                return feature_code
+        return None
 
     def to_dict(self, attribute_map={}):
         result = {"type": self.type.to_string()}
@@ -270,6 +276,8 @@ def parse_boolean_term(term_elem, feature_map):
         return {term_type: operands[0]} if operands else None
 
     if term_type in (ConformanceTAG.AND.value, ConformanceTAG.OR.value):
+        if len(operands) == 1:
+            return {term_type: [operands[0]]}
         return {term_type: operands} if operands else None
 
     return None
