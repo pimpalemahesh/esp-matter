@@ -34,7 +34,6 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
-using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "software_diagnostics_cluster";
 constexpr uint16_t cluster_revision = 1;
@@ -77,14 +76,14 @@ attribute_t *create_thread_metrics(cluster_t *cluster, uint8_t *value, uint16_t 
 attribute_t *create_current_heap_free(cluster_t *cluster, uint64_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, CurrentHeapFree::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(18446744073709551614));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
 }
 
 attribute_t *create_current_heap_used(cluster_t *cluster, uint64_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, CurrentHeapUsed::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(18446744073709551614));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
 }
 
@@ -93,7 +92,7 @@ attribute_t *create_current_heap_high_watermark(cluster_t *cluster, uint64_t val
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::watermarks::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CurrentHeapHighWatermark::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(18446744073709551614));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
 }
 

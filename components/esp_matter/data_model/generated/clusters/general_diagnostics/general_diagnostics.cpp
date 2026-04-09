@@ -34,7 +34,6 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
-using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "general_diagnostics_cluster";
 constexpr uint16_t cluster_revision = 2;
@@ -79,7 +78,7 @@ attribute_t *create_reboot_count(cluster_t *cluster, uint16_t value)
 attribute_t *create_up_time(cluster_t *cluster, uint64_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, UpTime::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(18446744073709551614));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
 }
 

@@ -25,11 +25,11 @@ INT_BOUNDS = {
     "int8":  (-2**7,  2**7 - 2),
     "int16": (-2**15, 2**15 - 2),
     "int32": (-2**31, 2**31 - 2),
-    "int64": (-2**63, 2**63 - 2),
+    "int64": (-2**31, 2**31 - 2),
     "uint8": (0, 2**8 - 2),
     "uint16": (0, 2**16 - 2),
     "uint32": (0, 2**32 - 2),
-    "uint64": (0, 2**64 - 2),
+    "uint64": (0, 2**32 - 2),
 }
 
 def resolve_attribute_type(attribute_elem: Element, attribute_types_dict: dict) -> str:

@@ -34,7 +34,6 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
-using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "ethernet_network_diagnostics_cluster";
 constexpr uint16_t cluster_revision = 1;
@@ -111,7 +110,7 @@ attribute_t *create_packet_rx_count(cluster_t *cluster, uint64_t value)
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::packet_counts::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, PacketRxCount::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(18446744073709551614));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
 }
 
@@ -120,7 +119,7 @@ attribute_t *create_packet_tx_count(cluster_t *cluster, uint64_t value)
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::packet_counts::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, PacketTxCount::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(18446744073709551614));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
 }
 
@@ -129,7 +128,7 @@ attribute_t *create_tx_err_count(cluster_t *cluster, uint64_t value)
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::error_counts::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, TxErrCount::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(18446744073709551614));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
 }
 
@@ -138,7 +137,7 @@ attribute_t *create_collision_count(cluster_t *cluster, uint64_t value)
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::error_counts::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CollisionCount::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(18446744073709551614));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
 }
 
@@ -147,7 +146,7 @@ attribute_t *create_overrun_count(cluster_t *cluster, uint64_t value)
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::error_counts::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, OverrunCount::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(18446744073709551614));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
 }
 
@@ -159,7 +158,7 @@ attribute_t *create_carrier_detect(cluster_t *cluster, nullable<bool> value)
 attribute_t *create_time_since_reset(cluster_t *cluster, uint64_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, TimeSinceReset::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(18446744073709551614));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
 }
 

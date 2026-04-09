@@ -145,7 +145,7 @@ namespace attribute {
 attribute_t *create_utc_time(cluster_t *cluster, nullable<uint64_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, UTCTime::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint64(0), esp_matter_nullable_uint64(18446744073709551614));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint64(0), esp_matter_nullable_uint64(4294967294));
     return attribute;
 }
 
@@ -197,7 +197,7 @@ attribute_t *create_local_time(cluster_t *cluster, nullable<uint64_t> value)
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::time_zone::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, LocalTime::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint64(0), esp_matter_nullable_uint64(18446744073709551614));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint64(0), esp_matter_nullable_uint64(4294967294));
     return attribute;
 }
 

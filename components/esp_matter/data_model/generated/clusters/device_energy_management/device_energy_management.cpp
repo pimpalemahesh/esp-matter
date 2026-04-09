@@ -226,14 +226,14 @@ attribute_t *create_esa_state(cluster_t *cluster, uint8_t value)
 attribute_t *create_abs_min_power(cluster_t *cluster, int64_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, AbsMinPower::Id, ATTRIBUTE_FLAG_NONE, esp_matter_int64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_int64(-9223372036854775808), esp_matter_int64(9223372036854775806));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_int64(-2147483648), esp_matter_int64(2147483646));
     return attribute;
 }
 
 attribute_t *create_abs_max_power(cluster_t *cluster, int64_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, AbsMaxPower::Id, ATTRIBUTE_FLAG_NONE, esp_matter_int64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_int64(-9223372036854775808), esp_matter_int64(9223372036854775806));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_int64(-2147483648), esp_matter_int64(2147483646));
     return attribute;
 }
 

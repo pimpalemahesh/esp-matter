@@ -33,7 +33,6 @@ using chip::app::DataModel::Decode;
 using chip::TLV::TLVReader;
 using namespace esp_matter;
 using namespace esp_matter::cluster;
-using namespace esp_matter::cluster::delegate_cb;
 
 static const char *TAG = "power_source_configuration_cluster";
 constexpr uint16_t cluster_revision = 1;
