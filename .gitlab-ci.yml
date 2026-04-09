@@ -820,3 +820,15 @@ pre_commit_check:
 
   tags:
     - build
+
+data_model_gen_unit_tests:
+  image: $CI_DOCKER_REGISTRY/esp-env-v6.0:1
+  stage: pre_check
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "push" || $CI_COMMIT_BRANCH == "main"
+  script:
+    - pip install colorlog pyyaml
+    - cd ${ESP_MATTER_PATH}/tools/data_model_gen
+    - python tests/run_tests.py -v
+  tags:
+    - build
