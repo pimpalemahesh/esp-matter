@@ -79,7 +79,7 @@ namespace attribute {
 attribute_t *create_breadcrumb(cluster_t *cluster, uint64_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, Breadcrumb::Id, ATTRIBUTE_FLAG_WRITABLE, esp_matter_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(18446744073709551614));
     return attribute;
 }
 
@@ -144,7 +144,7 @@ attribute_t *create_tc_update_deadline(cluster_t *cluster, nullable<uint32_t> va
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::terms_and_conditions::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, TCUpdateDeadline::Id, ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 

@@ -27,8 +27,6 @@
 #define ESP_MATTER_CHIME_DEVICE_TYPE_ID 0x0146
 #define ESP_MATTER_CHIME_DEVICE_TYPE_VERSION 1
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace chime {

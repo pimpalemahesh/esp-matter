@@ -34,8 +34,6 @@
 #define ESP_MATTER_CONTENT_APP_DEVICE_TYPE_ID 0x0024
 #define ESP_MATTER_CONTENT_APP_DEVICE_TYPE_VERSION 2
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace content_app {

@@ -30,8 +30,6 @@
 #define ESP_MATTER_ROBOTIC_VACUUM_CLEANER_DEVICE_TYPE_ID 0x0074
 #define ESP_MATTER_ROBOTIC_VACUUM_CLEANER_DEVICE_TYPE_VERSION 4
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace robotic_vacuum_cleaner {

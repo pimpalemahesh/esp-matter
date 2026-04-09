@@ -39,8 +39,6 @@
 #define ESP_MATTER_AIR_QUALITY_SENSOR_DEVICE_TYPE_ID 0x002C
 #define ESP_MATTER_AIR_QUALITY_SENSOR_DEVICE_TYPE_VERSION 1
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace air_quality_sensor {

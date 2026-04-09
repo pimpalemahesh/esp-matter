@@ -190,7 +190,7 @@ attribute_t *create_smoke_sensitivity_level(cluster_t *cluster, uint8_t value)
 attribute_t *create_expiry_date(cluster_t *cluster, uint32_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, ExpiryDate::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(4294967294));
     return attribute;
 }
 

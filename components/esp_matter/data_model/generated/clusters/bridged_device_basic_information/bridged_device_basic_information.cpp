@@ -112,7 +112,7 @@ attribute_t *create_hardware_version_string(cluster_t *cluster, char *value, uin
 attribute_t *create_software_version(cluster_t *cluster, uint32_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, SoftwareVersion::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(4294967294));
     return attribute;
 }
 

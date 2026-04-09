@@ -81,14 +81,14 @@ attribute_t *create_reboot_count(cluster_t *cluster, uint16_t value)
 attribute_t *create_up_time(cluster_t *cluster, uint64_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, UpTime::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(18446744073709551614));
     return attribute;
 }
 
 attribute_t *create_total_operational_hours(cluster_t *cluster, uint32_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, TotalOperationalHours::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(4294967294));
     return attribute;
 }
 

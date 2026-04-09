@@ -31,8 +31,6 @@
 #define ESP_MATTER_MOUNTED_DIMMABLE_LOAD_CONTROL_DEVICE_TYPE_ID 0x0110
 #define ESP_MATTER_MOUNTED_DIMMABLE_LOAD_CONTROL_DEVICE_TYPE_VERSION 2
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace mounted_dimmable_load_control {

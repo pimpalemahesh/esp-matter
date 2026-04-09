@@ -31,8 +31,6 @@
 #define ESP_MATTER_SMOKE_CO_ALARM_DEVICE_TYPE_ID 0x0076
 #define ESP_MATTER_SMOKE_CO_ALARM_DEVICE_TYPE_VERSION 1
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace smoke_co_alarm {

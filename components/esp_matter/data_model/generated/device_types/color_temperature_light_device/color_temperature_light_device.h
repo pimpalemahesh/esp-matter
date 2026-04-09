@@ -32,8 +32,6 @@
 #define ESP_MATTER_COLOR_TEMPERATURE_LIGHT_DEVICE_TYPE_ID 0x010C
 #define ESP_MATTER_COLOR_TEMPERATURE_LIGHT_DEVICE_TYPE_VERSION 4
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace color_temperature_light {

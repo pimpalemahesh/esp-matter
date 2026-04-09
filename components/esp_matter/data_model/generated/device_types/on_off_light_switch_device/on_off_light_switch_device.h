@@ -30,8 +30,6 @@
 #define ESP_MATTER_ON_OFF_LIGHT_SWITCH_DEVICE_TYPE_ID 0x0103
 #define ESP_MATTER_ON_OFF_LIGHT_SWITCH_DEVICE_TYPE_VERSION 3
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace on_off_light_switch {

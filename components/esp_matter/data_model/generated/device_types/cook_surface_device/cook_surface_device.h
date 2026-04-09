@@ -28,8 +28,6 @@
 #define ESP_MATTER_COOK_SURFACE_DEVICE_TYPE_ID 0x0077
 #define ESP_MATTER_COOK_SURFACE_DEVICE_TYPE_VERSION 2
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace cook_surface {

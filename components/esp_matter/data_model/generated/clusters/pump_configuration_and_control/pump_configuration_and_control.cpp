@@ -332,21 +332,21 @@ attribute_t *create_speed(cluster_t *cluster, nullable<uint16_t> value)
 attribute_t *create_lifetime_running_hours(cluster_t *cluster, nullable<uint32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, LifetimeRunningHours::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
 attribute_t *create_power(cluster_t *cluster, nullable<uint32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, Power::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
 attribute_t *create_lifetime_energy_consumed(cluster_t *cluster, nullable<uint32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, LifetimeEnergyConsumed::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 

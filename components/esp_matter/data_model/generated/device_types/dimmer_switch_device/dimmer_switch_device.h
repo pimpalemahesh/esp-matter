@@ -31,8 +31,6 @@
 #define ESP_MATTER_DIMMER_SWITCH_DEVICE_TYPE_ID 0x0104
 #define ESP_MATTER_DIMMER_SWITCH_DEVICE_TYPE_VERSION 3
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace dimmer_switch {

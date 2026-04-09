@@ -32,8 +32,6 @@
 #define ESP_MATTER_EXTENDED_COLOR_LIGHT_DEVICE_TYPE_ID 0x010D
 #define ESP_MATTER_EXTENDED_COLOR_LIGHT_DEVICE_TYPE_VERSION 4
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace extended_color_light {

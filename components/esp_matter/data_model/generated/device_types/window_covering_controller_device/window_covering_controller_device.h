@@ -29,8 +29,6 @@
 #define ESP_MATTER_WINDOW_COVERING_CONTROLLER_DEVICE_TYPE_ID 0x0203
 #define ESP_MATTER_WINDOW_COVERING_CONTROLLER_DEVICE_TYPE_VERSION 4
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace window_covering_controller {

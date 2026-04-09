@@ -27,8 +27,6 @@
 #define ESP_MATTER_PRESSURE_SENSOR_DEVICE_TYPE_ID 0x0305
 #define ESP_MATTER_PRESSURE_SENSOR_DEVICE_TYPE_VERSION 2
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace pressure_sensor {

@@ -36,8 +36,6 @@
 #define ESP_MATTER_ROOM_AIR_CONDITIONER_DEVICE_TYPE_ID 0x0072
 #define ESP_MATTER_ROOM_AIR_CONDITIONER_DEVICE_TYPE_VERSION 3
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace room_air_conditioner {

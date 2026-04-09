@@ -573,14 +573,14 @@ attribute_t *create_door_state(cluster_t *cluster, nullable<uint8_t> value)
 attribute_t *create_door_open_events(cluster_t *cluster, uint32_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, DoorOpenEvents::Id, ATTRIBUTE_FLAG_WRITABLE, esp_matter_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(4294967294));
     return attribute;
 }
 
 attribute_t *create_door_closed_events(cluster_t *cluster, uint32_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, DoorClosedEvents::Id, ATTRIBUTE_FLAG_WRITABLE, esp_matter_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(4294967294));
     return attribute;
 }
 
@@ -715,7 +715,7 @@ attribute_t *create_led_settings(cluster_t *cluster, uint8_t value)
 attribute_t *create_auto_relock_time(cluster_t *cluster, uint32_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, AutoRelockTime::Id, ATTRIBUTE_FLAG_WRITABLE, esp_matter_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(4294967294));
     return attribute;
 }
 

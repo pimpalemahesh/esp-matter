@@ -34,8 +34,6 @@
 #define ESP_MATTER_CONTROL_BRIDGE_DEVICE_TYPE_ID 0x0840
 #define ESP_MATTER_CONTROL_BRIDGE_DEVICE_TYPE_VERSION 3
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace control_bridge {

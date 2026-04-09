@@ -26,8 +26,6 @@
 #define ESP_MATTER_POWER_SOURCE_DEVICE_TYPE_ID 0x0011
 #define ESP_MATTER_POWER_SOURCE_DEVICE_TYPE_VERSION 1
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace power_source {

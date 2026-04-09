@@ -26,8 +26,6 @@
 #define ESP_MATTER_METER_REFERENCE_POINT_DEVICE_TYPE_ID 0x0512
 #define ESP_MATTER_METER_REFERENCE_POINT_DEVICE_TYPE_VERSION 1
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace meter_reference_point {

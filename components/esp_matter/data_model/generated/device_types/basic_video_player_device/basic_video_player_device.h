@@ -36,8 +36,6 @@
 #define ESP_MATTER_BASIC_VIDEO_PLAYER_DEVICE_TYPE_ID 0x0028
 #define ESP_MATTER_BASIC_VIDEO_PLAYER_DEVICE_TYPE_VERSION 2
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace basic_video_player {

@@ -30,8 +30,6 @@
 #define ESP_MATTER_BRIDGED_NODE_DEVICE_TYPE_ID 0x0013
 #define ESP_MATTER_BRIDGED_NODE_DEVICE_TYPE_VERSION 3
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace bridged_node {

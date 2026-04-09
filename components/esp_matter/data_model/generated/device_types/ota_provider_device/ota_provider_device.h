@@ -27,8 +27,6 @@
 #define ESP_MATTER_OTA_PROVIDER_DEVICE_TYPE_ID 0x0014
 #define ESP_MATTER_OTA_PROVIDER_DEVICE_TYPE_VERSION 1
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace ota_provider {

@@ -26,8 +26,6 @@
 #define ESP_MATTER_ELECTRICAL_UTILITY_METER_DEVICE_TYPE_ID 0x0511
 #define ESP_MATTER_ELECTRICAL_UTILITY_METER_DEVICE_TYPE_VERSION 1
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace electrical_utility_meter {

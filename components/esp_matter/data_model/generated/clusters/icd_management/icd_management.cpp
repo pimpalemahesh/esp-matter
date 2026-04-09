@@ -147,7 +147,7 @@ attribute_t *create_idle_mode_duration(cluster_t *cluster, uint32_t value)
 attribute_t *create_active_mode_duration(cluster_t *cluster, uint32_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, ActiveModeDuration::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(4294967294));
     return attribute;
 }
 
@@ -170,7 +170,7 @@ attribute_t *create_icd_counter(cluster_t *cluster, uint32_t value)
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::check_in_protocol_support::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ICDCounter::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(4294967294));
     return attribute;
 }
 

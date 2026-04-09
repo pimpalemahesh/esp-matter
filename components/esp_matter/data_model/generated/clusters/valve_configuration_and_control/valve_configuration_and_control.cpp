@@ -116,14 +116,14 @@ namespace attribute {
 attribute_t *create_open_duration(cluster_t *cluster, nullable<uint32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, OpenDuration::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(1), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(1), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
 attribute_t *create_default_open_duration(cluster_t *cluster, nullable<uint32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, DefaultOpenDuration::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(1), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(1), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
@@ -132,7 +132,7 @@ attribute_t *create_auto_close_time(cluster_t *cluster, nullable<uint64_t> value
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::time_sync::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, AutoCloseTime::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint64(0), esp_matter_nullable_uint64(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint64(0), esp_matter_nullable_uint64(18446744073709551614));
     return attribute;
 }
 

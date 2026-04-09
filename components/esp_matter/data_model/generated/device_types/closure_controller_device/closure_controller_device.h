@@ -30,8 +30,6 @@
 #define ESP_MATTER_CLOSURE_CONTROLLER_DEVICE_TYPE_ID 0x023E
 #define ESP_MATTER_CLOSURE_CONTROLLER_DEVICE_TYPE_VERSION 1
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace closure_controller {

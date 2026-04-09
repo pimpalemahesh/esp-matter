@@ -28,8 +28,6 @@
 #define ESP_MATTER_ELECTRICAL_ENERGY_TARIFF_DEVICE_TYPE_ID 0x0513
 #define ESP_MATTER_ELECTRICAL_ENERGY_TARIFF_DEVICE_TYPE_VERSION 1
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace electrical_energy_tariff {

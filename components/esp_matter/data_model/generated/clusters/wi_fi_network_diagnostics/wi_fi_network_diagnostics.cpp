@@ -135,7 +135,7 @@ attribute_t *create_beacon_lost_count(cluster_t *cluster, nullable<uint32_t> val
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::error_counts::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, BeaconLostCount::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
@@ -144,7 +144,7 @@ attribute_t *create_beacon_rx_count(cluster_t *cluster, nullable<uint32_t> value
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::packet_counts::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, BeaconRxCount::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
@@ -153,7 +153,7 @@ attribute_t *create_packet_multicast_rx_count(cluster_t *cluster, nullable<uint3
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::packet_counts::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, PacketMulticastRxCount::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
@@ -162,7 +162,7 @@ attribute_t *create_packet_multicast_tx_count(cluster_t *cluster, nullable<uint3
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::packet_counts::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, PacketMulticastTxCount::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
@@ -171,7 +171,7 @@ attribute_t *create_packet_unicast_rx_count(cluster_t *cluster, nullable<uint32_
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::packet_counts::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, PacketUnicastRxCount::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
@@ -180,14 +180,14 @@ attribute_t *create_packet_unicast_tx_count(cluster_t *cluster, nullable<uint32_
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::packet_counts::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, PacketUnicastTxCount::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
 attribute_t *create_current_max_rate(cluster_t *cluster, nullable<uint64_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, CurrentMaxRate::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint64(0), esp_matter_nullable_uint64(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint64(0), esp_matter_nullable_uint64(18446744073709551614));
     return attribute;
 }
 
@@ -196,7 +196,7 @@ attribute_t *create_overrun_count(cluster_t *cluster, nullable<uint64_t> value)
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnValue(feature_map & feature::error_counts::get_id(), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, OverrunCount::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint64(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint64(0), esp_matter_nullable_uint64(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint64(0), esp_matter_nullable_uint64(18446744073709551614));
     return attribute;
 }
 

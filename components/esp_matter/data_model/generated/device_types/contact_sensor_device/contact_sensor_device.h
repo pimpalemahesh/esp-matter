@@ -28,8 +28,6 @@
 #define ESP_MATTER_CONTACT_SENSOR_DEVICE_TYPE_ID 0x0015
 #define ESP_MATTER_CONTACT_SENSOR_DEVICE_TYPE_VERSION 2
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace contact_sensor {

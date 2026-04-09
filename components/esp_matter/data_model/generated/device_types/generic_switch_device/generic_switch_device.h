@@ -27,8 +27,6 @@
 #define ESP_MATTER_GENERIC_SWITCH_DEVICE_TYPE_ID 0x000F
 #define ESP_MATTER_GENERIC_SWITCH_DEVICE_TYPE_VERSION 3
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace generic_switch {

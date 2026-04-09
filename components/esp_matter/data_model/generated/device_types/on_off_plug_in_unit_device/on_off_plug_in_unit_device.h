@@ -31,8 +31,6 @@
 #define ESP_MATTER_ON_OFF_PLUG_IN_UNIT_DEVICE_TYPE_ID 0x010A
 #define ESP_MATTER_ON_OFF_PLUG_IN_UNIT_DEVICE_TYPE_VERSION 4
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace on_off_plug_in_unit {

@@ -267,14 +267,12 @@ def parse_boolean_term(term_elem, feature_map):
     operands = parse_children(term_elem, feature_map)
 
     if term_type == ConformanceTAG.NOT.value:
-        return {term_type: operands[0]}
+        return {term_type: operands[0]} if operands else None
 
     if term_type in (ConformanceTAG.AND.value, ConformanceTAG.OR.value):
-        if len(operands) == 1:
-            return {term_type: operands[0]}
         return {term_type: operands} if operands else None
-    return None
 
+    return None
 
 def parse_element_reference(ref_elem, feature_map):
     """

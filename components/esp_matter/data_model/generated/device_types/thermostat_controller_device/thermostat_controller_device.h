@@ -30,8 +30,6 @@
 #define ESP_MATTER_THERMOSTAT_CONTROLLER_DEVICE_TYPE_ID 0x030A
 #define ESP_MATTER_THERMOSTAT_CONTROLLER_DEVICE_TYPE_VERSION 1
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace thermostat_controller {

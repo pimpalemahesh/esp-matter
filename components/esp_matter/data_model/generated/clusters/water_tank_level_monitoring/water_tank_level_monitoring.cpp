@@ -134,7 +134,7 @@ attribute_t *create_in_place_indicator(cluster_t *cluster, bool value)
 attribute_t *create_last_changed_time(cluster_t *cluster, nullable<uint32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, LastChangedTime::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 

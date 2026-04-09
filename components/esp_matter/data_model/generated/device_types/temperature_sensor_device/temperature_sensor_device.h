@@ -28,8 +28,6 @@
 #define ESP_MATTER_TEMPERATURE_SENSOR_DEVICE_TYPE_ID 0x0302
 #define ESP_MATTER_TEMPERATURE_SENSOR_DEVICE_TYPE_VERSION 3
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace temperature_sensor {

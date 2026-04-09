@@ -37,8 +37,6 @@
 #define ESP_MATTER_CAMERA_CONTROLLER_DEVICE_TYPE_ID 0x0147
 #define ESP_MATTER_CAMERA_CONTROLLER_DEVICE_TYPE_VERSION 1
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace camera_controller {

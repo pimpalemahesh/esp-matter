@@ -26,8 +26,6 @@
 #define ESP_MATTER_OVEN_DEVICE_TYPE_ID 0x007B
 #define ESP_MATTER_OVEN_DEVICE_TYPE_VERSION 2
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace oven {

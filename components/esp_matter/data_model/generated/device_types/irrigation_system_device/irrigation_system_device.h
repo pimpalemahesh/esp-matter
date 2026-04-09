@@ -28,8 +28,6 @@
 #define ESP_MATTER_IRRIGATION_SYSTEM_DEVICE_TYPE_ID 0x0040
 #define ESP_MATTER_IRRIGATION_SYSTEM_DEVICE_TYPE_VERSION 1
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace irrigation_system {

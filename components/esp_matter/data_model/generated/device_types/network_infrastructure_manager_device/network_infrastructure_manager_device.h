@@ -29,8 +29,6 @@
 #define ESP_MATTER_NETWORK_INFRASTRUCTURE_MANAGER_DEVICE_TYPE_ID 0x0090
 #define ESP_MATTER_NETWORK_INFRASTRUCTURE_MANAGER_DEVICE_TYPE_VERSION 2
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace network_infrastructure_manager {

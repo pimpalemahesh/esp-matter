@@ -21,6 +21,16 @@ from utils.exceptions import XmlParseError
 
 logger = logging.getLogger(__name__)
 
+INT_BOUNDS = {
+    "int8":  (-2**7,  2**7 - 2),
+    "int16": (-2**15, 2**15 - 2),
+    "int32": (-2**31, 2**31 - 2),
+    "int64": (-2**63, 2**63 - 2),
+    "uint8": (0, 2**8 - 2),
+    "uint16": (0, 2**16 - 2),
+    "uint32": (0, 2**32 - 2),
+    "uint64": (0, 2**64 - 2),
+}
 
 def resolve_attribute_type(attribute_elem: Element, attribute_types_dict: dict) -> str:
     """
@@ -165,23 +175,18 @@ def _normalize_bounds(attr) -> None:
 
 
 def _default_bounds_by_type(attr) -> None:
-    t = attr.type or ""
+
+    bounds = INT_BOUNDS.get(attr.type)
+    if not bounds:
+        return 0, 0
+
+    min_val, max_val = bounds
+
     if attr.min_value is None:
-        if t == "int8":
-            attr.min_value = -128
-        elif t in ("int16", "int32", "int64"):
-            attr.min_value = -32768
-        elif t in ("uint8", "uint16", "uint32", "uint64"):
-            attr.min_value = 0
+        attr.min_value = min_val
+
     if attr.max_value is None:
-        if t == "int8":
-            attr.max_value = 126
-        elif t in ("int16", "int32", "int64"):
-            attr.max_value = 32766
-        elif t == "uint8":
-            attr.max_value = 254
-        elif t in ("uint16", "uint32", "uint64"):
-            attr.max_value = 65534
+        attr.max_value = max_val
 
 
 def _bounds_to_int(attr) -> None:

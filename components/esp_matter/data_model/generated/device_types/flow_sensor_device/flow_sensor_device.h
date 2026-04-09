@@ -27,8 +27,6 @@
 #define ESP_MATTER_FLOW_SENSOR_DEVICE_TYPE_ID 0x0306
 #define ESP_MATTER_FLOW_SENSOR_DEVICE_TYPE_VERSION 2
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace flow_sensor {

@@ -34,8 +34,6 @@
 #define ESP_MATTER_THERMOSTAT_DEVICE_TYPE_ID 0x0301
 #define ESP_MATTER_THERMOSTAT_DEVICE_TYPE_VERSION 4
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace thermostat {

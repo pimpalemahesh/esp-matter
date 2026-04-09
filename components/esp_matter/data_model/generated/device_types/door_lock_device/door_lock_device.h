@@ -29,8 +29,6 @@
 #define ESP_MATTER_DOOR_LOCK_DEVICE_TYPE_ID 0x000A
 #define ESP_MATTER_DOOR_LOCK_DEVICE_TYPE_VERSION 3
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace door_lock {

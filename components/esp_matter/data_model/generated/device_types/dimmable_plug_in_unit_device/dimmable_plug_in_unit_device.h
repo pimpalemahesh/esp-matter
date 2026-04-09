@@ -31,8 +31,6 @@
 #define ESP_MATTER_DIMMABLE_PLUG_IN_UNIT_DEVICE_TYPE_ID 0x010B
 #define ESP_MATTER_DIMMABLE_PLUG_IN_UNIT_DEVICE_TYPE_VERSION 5
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace dimmable_plug_in_unit {

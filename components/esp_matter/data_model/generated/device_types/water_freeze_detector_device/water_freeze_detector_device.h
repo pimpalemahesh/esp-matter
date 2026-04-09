@@ -28,8 +28,6 @@
 #define ESP_MATTER_WATER_FREEZE_DETECTOR_DEVICE_TYPE_ID 0x0041
 #define ESP_MATTER_WATER_FREEZE_DETECTOR_DEVICE_TYPE_VERSION 1
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace water_freeze_detector {

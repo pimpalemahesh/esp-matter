@@ -478,7 +478,7 @@ attribute_t *create_setpoint_change_amount(cluster_t *cluster, nullable<int16_t>
 attribute_t *create_setpoint_change_source_timestamp(cluster_t *cluster, uint32_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, SetpointChangeSourceTimestamp::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(4294967294));
     return attribute;
 }
 
@@ -679,7 +679,7 @@ attribute_t *create_schedules(cluster_t *cluster, uint8_t *value, uint16_t lengt
 attribute_t *create_setpoint_hold_expiry_timestamp(cluster_t *cluster, nullable<uint32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, SetpointHoldExpiryTimestamp::Id, ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 

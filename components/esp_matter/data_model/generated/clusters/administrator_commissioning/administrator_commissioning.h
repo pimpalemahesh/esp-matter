@@ -31,7 +31,7 @@ esp_err_t add(cluster_t *cluster);
 
 namespace attribute {
 attribute_t *create_window_status(cluster_t *cluster, uint8_t value);
-attribute_t *create_admin_fabric_index(cluster_t *cluster, nullable<uint16_t> value);
+attribute_t *create_admin_fabric_index(cluster_t *cluster, nullable<uint8_t> value);
 attribute_t *create_admin_vendor_id(cluster_t *cluster, nullable<uint16_t> value);
 } /* attribute */
 
@@ -43,7 +43,7 @@ command_t *create_revoke_commissioning(cluster_t *cluster);
 
 typedef struct config {
     uint8_t window_status;
-    nullable<uint16_t> admin_fabric_index;
+    nullable<uint8_t> admin_fabric_index;
     nullable<uint16_t> admin_vendor_id;
     config() : window_status(0), admin_fabric_index(0), admin_vendor_id(0) {}
 } config_t;

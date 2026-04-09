@@ -31,8 +31,6 @@
 #define ESP_MATTER_DIMMABLE_LIGHT_DEVICE_TYPE_ID 0x0101
 #define ESP_MATTER_DIMMABLE_LIGHT_DEVICE_TYPE_VERSION 3
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace dimmable_light {

@@ -30,8 +30,6 @@
 #define ESP_MATTER_MICROWAVE_OVEN_DEVICE_TYPE_ID 0x0079
 #define ESP_MATTER_MICROWAVE_OVEN_DEVICE_TYPE_VERSION 2
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace microwave_oven {

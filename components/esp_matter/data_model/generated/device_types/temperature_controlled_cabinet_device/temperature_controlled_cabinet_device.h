@@ -30,8 +30,6 @@
 #define ESP_MATTER_TEMPERATURE_CONTROLLED_CABINET_DEVICE_TYPE_ID 0x0071
 #define ESP_MATTER_TEMPERATURE_CONTROLLED_CABINET_DEVICE_TYPE_VERSION 5
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace temperature_controlled_cabinet {

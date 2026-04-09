@@ -81,7 +81,6 @@ void RefrigeratorAndTemperatureControlledCabinetModeDelegateInitCB(void *delegat
 void RvcOperationalStateDelegateInitCB(void *delegate, uint16_t endpoint_id);
 void TargetNavigatorDelegateInitCB(void *delegate, uint16_t endpoint_id);
 void WakeOnLanDelegateInitCB(void *delegate, uint16_t endpoint_id);
-void OtaSoftwareUpdateRequestorDelegateInitCB(void *delegate, uint16_t endpoint_id);
 } // namespace delegate_cb
 
 } // namespace cluster

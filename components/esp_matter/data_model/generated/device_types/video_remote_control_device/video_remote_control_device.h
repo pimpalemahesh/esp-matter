@@ -40,8 +40,6 @@
 #define ESP_MATTER_VIDEO_REMOTE_CONTROL_DEVICE_TYPE_ID 0x002A
 #define ESP_MATTER_VIDEO_REMOTE_CONTROL_DEVICE_TYPE_VERSION 2
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace video_remote_control {

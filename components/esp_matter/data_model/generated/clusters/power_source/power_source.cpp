@@ -163,7 +163,7 @@ attribute_t *create_description(cluster_t *cluster, char *value, uint16_t length
 attribute_t *create_wired_assessed_input_voltage(cluster_t *cluster, nullable<uint32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, WiredAssessedInputVoltage::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
@@ -186,21 +186,21 @@ attribute_t *create_wired_current_type(cluster_t *cluster, uint8_t value)
 attribute_t *create_wired_assessed_current(cluster_t *cluster, nullable<uint32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, WiredAssessedCurrent::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
 attribute_t *create_wired_nominal_voltage(cluster_t *cluster, uint32_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, WiredNominalVoltage::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(4294967294));
     return attribute;
 }
 
 attribute_t *create_wired_maximum_current(cluster_t *cluster, uint32_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, WiredMaximumCurrent::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(4294967294));
     return attribute;
 }
 
@@ -217,7 +217,7 @@ attribute_t *create_active_wired_faults(cluster_t *cluster, uint8_t *value, uint
 attribute_t *create_bat_voltage(cluster_t *cluster, nullable<uint32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, BatVoltage::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
@@ -231,7 +231,7 @@ attribute_t *create_bat_percent_remaining(cluster_t *cluster, nullable<uint8_t> 
 attribute_t *create_bat_time_remaining(cluster_t *cluster, nullable<uint32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, BatTimeRemaining::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
@@ -307,7 +307,7 @@ attribute_t *create_bat_approved_chemistry(cluster_t *cluster, uint8_t value)
 attribute_t *create_bat_capacity(cluster_t *cluster, uint32_t value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, BatCapacity::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(4294967294));
     return attribute;
 }
 
@@ -332,7 +332,7 @@ attribute_t *create_bat_charge_state(cluster_t *cluster, uint8_t value)
 attribute_t *create_bat_time_to_full_charge(cluster_t *cluster, nullable<uint32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, BatTimeToFullCharge::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 
@@ -346,7 +346,7 @@ attribute_t *create_bat_functional_while_charging(cluster_t *cluster, bool value
 attribute_t *create_bat_charging_current(cluster_t *cluster, nullable<uint32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, BatChargingCurrent::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(65534));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint32(0), esp_matter_nullable_uint32(4294967294));
     return attribute;
 }
 

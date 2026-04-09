@@ -72,10 +72,10 @@ attribute_t *create_window_status(cluster_t *cluster, uint8_t value)
     return attribute;
 }
 
-attribute_t *create_admin_fabric_index(cluster_t *cluster, nullable<uint16_t> value)
+attribute_t *create_admin_fabric_index(cluster_t *cluster, nullable<uint8_t> value)
 {
-    attribute_t *attribute = esp_matter::attribute::create(cluster, AdminFabricIndex::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint16(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint16(0), esp_matter_nullable_uint16(65534));
+    attribute_t *attribute = esp_matter::attribute::create(cluster, AdminFabricIndex::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint8(value));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint8(0), esp_matter_nullable_uint8(254));
     return attribute;
 }
 

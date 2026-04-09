@@ -28,8 +28,6 @@
 #define ESP_MATTER_OCCUPANCY_SENSOR_DEVICE_TYPE_ID 0x0107
 #define ESP_MATTER_OCCUPANCY_SENSOR_DEVICE_TYPE_VERSION 4
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace occupancy_sensor {

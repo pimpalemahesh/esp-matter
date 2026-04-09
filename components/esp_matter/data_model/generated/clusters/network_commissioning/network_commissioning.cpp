@@ -177,7 +177,7 @@ attribute_t *create_last_network_id(cluster_t *cluster, uint8_t *value, uint16_t
 attribute_t *create_last_connect_error_value(cluster_t *cluster, nullable<int32_t> value)
 {
     attribute_t *attribute = esp_matter::attribute::create(cluster, LastConnectErrorValue::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_int32(value));
-    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_int32(-32768), esp_matter_nullable_int32(32766));
+    esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_int32(-2147483648), esp_matter_nullable_int32(2147483646));
     return attribute;
 }
 

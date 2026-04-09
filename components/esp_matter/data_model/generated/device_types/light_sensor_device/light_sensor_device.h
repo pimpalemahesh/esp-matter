@@ -27,8 +27,6 @@
 #define ESP_MATTER_LIGHT_SENSOR_DEVICE_TYPE_ID 0x0106
 #define ESP_MATTER_LIGHT_SENSOR_DEVICE_TYPE_VERSION 3
 
-using namespace esp_matter;
-
 namespace esp_matter {
 namespace endpoint {
 namespace light_sensor {
