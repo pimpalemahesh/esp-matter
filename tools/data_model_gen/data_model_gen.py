@@ -193,8 +193,8 @@ class DataModelGenerator:
 @click.command()
 @click.option(
     "--output-dir",
-    default=global_config.DEFAULT_DATA_MODEL_DIR,
-    help=f"Directory where generated files will be written (default: {global_config.DEFAULT_DATA_MODEL_DIR})",
+    default=None,
+    help="Directory where generated files will be written (default: generated in esp-matter repository)",
 )
 @click.option(
     "--cluster-file", type=str, help="Path to a specific cluster XML file to process"
@@ -256,12 +256,8 @@ def main(
 
     try:
         esp_dir = os.getenv("ESP_MATTER_PATH")
-        if not esp_dir or not esp_dir.strip():
-            raise ConfigurationError(
-                "ESP_MATTER_PATH is not set or is empty",
-                context="main",
-                suggestion="Set ESP_MATTER_PATH environment variable to the esp-matter repository root.",
-            )
+        if not output_dir:
+            output_dir = global_config.get_default_data_model_dir()
 
         chip_path = os.path.join(esp_dir, "connectedhomeip", "connectedhomeip")
 

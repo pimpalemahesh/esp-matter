@@ -38,14 +38,9 @@ DEFAULT_CHIP_VERSION = "1.5"
 
 SPECIFICATION_VERSIONS = ["1.1", "1.2", "1.3", "1.4", "1.4.2", "1.5", "1.6"]
 
-ESP_MATTER_PATH = os.getenv("ESP_MATTER_PATH", "")
-
-DEFAULT_DATA_MODEL_DIR = os.path.join(
-    ESP_MATTER_PATH, "components", "esp_matter", "data_model", "generated"
-)
-
 ALLOW_PROVISIONAL = False
 
+DEFAULT_DATA_MODEL_DIR = None
 
 def allow_provisional():
     """
@@ -64,6 +59,18 @@ def setup_provisional_mode(allow: bool):
     global ALLOW_PROVISIONAL
     ALLOW_PROVISIONAL = allow
 
+def get_default_data_model_dir():
+    """
+    Get the default data model directory.
+    """
+    esp_path = os.getenv("ESP_MATTER_PATH", "")
+    if not esp_path and not os.path.isdir(esp_path):
+        raise ConfigurationError(
+            "ESP Matter path is not set or is not a directory",
+            context="get_default_data_model_dir",
+            suggestion="Set ESP_MATTER_PATH environment variable to the esp-matter repository root.",
+        )
+    return os.path.join(esp_path, "components", "esp_matter", "data_model", "generated")
 
 def set_esp_matter_path(path: str):
     """

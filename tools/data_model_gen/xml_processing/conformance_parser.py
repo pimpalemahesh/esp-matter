@@ -77,7 +77,7 @@ class Conformance(BaseConformance):
     more: bool = None
     min: int = None
 
-    def __init__(self, feature_map: dict = {}):
+    def __init__(self, feature_map: dict):
         self.feature_map = feature_map
 
     def parse(self, conformance_elem: Element):

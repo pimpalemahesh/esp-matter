@@ -121,7 +121,7 @@ cluster::{{ cluster.func_name }}::feature::{{ mandatory_feature.func_name }}::ge
 {% if mandatory_command.has_special_config() %}
 #endif {{ mandatory_command.get_special_config() }}
 {% endif %}
-    cluster::{{ cluster.esp_name }}::command::create_{{ mandatory_command.func_name }}({{cluster.esp_name}});
+    cluster::{{ cluster.esp_name }}::command::create_{{ mandatory_command.func_name | lower }}({{cluster.esp_name}});
 {% if mandatory_command.has_special_config() %}
 #endif // {{ mandatory_command.get_special_config() }}
 {% endif %}
@@ -132,7 +132,7 @@ cluster::{{ cluster.func_name }}::feature::{{ mandatory_feature.func_name }}::ge
 {% if mandatory_event.has_special_config() %}
 #if {{ mandatory_event.get_special_config() }}
 {% endif %}
-    cluster::{{ cluster.esp_name }}::event::create_{{ mandatory_event.func_name }}({{cluster.func_name}});
+    cluster::{{ cluster.esp_name }}::event::create_{{ mandatory_event.func_name | lower }}({{cluster.esp_name}});
 {% if mandatory_event.has_special_config() %}
 #endif // {{ mandatory_event.get_special_config() }}
 {% endif %}

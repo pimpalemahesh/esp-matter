@@ -17,11 +17,14 @@ Comprehensive test suite for conformance parsing based on real XML examples
 from connectedhomeip/data_model/1.5/clusters/
 """
 
+import sys
+import os
+# Add parent directory to path for imports
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import unittest
 import xml.etree.ElementTree as ET
 import json
-import sys
-import os
 from xml_processing.conformance_parser import (
     parse_conformance,
     Conformance,
@@ -30,10 +33,6 @@ from xml_processing.conformance_parser import (
 )
 from utils.helper import convert_to_snake_case
 from utils.conformance import ConformanceDecision
-
-# Add parent directory to path for imports
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 
 class MockFeature:
     """Mock feature object for testing"""
@@ -85,8 +84,8 @@ class TestBasicConformance(unittest.TestCase):
         self.assertEqual(result.type, ConformanceDecision.DEPRECATED)
 
     def test_simple_disallowed_conformance(self):
-        """Test parsing simple <disallowedConform/> tags"""
-        xml = "<disallowedConform/>"
+        """Test parsing simple <disallowConform/> tags"""
+        xml = "<disallowConform/>"
         elem = ET.fromstring(xml)
         result = Conformance({}).parse(elem)
 
@@ -387,7 +386,7 @@ class TestComplexNestedConformance(unittest.TestCase):
         has_not = any(
             "not" in elem if isinstance(elem, dict) else False for elem in and_elements
         )
-        self.assertTrue(has_or or has_not)
+        self.assertTrue(has_or and has_not)
 
     def test_implicit_and_of_multiple_features(self):
         """Test implicit AND when multiple features at same level"""

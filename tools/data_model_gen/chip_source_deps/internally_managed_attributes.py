@@ -236,3 +236,6 @@ def generate_internally_managed_attributes(
         return True, None
     except Exception as e:
         return False, f"Error generating internally managed attributes: {str(e)}"
+    finally:
+        os.remove(temp_server_file)
+        os.remove(temp_zcl_file)

@@ -196,7 +196,7 @@ def generated_plugin_init_cb_cluster_mapping(
     """
     try:
         if not os.path.isfile(header_file_path):
-            logger.warn(f"File {header_file_path} does not exist")
+            logger.warning(f"File {header_file_path} does not exist")
             return False, f"File {header_file_path} does not exist"
 
         cluster_names = extract_cluster_names(header_file_path)
