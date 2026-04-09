@@ -19,16 +19,8 @@
 
 #include <descriptor.h>
 #include <on_off.h>
-#include <messages.h>
-#include <wake_on_lan.h>
-#include <channel.h>
-#include <target_navigator.h>
 #include <media_playback.h>
-#include <media_input.h>
-#include <low_power.h>
 #include <keypad_input.h>
-#include <audio_output.h>
-#include <content_control.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

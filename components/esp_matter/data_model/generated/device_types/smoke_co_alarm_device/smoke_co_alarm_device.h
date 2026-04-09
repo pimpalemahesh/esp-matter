@@ -19,11 +19,7 @@
 
 #include <descriptor.h>
 #include <identify.h>
-#include <groups.h>
 #include <smoke_co_alarm.h>
-#include <temperature_measurement.h>
-#include <relative_humidity_measurement.h>
-#include <carbon_monoxide_concentration_measurement.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

@@ -20,7 +20,6 @@
 #include <descriptor.h>
 #include <electrical_power_measurement.h>
 #include <electrical_energy_measurement.h>
-#include <commodity_metering.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

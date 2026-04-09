@@ -19,8 +19,6 @@
 
 #include <descriptor.h>
 #include <identify.h>
-#include <groups.h>
-#include <scenes_management.h>
 #include <door_lock.h>
 
 #include <esp_matter.h>

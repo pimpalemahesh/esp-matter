@@ -23,7 +23,6 @@
 #include <on_off.h>
 #include <level_control.h>
 #include <scenes_management.h>
-#include <occupancy_sensing.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

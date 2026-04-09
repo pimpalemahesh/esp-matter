@@ -18,11 +18,9 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <identify.h>
 #include <microwave_oven_mode.h>
 #include <microwave_oven_control.h>
 #include <operational_state.h>
-#include <fan_control.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

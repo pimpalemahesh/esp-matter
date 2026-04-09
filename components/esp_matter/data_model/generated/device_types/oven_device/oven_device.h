@@ -18,7 +18,6 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <identify.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

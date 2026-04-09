@@ -18,11 +18,7 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <power_source_configuration.h>
-#include <power_source.h>
 #include <bridged_device_basic_information.h>
-#include <administrator_commissioning.h>
-#include <ecosystem_information.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

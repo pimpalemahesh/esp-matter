@@ -18,7 +18,6 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <identify.h>
 #include <chime.h>
 
 #include <esp_matter.h>

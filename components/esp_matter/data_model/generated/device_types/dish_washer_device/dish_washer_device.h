@@ -18,11 +18,6 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <identify.h>
-#include <on_off.h>
-#include <temperature_control.h>
-#include <dish_washer_mode.h>
-#include <dish_washer_alarm.h>
 #include <operational_state.h>
 
 #include <esp_matter.h>

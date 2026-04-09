@@ -19,10 +19,7 @@
 
 #include <descriptor.h>
 #include <binding.h>
-#include <identify.h>
-#include <groups.h>
 #include <closure_control.h>
-#include <closure_dimension.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

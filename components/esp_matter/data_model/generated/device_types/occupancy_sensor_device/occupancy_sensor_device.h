@@ -19,7 +19,6 @@
 
 #include <descriptor.h>
 #include <identify.h>
-#include <boolean_state_configuration.h>
 #include <occupancy_sensing.h>
 
 #include <esp_matter.h>

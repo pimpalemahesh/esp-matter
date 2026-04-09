@@ -19,16 +19,8 @@
 
 #include <descriptor.h>
 #include <identify.h>
-#include <groups.h>
 #include <on_off.h>
-#include <scenes_management.h>
-#include <hepa_filter_monitoring.h>
-#include <activated_carbon_filter_monitoring.h>
 #include <thermostat.h>
-#include <fan_control.h>
-#include <thermostat_user_interface_configuration.h>
-#include <temperature_measurement.h>
-#include <relative_humidity_measurement.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

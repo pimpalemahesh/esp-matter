@@ -18,7 +18,6 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <identify.h>
 #include <water_heater_management.h>
 #include <water_heater_mode.h>
 #include <thermostat.h>

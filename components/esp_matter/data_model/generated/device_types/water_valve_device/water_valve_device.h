@@ -20,7 +20,6 @@
 #include <descriptor.h>
 #include <identify.h>
 #include <valve_configuration_and_control.h>
-#include <flow_measurement.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

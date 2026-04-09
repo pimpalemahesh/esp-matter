@@ -18,11 +18,7 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <oven_cavity_operational_state.h>
-#include <oven_mode.h>
-#include <refrigerator_and_temperature_controlled_cabinet_mode.h>
 #include <temperature_control.h>
-#include <temperature_measurement.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

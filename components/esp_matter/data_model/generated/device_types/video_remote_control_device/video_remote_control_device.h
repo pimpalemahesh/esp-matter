@@ -20,19 +20,8 @@
 #include <descriptor.h>
 #include <binding.h>
 #include <on_off.h>
-#include <level_control.h>
-#include <wake_on_lan.h>
-#include <channel.h>
-#include <target_navigator.h>
 #include <media_playback.h>
-#include <media_input.h>
-#include <low_power.h>
 #include <keypad_input.h>
-#include <content_launcher.h>
-#include <audio_output.h>
-#include <application_launcher.h>
-#include <account_login.h>
-#include <content_control.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

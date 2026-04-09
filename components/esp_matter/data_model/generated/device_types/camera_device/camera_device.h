@@ -19,14 +19,8 @@
 
 #include <descriptor.h>
 #include <binding.h>
-#include <identify.h>
-#include <occupancy_sensing.h>
-#include <zone_management.h>
 #include <camera_av_stream_management.h>
-#include <camera_av_settings_user_level_management.h>
 #include <webrtc_transport_provider.h>
-#include <webrtc_transport_requestor.h>
-#include <push_av_stream_transport.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

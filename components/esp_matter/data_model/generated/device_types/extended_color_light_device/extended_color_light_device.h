@@ -24,7 +24,6 @@
 #include <level_control.h>
 #include <scenes_management.h>
 #include <color_control.h>
-#include <occupancy_sensing.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

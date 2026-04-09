@@ -18,8 +18,6 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <window_covering.h>
-#include <closure_control.h>
 #include <closure_dimension.h>
 
 #include <esp_matter.h>

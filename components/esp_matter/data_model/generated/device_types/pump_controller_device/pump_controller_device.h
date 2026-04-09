@@ -20,14 +20,8 @@
 #include <descriptor.h>
 #include <binding.h>
 #include <identify.h>
-#include <groups.h>
 #include <on_off.h>
-#include <level_control.h>
-#include <scenes_management.h>
 #include <pump_configuration_and_control.h>
-#include <temperature_measurement.h>
-#include <pressure_measurement.h>
-#include <flow_measurement.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

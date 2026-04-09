@@ -18,9 +18,6 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <commodity_price.h>
-#include <electrical_grid_conditions.h>
-#include <commodity_tariff.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

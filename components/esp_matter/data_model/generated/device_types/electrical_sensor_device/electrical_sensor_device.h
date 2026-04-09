@@ -18,8 +18,6 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <electrical_power_measurement.h>
-#include <electrical_energy_measurement.h>
 #include <power_topology.h>
 
 #include <esp_matter.h>

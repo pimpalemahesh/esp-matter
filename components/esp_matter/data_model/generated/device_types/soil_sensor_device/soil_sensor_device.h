@@ -19,7 +19,6 @@
 
 #include <descriptor.h>
 #include <identify.h>
-#include <temperature_measurement.h>
 #include <soil_measurement.h>
 
 #include <esp_matter.h>

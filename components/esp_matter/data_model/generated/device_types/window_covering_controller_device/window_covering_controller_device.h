@@ -19,8 +19,6 @@
 
 #include <descriptor.h>
 #include <binding.h>
-#include <identify.h>
-#include <groups.h>
 #include <window_covering.h>
 
 #include <esp_matter.h>

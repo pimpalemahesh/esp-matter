@@ -19,7 +19,6 @@
 
 #include <descriptor.h>
 #include <identify.h>
-#include <thermostat_user_interface_configuration.h>
 #include <temperature_measurement.h>
 
 #include <esp_matter.h>

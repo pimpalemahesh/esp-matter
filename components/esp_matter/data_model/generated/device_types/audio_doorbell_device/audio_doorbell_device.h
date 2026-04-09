@@ -23,8 +23,6 @@
 #include <switch_cluster.h>
 #include <camera_av_stream_management.h>
 #include <webrtc_transport_provider.h>
-#include <webrtc_transport_requestor.h>
-#include <push_av_stream_transport.h>
 #include <chime.h>
 
 #include <esp_matter.h>

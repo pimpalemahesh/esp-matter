@@ -18,15 +18,9 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <channel.h>
-#include <target_navigator.h>
-#include <media_playback.h>
 #include <keypad_input.h>
-#include <content_launcher.h>
 #include <application_launcher.h>
 #include <application_basic.h>
-#include <account_login.h>
-#include <content_app_observer.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

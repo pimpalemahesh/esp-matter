@@ -18,9 +18,6 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <on_off.h>
-#include <temperature_control.h>
-#include <temperature_measurement.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

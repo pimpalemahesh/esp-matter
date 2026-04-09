@@ -19,7 +19,6 @@
 
 #include <descriptor.h>
 #include <ota_software_update_provider.h>
-#include <ota_software_update_requestor.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

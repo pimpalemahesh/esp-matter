@@ -19,8 +19,6 @@
 
 #include <descriptor.h>
 #include <device_energy_management.h>
-#include <device_energy_management_mode.h>
-#include <electrical_grid_conditions.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

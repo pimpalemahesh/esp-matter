@@ -20,7 +20,6 @@
 #include <descriptor.h>
 #include <identify.h>
 #include <boolean_state.h>
-#include <boolean_state_configuration.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

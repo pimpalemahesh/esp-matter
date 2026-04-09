@@ -202,8 +202,7 @@ def generate_internally_managed_attributes(
         zcl_success = get_attributes_from_zcl(zcl_json_path, temp_zcl_file)
 
         if not server_success and not zcl_success:
-            logger.error("Failed to generate attributes from both sources")
-            return False
+            return False, "Failed to generate attributes from both sources"
 
         server_attributes = {}
         zcl_attributes = {}

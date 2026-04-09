@@ -19,9 +19,6 @@
 
 #include <descriptor.h>
 #include <network_commissioning.h>
-#include <thread_network_diagnostics.h>
-#include <wi_fi_network_diagnostics.h>
-#include <ethernet_network_diagnostics.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

@@ -20,25 +20,13 @@
 #include <descriptor.h>
 #include <access_control.h>
 #include <basic_information.h>
-#include <localization_configuration.h>
-#include <time_format_localization.h>
-#include <unit_localization.h>
-#include <power_source_configuration.h>
 #include <general_commissioning.h>
 #include <network_commissioning.h>
-#include <diagnostic_logs.h>
 #include <general_diagnostics.h>
-#include <software_diagnostics.h>
-#include <thread_network_diagnostics.h>
-#include <wi_fi_network_diagnostics.h>
-#include <ethernet_network_diagnostics.h>
-#include <time_synchronization.h>
 #include <administrator_commissioning.h>
 #include <operational_credentials.h>
 #include <group_key_management.h>
 #include <icd_management.h>
-#include <tls_certificate_management.h>
-#include <tls_client_management.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

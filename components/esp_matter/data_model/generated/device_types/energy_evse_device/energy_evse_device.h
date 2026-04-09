@@ -18,10 +18,8 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <identify.h>
 #include <energy_evse.h>
 #include <energy_evse_mode.h>
-#include <temperature_measurement.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

@@ -18,9 +18,6 @@
 #include <esp_matter_data_model.h>
 
 #include <descriptor.h>
-#include <identify.h>
-#include <refrigerator_and_temperature_controlled_cabinet_mode.h>
-#include <refrigerator_alarm.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

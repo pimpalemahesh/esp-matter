@@ -19,10 +19,6 @@
 
 #include <descriptor.h>
 #include <identify.h>
-#include <groups.h>
-#include <on_off.h>
-#include <hepa_filter_monitoring.h>
-#include <activated_carbon_filter_monitoring.h>
 #include <fan_control.h>
 
 #include <esp_matter.h>

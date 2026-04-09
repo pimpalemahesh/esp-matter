@@ -20,18 +20,6 @@
 #include <descriptor.h>
 #include <identify.h>
 #include <air_quality.h>
-#include <temperature_measurement.h>
-#include <relative_humidity_measurement.h>
-#include <carbon_monoxide_concentration_measurement.h>
-#include <carbon_dioxide_concentration_measurement.h>
-#include <nitrogen_dioxide_concentration_measurement.h>
-#include <ozone_concentration_measurement.h>
-#include <pm2_5_concentration_measurement.h>
-#include <formaldehyde_concentration_measurement.h>
-#include <pm1_concentration_measurement.h>
-#include <pm10_concentration_measurement.h>
-#include <total_volatile_organic_compounds_concentration_measurement.h>
-#include <radon_concentration_measurement.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

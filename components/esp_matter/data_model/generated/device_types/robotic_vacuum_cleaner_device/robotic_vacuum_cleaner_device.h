@@ -20,9 +20,7 @@
 #include <descriptor.h>
 #include <identify.h>
 #include <rvc_run_mode.h>
-#include <rvc_clean_mode.h>
 #include <rvc_operational_state.h>
-#include <service_area.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

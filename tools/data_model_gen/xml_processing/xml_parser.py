@@ -22,6 +22,7 @@ from .device_parser import DeviceParser
 from .parse_context import load_cluster_parse_context
 from utils.helper import write_to_file
 from utils.exceptions import XmlParseError, ConfigurationError
+from .yaml_parser import YamlParser
 from utils.config import (
     FileNames,
     setup_logger,
@@ -90,6 +91,8 @@ def process_cluster_files(
         logger.error(f"No cluster XML files found in {input_dir}")
         return
 
+    yaml_parser = YamlParser(yaml_file_path)
+
     cluster_parser = ClusterParser()
     context = load_cluster_parse_context(output_dir)
     base_clusters = []
@@ -99,7 +102,7 @@ def process_cluster_files(
         cluster_list = cluster_parser.parse(
             file_path=file_path,
             output_dir=output_dir,
-            yaml_file_path=yaml_file_path,
+            yaml_parser=yaml_parser,
             context=context,
             root=root,
         )
@@ -116,7 +119,7 @@ def process_cluster_files(
             file_path=file_path,
             output_dir=output_dir,
             base_clusters=base_clusters,
-            yaml_file_path=yaml_file_path,
+            yaml_parser=yaml_parser,
             context=context,
             root=root,
         )

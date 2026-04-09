@@ -19,9 +19,7 @@
 
 #include <descriptor.h>
 #include <identify.h>
-#include <window_covering.h>
 #include <closure_control.h>
-#include <closure_dimension.h>
 
 #include <esp_matter.h>
 #include <esp_matter_core.h>

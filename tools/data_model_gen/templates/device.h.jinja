@@ -21,7 +21,7 @@
 {% if device.binding_cluster_available() %}
 #include <binding.h>
 {% endif %}
-{% for cluster in device.get_unique_clusters() %}
+{% for cluster in device.get_unique_mandatory_clusters() %}
 #include <{{ cluster.esp_name }}.h>
 {% endfor %}
 

@@ -37,7 +37,7 @@ class ClusterParser:
         self,
         file_path,
         output_dir: str,
-        yaml_file_path: str,
+        yaml_parser: YamlParser,
         base_clusters: list[Cluster] = None,
         context: ClusterParseContext = None,
         root=None,
@@ -47,7 +47,7 @@ class ClusterParser:
 
         :param file_path: The path to the cluster XML file (used for logging; for parsing if root is None).
         :param output_dir: The path to the output directory.
-        :param yaml_file_path: The path to the YAML file.
+        :param yaml_parser: The YAML parser.
         :param base_clusters: list[Cluster]:  (Default value = None)
         :param context: Pre-loaded metadata; if None, loaded from output_dir.
         :param root: Optional pre-parsed XML root element; if None, file_path is parsed.
@@ -83,7 +83,7 @@ class ClusterParser:
                 skip_command_cb = True
             cluster.skip_command_cb = skip_command_cb
             self._set_context_flags(cluster, context, skip_command_cb)
-            self._process_cluster_yaml(cluster, yaml_file_path)
+            self._process_cluster_yaml(cluster, yaml_parser)
 
             base_cluster = (
                 self._get_base_cluster(root, base_clusters) if base_clusters else None
@@ -260,11 +260,10 @@ class ClusterParser:
         ("CodeDrivenClusters", "is_migrated_cluster"),
     )
 
-    def _process_cluster_yaml(self, cluster, yaml_file_path: str):
+    def _process_cluster_yaml(self, cluster, yaml_parser: YamlParser):
         """Set cluster flags from YAML config: each list name maps to a cluster attribute."""
-        if not yaml_file_path:
+        if not yaml_parser:
             return
-        yaml_parser = YamlParser(yaml_file_path)
         cluster_name = safe_get_attr(cluster, "name")
         for list_name, attr_name in self._YAML_CLUSTER_FLAGS:
             if yaml_parser.is_present_in_list(list_name, cluster_name):
