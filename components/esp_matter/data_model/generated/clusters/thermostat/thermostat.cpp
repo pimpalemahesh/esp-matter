@@ -87,6 +87,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_occupied_heating_setpoint(cluster, config->occupied_heating_setpoint);
@@ -108,6 +109,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_occupied_cooling_setpoint(cluster, config->occupied_cooling_setpoint);
@@ -129,6 +131,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_occupancy(cluster, config->occupancy);
@@ -154,6 +157,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_occupied_setback(cluster, config->occupied_setback);
@@ -179,6 +183,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_min_setpoint_dead_band(cluster, config->min_setpoint_dead_band);
@@ -214,6 +219,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_number_of_schedules(cluster, config->number_of_schedules);

@@ -76,6 +76,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_auto_close_time(cluster, config->auto_close_time);
@@ -96,6 +97,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_current_level(cluster, config->current_level);

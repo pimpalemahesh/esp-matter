@@ -55,6 +55,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_local_time(cluster, config->local_time);
@@ -86,6 +87,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_default_ntp(cluster, config->default_ntp, sizeof(config->default_ntp));
@@ -108,6 +110,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_ntp_server_available(cluster, config->ntp_server_available);

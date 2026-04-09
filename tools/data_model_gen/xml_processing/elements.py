@@ -71,7 +71,7 @@ class Device(BaseDevice):
     def get_unique_clusters(self):
         unique_clusters_dict = {}
         for cluster in self.clusters:
-            cluster_id = cluster.get("id")
+            cluster_id = cluster.get_id()
             if cluster_id not in unique_clusters_dict:
                 unique_clusters_dict[cluster_id] = cluster
         unique_clusters = list(unique_clusters_dict.values())

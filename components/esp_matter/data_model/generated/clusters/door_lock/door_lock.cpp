@@ -285,6 +285,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_number_of_pin_users_supported(cluster, config->number_of_pin_users_supported);
@@ -310,6 +311,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_number_of_rfid_users_supported(cluster, config->number_of_rfid_users_supported);
@@ -334,6 +336,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_number_of_week_day_schedules_supported_per_user(cluster, config->number_of_week_day_schedules_supported_per_user);
@@ -358,6 +361,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_door_state(cluster, config->door_state);
@@ -379,6 +383,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_require_pin_for_remote_operation(cluster, config->require_pin_for_remote_operation);
@@ -399,6 +404,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnError((((feature_map & feature::pin_credential::get_id()) || (feature_map & feature::rfid_credential::get_id()))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
@@ -433,6 +439,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_number_of_year_day_schedules_supported_per_user(cluster, config->number_of_year_day_schedules_supported_per_user);
@@ -457,6 +464,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_number_of_holiday_schedules_supported(cluster, config->number_of_holiday_schedules_supported);

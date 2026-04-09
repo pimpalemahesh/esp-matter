@@ -13,6 +13,9 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster{% if has_config %}, config_t *config{% endif %})
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+{% if has_config %}
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
+{% endif %}
 {% if feature.get_conformance_condition() %}
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnError({{ feature.get_conformance_condition() }}, ESP_ERR_INVALID_ARG);
@@ -42,7 +45,7 @@ esp_err_t add(cluster_t *cluster{% if has_config %}, config_t *config{% endif %}
 {% endif %}
     event::create_{{ event.func_name }}(cluster);
 {% if event.has_special_config() %}
-#if {{ event.get_special_config() }}
+#endif // {{ event.get_special_config() }}
 {% endif %}
     {% endfor %}
     {% set elements = cluster.get_destroyable_elements(feature.func_name) %}

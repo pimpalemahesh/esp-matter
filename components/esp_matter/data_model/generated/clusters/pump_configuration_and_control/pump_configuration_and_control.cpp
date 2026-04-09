@@ -54,6 +54,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_min_const_pressure(cluster, config->min_const_pressure);
@@ -75,6 +76,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_min_comp_pressure(cluster, config->min_comp_pressure);
@@ -96,6 +98,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_min_const_flow(cluster, config->min_const_flow);
@@ -117,6 +120,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_min_const_speed(cluster, config->min_const_speed);
@@ -138,6 +142,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_min_const_temp(cluster, config->min_const_temp);
@@ -159,6 +164,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_min_const_pressure(cluster, config->min_const_pressure);

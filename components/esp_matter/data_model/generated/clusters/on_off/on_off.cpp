@@ -120,6 +120,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnError(!(feature_map & feature::off_only::get_id()), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());

@@ -65,6 +65,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_temperature_setpoint(cluster, config->temperature_setpoint);
@@ -87,6 +88,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_selected_temperature_level(cluster, config->selected_temperature_level);
@@ -108,6 +110,7 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster, config_t *config)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnError(feature_map & feature::temperature_number::get_id(), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());

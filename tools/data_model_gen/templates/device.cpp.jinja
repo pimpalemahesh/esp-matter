@@ -119,7 +119,7 @@ cluster::{{ cluster.func_name }}::feature::{{ mandatory_feature.func_name }}::ge
     {% if cluster.device_mandatory_commands | length > 0 %}
     {% for mandatory_command in cluster.device_mandatory_commands %}
 {% if mandatory_command.has_special_config() %}
-#if {{ mandatory_command.get_special_config() }}
+#endif {{ mandatory_command.get_special_config() }}
 {% endif %}
     cluster::{{ cluster.esp_name }}::command::create_{{ mandatory_command.func_name }}({{cluster.esp_name}});
 {% if mandatory_command.has_special_config() %}
