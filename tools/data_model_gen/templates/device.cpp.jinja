@@ -56,6 +56,9 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     {% for cluster in device.get_clusters() %}
     {% if cluster.is_mandatory %}
 {% if cluster.has_special_config() %}
+{% if cluster.esp_name == "network_commissioning" or cluster.esp_name == "secondary_network_interface" %}
+#ifndef CONFIG_CUSTOM_NETWORK_CONFIG
+{% endif %}
 #if {{ cluster.get_special_config() }}
 {% endif %}
     {% if cluster.esp_name == "network_commissioning" %}
@@ -144,6 +147,9 @@ cluster::{{ cluster.func_name }}::feature::{{ mandatory_feature.func_name }}::ge
     {% else %}
     cluster::{{ cluster.esp_name }}::create(endpoint, NULL, {{ cluster.function_flags }});
     {% endif %}
+{% if cluster.esp_name == "network_commissioning" %}
+#endif // CONFIG_CUSTOM_NETWORK_CONFIG
+{% endif %}
 {% if cluster.has_special_config() %}
 #endif // {{ cluster.get_special_config() }}
 {% endif %}

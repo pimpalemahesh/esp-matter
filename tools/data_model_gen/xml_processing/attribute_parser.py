@@ -117,7 +117,7 @@ class AttributeParser(ClusterElementBaseParser):
         if self.cluster.is_migrated_cluster:
             attr.internally_managed = False
             return
-        if should_skip_internally_managed_flag(self.cluster.esp_name, attr.func_name):
+        if should_skip_internally_managed_flag(self.cluster.id, attr.id):
             attr.internally_managed = False
         elif (
             attr.name and attr.name.lower() in self.managed_attributes

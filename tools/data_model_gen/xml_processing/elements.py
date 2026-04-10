@@ -29,7 +29,8 @@ from utils.overrides import (
     should_skip_plugin_callback,
     should_include_delegate_callback,
 )
-from utils.helper import safe_get_attr, convert_to_int
+from utils.conversion_utils import convert_to_int
+from utils.helper import safe_get_attr
 from .serializers import (
     DeviceSerializer,
     EventSerializer,
@@ -210,7 +211,7 @@ class Command(BaseCommand):
             return False
 
         # If command is in the skip list, then it doesn't need a callback
-        if should_skip_command_callback(self.name):
+        if should_skip_command_callback(self.id):
             return False
 
         # Skip callbacks for client-bound commands
@@ -485,7 +486,7 @@ class Cluster(BaseCluster):
     def get_plugin_server_init_callback(self):
         """Get the plugin server init callback for the cluster"""
         if not self.plugin_init_cb_available or should_skip_plugin_callback(
-            self.esp_name
+            self.id
         ):
             return None
         if "_cluster" in self.name.lower():
@@ -497,10 +498,10 @@ class Cluster(BaseCluster):
     def get_delegate_init_callback(self):
         """Get the delegate init callback for the cluster"""
         if self.delegate_init_callback_available and not should_skip_delegate_callback(
-            self.esp_name
+            self.id
         ):
             return f"{self.chip_name}DelegateInitCB"
-        if should_include_delegate_callback(self.esp_name):
+        if should_include_delegate_callback(self.id):
             return f"{self.chip_name}DelegateInitCB"
         return None
 

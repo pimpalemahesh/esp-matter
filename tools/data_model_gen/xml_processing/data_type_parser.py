@@ -16,7 +16,8 @@ from typing import Dict
 from xml.etree.ElementTree import Element
 
 from .attribute_type import attribute_types
-from utils.helper import safe_get_attr, convert_to_int
+from utils.conversion_utils import convert_to_int
+from utils.helper import safe_get_attr
 from utils.exceptions import XmlParseError
 
 logger = logging.getLogger(__name__)

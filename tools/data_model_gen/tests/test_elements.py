@@ -300,7 +300,7 @@ class TestCluster(unittest.TestCase):
         self.assertIn("MatterOnOffPluginServerInitCallback", cb)
 
     def test_plugin_server_init_callback_skip(self):
-        c = self._make_cluster(name="ICD Management")
+        c = self._make_cluster(name="ICD Management", id="0x0046")
         c.plugin_init_cb_available = True
         cb = c.get_plugin_server_init_callback()
         self.assertIsNone(cb)

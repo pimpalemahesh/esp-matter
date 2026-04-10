@@ -16,7 +16,7 @@ import os
 import re
 import logging
 
-from utils.helper import format_hex_value, is_hex_value
+from utils.conversion_utils import format_hex_value, is_hex_value
 from chip_source_deps.server_files_config import (
     ATTRIBUTE_PATTERN,
     COMMAND_PATTERN,

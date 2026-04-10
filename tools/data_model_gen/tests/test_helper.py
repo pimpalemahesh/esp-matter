@@ -27,10 +27,6 @@ from utils.helper import (
     convert_to_snake_case,
     check_valid_id,
     safe_get_attr,
-    hex_to_int,
-    is_hex_value,
-    format_hex_value,
-    convert_to_int,
     write_to_file,
 )
 
@@ -163,95 +159,6 @@ class TestSafeGetAttr(unittest.TestCase):
 
     def test_none_object_with_default(self):
         self.assertEqual(safe_get_attr(None, "x", 99), 99)
-
-
-class TestHexToInt(unittest.TestCase):
-    """Test hex_to_int() — hex string to integer conversion."""
-
-    def test_hex_string(self):
-        self.assertEqual(hex_to_int("0x0A"), 10)
-
-    def test_int_passthrough(self):
-        self.assertEqual(hex_to_int(42), 42)
-
-    def test_list_conversion(self):
-        result = hex_to_int(["0x01", "0x0A"])
-        self.assertEqual(result, [1, 10])
-
-    def test_non_hex_string(self):
-        self.assertEqual(hex_to_int("FF"), 255)
-
-    def test_other_type(self):
-        self.assertIsNone(hex_to_int(None))
-
-
-class TestIsHexValue(unittest.TestCase):
-    """Test is_hex_value() — hex string validation."""
-
-    def test_valid_hex_with_prefix(self):
-        self.assertTrue(is_hex_value("0x0001"))
-
-    def test_valid_hex_without_prefix(self):
-        self.assertTrue(is_hex_value("FF"))
-
-    def test_invalid_hex(self):
-        self.assertFalse(is_hex_value("0xGGGG"))
-
-    def test_decimal_as_hex(self):
-        self.assertTrue(is_hex_value("123"))
-
-
-class TestFormatHexValue(unittest.TestCase):
-    """Test format_hex_value() — normalize hex formatting."""
-
-    def test_long_hex(self):
-        self.assertEqual(format_hex_value("0x00000001"), "0x0001")
-
-    def test_short_hex(self):
-        self.assertEqual(format_hex_value("0x01"), "0x0001")
-
-    def test_already_formatted(self):
-        self.assertEqual(format_hex_value("0x0001"), "0x0001")
-
-    def test_large_value(self):
-        self.assertEqual(format_hex_value("0xFFFF"), "0xFFFF")
-
-    def test_non_hex(self):
-        self.assertEqual(format_hex_value("hello"), "hello")
-
-    def test_none(self):
-        self.assertIsNone(format_hex_value(None))
-
-
-class TestConvertToInt(unittest.TestCase):
-    """Test convert_to_int() — flexible integer conversion."""
-
-    def test_hex_string(self):
-        self.assertEqual(convert_to_int("0x0A"), 10)
-
-    def test_decimal_string(self):
-        self.assertEqual(convert_to_int("200"), 200)
-
-    def test_int_passthrough(self):
-        self.assertEqual(convert_to_int(42), 42)
-
-    def test_none_returns_default(self):
-        self.assertEqual(convert_to_int(None, default=0), 0)
-
-    def test_none_returns_none(self):
-        self.assertIsNone(convert_to_int(None))
-
-    def test_invalid_string_returns_default(self):
-        self.assertEqual(convert_to_int("abc", default=0), 0)
-
-    def test_float_returns_default(self):
-        self.assertIsNone(convert_to_int(3.14))
-
-    def test_zero(self):
-        self.assertEqual(convert_to_int("0"), 0)
-
-    def test_negative(self):
-        self.assertEqual(convert_to_int("-5"), -5)
 
 
 class TestWriteToFile(unittest.TestCase):

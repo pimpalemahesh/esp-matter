@@ -131,7 +131,7 @@ class ClusterParser:
 
     def _set_context_flags(self, cluster, context, skip_command_cb=False):
         cluster.skip_command_cb = (
-            skip_command_cb or should_skip_cluster_command_callbacks(cluster.esp_name)
+            skip_command_cb or should_skip_cluster_command_callbacks(cluster.id)
         )
         if cluster.esp_name in context.delegate_clusters:
             cluster.delegate_init_callback_available = True

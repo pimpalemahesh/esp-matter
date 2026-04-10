@@ -15,6 +15,7 @@ import json
 import re
 import logging
 
+from utils.conversion_utils import is_hex_value
 from utils.overrides import normalize_element_name
 
 logger = logging.getLogger(__name__)
@@ -100,76 +101,6 @@ def safe_get_attr(obj, attr_name, default=None):
         The attribute value if it exists, otherwise the default value
     """
     return getattr(obj, attr_name, default) if obj else default
-
-
-def hex_to_int(value):
-    """Convert a hex string to an integer.
-
-    Args:
-        value: The value to convert
-    Returns:
-        The converted value
-    """
-    if isinstance(value, list):
-        return [hex_to_int(v) for v in value]
-    if isinstance(value, int):
-        return value
-    if isinstance(value, str):
-        return int(value, 16)
-    return value
-
-
-def is_hex_value(value):
-    """Check if a value is a valid hex value e.g. 0x0001
-
-    Args:
-        value: The value to check
-    Returns:
-        True if the value is a valid hex value, False otherwise
-    """
-    try:
-        int(value, 16)
-        return True
-    except ValueError:
-        return False
-
-
-def format_hex_value(hex_value):
-    """Format a hex value by removing unnecessary leading zeros e.g. 0x00000001 -> 0x0001
-
-    Args:
-        hex_value: The hex value to format
-    Returns:
-        Formatted hex value (e.g., "0x0001")
-    """
-    if hex_value and hex_value.startswith("0x"):
-        int_value = int(hex_value, 16)
-        return f"0x{int_value:04X}"
-    return hex_value
-
-
-def convert_to_int(value, default=None):
-    """Convert a value to an integer.
-
-    Args:
-        value: The value to convert
-        default: The default value to return if the value is not a valid integer
-    Returns:
-        The converted value or None if the value is not a valid integer
-    """
-    if value is None:
-        return default
-    try:
-        if isinstance(value, str) and value.startswith("0x"):
-            return int(value, 16)
-        elif isinstance(value, str):
-            return int(value)
-        elif isinstance(value, int):
-            return value
-        else:
-            return default
-    except ValueError:
-        return default
 
 
 def write_to_file(file_path, data, type="default") -> bool:

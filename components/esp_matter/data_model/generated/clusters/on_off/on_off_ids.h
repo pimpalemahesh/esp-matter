@@ -38,7 +38,7 @@ inline constexpr uint32_t Id = 0x4;
 namespace attribute {
 namespace OnOff {
 inline constexpr uint32_t Id = 0x0000;
-} /* On/Off */
+} /* OnOff */
 namespace GlobalSceneControl {
 inline constexpr uint32_t Id = 0x4000;
 } /* GlobalSceneControl */

@@ -20,7 +20,7 @@ import json
 import os
 
 from utils.config import FileNames
-from utils.helper import hex_to_int
+from utils.conversion_utils import hex_to_int
 
 
 def load_cluster_parse_context(output_dir: str):

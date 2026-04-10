@@ -64,6 +64,7 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     config->network_commissioning.feature_flags |= cluster::network_commissioning::feature::ethernet_network_interface::get_id();
 #endif
     cluster::network_commissioning::create(endpoint, &(config->network_commissioning), CLUSTER_FLAG_SERVER);
+#endif // CONFIG_CUSTOM_NETWORK_CONFIG
     cluster::general_diagnostics::create(endpoint, &(config->general_diagnostics), CLUSTER_FLAG_SERVER);
     cluster::administrator_commissioning::create(endpoint, &(config->administrator_commissioning), CLUSTER_FLAG_SERVER);
     cluster::operational_credentials::create(endpoint, &(config->operational_credentials), CLUSTER_FLAG_SERVER);

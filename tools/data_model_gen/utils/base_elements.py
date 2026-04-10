@@ -36,9 +36,9 @@ class BaseElement(ABC):
     def __init__(self, name, id, element_type):
         assert name, "Name is required"
         self.element_type = element_type
+        self.id = id
         self.name = self._process_name(name)
         self.name = name.replace(" ", "_")
-        self.id = id
         self.esp_name = esp_name(name)
         self.chip_name = chip_name(name)
         self.func_name = convert_to_snake_case(name)
@@ -53,7 +53,9 @@ class BaseElement(ABC):
         if name and is_cpp_reserved_word(name.lower()):
             name = f"{name}_{self.element_type}"
         if name:
-            name = normalize_cluster_display_name(name)
+            name = normalize_cluster_display_name(
+                name, cluster_id=self.id if self.element_type == "Cluster" else None
+            )
             name = normalize_element_name(name)
         return name
 
@@ -70,8 +72,10 @@ class BaseClusterElement(BaseElement):
     def __init__(self, name, id, is_mandatory, element_type):
         if name and is_cpp_reserved_word(name):
             name = f"{name}_{element_type}"
-        if name:
-            name = normalize_cluster_display_name(name)
+        if name and element_type == "Cluster":
+            name = normalize_cluster_display_name(
+                name, cluster_id=id if element_type == "Cluster" else None
+            )
         super().__init__(name=name, id=id, element_type=element_type)
         self.is_mandatory = is_mandatory
 
@@ -106,7 +110,7 @@ class BaseFeature(BaseClusterElement):
     """Base class for features"""
 
     def __init__(self, name, id, is_mandatory):
-        name = normalize_feature_name(name)
+        name = normalize_feature_name(name, feature_id=id)
         super().__init__(name=name, id=id, is_mandatory=is_mandatory, element_type="Feature")
 
     @abstractmethod
@@ -174,7 +178,7 @@ class BaseDevice(BaseElement):
     """Base class for devices"""
 
     def __init__(self, name, id, revision):
-        name = normalize_device_type_name(name)
+        name = normalize_device_type_name(name, device_id=id)
         super().__init__(name=name, id=id, element_type="Device")
         self.filename = self.esp_name + "_device"
         self.revision = revision
