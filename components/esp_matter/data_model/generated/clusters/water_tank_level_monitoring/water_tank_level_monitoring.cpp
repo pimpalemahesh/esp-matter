@@ -101,7 +101,7 @@ namespace attribute {
 attribute_t *create_condition(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::condition::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(condition), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, Condition::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(254));
     return attribute;
@@ -110,7 +110,7 @@ attribute_t *create_condition(cluster_t *cluster, uint8_t value)
 attribute_t *create_degradation_direction(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::condition::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(condition), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, DegradationDirection::Id, ATTRIBUTE_FLAG_NONE, esp_matter_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_enum8(0), esp_matter_enum8(1));
     return attribute;
@@ -138,7 +138,7 @@ attribute_t *create_last_changed_time(cluster_t *cluster, nullable<uint32_t> val
 attribute_t *create_replacement_product_list(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::replacement_product_list::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(replacement_product_list), NULL);
     return esp_matter::attribute::create(cluster, ReplacementProductList::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 

@@ -160,7 +160,7 @@ attribute_t *create_charging_enabled_until(cluster_t *cluster, nullable<uint32_t
 attribute_t *create_discharging_enabled_until(cluster_t *cluster, nullable<uint32_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::v_2_x::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(v_2_x), NULL);
     return esp_matter::attribute::create(cluster, DischargingEnabledUntil::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint32(value));
 }
 
@@ -182,7 +182,7 @@ attribute_t *create_maximum_charge_current(cluster_t *cluster, int64_t value)
 attribute_t *create_maximum_discharge_current(cluster_t *cluster, int64_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::v_2_x::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(v_2_x), NULL);
     return esp_matter::attribute::create(cluster, MaximumDischargeCurrent::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_int64(value));
 }
 
@@ -199,28 +199,28 @@ attribute_t *create_randomization_delay_window(cluster_t *cluster, uint32_t valu
 attribute_t *create_next_charge_start_time(cluster_t *cluster, nullable<uint32_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::charging_preferences::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(charging_preferences), NULL);
     return esp_matter::attribute::create(cluster, NextChargeStartTime::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
 }
 
 attribute_t *create_next_charge_target_time(cluster_t *cluster, nullable<uint32_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::charging_preferences::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(charging_preferences), NULL);
     return esp_matter::attribute::create(cluster, NextChargeTargetTime::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint32(value));
 }
 
 attribute_t *create_next_charge_required_energy(cluster_t *cluster, nullable<int64_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::charging_preferences::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(charging_preferences), NULL);
     return esp_matter::attribute::create(cluster, NextChargeRequiredEnergy::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_int64(value));
 }
 
 attribute_t *create_next_charge_target_soc(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::charging_preferences::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(charging_preferences), NULL);
     return esp_matter::attribute::create(cluster, NextChargeTargetSoC::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint8(value));
 }
 
@@ -232,21 +232,21 @@ attribute_t *create_approximate_ev_efficiency(cluster_t *cluster, nullable<uint1
 attribute_t *create_state_of_charge(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::so_c_reporting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(so_c_reporting), NULL);
     return esp_matter::attribute::create(cluster, StateOfCharge::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint8(value));
 }
 
 attribute_t *create_battery_capacity(cluster_t *cluster, nullable<int64_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::so_c_reporting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(so_c_reporting), NULL);
     return esp_matter::attribute::create(cluster, BatteryCapacity::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_int64(value));
 }
 
 attribute_t *create_vehicle_id(cluster_t *cluster, char *value, uint16_t length)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::plug_and_charge::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(plug_and_charge), NULL);
     return esp_matter::attribute::create(cluster, VehicleID::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_char_str(value, length));
 }
 
@@ -268,7 +268,7 @@ attribute_t *create_session_energy_charged(cluster_t *cluster, nullable<int64_t>
 attribute_t *create_session_energy_discharged(cluster_t *cluster, nullable<int64_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::v_2_x::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(v_2_x), NULL);
     return esp_matter::attribute::create(cluster, SessionEnergyDischarged::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_int64(value));
 }
 
@@ -277,7 +277,7 @@ namespace command {
 command_t *create_get_targets_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::charging_preferences::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(charging_preferences), NULL);
     return esp_matter::command::create(cluster, GetTargetsResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
@@ -294,7 +294,7 @@ command_t *create_enable_charging(cluster_t *cluster)
 command_t *create_enable_discharging(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::v_2_x::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(v_2_x), NULL);
     return esp_matter::command::create(cluster, EnableDischarging::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
@@ -306,21 +306,21 @@ command_t *create_start_diagnostics(cluster_t *cluster)
 command_t *create_set_targets(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::charging_preferences::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(charging_preferences), NULL);
     return esp_matter::command::create(cluster, SetTargets::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_get_targets(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::charging_preferences::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(charging_preferences), NULL);
     return esp_matter::command::create(cluster, GetTargets::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_clear_targets(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::charging_preferences::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(charging_preferences), NULL);
     return esp_matter::command::create(cluster, ClearTargets::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 

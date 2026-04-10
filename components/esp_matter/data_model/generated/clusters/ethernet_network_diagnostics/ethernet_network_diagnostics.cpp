@@ -108,7 +108,7 @@ attribute_t *create_full_duplex(cluster_t *cluster, nullable<bool> value)
 attribute_t *create_packet_rx_count(cluster_t *cluster, uint64_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::packet_counts::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(packet_counts), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, PacketRxCount::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
@@ -117,7 +117,7 @@ attribute_t *create_packet_rx_count(cluster_t *cluster, uint64_t value)
 attribute_t *create_packet_tx_count(cluster_t *cluster, uint64_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::packet_counts::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(packet_counts), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, PacketTxCount::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
@@ -126,7 +126,7 @@ attribute_t *create_packet_tx_count(cluster_t *cluster, uint64_t value)
 attribute_t *create_tx_err_count(cluster_t *cluster, uint64_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::error_counts::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(error_counts), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, TxErrCount::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
@@ -135,7 +135,7 @@ attribute_t *create_tx_err_count(cluster_t *cluster, uint64_t value)
 attribute_t *create_collision_count(cluster_t *cluster, uint64_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::error_counts::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(error_counts), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CollisionCount::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
@@ -144,7 +144,7 @@ attribute_t *create_collision_count(cluster_t *cluster, uint64_t value)
 attribute_t *create_overrun_count(cluster_t *cluster, uint64_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::error_counts::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(error_counts), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, OverrunCount::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
@@ -167,7 +167,7 @@ namespace command {
 command_t *create_reset_counts(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::packet_counts::get_id()) || (feature_map & feature::error_counts::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(packet_counts)) || (has_feature(error_counts))), NULL);
     return esp_matter::command::create(cluster, ResetCounts::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 

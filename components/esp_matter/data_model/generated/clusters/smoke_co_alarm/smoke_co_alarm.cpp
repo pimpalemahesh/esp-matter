@@ -110,7 +110,7 @@ attribute_t *create_expressed_state(cluster_t *cluster, uint8_t value)
 attribute_t *create_smoke_state(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::smoke_alarm::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(smoke_alarm), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, SmokeState::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_enum8(0), esp_matter_enum8(2));
     return attribute;
@@ -119,7 +119,7 @@ attribute_t *create_smoke_state(cluster_t *cluster, uint8_t value)
 attribute_t *create_co_state(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::co_alarm::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(co_alarm), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, COState::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_enum8(0), esp_matter_enum8(2));
     return attribute;
@@ -204,14 +204,14 @@ namespace event {
 event_t *create_smoke_alarm(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::smoke_alarm::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(smoke_alarm), NULL);
     return esp_matter::event::create(cluster, SmokeAlarm::Id);
 }
 
 event_t *create_co_alarm(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::co_alarm::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(co_alarm), NULL);
     return esp_matter::event::create(cluster, COAlarm::Id);
 }
 

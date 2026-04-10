@@ -93,21 +93,21 @@ attribute_t *create_heat_demand(cluster_t *cluster, uint8_t value)
 attribute_t *create_tank_volume(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::energy_management::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(energy_management), NULL);
     return esp_matter::attribute::create(cluster, TankVolume::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint16(value));
 }
 
 attribute_t *create_estimated_heat_required(cluster_t *cluster, int64_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::energy_management::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(energy_management), NULL);
     return esp_matter::attribute::create(cluster, EstimatedHeatRequired::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_int64(value));
 }
 
 attribute_t *create_tank_percentage(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::tank_percent::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(tank_percent), NULL);
     return esp_matter::attribute::create(cluster, TankPercentage::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint8(value));
 }
 

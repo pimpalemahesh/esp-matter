@@ -90,7 +90,7 @@ attribute_t *create_current_heap_used(cluster_t *cluster, uint64_t value)
 attribute_t *create_current_heap_high_watermark(cluster_t *cluster, uint64_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::watermarks::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(watermarks), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CurrentHeapHighWatermark::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint64(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint64(0), esp_matter_uint64(4294967294));
     return attribute;
@@ -101,7 +101,7 @@ namespace command {
 command_t *create_reset_watermarks(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::watermarks::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(watermarks), NULL);
     return esp_matter::command::create(cluster, ResetWatermarks::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 

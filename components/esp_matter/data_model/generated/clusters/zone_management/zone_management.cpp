@@ -71,13 +71,8 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::two_dimensional_cartesian_zone::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(two_dimensional_cartesian_zone), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
-    attribute_t *sensitivity =
-        esp_matter::attribute::get(cluster, attribute::Sensitivity::Id);
-    if (sensitivity) {
-        esp_matter::attribute::destroy(cluster, sensitivity);
-    }
 
     return ESP_OK;
 }
@@ -93,7 +88,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::two_dimensional_cartesian_zone::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(two_dimensional_cartesian_zone), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_max_user_defined_zones(cluster, 0);
     command::create_create_two_d_cartesian_zone(cluster);
@@ -115,7 +110,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::user_defined::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(user_defined), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
 
     return ESP_OK;
@@ -128,7 +123,7 @@ namespace attribute {
 attribute_t *create_max_user_defined_zones(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user_defined::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user_defined), NULL);
     return esp_matter::attribute::create(cluster, MaxUserDefinedZones::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint8(value));
 }
 
@@ -155,14 +150,14 @@ attribute_t *create_sensitivity_max(cluster_t *cluster, uint8_t value)
 attribute_t *create_sensitivity(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(!(feature_map & feature::per_zone_sensitivity::get_id()), NULL);
+    VerifyOrReturnValue(!(has_feature(per_zone_sensitivity)), NULL);
     return esp_matter::attribute::create(cluster, Sensitivity::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint8(value));
 }
 
 attribute_t *create_two_d_cartesian_max(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::two_dimensional_cartesian_zone::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(two_dimensional_cartesian_zone), NULL);
     return esp_matter::attribute::create(cluster, TwoDCartesianMax::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
@@ -171,28 +166,28 @@ namespace command {
 command_t *create_create_two_d_cartesian_zone(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::two_dimensional_cartesian_zone::get_id()) && (feature_map & feature::user_defined::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(two_dimensional_cartesian_zone)) && (has_feature(user_defined))), NULL);
     return esp_matter::command::create(cluster, CreateTwoDCartesianZone::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_create_two_d_cartesian_zone_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::two_dimensional_cartesian_zone::get_id()) && (feature_map & feature::user_defined::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(two_dimensional_cartesian_zone)) && (has_feature(user_defined))), NULL);
     return esp_matter::command::create(cluster, CreateTwoDCartesianZoneResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_update_two_d_cartesian_zone(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::two_dimensional_cartesian_zone::get_id()) && (feature_map & feature::user_defined::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(two_dimensional_cartesian_zone)) && (has_feature(user_defined))), NULL);
     return esp_matter::command::create(cluster, UpdateTwoDCartesianZone::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_remove_zone(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user_defined::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user_defined), NULL);
     return esp_matter::command::create(cluster, RemoveZone::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 

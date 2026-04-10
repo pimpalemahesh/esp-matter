@@ -93,7 +93,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::received_confirmation::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(received_confirmation), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
 
     return ESP_OK;
@@ -110,7 +110,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::received_confirmation::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(received_confirmation), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
 
     return ESP_OK;

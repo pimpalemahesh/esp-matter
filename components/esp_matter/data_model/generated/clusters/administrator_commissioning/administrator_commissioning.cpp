@@ -93,7 +93,7 @@ command_t *create_open_commissioning_window(cluster_t *cluster)
 command_t *create_open_basic_commissioning_window(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::basic::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(basic), NULL);
     return esp_matter::command::create(cluster, OpenBasicCommissioningWindow::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 

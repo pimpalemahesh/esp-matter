@@ -84,7 +84,7 @@ attribute_t *create_protocol_version(cluster_t *cluster, char *value, uint16_t l
 attribute_t *create_power_threshold(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::power_threshold::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(power_threshold), NULL);
     return esp_matter::attribute::create(cluster, PowerThreshold::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 

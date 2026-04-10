@@ -77,7 +77,7 @@ attribute_t *create_mask(cluster_t *cluster, uint32_t value)
 attribute_t *create_latch(cluster_t *cluster, uint32_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::reset::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(reset), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, Latch::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bitmap32(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap32(0), esp_matter_bitmap32(4294967295));
     return attribute;
@@ -102,7 +102,7 @@ namespace command {
 command_t *create_reset(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::reset::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(reset), NULL);
     return esp_matter::command::create(cluster, Reset::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 

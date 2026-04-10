@@ -113,7 +113,7 @@ attribute_t *create_start_up_mode(cluster_t *cluster, nullable<uint8_t> value)
 attribute_t *create_on_mode(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::on_off::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(on_off), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, OnMode::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint8(0), esp_matter_nullable_uint8(254));
     return attribute;

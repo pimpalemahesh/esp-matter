@@ -276,7 +276,7 @@ attribute_t *create_outdoor_temperature(cluster_t *cluster, nullable<int16_t> va
 attribute_t *create_occupancy(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::occupancy::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(occupancy), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, Occupancy::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bitmap8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap8(0), esp_matter_bitmap8(1));
     return attribute;
@@ -334,7 +334,7 @@ attribute_t *create_local_temperature_calibration(cluster_t *cluster, int8_t val
 attribute_t *create_occupied_cooling_setpoint(cluster_t *cluster, int16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::cooling::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(cooling), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, OccupiedCoolingSetpoint::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_int16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_int16(-32768), esp_matter_int16(32766));
     return attribute;
@@ -343,7 +343,7 @@ attribute_t *create_occupied_cooling_setpoint(cluster_t *cluster, int16_t value)
 attribute_t *create_occupied_heating_setpoint(cluster_t *cluster, int16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::heating::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(heating), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, OccupiedHeatingSetpoint::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_int16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_int16(-32768), esp_matter_int16(32766));
     return attribute;
@@ -352,7 +352,7 @@ attribute_t *create_occupied_heating_setpoint(cluster_t *cluster, int16_t value)
 attribute_t *create_unoccupied_cooling_setpoint(cluster_t *cluster, int16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::cooling::get_id()) && (feature_map & feature::occupancy::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(cooling)) && (has_feature(occupancy))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, UnoccupiedCoolingSetpoint::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_int16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_int16(-32768), esp_matter_int16(32766));
     return attribute;
@@ -361,7 +361,7 @@ attribute_t *create_unoccupied_cooling_setpoint(cluster_t *cluster, int16_t valu
 attribute_t *create_unoccupied_heating_setpoint(cluster_t *cluster, int16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::heating::get_id()) && (feature_map & feature::occupancy::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(heating)) && (has_feature(occupancy))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, UnoccupiedHeatingSetpoint::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_int16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_int16(-32768), esp_matter_int16(32766));
     return attribute;
@@ -398,7 +398,7 @@ attribute_t *create_max_cool_setpoint_limit(cluster_t *cluster, int16_t value)
 attribute_t *create_min_setpoint_dead_band(cluster_t *cluster, int8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::auto_mode::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(auto_mode), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, MinSetpointDeadBand::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_int8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_int8(0), esp_matter_int8(127));
     return attribute;
@@ -484,7 +484,7 @@ attribute_t *create_setpoint_change_source_timestamp(cluster_t *cluster, uint32_
 attribute_t *create_occupied_setback(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::setback::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(setback), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, OccupiedSetback::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint8(0), esp_matter_nullable_uint8(254));
     return attribute;
@@ -493,7 +493,7 @@ attribute_t *create_occupied_setback(cluster_t *cluster, nullable<uint8_t> value
 attribute_t *create_occupied_setback_min(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::setback::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(setback), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, OccupiedSetbackMin::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint8(0), esp_matter_nullable_uint8(254));
     return attribute;
@@ -502,7 +502,7 @@ attribute_t *create_occupied_setback_min(cluster_t *cluster, nullable<uint8_t> v
 attribute_t *create_occupied_setback_max(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::setback::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(setback), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, OccupiedSetbackMax::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint8(0), esp_matter_nullable_uint8(254));
     return attribute;
@@ -511,7 +511,7 @@ attribute_t *create_occupied_setback_max(cluster_t *cluster, nullable<uint8_t> v
 attribute_t *create_unoccupied_setback(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::setback::get_id()) && (feature_map & feature::occupancy::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(setback)) && (has_feature(occupancy))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, UnoccupiedSetback::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint8(0), esp_matter_nullable_uint8(254));
     return attribute;
@@ -520,7 +520,7 @@ attribute_t *create_unoccupied_setback(cluster_t *cluster, nullable<uint8_t> val
 attribute_t *create_unoccupied_setback_min(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::setback::get_id()) && (feature_map & feature::occupancy::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(setback)) && (has_feature(occupancy))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, UnoccupiedSetbackMin::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint8(0), esp_matter_nullable_uint8(254));
     return attribute;
@@ -529,7 +529,7 @@ attribute_t *create_unoccupied_setback_min(cluster_t *cluster, nullable<uint8_t>
 attribute_t *create_unoccupied_setback_max(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::setback::get_id()) && (feature_map & feature::occupancy::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(setback)) && (has_feature(occupancy))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, UnoccupiedSetbackMax::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint8(0), esp_matter_nullable_uint8(254));
     return attribute;
@@ -601,28 +601,28 @@ attribute_t *create_ac_capacity_format(cluster_t *cluster, uint8_t value)
 attribute_t *create_preset_types(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::presets::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(presets), NULL);
     return esp_matter::attribute::create(cluster, PresetTypes::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_schedule_types(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::matter_schedule_configuration::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(matter_schedule_configuration), NULL);
     return esp_matter::attribute::create(cluster, ScheduleTypes::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_number_of_presets(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::presets::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(presets), NULL);
     return esp_matter::attribute::create(cluster, NumberOfPresets::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint8(value));
 }
 
 attribute_t *create_number_of_schedules(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::matter_schedule_configuration::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(matter_schedule_configuration), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, NumberOfSchedules::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(1), esp_matter_uint8(254));
     return attribute;
@@ -631,7 +631,7 @@ attribute_t *create_number_of_schedules(cluster_t *cluster, uint8_t value)
 attribute_t *create_number_of_schedule_transitions(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::matter_schedule_configuration::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(matter_schedule_configuration), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, NumberOfScheduleTransitions::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(1), esp_matter_uint8(254));
     return attribute;
@@ -640,7 +640,7 @@ attribute_t *create_number_of_schedule_transitions(cluster_t *cluster, uint8_t v
 attribute_t *create_number_of_schedule_transition_per_day(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::matter_schedule_configuration::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(matter_schedule_configuration), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, NumberOfScheduleTransitionPerDay::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint8(1), esp_matter_nullable_uint8(254));
     return attribute;
@@ -649,14 +649,14 @@ attribute_t *create_number_of_schedule_transition_per_day(cluster_t *cluster, nu
 attribute_t *create_active_preset_handle(cluster_t *cluster, uint8_t *value, uint16_t length)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::presets::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(presets), NULL);
     return esp_matter::attribute::create(cluster, ActivePresetHandle::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_octet_str(value, length));
 }
 
 attribute_t *create_active_schedule_handle(cluster_t *cluster, uint8_t *value, uint16_t length)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::matter_schedule_configuration::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(matter_schedule_configuration), NULL);
     VerifyOrReturnValue(length <= k_max_active_schedule_handle_length + 1, NULL, ESP_LOGE(TAG, "Could not create attribute, string length out of bound"));
     return esp_matter::attribute::create(cluster, ActiveScheduleHandle::Id, ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_octet_str(value, length));
 }
@@ -664,14 +664,14 @@ attribute_t *create_active_schedule_handle(cluster_t *cluster, uint8_t *value, u
 attribute_t *create_presets(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::presets::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(presets), NULL);
     return esp_matter::attribute::create(cluster, Presets::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_schedules(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::matter_schedule_configuration::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(matter_schedule_configuration), NULL);
     return esp_matter::attribute::create(cluster, Schedules::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_array(value, length, count));
 }
 
@@ -692,14 +692,14 @@ command_t *create_setpoint_raise_lower(cluster_t *cluster)
 command_t *create_set_active_schedule_request(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::matter_schedule_configuration::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(matter_schedule_configuration), NULL);
     return esp_matter::command::create(cluster, SetActiveScheduleRequest::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_set_active_schedule_request);
 }
 
 command_t *create_set_active_preset_request(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::presets::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(presets), NULL);
     return esp_matter::command::create(cluster, SetActivePresetRequest::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_set_active_preset_request);
 }
 

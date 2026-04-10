@@ -227,14 +227,14 @@ attribute_t *create_next_tariff_components(cluster_t *cluster, uint8_t *value, u
 attribute_t *create_default_randomization_offset(cluster_t *cluster, nullable<int16_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::randomization::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(randomization), NULL);
     return esp_matter::attribute::create(cluster, DefaultRandomizationOffset::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_int16(value));
 }
 
 attribute_t *create_default_randomization_type(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::randomization::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(randomization), NULL);
     return esp_matter::attribute::create(cluster, DefaultRandomizationType::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_enum8(value));
 }
 

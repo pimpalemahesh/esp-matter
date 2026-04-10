@@ -85,14 +85,6 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
-    command_t *stop = esp_matter::command::get(cluster, command::Stop::Id, COMMAND_FLAG_ACCEPTED);
-    if (stop) {
-        esp_matter::command::destroy(cluster, stop);
-    }
-    event_t *movement_completed = esp_matter::event::get(cluster, event::MovementCompleted::Id);
-    if (movement_completed) {
-        esp_matter::event::destroy(cluster, movement_completed);
-    }
 
     return ESP_OK;
 }
@@ -108,7 +100,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(((feature_map & feature::positioning::get_id()) && (!(feature_map & feature::instantaneous::get_id()))), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(((has_feature(positioning)) && (!(has_feature(instantaneous)))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
 
     return ESP_OK;
@@ -125,7 +117,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::positioning::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(positioning), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
 
     return ESP_OK;
@@ -142,7 +134,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::positioning::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(positioning), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
 
     return ESP_OK;
@@ -159,7 +151,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::positioning::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(positioning), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     command::create_calibrate(cluster);
 
@@ -229,7 +221,7 @@ attribute_t *create_overall_target_state(cluster_t *cluster, uint8_t *value, uin
 attribute_t *create_latch_control_modes(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::motion_latching::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(motion_latching), NULL);
     return esp_matter::attribute::create(cluster, LatchControlModes::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_bitmap8(value));
 }
 
@@ -238,7 +230,7 @@ namespace command {
 command_t *create_stop(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(!(feature_map & feature::instantaneous::get_id()), NULL);
+    VerifyOrReturnValue(!(has_feature(instantaneous)), NULL);
     return esp_matter::command::create(cluster, Stop::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
@@ -250,7 +242,7 @@ command_t *create_move_to(cluster_t *cluster)
 command_t *create_calibrate(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::calibration::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(calibration), NULL);
     return esp_matter::command::create(cluster, Calibrate::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
@@ -265,14 +257,14 @@ event_t *create_operational_error(cluster_t *cluster)
 event_t *create_movement_completed(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(!(feature_map & feature::instantaneous::get_id()), NULL);
+    VerifyOrReturnValue(!(has_feature(instantaneous)), NULL);
     return esp_matter::event::create(cluster, MovementCompleted::Id);
 }
 
 event_t *create_engage_state_changed(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::manually_operable::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(manually_operable), NULL);
     return esp_matter::event::create(cluster, EngageStateChanged::Id);
 }
 

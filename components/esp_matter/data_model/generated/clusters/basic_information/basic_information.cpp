@@ -200,7 +200,7 @@ event_t *create_leave(cluster_t *cluster)
 
 event_t *create_reachable_changed(cluster_t *cluster)
 {
-    VerifyOrReturnValue(esp_matter::attribute::get(cluster, attribute::Reachable::Id) != nullptr, NULL);
+    VerifyOrReturnValue(has_attribute(Reachable), NULL);
     return esp_matter::event::create(cluster, ReachableChanged::Id);
 }
 

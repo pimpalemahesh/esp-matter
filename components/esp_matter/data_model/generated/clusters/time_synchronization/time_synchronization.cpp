@@ -166,14 +166,14 @@ attribute_t *create_time_source(cluster_t *cluster, uint8_t value)
 attribute_t *create_trusted_time_source(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_sync_client::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_sync_client), NULL);
     return esp_matter::attribute::create(cluster, TrustedTimeSource::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_default_ntp(cluster_t *cluster, char *value, uint16_t length)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::ntp_client::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(ntp_client), NULL);
     VerifyOrReturnValue(length <= k_max_default_ntp_length + 1, NULL, ESP_LOGE(TAG, "Could not create attribute, string length out of bound"));
     return esp_matter::attribute::create(cluster, DefaultNTP::Id, ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_char_str(value, length), k_max_default_ntp_length + 1);
 }
@@ -181,21 +181,21 @@ attribute_t *create_default_ntp(cluster_t *cluster, char *value, uint16_t length
 attribute_t *create_time_zone(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_zone::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_zone), NULL);
     return esp_matter::attribute::create(cluster, TimeZone::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_dst_offset(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_zone::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_zone), NULL);
     return esp_matter::attribute::create(cluster, DSTOffset::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_local_time(cluster_t *cluster, nullable<uint64_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_zone::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_zone), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, LocalTime::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint64(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint64(0), esp_matter_nullable_uint64(4294967294));
     return attribute;
@@ -204,7 +204,7 @@ attribute_t *create_local_time(cluster_t *cluster, nullable<uint64_t> value)
 attribute_t *create_time_zone_database(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_zone::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_zone), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, TimeZoneDatabase::Id, ATTRIBUTE_FLAG_NONE, esp_matter_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_enum8(0), esp_matter_enum8(2));
     return attribute;
@@ -213,14 +213,14 @@ attribute_t *create_time_zone_database(cluster_t *cluster, uint8_t value)
 attribute_t *create_ntp_server_available(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::ntp_server::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(ntp_server), NULL);
     return esp_matter::attribute::create(cluster, NTPServerAvailable::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bool(value));
 }
 
 attribute_t *create_time_zone_list_max_size(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_zone::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_zone), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, TimeZoneListMaxSize::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(1), esp_matter_uint8(2));
     return attribute;
@@ -229,7 +229,7 @@ attribute_t *create_time_zone_list_max_size(cluster_t *cluster, uint8_t value)
 attribute_t *create_dst_offset_list_max_size(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_zone::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_zone), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, DSTOffsetListMaxSize::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(1), esp_matter_uint8(254));
     return attribute;
@@ -238,7 +238,7 @@ attribute_t *create_dst_offset_list_max_size(cluster_t *cluster, uint8_t value)
 attribute_t *create_supports_dns_resolve(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::ntp_client::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(ntp_client), NULL);
     return esp_matter::attribute::create(cluster, SupportsDNSResolve::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bool(value));
 }
 
@@ -252,35 +252,35 @@ command_t *create_set_utc_time(cluster_t *cluster)
 command_t *create_set_trusted_time_source(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_sync_client::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_sync_client), NULL);
     return esp_matter::command::create(cluster, SetTrustedTimeSource::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_set_time_zone(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_zone::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_zone), NULL);
     return esp_matter::command::create(cluster, SetTimeZone::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_set_time_zone_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_zone::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_zone), NULL);
     return esp_matter::command::create(cluster, SetTimeZoneResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_set_dst_offset(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_zone::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_zone), NULL);
     return esp_matter::command::create(cluster, SetDSTOffset::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_set_default_ntp(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::ntp_client::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(ntp_client), NULL);
     return esp_matter::command::create(cluster, SetDefaultNTP::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
@@ -290,21 +290,21 @@ namespace event {
 event_t *create_dst_table_empty(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_zone::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_zone), NULL);
     return esp_matter::event::create(cluster, DSTTableEmpty::Id);
 }
 
 event_t *create_dst_status(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_zone::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_zone), NULL);
     return esp_matter::event::create(cluster, DSTStatus::Id);
 }
 
 event_t *create_time_zone_status(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_zone::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_zone), NULL);
     return esp_matter::event::create(cluster, TimeZoneStatus::Id);
 }
 
@@ -316,7 +316,7 @@ event_t *create_time_failure(cluster_t *cluster)
 event_t *create_missing_trusted_time_source(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_sync_client::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_sync_client), NULL);
     return esp_matter::event::create(cluster, MissingTrustedTimeSource::Id);
 }
 

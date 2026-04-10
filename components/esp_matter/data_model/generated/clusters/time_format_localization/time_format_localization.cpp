@@ -78,7 +78,7 @@ attribute_t *create_hour_format(cluster_t *cluster, uint8_t value)
 attribute_t *create_active_calendar_type(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::calendar_format::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(calendar_format), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ActiveCalendarType::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_enum8(0), esp_matter_enum8(12));
     return attribute;
@@ -87,7 +87,7 @@ attribute_t *create_active_calendar_type(cluster_t *cluster, uint8_t value)
 attribute_t *create_supported_calendar_types(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::calendar_format::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(calendar_format), NULL);
     return esp_matter::attribute::create(cluster, SupportedCalendarTypes::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 

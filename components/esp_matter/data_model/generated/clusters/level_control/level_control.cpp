@@ -180,7 +180,7 @@ attribute_t *create_current_level(cluster_t *cluster, nullable<uint8_t> value)
 attribute_t *create_remaining_time(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::lighting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(lighting), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, RemainingTime::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65534));
     return attribute;
@@ -245,7 +245,7 @@ attribute_t *create_default_move_rate(cluster_t *cluster, nullable<uint8_t> valu
 attribute_t *create_start_up_current_level(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::lighting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(lighting), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, StartUpCurrentLevel::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint8(0), esp_matter_nullable_uint8(254));
     return attribute;

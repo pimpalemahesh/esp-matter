@@ -97,7 +97,7 @@ attribute_t *create_acl(cluster_t *cluster, uint8_t *value, uint16_t length, uin
 attribute_t *create_extension(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::extension::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(extension), NULL);
     return esp_matter::attribute::create(cluster, Extension::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
@@ -126,7 +126,7 @@ attribute_t *create_access_control_entries_per_fabric(cluster_t *cluster, uint16
 attribute_t *create_commissioning_arl(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::managed_device::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(managed_device), NULL);
     return esp_matter::attribute::create(cluster, CommissioningARL::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 #endif // CHIP_CONFIG_USE_ACCESS_RESTRICTIONS
@@ -135,7 +135,7 @@ attribute_t *create_commissioning_arl(cluster_t *cluster, uint8_t *value, uint16
 attribute_t *create_arl(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::managed_device::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(managed_device), NULL);
     return esp_matter::attribute::create(cluster, ARL::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 #endif // CHIP_CONFIG_USE_ACCESS_RESTRICTIONS
@@ -146,7 +146,7 @@ namespace command {
 command_t *create_review_fabric_restrictions(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::managed_device::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(managed_device), NULL);
     return esp_matter::command::create(cluster, ReviewFabricRestrictions::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 #endif // CHIP_CONFIG_USE_ACCESS_RESTRICTIONS
@@ -154,7 +154,7 @@ command_t *create_review_fabric_restrictions(cluster_t *cluster)
 command_t *create_review_fabric_restrictions_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::managed_device::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(managed_device), NULL);
     return esp_matter::command::create(cluster, ReviewFabricRestrictionsResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
@@ -169,14 +169,14 @@ event_t *create_access_control_entry_changed(cluster_t *cluster)
 event_t *create_access_control_extension_changed(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::extension::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(extension), NULL);
     return esp_matter::event::create(cluster, AccessControlExtensionChanged::Id);
 }
 
 event_t *create_fabric_restriction_review_update(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::managed_device::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(managed_device), NULL);
     return esp_matter::event::create(cluster, FabricRestrictionReviewUpdate::Id);
 }
 

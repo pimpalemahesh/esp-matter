@@ -300,70 +300,70 @@ attribute_t *create_current_state(cluster_t *cluster, uint8_t value)
 attribute_t *create_start_time(cluster_t *cluster, nullable<uint64_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::advanced_seek::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(advanced_seek), NULL);
     return esp_matter::attribute::create(cluster, StartTime::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint64(value));
 }
 
 attribute_t *create_duration(cluster_t *cluster, nullable<uint64_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::advanced_seek::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(advanced_seek), NULL);
     return esp_matter::attribute::create(cluster, Duration::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint64(value));
 }
 
 attribute_t *create_sampled_position(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::advanced_seek::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(advanced_seek), NULL);
     return esp_matter::attribute::create(cluster, SampledPosition::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_playback_speed(cluster_t *cluster, float value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::advanced_seek::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(advanced_seek), NULL);
     return esp_matter::attribute::create(cluster, PlaybackSpeed::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_float(value));
 }
 
 attribute_t *create_seek_range_end(cluster_t *cluster, nullable<uint64_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::advanced_seek::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(advanced_seek), NULL);
     return esp_matter::attribute::create(cluster, SeekRangeEnd::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint64(value));
 }
 
 attribute_t *create_seek_range_start(cluster_t *cluster, nullable<uint64_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::advanced_seek::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(advanced_seek), NULL);
     return esp_matter::attribute::create(cluster, SeekRangeStart::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint64(value));
 }
 
 attribute_t *create_active_audio_track(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::audio_tracks::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(audio_tracks), NULL);
     return esp_matter::attribute::create(cluster, ActiveAudioTrack::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_available_audio_tracks(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::audio_tracks::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(audio_tracks), NULL);
     return esp_matter::attribute::create(cluster, AvailableAudioTracks::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_active_text_track(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::text_tracks::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(text_tracks), NULL);
     return esp_matter::attribute::create(cluster, ActiveTextTrack::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_available_text_tracks(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::text_tracks::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(text_tracks), NULL);
     return esp_matter::attribute::create(cluster, AvailableTextTracks::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
@@ -402,14 +402,14 @@ command_t *create_next(cluster_t *cluster)
 command_t *create_rewind(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::variable_speed::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(variable_speed), NULL);
     return esp_matter::command::create(cluster, Rewind::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_rewind);
 }
 
 command_t *create_fast_forward(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::variable_speed::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(variable_speed), NULL);
     return esp_matter::command::create(cluster, FastForward::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_fast_forward);
 }
 
@@ -431,28 +431,28 @@ command_t *create_playback_response(cluster_t *cluster)
 command_t *create_seek(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::advanced_seek::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(advanced_seek), NULL);
     return esp_matter::command::create(cluster, Seek::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_seek);
 }
 
 command_t *create_activate_audio_track(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::audio_tracks::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(audio_tracks), NULL);
     return esp_matter::command::create(cluster, ActivateAudioTrack::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_activate_audio_track);
 }
 
 command_t *create_activate_text_track(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::text_tracks::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(text_tracks), NULL);
     return esp_matter::command::create(cluster, ActivateTextTrack::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_activate_text_track);
 }
 
 command_t *create_deactivate_text_track(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::text_tracks::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(text_tracks), NULL);
     return esp_matter::command::create(cluster, DeactivateTextTrack::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_deactivate_text_track);
 }
 

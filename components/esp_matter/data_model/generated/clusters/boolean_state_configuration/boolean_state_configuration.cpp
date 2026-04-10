@@ -104,7 +104,7 @@ esp_err_t add(cluster_t *cluster, config_t *config)
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(((feature_map & feature::visual::get_id()) || (feature_map & feature::audible::get_id())), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(((has_feature(visual)) || (has_feature(audible))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_alarms_suppressed(cluster, config->alarms_suppressed);
@@ -145,7 +145,7 @@ namespace attribute {
 attribute_t *create_current_sensitivity_level(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::sensitivity_level::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(sensitivity_level), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CurrentSensitivityLevel::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(254));
     return attribute;
@@ -154,7 +154,7 @@ attribute_t *create_current_sensitivity_level(cluster_t *cluster, uint8_t value)
 attribute_t *create_supported_sensitivity_levels(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::sensitivity_level::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(sensitivity_level), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, SupportedSensitivityLevels::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(2), esp_matter_uint8(10));
     return attribute;
@@ -170,7 +170,7 @@ attribute_t *create_default_sensitivity_level(cluster_t *cluster, uint8_t value)
 attribute_t *create_alarms_active(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::visual::get_id()) || (feature_map & feature::audible::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(visual)) || (has_feature(audible))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, AlarmsActive::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bitmap8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap8(0), esp_matter_bitmap8(3));
     return attribute;
@@ -179,7 +179,7 @@ attribute_t *create_alarms_active(cluster_t *cluster, uint8_t value)
 attribute_t *create_alarms_suppressed(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::alarm_suppress::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(alarm_suppress), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, AlarmsSuppressed::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bitmap8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap8(0), esp_matter_bitmap8(3));
     return attribute;
@@ -195,7 +195,7 @@ attribute_t *create_alarms_enabled(cluster_t *cluster, uint8_t value)
 attribute_t *create_alarms_supported(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::visual::get_id()) || (feature_map & feature::audible::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(visual)) || (has_feature(audible))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, AlarmsSupported::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bitmap8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap8(0), esp_matter_bitmap8(3));
     return attribute;
@@ -213,14 +213,14 @@ namespace command {
 command_t *create_suppress_alarm(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::alarm_suppress::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(alarm_suppress), NULL);
     return esp_matter::command::create(cluster, SuppressAlarm::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_enable_disable_alarm(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::visual::get_id()) || (feature_map & feature::audible::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(visual)) || (has_feature(audible))), NULL);
     return esp_matter::command::create(cluster, EnableDisableAlarm::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
@@ -230,7 +230,7 @@ namespace event {
 event_t *create_alarms_state_changed(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::visual::get_id()) || (feature_map & feature::audible::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(visual)) || (has_feature(audible))), NULL);
     return esp_matter::event::create(cluster, AlarmsStateChanged::Id);
 }
 

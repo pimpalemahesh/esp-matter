@@ -217,7 +217,7 @@ attribute_t *create_hold_time(cluster_t *cluster, uint16_t value)
 
 attribute_t *create_hold_time_limits(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
-    VerifyOrReturnValue(esp_matter::attribute::get(cluster, attribute::HoldTime::Id) != nullptr, NULL);
+    VerifyOrReturnValue(has_attribute(HoldTime), NULL);
     return esp_matter::attribute::create(cluster, HoldTimeLimits::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 

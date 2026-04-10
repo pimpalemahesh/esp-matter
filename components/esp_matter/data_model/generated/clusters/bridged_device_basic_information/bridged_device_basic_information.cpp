@@ -168,7 +168,7 @@ namespace command {
 command_t *create_keep_active(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::bridged_icd_support::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(bridged_icd_support), NULL);
     return esp_matter::command::create(cluster, KeepActive::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
@@ -198,7 +198,7 @@ event_t *create_reachable_changed(cluster_t *cluster)
 event_t *create_active_changed(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::bridged_icd_support::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(bridged_icd_support), NULL);
     return esp_matter::event::create(cluster, ActiveChanged::Id);
 }
 

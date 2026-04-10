@@ -405,7 +405,7 @@ esp_err_t add(cluster_t *cluster, config_t *config)
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError((feature_map & feature::aliro_provisioning::get_id() || ((feature_map & feature::pin_credential::get_id()) || (feature_map & feature::rfid_credential::get_id()))), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError((has_feature(aliro_provisioning) || ((has_feature(pin_credential)) || (has_feature(rfid_credential)))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_number_of_total_users_supported(cluster, config->number_of_total_users_supported);
@@ -528,7 +528,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::aliro_provisioning::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(aliro_provisioning), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_aliro_group_resolving_key(cluster, NULL, 0);
     attribute::create_aliro_supported_bleuwb_protocol_versions(cluster, NULL, 0, 0);
@@ -563,7 +563,7 @@ attribute_t *create_actuator_enabled(cluster_t *cluster, bool value)
 attribute_t *create_door_state(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::door_position_sensor::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(door_position_sensor), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, DoorState::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_enum8(0), esp_matter_nullable_enum8(5));
     return attribute;
@@ -593,7 +593,7 @@ attribute_t *create_open_period(cluster_t *cluster, uint16_t value)
 attribute_t *create_number_of_total_users_supported(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, NumberOfTotalUsersSupported::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65534));
     return attribute;
@@ -602,7 +602,7 @@ attribute_t *create_number_of_total_users_supported(cluster_t *cluster, uint16_t
 attribute_t *create_number_of_pin_users_supported(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::pin_credential::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(pin_credential), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, NumberOfPINUsersSupported::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65534));
     return attribute;
@@ -611,7 +611,7 @@ attribute_t *create_number_of_pin_users_supported(cluster_t *cluster, uint16_t v
 attribute_t *create_number_of_rfid_users_supported(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::rfid_credential::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(rfid_credential), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, NumberOfRFIDUsersSupported::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65534));
     return attribute;
@@ -620,7 +620,7 @@ attribute_t *create_number_of_rfid_users_supported(cluster_t *cluster, uint16_t 
 attribute_t *create_number_of_week_day_schedules_supported_per_user(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::weekday_access_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(weekday_access_schedules), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, NumberOfWeekDaySchedulesSupportedPerUser::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(253));
     return attribute;
@@ -629,7 +629,7 @@ attribute_t *create_number_of_week_day_schedules_supported_per_user(cluster_t *c
 attribute_t *create_number_of_year_day_schedules_supported_per_user(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::year_day_access_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(year_day_access_schedules), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, NumberOfYearDaySchedulesSupportedPerUser::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(253));
     return attribute;
@@ -638,7 +638,7 @@ attribute_t *create_number_of_year_day_schedules_supported_per_user(cluster_t *c
 attribute_t *create_number_of_holiday_schedules_supported(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::holiday_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(holiday_schedules), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, NumberOfHolidaySchedulesSupported::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(253));
     return attribute;
@@ -647,7 +647,7 @@ attribute_t *create_number_of_holiday_schedules_supported(cluster_t *cluster, ui
 attribute_t *create_max_pin_code_length(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::pin_credential::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(pin_credential), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, MaxPINCodeLength::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(254));
     return attribute;
@@ -656,7 +656,7 @@ attribute_t *create_max_pin_code_length(cluster_t *cluster, uint8_t value)
 attribute_t *create_min_pin_code_length(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::pin_credential::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(pin_credential), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, MinPINCodeLength::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(254));
     return attribute;
@@ -665,7 +665,7 @@ attribute_t *create_min_pin_code_length(cluster_t *cluster, uint8_t value)
 attribute_t *create_max_rfid_code_length(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::rfid_credential::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(rfid_credential), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, MaxRFIDCodeLength::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(254));
     return attribute;
@@ -674,7 +674,7 @@ attribute_t *create_max_rfid_code_length(cluster_t *cluster, uint8_t value)
 attribute_t *create_min_rfid_code_length(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::rfid_credential::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(rfid_credential), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, MinRFIDCodeLength::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(254));
     return attribute;
@@ -683,7 +683,7 @@ attribute_t *create_min_rfid_code_length(cluster_t *cluster, uint8_t value)
 attribute_t *create_credential_rules_support(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CredentialRulesSupport::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bitmap8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap8(0), esp_matter_bitmap8(7));
     return attribute;
@@ -692,7 +692,7 @@ attribute_t *create_credential_rules_support(cluster_t *cluster, uint8_t value)
 attribute_t *create_number_of_credentials_supported_per_user(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, NumberOfCredentialsSupportedPerUser::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(254));
     return attribute;
@@ -776,7 +776,7 @@ attribute_t *create_local_programming_features(cluster_t *cluster, uint8_t value
 attribute_t *create_wrong_code_entry_limit(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::pin_credential::get_id()) || (feature_map & feature::rfid_credential::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(pin_credential)) || (has_feature(rfid_credential))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, WrongCodeEntryLimit::Id, ATTRIBUTE_FLAG_WRITABLE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(1), esp_matter_uint8(255));
     return attribute;
@@ -785,7 +785,7 @@ attribute_t *create_wrong_code_entry_limit(cluster_t *cluster, uint8_t value)
 attribute_t *create_user_code_temporary_disable_time(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::pin_credential::get_id()) || (feature_map & feature::rfid_credential::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(pin_credential)) || (has_feature(rfid_credential))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, UserCodeTemporaryDisableTime::Id, ATTRIBUTE_FLAG_WRITABLE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(1), esp_matter_uint8(255));
     return attribute;
@@ -799,7 +799,7 @@ attribute_t *create_send_pin_over_the_air(cluster_t *cluster, bool value)
 attribute_t *create_require_pin_for_remote_operation(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::credential_over_the_air_access::get_id()) && (feature_map & feature::pin_credential::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(credential_over_the_air_access)) && (has_feature(pin_credential))), NULL);
     return esp_matter::attribute::create(cluster, RequirePINforRemoteOperation::Id, ATTRIBUTE_FLAG_WRITABLE, esp_matter_bool(value));
 }
 
@@ -813,63 +813,63 @@ attribute_t *create_expiring_user_timeout(cluster_t *cluster, uint16_t value)
 attribute_t *create_aliro_reader_verification_key(cluster_t *cluster, uint8_t *value, uint16_t length)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::aliro_provisioning::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(aliro_provisioning), NULL);
     return esp_matter::attribute::create(cluster, AliroReaderVerificationKey::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_octet_str(value, length));
 }
 
 attribute_t *create_aliro_reader_group_identifier(cluster_t *cluster, uint8_t *value, uint16_t length)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::aliro_provisioning::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(aliro_provisioning), NULL);
     return esp_matter::attribute::create(cluster, AliroReaderGroupIdentifier::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_octet_str(value, length));
 }
 
 attribute_t *create_aliro_reader_group_sub_identifier(cluster_t *cluster, uint8_t *value, uint16_t length)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::aliro_provisioning::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(aliro_provisioning), NULL);
     return esp_matter::attribute::create(cluster, AliroReaderGroupSubIdentifier::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_octet_str(value, length));
 }
 
 attribute_t *create_aliro_expedited_transaction_supported_protocol_versions(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::aliro_provisioning::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(aliro_provisioning), NULL);
     return esp_matter::attribute::create(cluster, AliroExpeditedTransactionSupportedProtocolVersions::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_aliro_group_resolving_key(cluster_t *cluster, uint8_t *value, uint16_t length)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::aliro_bleuwb::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(aliro_bleuwb), NULL);
     return esp_matter::attribute::create(cluster, AliroGroupResolvingKey::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_octet_str(value, length));
 }
 
 attribute_t *create_aliro_supported_bleuwb_protocol_versions(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::aliro_bleuwb::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(aliro_bleuwb), NULL);
     return esp_matter::attribute::create(cluster, AliroSupportedBLEUWBProtocolVersions::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_aliro_ble_advertising_version(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::aliro_bleuwb::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(aliro_bleuwb), NULL);
     return esp_matter::attribute::create(cluster, AliroBLEAdvertisingVersion::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint8(value));
 }
 
 attribute_t *create_number_of_aliro_credential_issuer_keys_supported(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::aliro_provisioning::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(aliro_provisioning), NULL);
     return esp_matter::attribute::create(cluster, NumberOfAliroCredentialIssuerKeysSupported::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint16(value));
 }
 
 attribute_t *create_number_of_aliro_endpoint_keys_supported(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::aliro_provisioning::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(aliro_provisioning), NULL);
     return esp_matter::attribute::create(cluster, NumberOfAliroEndpointKeysSupported::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint16(value));
 }
 
@@ -893,168 +893,168 @@ command_t *create_unlock_with_timeout(cluster_t *cluster)
 command_t *create_set_week_day_schedule(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::weekday_access_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(weekday_access_schedules), NULL);
     return esp_matter::command::create(cluster, SetWeekDaySchedule::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_set_week_day_schedule);
 }
 
 command_t *create_get_week_day_schedule(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::weekday_access_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(weekday_access_schedules), NULL);
     return esp_matter::command::create(cluster, GetWeekDaySchedule::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_get_week_day_schedule);
 }
 
 command_t *create_get_week_day_schedule_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::weekday_access_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(weekday_access_schedules), NULL);
     return esp_matter::command::create(cluster, GetWeekDayScheduleResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_clear_week_day_schedule(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::weekday_access_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(weekday_access_schedules), NULL);
     return esp_matter::command::create(cluster, ClearWeekDaySchedule::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_clear_week_day_schedule);
 }
 
 command_t *create_set_year_day_schedule(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::year_day_access_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(year_day_access_schedules), NULL);
     return esp_matter::command::create(cluster, SetYearDaySchedule::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_set_year_day_schedule);
 }
 
 command_t *create_get_year_day_schedule(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::year_day_access_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(year_day_access_schedules), NULL);
     return esp_matter::command::create(cluster, GetYearDaySchedule::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_get_year_day_schedule);
 }
 
 command_t *create_get_year_day_schedule_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::year_day_access_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(year_day_access_schedules), NULL);
     return esp_matter::command::create(cluster, GetYearDayScheduleResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_clear_year_day_schedule(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::year_day_access_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(year_day_access_schedules), NULL);
     return esp_matter::command::create(cluster, ClearYearDaySchedule::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_clear_year_day_schedule);
 }
 
 command_t *create_set_holiday_schedule(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::holiday_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(holiday_schedules), NULL);
     return esp_matter::command::create(cluster, SetHolidaySchedule::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_set_holiday_schedule);
 }
 
 command_t *create_get_holiday_schedule(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::holiday_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(holiday_schedules), NULL);
     return esp_matter::command::create(cluster, GetHolidaySchedule::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_get_holiday_schedule);
 }
 
 command_t *create_get_holiday_schedule_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::holiday_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(holiday_schedules), NULL);
     return esp_matter::command::create(cluster, GetHolidayScheduleResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_clear_holiday_schedule(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::holiday_schedules::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(holiday_schedules), NULL);
     return esp_matter::command::create(cluster, ClearHolidaySchedule::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_clear_holiday_schedule);
 }
 
 command_t *create_set_user(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user), NULL);
     return esp_matter::command::create(cluster, SetUser::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_set_user);
 }
 
 command_t *create_get_user(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user), NULL);
     return esp_matter::command::create(cluster, GetUser::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_get_user);
 }
 
 command_t *create_get_user_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user), NULL);
     return esp_matter::command::create(cluster, GetUserResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_clear_user(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user), NULL);
     return esp_matter::command::create(cluster, ClearUser::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_clear_user);
 }
 
 command_t *create_set_credential(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user), NULL);
     return esp_matter::command::create(cluster, SetCredential::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_set_credential);
 }
 
 command_t *create_set_credential_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user), NULL);
     return esp_matter::command::create(cluster, SetCredentialResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_get_credential_status(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user), NULL);
     return esp_matter::command::create(cluster, GetCredentialStatus::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_get_credential_status);
 }
 
 command_t *create_get_credential_status_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user), NULL);
     return esp_matter::command::create(cluster, GetCredentialStatusResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_clear_credential(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user), NULL);
     return esp_matter::command::create(cluster, ClearCredential::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_clear_credential);
 }
 
 command_t *create_unbolt_door(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::unbolting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(unbolting), NULL);
     return esp_matter::command::create(cluster, UnboltDoor::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_unbolt_door);
 }
 
 command_t *create_set_aliro_reader_config(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::aliro_provisioning::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(aliro_provisioning), NULL);
     return esp_matter::command::create(cluster, SetAliroReaderConfig::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_set_aliro_reader_config);
 }
 
 command_t *create_clear_aliro_reader_config(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::aliro_provisioning::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(aliro_provisioning), NULL);
     return esp_matter::command::create(cluster, ClearAliroReaderConfig::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_clear_aliro_reader_config);
 }
 
@@ -1069,7 +1069,7 @@ event_t *create_door_lock_alarm(cluster_t *cluster)
 event_t *create_door_state_change(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::door_position_sensor::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(door_position_sensor), NULL);
     return esp_matter::event::create(cluster, DoorStateChange::Id);
 }
 
@@ -1086,7 +1086,7 @@ event_t *create_lock_operation_error(cluster_t *cluster)
 event_t *create_lock_user_change(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user), NULL);
     return esp_matter::event::create(cluster, LockUserChange::Id);
 }
 

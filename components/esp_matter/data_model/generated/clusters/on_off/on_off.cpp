@@ -119,7 +119,7 @@ esp_err_t add(cluster_t *cluster, config_t *config)
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(!(feature_map & feature::off_only::get_id()), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(!(has_feature(off_only)), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_global_scene_control(cluster, config->global_scene_control);
@@ -147,7 +147,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(!(feature_map & feature::off_only::get_id()), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(!(has_feature(off_only)), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
 
     return ESP_OK;
@@ -164,16 +164,8 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(!(((feature_map & feature::lighting::get_id()) || (feature_map & feature::dead_front_behavior::get_id()))), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(!(((has_feature(lighting)) || (has_feature(dead_front_behavior)))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
-    command_t *on = esp_matter::command::get(cluster, command::On::Id, COMMAND_FLAG_ACCEPTED);
-    if (on) {
-        esp_matter::command::destroy(cluster, on);
-    }
-    command_t *toggle = esp_matter::command::get(cluster, command::Toggle::Id, COMMAND_FLAG_ACCEPTED);
-    if (toggle) {
-        esp_matter::command::destroy(cluster, toggle);
-    }
 
     return ESP_OK;
 }
@@ -190,14 +182,14 @@ attribute_t *create_on_off(cluster_t *cluster, bool value)
 attribute_t *create_global_scene_control(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::lighting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(lighting), NULL);
     return esp_matter::attribute::create(cluster, GlobalSceneControl::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bool(value));
 }
 
 attribute_t *create_on_time(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::lighting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(lighting), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, OnTime::Id, ATTRIBUTE_FLAG_WRITABLE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65534));
     return attribute;
@@ -206,7 +198,7 @@ attribute_t *create_on_time(cluster_t *cluster, uint16_t value)
 attribute_t *create_off_wait_time(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::lighting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(lighting), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, OffWaitTime::Id, ATTRIBUTE_FLAG_WRITABLE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65534));
     return attribute;
@@ -215,7 +207,7 @@ attribute_t *create_off_wait_time(cluster_t *cluster, uint16_t value)
 attribute_t *create_start_up_on_off(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::lighting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(lighting), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, StartUpOnOff::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_enum8(0), esp_matter_nullable_enum8(2));
     return attribute;
@@ -231,35 +223,35 @@ command_t *create_off(cluster_t *cluster)
 command_t *create_on(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(!(feature_map & feature::off_only::get_id()), NULL);
+    VerifyOrReturnValue(!(has_feature(off_only)), NULL);
     return esp_matter::command::create(cluster, On::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_on);
 }
 
 command_t *create_toggle(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(!(feature_map & feature::off_only::get_id()), NULL);
+    VerifyOrReturnValue(!(has_feature(off_only)), NULL);
     return esp_matter::command::create(cluster, Toggle::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_toggle);
 }
 
 command_t *create_off_with_effect(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::lighting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(lighting), NULL);
     return esp_matter::command::create(cluster, OffWithEffect::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_off_with_effect);
 }
 
 command_t *create_on_with_recall_global_scene(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::lighting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(lighting), NULL);
     return esp_matter::command::create(cluster, OnWithRecallGlobalScene::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_on_with_recall_global_scene);
 }
 
 command_t *create_on_with_timed_off(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::lighting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(lighting), NULL);
     return esp_matter::command::create(cluster, OnWithTimedOff::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_on_with_timed_off);
 }
 

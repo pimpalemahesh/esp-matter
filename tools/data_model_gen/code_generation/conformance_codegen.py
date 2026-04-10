@@ -119,7 +119,7 @@ class AttributeExpr(Expr):
         self.attr_name = attr_name
 
     def __call__(self) -> str:
-        return f"esp_matter::attribute::get(cluster, attribute::{self.attr_name}::Id) != nullptr"
+        return f"has_attribute({self.attr_name})"
 
     def iterate(self, iterator: ExprIterator):
         iterator.iterate_attribute(self)
@@ -131,7 +131,7 @@ class CommandExpr(Expr):
         self.flag = flag
 
     def __call__(self) -> str:
-        return f"esp_matter::command::get(cluster, command::{self.command_name}::Id, {self.flag}) != nullptr"
+        return f"has_command({self.command_name}, {self.flag})"
 
     def iterate(self, iterator: ExprIterator):
         iterator.iterate_command(self)
@@ -142,7 +142,7 @@ class FeatureExpr(Expr):
         self.feature_name = feature_name
 
     def __call__(self) -> str:
-        return f"feature_map & feature::{self.feature_name}::get_id()"
+        return f"has_feature({self.feature_name})"
 
     def iterate(self, iterator: ExprIterator):
         iterator.iterate_feature(self)

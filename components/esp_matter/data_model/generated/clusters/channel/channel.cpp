@@ -188,14 +188,14 @@ namespace attribute {
 attribute_t *create_channel_list(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::channel_list::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(channel_list), NULL);
     return esp_matter::attribute::create(cluster, ChannelList::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_lineup(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::lineup_info::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(lineup_info), NULL);
     return esp_matter::attribute::create(cluster, Lineup::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
@@ -209,14 +209,14 @@ namespace command {
 command_t *create_change_channel(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::channel_list::get_id()) || (feature_map & feature::lineup_info::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(channel_list)) || (has_feature(lineup_info))), NULL);
     return esp_matter::command::create(cluster, ChangeChannel::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_change_channel);
 }
 
 command_t *create_change_channel_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::channel_list::get_id()) || (feature_map & feature::lineup_info::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(channel_list)) || (has_feature(lineup_info))), NULL);
     return esp_matter::command::create(cluster, ChangeChannelResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
@@ -233,28 +233,28 @@ command_t *create_skip_channel(cluster_t *cluster)
 command_t *create_get_program_guide(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::electronic_guide::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(electronic_guide), NULL);
     return esp_matter::command::create(cluster, GetProgramGuide::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_get_program_guide);
 }
 
 command_t *create_program_guide_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::electronic_guide::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(electronic_guide), NULL);
     return esp_matter::command::create(cluster, ProgramGuideResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_record_program(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::record_program::get_id()) && (feature_map & feature::electronic_guide::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(record_program)) && (has_feature(electronic_guide))), NULL);
     return esp_matter::command::create(cluster, RecordProgram::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_record_program);
 }
 
 command_t *create_cancel_record_program(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::record_program::get_id()) && (feature_map & feature::electronic_guide::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(record_program)) && (has_feature(electronic_guide))), NULL);
     return esp_matter::command::create(cluster, CancelRecordProgram::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_cancel_record_program);
 }
 

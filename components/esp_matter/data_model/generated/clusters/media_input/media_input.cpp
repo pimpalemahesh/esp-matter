@@ -137,7 +137,7 @@ command_t *create_hide_input_status(cluster_t *cluster)
 command_t *create_rename_input(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::name_updates::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(name_updates), NULL);
     return esp_matter::command::create(cluster, RenameInput::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_rename_input);
 }
 

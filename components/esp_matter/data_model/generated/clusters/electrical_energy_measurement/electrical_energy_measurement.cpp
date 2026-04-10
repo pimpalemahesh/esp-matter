@@ -124,28 +124,28 @@ attribute_t *create_accuracy(cluster_t *cluster, uint8_t *value, uint16_t length
 attribute_t *create_cumulative_energy_imported(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::imported_energy::get_id()) && (feature_map & feature::cumulative_energy::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(imported_energy)) && (has_feature(cumulative_energy))), NULL);
     return esp_matter::attribute::create(cluster, CumulativeEnergyImported::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_cumulative_energy_exported(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::exported_energy::get_id()) && (feature_map & feature::cumulative_energy::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(exported_energy)) && (has_feature(cumulative_energy))), NULL);
     return esp_matter::attribute::create(cluster, CumulativeEnergyExported::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_periodic_energy_imported(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::imported_energy::get_id()) && (feature_map & feature::periodic_energy::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(imported_energy)) && (has_feature(periodic_energy))), NULL);
     return esp_matter::attribute::create(cluster, PeriodicEnergyImported::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_periodic_energy_exported(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::exported_energy::get_id()) && (feature_map & feature::periodic_energy::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(exported_energy)) && (has_feature(periodic_energy))), NULL);
     return esp_matter::attribute::create(cluster, PeriodicEnergyExported::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
@@ -160,14 +160,14 @@ namespace event {
 event_t *create_cumulative_energy_measured(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::cumulative_energy::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(cumulative_energy), NULL);
     return esp_matter::event::create(cluster, CumulativeEnergyMeasured::Id);
 }
 
 event_t *create_periodic_energy_measured(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::periodic_energy::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(periodic_energy), NULL);
     return esp_matter::event::create(cluster, PeriodicEnergyMeasured::Id);
 }
 

@@ -98,7 +98,7 @@ command_t *create_resume(cluster_t *cluster)
 
 command_t *create_operational_command_response(cluster_t *cluster)
 {
-    VerifyOrReturnValue(((esp_matter::command::get(cluster, command::Pause::Id, COMMAND_FLAG_ACCEPTED) != nullptr) || (esp_matter::command::get(cluster, command::Stop::Id, COMMAND_FLAG_ACCEPTED) != nullptr) || (esp_matter::command::get(cluster, command::Start::Id, COMMAND_FLAG_ACCEPTED) != nullptr) || (esp_matter::command::get(cluster, command::Resume::Id, COMMAND_FLAG_ACCEPTED) != nullptr)), NULL);
+    VerifyOrReturnValue(((has_command(Pause, COMMAND_FLAG_ACCEPTED)) || (has_command(Stop, COMMAND_FLAG_ACCEPTED)) || (has_command(Start, COMMAND_FLAG_ACCEPTED)) || (has_command(Resume, COMMAND_FLAG_ACCEPTED))), NULL);
     return esp_matter::command::create(cluster, OperationalCommandResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 

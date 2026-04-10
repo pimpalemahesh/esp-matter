@@ -105,7 +105,7 @@ command_t *create_select_output(cluster_t *cluster)
 command_t *create_rename_output(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::name_updates::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(name_updates), NULL);
     return esp_matter::command::create(cluster, RenameOutput::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_rename_output);
 }
 

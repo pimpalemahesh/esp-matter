@@ -97,7 +97,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(!(feature_map & feature::power_adjustment::get_id()), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(!(has_feature(power_adjustment)), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_forecast(cluster, NULL, 0, 0);
 
@@ -238,21 +238,21 @@ attribute_t *create_abs_max_power(cluster_t *cluster, int64_t value)
 attribute_t *create_power_adjustment_capability(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::power_adjustment::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(power_adjustment), NULL);
     return esp_matter::attribute::create(cluster, PowerAdjustmentCapability::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_forecast(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::power_forecast_reporting::get_id()) || (feature_map & feature::state_forecast_reporting::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(power_forecast_reporting)) || (has_feature(state_forecast_reporting))), NULL);
     return esp_matter::attribute::create(cluster, Forecast::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_opt_out_state(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::power_adjustment::get_id()) || (feature_map & feature::start_time_adjustment::get_id()) || (feature_map & feature::pausable::get_id()) || (feature_map & feature::forecast_adjustment::get_id()) || (feature_map & feature::constraint_based_adjustment::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(power_adjustment)) || (has_feature(start_time_adjustment)) || (has_feature(pausable)) || (has_feature(forecast_adjustment)) || (has_feature(constraint_based_adjustment))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, OptOutState::Id, ATTRIBUTE_FLAG_NONE, esp_matter_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_enum8(0), esp_matter_enum8(3));
     return attribute;
@@ -263,56 +263,56 @@ namespace command {
 command_t *create_power_adjust_request(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::power_adjustment::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(power_adjustment), NULL);
     return esp_matter::command::create(cluster, PowerAdjustRequest::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_cancel_power_adjust_request(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::power_adjustment::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(power_adjustment), NULL);
     return esp_matter::command::create(cluster, CancelPowerAdjustRequest::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_start_time_adjust_request(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::start_time_adjustment::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(start_time_adjustment), NULL);
     return esp_matter::command::create(cluster, StartTimeAdjustRequest::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_pause_request(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::pausable::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(pausable), NULL);
     return esp_matter::command::create(cluster, PauseRequest::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_resume_request(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::pausable::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(pausable), NULL);
     return esp_matter::command::create(cluster, ResumeRequest::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_modify_forecast_request(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::forecast_adjustment::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(forecast_adjustment), NULL);
     return esp_matter::command::create(cluster, ModifyForecastRequest::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_request_constraint_based_forecast(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::constraint_based_adjustment::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(constraint_based_adjustment), NULL);
     return esp_matter::command::create(cluster, RequestConstraintBasedForecast::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_cancel_request(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::start_time_adjustment::get_id()) || (feature_map & feature::forecast_adjustment::get_id()) || (feature_map & feature::constraint_based_adjustment::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(start_time_adjustment)) || (has_feature(forecast_adjustment)) || (has_feature(constraint_based_adjustment))), NULL);
     return esp_matter::command::create(cluster, CancelRequest::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
@@ -322,28 +322,28 @@ namespace event {
 event_t *create_power_adjust_start(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::power_adjustment::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(power_adjustment), NULL);
     return esp_matter::event::create(cluster, PowerAdjustStart::Id);
 }
 
 event_t *create_power_adjust_end(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::power_adjustment::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(power_adjustment), NULL);
     return esp_matter::event::create(cluster, PowerAdjustEnd::Id);
 }
 
 event_t *create_paused(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::pausable::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(pausable), NULL);
     return esp_matter::event::create(cluster, Paused::Id);
 }
 
 event_t *create_resumed(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::pausable::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(pausable), NULL);
     return esp_matter::event::create(cluster, Resumed::Id);
 }
 

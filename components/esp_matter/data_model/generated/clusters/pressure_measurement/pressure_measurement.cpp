@@ -100,7 +100,7 @@ attribute_t *create_tolerance(cluster_t *cluster, uint16_t value)
 attribute_t *create_scaled_value(cluster_t *cluster, nullable<int16_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::extended::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(extended), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ScaledValue::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_int16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_int16(-32768), esp_matter_nullable_int16(32766));
     return attribute;
@@ -109,7 +109,7 @@ attribute_t *create_scaled_value(cluster_t *cluster, nullable<int16_t> value)
 attribute_t *create_min_scaled_value(cluster_t *cluster, nullable<int16_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::extended::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(extended), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, MinScaledValue::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_int16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_int16(-32768), esp_matter_nullable_int16(32766));
     return attribute;
@@ -118,7 +118,7 @@ attribute_t *create_min_scaled_value(cluster_t *cluster, nullable<int16_t> value
 attribute_t *create_max_scaled_value(cluster_t *cluster, nullable<int16_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::extended::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(extended), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, MaxScaledValue::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_int16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_int16(-32768), esp_matter_nullable_int16(32767));
     return attribute;
@@ -134,7 +134,7 @@ attribute_t *create_scaled_tolerance(cluster_t *cluster, uint16_t value)
 attribute_t *create_scale(cluster_t *cluster, int8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::extended::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(extended), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, Scale::Id, ATTRIBUTE_FLAG_NONE, esp_matter_int8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_int8(-127), esp_matter_int8(126));
     return attribute;

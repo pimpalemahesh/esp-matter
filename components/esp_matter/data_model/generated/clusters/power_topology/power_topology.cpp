@@ -101,7 +101,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::set_topology::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(set_topology), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_active_endpoints(cluster, NULL, 0, 0);
 
@@ -115,14 +115,14 @@ namespace attribute {
 attribute_t *create_available_endpoints(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::set_topology::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(set_topology), NULL);
     return esp_matter::attribute::create(cluster, AvailableEndpoints::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_active_endpoints(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::dynamic_power_flow::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(dynamic_power_flow), NULL);
     return esp_matter::attribute::create(cluster, ActiveEndpoints::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_array(value, length, count));
 }
 

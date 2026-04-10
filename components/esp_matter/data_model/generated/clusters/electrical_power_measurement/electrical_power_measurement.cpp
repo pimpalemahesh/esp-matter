@@ -85,7 +85,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::alternating_current::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(alternating_current), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
 
     return ESP_OK;
@@ -102,7 +102,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::alternating_current::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(alternating_current), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_harmonic_currents(cluster, NULL, 0, 0);
 
@@ -120,7 +120,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::alternating_current::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(alternating_current), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_harmonic_phases(cluster, NULL, 0, 0);
 
@@ -235,14 +235,14 @@ attribute_t *create_frequency(cluster_t *cluster, nullable<int64_t> value)
 attribute_t *create_harmonic_currents(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::harmonics::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(harmonics), NULL);
     return esp_matter::attribute::create(cluster, HarmonicCurrents::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_harmonic_phases(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::power_quality::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(power_quality), NULL);
     return esp_matter::attribute::create(cluster, HarmonicPhases::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NULLABLE, esp_matter_array(value, length, count));
 }
 
@@ -265,7 +265,7 @@ attribute_t *create_neutral_current(cluster_t *cluster, nullable<int64_t> value)
 namespace event {
 event_t *create_measurement_period_ranges(cluster_t *cluster)
 {
-    VerifyOrReturnValue(esp_matter::attribute::get(cluster, attribute::Ranges::Id) != nullptr, NULL);
+    VerifyOrReturnValue(has_attribute(Ranges), NULL);
     return esp_matter::event::create(cluster, MeasurementPeriodRanges::Id);
 }
 

@@ -85,7 +85,7 @@ attribute_t *create_parts_list(cluster_t *cluster, uint8_t *value, uint16_t leng
 attribute_t *create_tag_list(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::tag_list::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(tag_list), NULL);
     return esp_matter::attribute::create(cluster, TagList::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 

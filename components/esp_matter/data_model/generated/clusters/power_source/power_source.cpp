@@ -97,7 +97,7 @@ esp_err_t add(cluster_t *cluster, config_t *config)
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::battery::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(battery), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_bat_charge_state(cluster, config->bat_charge_state);
@@ -121,7 +121,7 @@ esp_err_t add(cluster_t *cluster, config_t *config)
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::battery::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(battery), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_bat_replacement_description(cluster, config->bat_replacement_description, sizeof(config->bat_replacement_description));
@@ -174,7 +174,7 @@ attribute_t *create_wired_assessed_input_frequency(cluster_t *cluster, nullable<
 attribute_t *create_wired_current_type(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::wired::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(wired), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, WiredCurrentType::Id, ATTRIBUTE_FLAG_NONE, esp_matter_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_enum8(0), esp_matter_enum8(1));
     return attribute;
@@ -235,7 +235,7 @@ attribute_t *create_bat_time_remaining(cluster_t *cluster, nullable<uint32_t> va
 attribute_t *create_bat_charge_level(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::battery::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(battery), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, BatChargeLevel::Id, ATTRIBUTE_FLAG_NONE, esp_matter_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_enum8(0), esp_matter_enum8(2));
     return attribute;
@@ -244,14 +244,14 @@ attribute_t *create_bat_charge_level(cluster_t *cluster, uint8_t value)
 attribute_t *create_bat_replacement_needed(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::battery::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(battery), NULL);
     return esp_matter::attribute::create(cluster, BatReplacementNeeded::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bool(value));
 }
 
 attribute_t *create_bat_replaceability(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::battery::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(battery), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, BatReplaceability::Id, ATTRIBUTE_FLAG_NONE, esp_matter_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_enum8(0), esp_matter_enum8(3));
     return attribute;
@@ -270,7 +270,7 @@ attribute_t *create_active_bat_faults(cluster_t *cluster, uint8_t *value, uint16
 attribute_t *create_bat_replacement_description(cluster_t *cluster, char *value, uint16_t length)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::replaceable::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(replaceable), NULL);
     VerifyOrReturnValue(length <= k_max_bat_replacement_description_length + 1, NULL, ESP_LOGE(TAG, "Could not create attribute, string length out of bound"));
     return esp_matter::attribute::create(cluster, BatReplacementDescription::Id, ATTRIBUTE_FLAG_NONE, esp_matter_char_str(value, length), k_max_bat_replacement_description_length + 1);
 }
@@ -311,7 +311,7 @@ attribute_t *create_bat_capacity(cluster_t *cluster, uint32_t value)
 attribute_t *create_bat_quantity(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::replaceable::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(replaceable), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, BatQuantity::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(254));
     return attribute;
@@ -320,7 +320,7 @@ attribute_t *create_bat_quantity(cluster_t *cluster, uint8_t value)
 attribute_t *create_bat_charge_state(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::rechargeable::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(rechargeable), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, BatChargeState::Id, ATTRIBUTE_FLAG_NONE, esp_matter_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_enum8(0), esp_matter_enum8(3));
     return attribute;
@@ -336,7 +336,7 @@ attribute_t *create_bat_time_to_full_charge(cluster_t *cluster, nullable<uint32_
 attribute_t *create_bat_functional_while_charging(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::rechargeable::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(rechargeable), NULL);
     return esp_matter::attribute::create(cluster, BatFunctionalWhileCharging::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bool(value));
 }
 

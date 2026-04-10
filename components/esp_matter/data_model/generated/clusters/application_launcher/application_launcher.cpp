@@ -99,7 +99,7 @@ namespace attribute {
 attribute_t *create_catalog_list(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::application_platform::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(application_platform), NULL);
     return esp_matter::attribute::create(cluster, CatalogList::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_array(value, length, count));
 }
 

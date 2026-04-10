@@ -118,7 +118,7 @@ command_t *create_set_active_dataset_request(cluster_t *cluster)
 command_t *create_set_pending_dataset_request(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::pan_change::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(pan_change), NULL);
     return esp_matter::command::create(cluster, SetPendingDatasetRequest::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 

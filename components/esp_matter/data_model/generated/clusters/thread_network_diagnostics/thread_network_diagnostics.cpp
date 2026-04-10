@@ -151,7 +151,7 @@ attribute_t *create_mesh_local_prefix(cluster_t *cluster, uint8_t *value, uint16
 attribute_t *create_overrun_count(cluster_t *cluster, uint64_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::error_counts::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(error_counts), NULL);
     return esp_matter::attribute::create(cluster, OverrunCount::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint64(value));
 }
 
@@ -440,7 +440,7 @@ namespace command {
 command_t *create_reset_counts(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::error_counts::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(error_counts), NULL);
     return esp_matter::command::create(cluster, ResetCounts::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_reset_counts);
 }
 

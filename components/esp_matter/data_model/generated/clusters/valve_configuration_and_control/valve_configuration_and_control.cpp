@@ -129,7 +129,7 @@ attribute_t *create_default_open_duration(cluster_t *cluster, nullable<uint32_t>
 attribute_t *create_auto_close_time(cluster_t *cluster, nullable<uint64_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::time_sync::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(time_sync), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, AutoCloseTime::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint64(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint64(0), esp_matter_nullable_uint64(4294967294));
     return attribute;
@@ -157,7 +157,7 @@ attribute_t *create_target_state(cluster_t *cluster, nullable<uint8_t> value)
 attribute_t *create_current_level(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::level::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(level), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CurrentLevel::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint8(0), esp_matter_nullable_uint8(254));
     return attribute;
@@ -166,7 +166,7 @@ attribute_t *create_current_level(cluster_t *cluster, nullable<uint8_t> value)
 attribute_t *create_target_level(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::level::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(level), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, TargetLevel::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint8(0), esp_matter_nullable_uint8(254));
     return attribute;

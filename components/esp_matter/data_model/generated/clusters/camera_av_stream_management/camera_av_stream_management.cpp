@@ -147,7 +147,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::audio::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(audio), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_speaker_capabilities(cluster, NULL, 0, 0);
     attribute::create_two_way_talk_support(cluster, 0);
@@ -170,7 +170,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(((feature_map & feature::video::get_id()) || (feature_map & feature::snapshot::get_id())), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(((has_feature(video)) || (has_feature(snapshot))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
 
     return ESP_OK;
@@ -187,7 +187,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(((feature_map & feature::video::get_id()) || (feature_map & feature::snapshot::get_id())), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(((has_feature(video)) || (has_feature(snapshot))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     command::create_video_stream_modify(cluster);
     command::create_snapshot_stream_modify(cluster);
@@ -206,7 +206,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(((feature_map & feature::video::get_id()) || (feature_map & feature::snapshot::get_id())), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(((has_feature(video)) || (has_feature(snapshot))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     command::create_video_stream_modify(cluster);
     command::create_snapshot_stream_modify(cluster);
@@ -242,7 +242,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(((feature_map & feature::video::get_id()) || (feature_map & feature::snapshot::get_id())), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(((has_feature(video)) || (has_feature(snapshot))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_hdr_mode_enabled(cluster, false);
 
@@ -260,7 +260,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(((feature_map & feature::video::get_id()) || (feature_map & feature::snapshot::get_id())), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(((has_feature(video)) || (has_feature(snapshot))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_night_vision_uses_infrared(cluster, false);
     attribute::create_night_vision(cluster, 0);
@@ -275,42 +275,42 @@ namespace attribute {
 attribute_t *create_max_concurrent_encoders(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::video::get_id()) || (feature_map & feature::snapshot::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(video)) || (has_feature(snapshot))), NULL);
     return esp_matter::attribute::create(cluster, MaxConcurrentEncoders::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint8(value));
 }
 
 attribute_t *create_max_encoded_pixel_rate(cluster_t *cluster, uint32_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::video::get_id()) || (feature_map & feature::snapshot::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(video)) || (has_feature(snapshot))), NULL);
     return esp_matter::attribute::create(cluster, MaxEncodedPixelRate::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint32(value));
 }
 
 attribute_t *create_video_sensor_params(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::video::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(video), NULL);
     return esp_matter::attribute::create(cluster, VideoSensorParams::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_night_vision_uses_infrared(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::night_vision::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(night_vision), NULL);
     return esp_matter::attribute::create(cluster, NightVisionUsesInfrared::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_bool(value));
 }
 
 attribute_t *create_min_viewport_resolution(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::video::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(video), NULL);
     return esp_matter::attribute::create(cluster, MinViewportResolution::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_rate_distortion_trade_off_points(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::video::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(video), NULL);
     return esp_matter::attribute::create(cluster, RateDistortionTradeOffPoints::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
@@ -322,28 +322,28 @@ attribute_t *create_max_content_buffer_size(cluster_t *cluster, uint32_t value)
 attribute_t *create_microphone_capabilities(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::audio::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(audio), NULL);
     return esp_matter::attribute::create(cluster, MicrophoneCapabilities::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_speaker_capabilities(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::speaker::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(speaker), NULL);
     return esp_matter::attribute::create(cluster, SpeakerCapabilities::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_two_way_talk_support(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::speaker::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(speaker), NULL);
     return esp_matter::attribute::create(cluster, TwoWayTalkSupport::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_enum8(value));
 }
 
 attribute_t *create_snapshot_capabilities(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::snapshot::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(snapshot), NULL);
     return esp_matter::attribute::create(cluster, SnapshotCapabilities::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
@@ -355,14 +355,14 @@ attribute_t *create_max_network_bandwidth(cluster_t *cluster, uint32_t value)
 attribute_t *create_current_frame_rate(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::video::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(video), NULL);
     return esp_matter::attribute::create(cluster, CurrentFrameRate::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint16(value));
 }
 
 attribute_t *create_hdr_mode_enabled(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::high_dynamic_range::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(high_dynamic_range), NULL);
     return esp_matter::attribute::create(cluster, HDRModeEnabled::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_bool(value));
 }
 
@@ -374,21 +374,21 @@ attribute_t *create_supported_stream_usages(cluster_t *cluster, uint8_t *value, 
 attribute_t *create_allocated_video_streams(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::video::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(video), NULL);
     return esp_matter::attribute::create(cluster, AllocatedVideoStreams::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_allocated_audio_streams(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::audio::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(audio), NULL);
     return esp_matter::attribute::create(cluster, AllocatedAudioStreams::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_allocated_snapshot_streams(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::snapshot::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(snapshot), NULL);
     return esp_matter::attribute::create(cluster, AllocatedSnapshotStreams::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_array(value, length, count));
 }
 
@@ -400,14 +400,14 @@ attribute_t *create_stream_usage_priorities(cluster_t *cluster, uint8_t *value, 
 attribute_t *create_soft_recording_privacy_mode_enabled(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::privacy::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(privacy), NULL);
     return esp_matter::attribute::create(cluster, SoftRecordingPrivacyModeEnabled::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_bool(value));
 }
 
 attribute_t *create_soft_livestream_privacy_mode_enabled(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::privacy::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(privacy), NULL);
     return esp_matter::attribute::create(cluster, SoftLivestreamPrivacyModeEnabled::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_bool(value));
 }
 
@@ -419,7 +419,7 @@ attribute_t *create_hard_privacy_mode_on(cluster_t *cluster, bool value)
 attribute_t *create_night_vision(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::night_vision::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(night_vision), NULL);
     return esp_matter::attribute::create(cluster, NightVision::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_enum8(value));
 }
 
@@ -431,63 +431,63 @@ attribute_t *create_night_vision_illum(cluster_t *cluster, uint8_t value)
 attribute_t *create_viewport(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::video::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(video), NULL);
     return esp_matter::attribute::create(cluster, Viewport::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_speaker_muted(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::speaker::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(speaker), NULL);
     return esp_matter::attribute::create(cluster, SpeakerMuted::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_bool(value));
 }
 
 attribute_t *create_speaker_volume_level(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::speaker::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(speaker), NULL);
     return esp_matter::attribute::create(cluster, SpeakerVolumeLevel::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint8(value));
 }
 
 attribute_t *create_speaker_max_level(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::speaker::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(speaker), NULL);
     return esp_matter::attribute::create(cluster, SpeakerMaxLevel::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint8(value));
 }
 
 attribute_t *create_speaker_min_level(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::speaker::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(speaker), NULL);
     return esp_matter::attribute::create(cluster, SpeakerMinLevel::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint8(value));
 }
 
 attribute_t *create_microphone_muted(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::audio::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(audio), NULL);
     return esp_matter::attribute::create(cluster, MicrophoneMuted::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_bool(value));
 }
 
 attribute_t *create_microphone_volume_level(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::audio::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(audio), NULL);
     return esp_matter::attribute::create(cluster, MicrophoneVolumeLevel::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint8(value));
 }
 
 attribute_t *create_microphone_max_level(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::audio::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(audio), NULL);
     return esp_matter::attribute::create(cluster, MicrophoneMaxLevel::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint8(value));
 }
 
 attribute_t *create_microphone_min_level(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::audio::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(audio), NULL);
     return esp_matter::attribute::create(cluster, MicrophoneMinLevel::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint8(value));
 }
 
@@ -514,14 +514,14 @@ attribute_t *create_image_flip_vertical(cluster_t *cluster, bool value)
 attribute_t *create_local_video_recording_enabled(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::video::get_id()) && (feature_map & feature::local_storage::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(video)) && (has_feature(local_storage))), NULL);
     return esp_matter::attribute::create(cluster, LocalVideoRecordingEnabled::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_bool(value));
 }
 
 attribute_t *create_local_snapshot_recording_enabled(cluster_t *cluster, bool value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::snapshot::get_id()) && (feature_map & feature::local_storage::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(snapshot)) && (has_feature(local_storage))), NULL);
     return esp_matter::attribute::create(cluster, LocalSnapshotRecordingEnabled::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_bool(value));
 }
 
@@ -540,77 +540,77 @@ namespace command {
 command_t *create_audio_stream_allocate(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::audio::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(audio), NULL);
     return esp_matter::command::create(cluster, AudioStreamAllocate::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_audio_stream_allocate_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::audio::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(audio), NULL);
     return esp_matter::command::create(cluster, AudioStreamAllocateResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_audio_stream_deallocate(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::audio::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(audio), NULL);
     return esp_matter::command::create(cluster, AudioStreamDeallocate::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_video_stream_allocate(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::video::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(video), NULL);
     return esp_matter::command::create(cluster, VideoStreamAllocate::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_video_stream_allocate_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::video::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(video), NULL);
     return esp_matter::command::create(cluster, VideoStreamAllocateResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_video_stream_modify(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::video::get_id()) && (((feature_map & feature::watermark::get_id()) || (feature_map & feature::on_screen_display::get_id())))), NULL);
+    VerifyOrReturnValue(((has_feature(video)) && (((has_feature(watermark)) || (has_feature(on_screen_display))))), NULL);
     return esp_matter::command::create(cluster, VideoStreamModify::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_video_stream_deallocate(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::video::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(video), NULL);
     return esp_matter::command::create(cluster, VideoStreamDeallocate::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_snapshot_stream_allocate(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::snapshot::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(snapshot), NULL);
     return esp_matter::command::create(cluster, SnapshotStreamAllocate::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_snapshot_stream_allocate_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::snapshot::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(snapshot), NULL);
     return esp_matter::command::create(cluster, SnapshotStreamAllocateResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_snapshot_stream_modify(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::snapshot::get_id()) && (((feature_map & feature::watermark::get_id()) || (feature_map & feature::on_screen_display::get_id())))), NULL);
+    VerifyOrReturnValue(((has_feature(snapshot)) && (((has_feature(watermark)) || (has_feature(on_screen_display))))), NULL);
     return esp_matter::command::create(cluster, SnapshotStreamModify::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_snapshot_stream_deallocate(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::snapshot::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(snapshot), NULL);
     return esp_matter::command::create(cluster, SnapshotStreamDeallocate::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
@@ -622,14 +622,14 @@ command_t *create_set_stream_priorities(cluster_t *cluster)
 command_t *create_capture_snapshot(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::snapshot::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(snapshot), NULL);
     return esp_matter::command::create(cluster, CaptureSnapshot::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_capture_snapshot_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::snapshot::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(snapshot), NULL);
     return esp_matter::command::create(cluster, CaptureSnapshotResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 

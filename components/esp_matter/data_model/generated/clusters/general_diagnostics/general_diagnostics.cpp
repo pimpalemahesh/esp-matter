@@ -136,14 +136,14 @@ command_t *create_time_snapshot_response(cluster_t *cluster)
 command_t *create_payload_test_request(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::data_model_test::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(data_model_test), NULL);
     return esp_matter::command::create(cluster, PayloadTestRequest::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_payload_test_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::data_model_test::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(data_model_test), NULL);
     return esp_matter::command::create(cluster, PayloadTestResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 

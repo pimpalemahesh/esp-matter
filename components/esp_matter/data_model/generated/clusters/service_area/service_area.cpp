@@ -102,7 +102,7 @@ attribute_t *create_supported_areas(cluster_t *cluster, uint8_t *value, uint16_t
 attribute_t *create_supported_maps(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::maps::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(maps), NULL);
     return esp_matter::attribute::create(cluster, SupportedMaps::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
@@ -124,7 +124,7 @@ attribute_t *create_estimated_end_time(cluster_t *cluster, nullable<uint32_t> va
 attribute_t *create_progress(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::progress_reporting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(progress_reporting), NULL);
     return esp_matter::attribute::create(cluster, Progress::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
@@ -147,7 +147,7 @@ command_t *create_skip_area(cluster_t *cluster)
 
 command_t *create_skip_area_response(cluster_t *cluster)
 {
-    VerifyOrReturnValue(esp_matter::command::get(cluster, command::SkipArea::Id, COMMAND_FLAG_ACCEPTED) != nullptr, NULL);
+    VerifyOrReturnValue(has_command(SkipArea, COMMAND_FLAG_ACCEPTED), NULL);
     return esp_matter::command::create(cluster, SkipAreaResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 

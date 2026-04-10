@@ -87,7 +87,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(((feature_map & feature::momentary_switch::get_id()) && (!(feature_map & feature::action_switch::get_id()))), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(((has_feature(momentary_switch)) && (!(has_feature(action_switch)))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     event::create_short_release(cluster);
 
@@ -105,7 +105,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(((feature_map & feature::momentary_switch::get_id()) && (((feature_map & feature::momentary_switch_release::get_id()) || (feature_map & feature::action_switch::get_id())))), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(((has_feature(momentary_switch)) && (((has_feature(momentary_switch_release)) || (has_feature(action_switch))))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     event::create_long_press(cluster);
     event::create_long_release(cluster);
@@ -125,7 +125,7 @@ esp_err_t add(cluster_t *cluster, config_t *config)
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError((feature_map & feature::action_switch::get_id() || ((feature_map & feature::momentary_switch::get_id()) && (feature_map & feature::momentary_switch_release::get_id()))), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError((has_feature(action_switch) || ((has_feature(momentary_switch)) && (has_feature(momentary_switch_release)))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_multi_press_max(cluster, config->multi_press_max);
@@ -149,12 +149,8 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::momentary_switch::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(momentary_switch), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
-    event_t *multi_press_ongoing = esp_matter::event::get(cluster, event::MultiPressOngoing::Id);
-    if (multi_press_ongoing) {
-        esp_matter::event::destroy(cluster, multi_press_ongoing);
-    }
 
     return ESP_OK;
 }
@@ -180,7 +176,7 @@ attribute_t *create_current_position(cluster_t *cluster, uint8_t value)
 attribute_t *create_multi_press_max(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::momentary_switch_multi_press::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(momentary_switch_multi_press), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, MultiPressMax::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(2), esp_matter_uint8(254));
     return attribute;
@@ -192,49 +188,49 @@ namespace event {
 event_t *create_switch_latched(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::latching_switch::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(latching_switch), NULL);
     return esp_matter::event::create(cluster, SwitchLatched::Id);
 }
 
 event_t *create_initial_press(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::momentary_switch::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(momentary_switch), NULL);
     return esp_matter::event::create(cluster, InitialPress::Id);
 }
 
 event_t *create_long_press(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::momentary_switch_long_press::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(momentary_switch_long_press), NULL);
     return esp_matter::event::create(cluster, LongPress::Id);
 }
 
 event_t *create_short_release(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::momentary_switch_release::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(momentary_switch_release), NULL);
     return esp_matter::event::create(cluster, ShortRelease::Id);
 }
 
 event_t *create_long_release(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::momentary_switch_long_press::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(momentary_switch_long_press), NULL);
     return esp_matter::event::create(cluster, LongRelease::Id);
 }
 
 event_t *create_multi_press_ongoing(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::momentary_switch_multi_press::get_id()) && (!(feature_map & feature::action_switch::get_id()))), NULL);
+    VerifyOrReturnValue(((has_feature(momentary_switch_multi_press)) && (!(has_feature(action_switch)))), NULL);
     return esp_matter::event::create(cluster, MultiPressOngoing::Id);
 }
 
 event_t *create_multi_press_complete(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::momentary_switch_multi_press::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(momentary_switch_multi_press), NULL);
     return esp_matter::event::create(cluster, MultiPressComplete::Id);
 }
 

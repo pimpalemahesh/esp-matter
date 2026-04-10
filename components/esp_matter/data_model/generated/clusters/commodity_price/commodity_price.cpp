@@ -81,7 +81,7 @@ attribute_t *create_current_price(cluster_t *cluster, uint8_t *value, uint16_t l
 attribute_t *create_price_forecast(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::forecasting::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(forecasting), NULL);
     return esp_matter::attribute::create(cluster, PriceForecast::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
@@ -94,7 +94,7 @@ command_t *create_get_detailed_price_request(cluster_t *cluster)
 
 command_t *create_get_detailed_price_response(cluster_t *cluster)
 {
-    VerifyOrReturnValue(esp_matter::command::get(cluster, command::GetDetailedPriceRequest::Id, COMMAND_FLAG_ACCEPTED) != nullptr, NULL);
+    VerifyOrReturnValue(has_command(GetDetailedPriceRequest, COMMAND_FLAG_ACCEPTED), NULL);
     return esp_matter::command::create(cluster, GetDetailedPriceResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
@@ -105,7 +105,7 @@ command_t *create_get_detailed_forecast_request(cluster_t *cluster)
 
 command_t *create_get_detailed_forecast_response(cluster_t *cluster)
 {
-    VerifyOrReturnValue(esp_matter::command::get(cluster, command::GetDetailedForecastRequest::Id, COMMAND_FLAG_ACCEPTED) != nullptr, NULL);
+    VerifyOrReturnValue(has_command(GetDetailedForecastRequest, COMMAND_FLAG_ACCEPTED), NULL);
     return esp_matter::command::create(cluster, GetDetailedForecastResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 

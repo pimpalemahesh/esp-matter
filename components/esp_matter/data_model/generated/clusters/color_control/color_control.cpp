@@ -393,7 +393,7 @@ namespace attribute {
 attribute_t *create_current_hue(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::hue_saturation::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(hue_saturation), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CurrentHue::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(254));
     return attribute;
@@ -402,7 +402,7 @@ attribute_t *create_current_hue(cluster_t *cluster, uint8_t value)
 attribute_t *create_current_saturation(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::hue_saturation::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(hue_saturation), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CurrentSaturation::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(254));
     return attribute;
@@ -418,7 +418,7 @@ attribute_t *create_remaining_time(cluster_t *cluster, uint16_t value)
 attribute_t *create_current_x(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::xy::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(xy), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CurrentX::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65279));
     return attribute;
@@ -427,7 +427,7 @@ attribute_t *create_current_x(cluster_t *cluster, uint16_t value)
 attribute_t *create_current_y(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::xy::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(xy), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CurrentY::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65279));
     return attribute;
@@ -449,7 +449,7 @@ attribute_t *create_compensation_text(cluster_t *cluster, char *value, uint16_t 
 attribute_t *create_color_temperature_mireds(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_temperature::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_temperature), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ColorTemperatureMireds::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65279));
     return attribute;
@@ -682,7 +682,7 @@ attribute_t *create_color_point_b_intensity(cluster_t *cluster, nullable<uint8_t
 attribute_t *create_enhanced_current_hue(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::enhanced_hue::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(enhanced_hue), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, EnhancedCurrentHue::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65534));
     return attribute;
@@ -698,7 +698,7 @@ attribute_t *create_enhanced_color_mode(cluster_t *cluster, uint8_t value)
 attribute_t *create_color_loop_active(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_loop::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_loop), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ColorLoopActive::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(1));
     return attribute;
@@ -707,7 +707,7 @@ attribute_t *create_color_loop_active(cluster_t *cluster, uint8_t value)
 attribute_t *create_color_loop_direction(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_loop::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_loop), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ColorLoopDirection::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_enum8(0), esp_matter_enum8(1));
     return attribute;
@@ -716,7 +716,7 @@ attribute_t *create_color_loop_direction(cluster_t *cluster, uint8_t value)
 attribute_t *create_color_loop_time(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_loop::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_loop), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ColorLoopTime::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65534));
     return attribute;
@@ -725,7 +725,7 @@ attribute_t *create_color_loop_time(cluster_t *cluster, uint16_t value)
 attribute_t *create_color_loop_start_enhanced_hue(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_loop::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_loop), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ColorLoopStartEnhancedHue::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65534));
     return attribute;
@@ -734,7 +734,7 @@ attribute_t *create_color_loop_start_enhanced_hue(cluster_t *cluster, uint16_t v
 attribute_t *create_color_loop_stored_enhanced_hue(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_loop::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_loop), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ColorLoopStoredEnhancedHue::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65534));
     return attribute;
@@ -750,7 +750,7 @@ attribute_t *create_color_capabilities(cluster_t *cluster, uint16_t value)
 attribute_t *create_color_temp_physical_min_mireds(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_temperature::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_temperature), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ColorTempPhysicalMinMireds::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(1), esp_matter_uint16(65279));
     return attribute;
@@ -759,7 +759,7 @@ attribute_t *create_color_temp_physical_min_mireds(cluster_t *cluster, uint16_t 
 attribute_t *create_color_temp_physical_max_mireds(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_temperature::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_temperature), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ColorTempPhysicalMaxMireds::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65279));
     return attribute;
@@ -768,7 +768,7 @@ attribute_t *create_color_temp_physical_max_mireds(cluster_t *cluster, uint16_t 
 attribute_t *create_couple_color_temp_to_level_min_mireds(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_temperature::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_temperature), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CoupleColorTempToLevelMinMireds::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65534));
     return attribute;
@@ -777,7 +777,7 @@ attribute_t *create_couple_color_temp_to_level_min_mireds(cluster_t *cluster, ui
 attribute_t *create_start_up_color_temperature_mireds(cluster_t *cluster, nullable<uint16_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_temperature::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_temperature), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, StartUpColorTemperatureMireds::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint16(1), esp_matter_nullable_uint16(65279));
     return attribute;
@@ -788,133 +788,133 @@ namespace command {
 command_t *create_move_to_hue(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::hue_saturation::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(hue_saturation), NULL);
     return esp_matter::command::create(cluster, MoveToHue::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_move_to_hue);
 }
 
 command_t *create_move_hue(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::hue_saturation::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(hue_saturation), NULL);
     return esp_matter::command::create(cluster, MoveHue::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_move_hue);
 }
 
 command_t *create_step_hue(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::hue_saturation::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(hue_saturation), NULL);
     return esp_matter::command::create(cluster, StepHue::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_step_hue);
 }
 
 command_t *create_move_to_saturation(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::hue_saturation::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(hue_saturation), NULL);
     return esp_matter::command::create(cluster, MoveToSaturation::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_move_to_saturation);
 }
 
 command_t *create_move_saturation(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::hue_saturation::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(hue_saturation), NULL);
     return esp_matter::command::create(cluster, MoveSaturation::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_move_saturation);
 }
 
 command_t *create_step_saturation(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::hue_saturation::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(hue_saturation), NULL);
     return esp_matter::command::create(cluster, StepSaturation::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_step_saturation);
 }
 
 command_t *create_move_to_hue_and_saturation(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::hue_saturation::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(hue_saturation), NULL);
     return esp_matter::command::create(cluster, MoveToHueAndSaturation::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_move_to_hue_and_saturation);
 }
 
 command_t *create_move_to_color(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::xy::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(xy), NULL);
     return esp_matter::command::create(cluster, MoveToColor::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_move_to_color);
 }
 
 command_t *create_move_color(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::xy::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(xy), NULL);
     return esp_matter::command::create(cluster, MoveColor::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_move_color);
 }
 
 command_t *create_step_color(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::xy::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(xy), NULL);
     return esp_matter::command::create(cluster, StepColor::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_step_color);
 }
 
 command_t *create_move_to_color_temperature(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_temperature::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_temperature), NULL);
     return esp_matter::command::create(cluster, MoveToColorTemperature::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_move_to_color_temperature);
 }
 
 command_t *create_enhanced_move_to_hue(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::enhanced_hue::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(enhanced_hue), NULL);
     return esp_matter::command::create(cluster, EnhancedMoveToHue::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_enhanced_move_to_hue);
 }
 
 command_t *create_enhanced_move_hue(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::enhanced_hue::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(enhanced_hue), NULL);
     return esp_matter::command::create(cluster, EnhancedMoveHue::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_enhanced_move_hue);
 }
 
 command_t *create_enhanced_step_hue(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::enhanced_hue::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(enhanced_hue), NULL);
     return esp_matter::command::create(cluster, EnhancedStepHue::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_enhanced_step_hue);
 }
 
 command_t *create_enhanced_move_to_hue_and_saturation(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::enhanced_hue::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(enhanced_hue), NULL);
     return esp_matter::command::create(cluster, EnhancedMoveToHueAndSaturation::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_enhanced_move_to_hue_and_saturation);
 }
 
 command_t *create_color_loop_set(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_loop::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_loop), NULL);
     return esp_matter::command::create(cluster, ColorLoopSet::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_color_loop_set);
 }
 
 command_t *create_stop_move_step(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::hue_saturation::get_id()) || (feature_map & feature::xy::get_id()) || (feature_map & feature::color_temperature::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(hue_saturation)) || (has_feature(xy)) || (has_feature(color_temperature))), NULL);
     return esp_matter::command::create(cluster, StopMoveStep::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_stop_move_step);
 }
 
 command_t *create_move_color_temperature(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_temperature::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_temperature), NULL);
     return esp_matter::command::create(cluster, MoveColorTemperature::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_move_color_temperature);
 }
 
 command_t *create_step_color_temperature(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::color_temperature::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(color_temperature), NULL);
     return esp_matter::command::create(cluster, StepColorTemperature::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_step_color_temperature);
 }
 

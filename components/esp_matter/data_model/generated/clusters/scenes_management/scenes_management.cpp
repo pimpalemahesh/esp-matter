@@ -147,7 +147,7 @@ command_t *create_copy_scene(cluster_t *cluster)
 
 command_t *create_copy_scene_response(cluster_t *cluster)
 {
-    VerifyOrReturnValue(esp_matter::command::get(cluster, command::CopyScene::Id, COMMAND_FLAG_ACCEPTED) != nullptr, NULL);
+    VerifyOrReturnValue(has_command(CopyScene, COMMAND_FLAG_ACCEPTED), NULL);
     return esp_matter::command::create(cluster, CopySceneResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 

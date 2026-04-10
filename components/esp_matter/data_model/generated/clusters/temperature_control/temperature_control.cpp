@@ -109,7 +109,7 @@ esp_err_t add(cluster_t *cluster, config_t *config)
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::temperature_number::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(temperature_number), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_step(cluster, config->step);
@@ -127,7 +127,7 @@ namespace attribute {
 attribute_t *create_temperature_setpoint(cluster_t *cluster, int16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::temperature_number::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(temperature_number), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, TemperatureSetpoint::Id, ATTRIBUTE_FLAG_NONE, esp_matter_int16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_int16(-32768), esp_matter_int16(32766));
     return attribute;
@@ -136,7 +136,7 @@ attribute_t *create_temperature_setpoint(cluster_t *cluster, int16_t value)
 attribute_t *create_min_temperature(cluster_t *cluster, int16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::temperature_number::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(temperature_number), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, MinTemperature::Id, ATTRIBUTE_FLAG_NONE, esp_matter_int16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_int16(-32768), esp_matter_int16(32766));
     return attribute;
@@ -145,7 +145,7 @@ attribute_t *create_min_temperature(cluster_t *cluster, int16_t value)
 attribute_t *create_max_temperature(cluster_t *cluster, int16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::temperature_number::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(temperature_number), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, MaxTemperature::Id, ATTRIBUTE_FLAG_NONE, esp_matter_int16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_int16(-32768), esp_matter_int16(32766));
     return attribute;
@@ -154,7 +154,7 @@ attribute_t *create_max_temperature(cluster_t *cluster, int16_t value)
 attribute_t *create_step(cluster_t *cluster, int16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::temperature_step::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(temperature_step), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, Step::Id, ATTRIBUTE_FLAG_NONE, esp_matter_int16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_int16(1), esp_matter_int16(32766));
     return attribute;
@@ -163,7 +163,7 @@ attribute_t *create_step(cluster_t *cluster, int16_t value)
 attribute_t *create_selected_temperature_level(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::temperature_level::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(temperature_level), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, SelectedTemperatureLevel::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(31));
     return attribute;
@@ -172,7 +172,7 @@ attribute_t *create_selected_temperature_level(cluster_t *cluster, uint8_t value
 attribute_t *create_supported_temperature_levels(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::temperature_level::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(temperature_level), NULL);
     return esp_matter::attribute::create(cluster, SupportedTemperatureLevels::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 

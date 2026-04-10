@@ -156,14 +156,14 @@ namespace attribute {
 attribute_t *create_accept_header(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::url_playback::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(url_playback), NULL);
     return esp_matter::attribute::create(cluster, AcceptHeader::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_supported_streaming_protocols(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::url_playback::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(url_playback), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, SupportedStreamingProtocols::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_bitmap8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap8(0), esp_matter_bitmap8(3));
     return attribute;
@@ -174,21 +174,21 @@ namespace command {
 command_t *create_launch_content(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::content_search::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(content_search), NULL);
     return esp_matter::command::create(cluster, LaunchContent::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_launch_content);
 }
 
 command_t *create_launch_url(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::url_playback::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(url_playback), NULL);
     return esp_matter::command::create(cluster, LaunchURL::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_launch_url);
 }
 
 command_t *create_launcher_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::content_search::get_id()) || (feature_map & feature::url_playback::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(content_search)) || (has_feature(url_playback))), NULL);
     return esp_matter::command::create(cluster, LauncherResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 

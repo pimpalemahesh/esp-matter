@@ -124,7 +124,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::long_idle_time_support::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(long_idle_time_support), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
 
     return ESP_OK;
@@ -158,14 +158,14 @@ attribute_t *create_active_mode_threshold(cluster_t *cluster, uint16_t value)
 attribute_t *create_registered_clients(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::check_in_protocol_support::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(check_in_protocol_support), NULL);
     return esp_matter::attribute::create(cluster, RegisteredClients::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_icd_counter(cluster_t *cluster, uint32_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::check_in_protocol_support::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(check_in_protocol_support), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ICDCounter::Id, ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_uint32(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(4294967294));
     return attribute;
@@ -174,7 +174,7 @@ attribute_t *create_icd_counter(cluster_t *cluster, uint32_t value)
 attribute_t *create_clients_supported_per_fabric(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::check_in_protocol_support::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(check_in_protocol_support), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ClientsSupportedPerFabric::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(1), esp_matter_uint16(65534));
     return attribute;
@@ -183,7 +183,7 @@ attribute_t *create_clients_supported_per_fabric(cluster_t *cluster, uint16_t va
 attribute_t *create_user_active_mode_trigger_hint(cluster_t *cluster, uint32_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::user_active_mode_trigger::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(user_active_mode_trigger), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, UserActiveModeTriggerHint::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bitmap32(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap32(0), esp_matter_bitmap32(131071));
     return attribute;
@@ -198,7 +198,7 @@ attribute_t *create_user_active_mode_trigger_instruction(cluster_t *cluster, cha
 attribute_t *create_operating_mode(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::long_idle_time_support::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(long_idle_time_support), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, OperatingMode::Id, ATTRIBUTE_FLAG_NONE, esp_matter_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_enum8(0), esp_matter_enum8(1));
     return attribute;
@@ -207,7 +207,7 @@ attribute_t *create_operating_mode(cluster_t *cluster, uint8_t value)
 attribute_t *create_maximum_check_in_backoff(cluster_t *cluster, uint32_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::check_in_protocol_support::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(check_in_protocol_support), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, MaximumCheckInBackoff::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint32(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint32(0), esp_matter_uint32(64800));
     return attribute;
@@ -218,21 +218,21 @@ namespace command {
 command_t *create_register_client(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::check_in_protocol_support::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(check_in_protocol_support), NULL);
     return esp_matter::command::create(cluster, RegisterClient::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_register_client_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::check_in_protocol_support::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(check_in_protocol_support), NULL);
     return esp_matter::command::create(cluster, RegisterClientResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_unregister_client(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::check_in_protocol_support::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(check_in_protocol_support), NULL);
     return esp_matter::command::create(cluster, UnregisterClient::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 

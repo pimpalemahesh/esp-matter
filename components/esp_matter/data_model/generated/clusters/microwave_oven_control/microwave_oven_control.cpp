@@ -70,7 +70,7 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::power_as_number::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(power_as_number), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_min_power(cluster, 0);
     attribute::create_max_power(cluster, 0);
@@ -96,28 +96,28 @@ attribute_t *create_max_cook_time(cluster_t *cluster, uint32_t value)
 attribute_t *create_power_setting(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::power_as_number::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(power_as_number), NULL);
     return esp_matter::attribute::create(cluster, PowerSetting::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint8(value));
 }
 
 attribute_t *create_min_power(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::power_number_limits::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(power_number_limits), NULL);
     return esp_matter::attribute::create(cluster, MinPower::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint8(value));
 }
 
 attribute_t *create_max_power(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::power_number_limits::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(power_number_limits), NULL);
     return esp_matter::attribute::create(cluster, MaxPower::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint8(value));
 }
 
 attribute_t *create_power_step(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::power_number_limits::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(power_number_limits), NULL);
     return esp_matter::attribute::create(cluster, PowerStep::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_uint8(value));
 }
 

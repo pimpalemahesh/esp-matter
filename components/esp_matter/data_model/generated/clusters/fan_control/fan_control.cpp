@@ -208,7 +208,7 @@ attribute_t *create_percent_current(cluster_t *cluster, uint8_t value)
 attribute_t *create_speed_max(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::multi_speed::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(multi_speed), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, SpeedMax::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(1), esp_matter_uint8(100));
     return attribute;
@@ -217,7 +217,7 @@ attribute_t *create_speed_max(cluster_t *cluster, uint8_t value)
 attribute_t *create_speed_setting(cluster_t *cluster, nullable<uint8_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::multi_speed::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(multi_speed), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, SpeedSetting::Id, ATTRIBUTE_FLAG_WRITABLE | ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint8(0), esp_matter_nullable_uint8(254));
     return attribute;
@@ -226,7 +226,7 @@ attribute_t *create_speed_setting(cluster_t *cluster, nullable<uint8_t> value)
 attribute_t *create_speed_current(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::multi_speed::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(multi_speed), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, SpeedCurrent::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(254));
     return attribute;
@@ -235,7 +235,7 @@ attribute_t *create_speed_current(cluster_t *cluster, uint8_t value)
 attribute_t *create_rock_support(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::rocking::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(rocking), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, RockSupport::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bitmap8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap8(0), esp_matter_bitmap8(7));
     return attribute;
@@ -244,7 +244,7 @@ attribute_t *create_rock_support(cluster_t *cluster, uint8_t value)
 attribute_t *create_rock_setting(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::rocking::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(rocking), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, RockSetting::Id, ATTRIBUTE_FLAG_WRITABLE, esp_matter_bitmap8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap8(0), esp_matter_bitmap8(7));
     return attribute;
@@ -253,7 +253,7 @@ attribute_t *create_rock_setting(cluster_t *cluster, uint8_t value)
 attribute_t *create_wind_support(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::wind::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(wind), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, WindSupport::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bitmap8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap8(0), esp_matter_bitmap8(3));
     return attribute;
@@ -262,7 +262,7 @@ attribute_t *create_wind_support(cluster_t *cluster, uint8_t value)
 attribute_t *create_wind_setting(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::wind::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(wind), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, WindSetting::Id, ATTRIBUTE_FLAG_WRITABLE, esp_matter_bitmap8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap8(0), esp_matter_bitmap8(3));
     return attribute;
@@ -271,7 +271,7 @@ attribute_t *create_wind_setting(cluster_t *cluster, uint8_t value)
 attribute_t *create_airflow_direction(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::airflow_direction::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(airflow_direction), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, AirflowDirection::Id, ATTRIBUTE_FLAG_WRITABLE, esp_matter_enum8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_enum8(0), esp_matter_enum8(1));
     return attribute;
@@ -282,7 +282,7 @@ namespace command {
 command_t *create_step(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::step::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(step), NULL);
     return esp_matter::command::create(cluster, Step::Id, COMMAND_FLAG_ACCEPTED, esp_matter_command_callback_step);
 }
 

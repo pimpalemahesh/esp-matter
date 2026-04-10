@@ -156,7 +156,7 @@ esp_err_t add(cluster_t *cluster, config_t *config)
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::lift::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(lift), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_target_position_lift_percent_100ths(cluster, config->target_position_lift_percent_100ths);
@@ -181,7 +181,7 @@ esp_err_t add(cluster_t *cluster, config_t *config)
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError(feature_map & feature::tilt::get_id(), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError(has_feature(tilt), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_target_position_tilt_percent_100ths(cluster, config->target_position_tilt_percent_100ths);
@@ -250,7 +250,7 @@ attribute_t *create_operational_status(cluster_t *cluster, uint8_t value)
 attribute_t *create_target_position_lift_percent_100ths(cluster_t *cluster, nullable<uint16_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::lift::get_id()) && (feature_map & feature::position_aware_lift::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(lift)) && (has_feature(position_aware_lift))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, TargetPositionLiftPercent100ths::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint16(0), esp_matter_nullable_uint16(65534));
     return attribute;
@@ -259,7 +259,7 @@ attribute_t *create_target_position_lift_percent_100ths(cluster_t *cluster, null
 attribute_t *create_target_position_tilt_percent_100ths(cluster_t *cluster, nullable<uint16_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::tilt::get_id()) && (feature_map & feature::position_aware_tilt::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(tilt)) && (has_feature(position_aware_tilt))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, TargetPositionTiltPercent100ths::Id, ATTRIBUTE_FLAG_NULLABLE, esp_matter_nullable_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint16(0), esp_matter_nullable_uint16(65534));
     return attribute;
@@ -275,7 +275,7 @@ attribute_t *create_end_product_type(cluster_t *cluster, uint8_t value)
 attribute_t *create_current_position_lift_percent_100ths(cluster_t *cluster, nullable<uint16_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::lift::get_id()) && (feature_map & feature::position_aware_lift::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(lift)) && (has_feature(position_aware_lift))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CurrentPositionLiftPercent100ths::Id, ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint16(0), esp_matter_nullable_uint16(10000));
     return attribute;
@@ -284,7 +284,7 @@ attribute_t *create_current_position_lift_percent_100ths(cluster_t *cluster, nul
 attribute_t *create_current_position_tilt_percent_100ths(cluster_t *cluster, nullable<uint16_t> value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::tilt::get_id()) && (feature_map & feature::position_aware_tilt::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(tilt)) && (has_feature(position_aware_tilt))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, CurrentPositionTiltPercent100ths::Id, ATTRIBUTE_FLAG_NULLABLE | ATTRIBUTE_FLAG_NONVOLATILE, esp_matter_nullable_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_nullable_uint16(0), esp_matter_nullable_uint16(10000));
     return attribute;

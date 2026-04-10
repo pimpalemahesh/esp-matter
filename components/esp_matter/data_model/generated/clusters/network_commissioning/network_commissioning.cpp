@@ -139,7 +139,7 @@ attribute_t *create_networks(cluster_t *cluster, uint8_t *value, uint16_t length
 attribute_t *create_scan_max_time_seconds(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::wi_fi_network_interface::get_id()) || (feature_map & feature::thread_network_interface::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(wi_fi_network_interface)) || (has_feature(thread_network_interface))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ScanMaxTimeSeconds::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(254));
     return attribute;
@@ -148,7 +148,7 @@ attribute_t *create_scan_max_time_seconds(cluster_t *cluster, uint8_t value)
 attribute_t *create_connect_max_time_seconds(cluster_t *cluster, uint8_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::wi_fi_network_interface::get_id()) || (feature_map & feature::thread_network_interface::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(wi_fi_network_interface)) || (has_feature(thread_network_interface))), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ConnectMaxTimeSeconds::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint8(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint8(0), esp_matter_uint8(254));
     return attribute;
@@ -181,14 +181,14 @@ attribute_t *create_last_connect_error_value(cluster_t *cluster, nullable<int32_
 attribute_t *create_supported_wi_fi_bands(cluster_t *cluster, uint8_t *value, uint16_t length, uint16_t count)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::wi_fi_network_interface::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(wi_fi_network_interface), NULL);
     return esp_matter::attribute::create(cluster, SupportedWiFiBands::Id, ATTRIBUTE_FLAG_MANAGED_INTERNALLY, esp_matter_array(value, length, count));
 }
 
 attribute_t *create_supported_thread_features(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::thread_network_interface::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(thread_network_interface), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, SupportedThreadFeatures::Id, ATTRIBUTE_FLAG_NONE, esp_matter_bitmap16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_bitmap16(0), esp_matter_bitmap16(65535));
     return attribute;
@@ -197,7 +197,7 @@ attribute_t *create_supported_thread_features(cluster_t *cluster, uint16_t value
 attribute_t *create_thread_version(cluster_t *cluster, uint16_t value)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::thread_network_interface::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(thread_network_interface), NULL);
     attribute_t *attribute = esp_matter::attribute::create(cluster, ThreadVersion::Id, ATTRIBUTE_FLAG_NONE, esp_matter_uint16(value));
     esp_matter::attribute::add_bounds(attribute, esp_matter_uint16(0), esp_matter_uint16(65534));
     return attribute;
@@ -208,63 +208,63 @@ namespace command {
 command_t *create_scan_networks(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::wi_fi_network_interface::get_id()) || (feature_map & feature::thread_network_interface::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(wi_fi_network_interface)) || (has_feature(thread_network_interface))), NULL);
     return esp_matter::command::create(cluster, ScanNetworks::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_scan_networks_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::wi_fi_network_interface::get_id()) || (feature_map & feature::thread_network_interface::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(wi_fi_network_interface)) || (has_feature(thread_network_interface))), NULL);
     return esp_matter::command::create(cluster, ScanNetworksResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_add_or_update_wi_fi_network(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::wi_fi_network_interface::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(wi_fi_network_interface), NULL);
     return esp_matter::command::create(cluster, AddOrUpdateWiFiNetwork::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_add_or_update_thread_network(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(feature_map & feature::thread_network_interface::get_id(), NULL);
+    VerifyOrReturnValue(has_feature(thread_network_interface), NULL);
     return esp_matter::command::create(cluster, AddOrUpdateThreadNetwork::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_remove_network(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::wi_fi_network_interface::get_id()) || (feature_map & feature::thread_network_interface::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(wi_fi_network_interface)) || (has_feature(thread_network_interface))), NULL);
     return esp_matter::command::create(cluster, RemoveNetwork::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_network_config_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::wi_fi_network_interface::get_id()) || (feature_map & feature::thread_network_interface::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(wi_fi_network_interface)) || (has_feature(thread_network_interface))), NULL);
     return esp_matter::command::create(cluster, NetworkConfigResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_connect_network(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::wi_fi_network_interface::get_id()) || (feature_map & feature::thread_network_interface::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(wi_fi_network_interface)) || (has_feature(thread_network_interface))), NULL);
     return esp_matter::command::create(cluster, ConnectNetwork::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
 command_t *create_connect_network_response(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::wi_fi_network_interface::get_id()) || (feature_map & feature::thread_network_interface::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(wi_fi_network_interface)) || (has_feature(thread_network_interface))), NULL);
     return esp_matter::command::create(cluster, ConnectNetworkResponse::Id, COMMAND_FLAG_GENERATED, NULL);
 }
 
 command_t *create_reorder_network(cluster_t *cluster)
 {
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnValue(((feature_map & feature::wi_fi_network_interface::get_id()) || (feature_map & feature::thread_network_interface::get_id())), NULL);
+    VerifyOrReturnValue(((has_feature(wi_fi_network_interface)) || (has_feature(thread_network_interface))), NULL);
     return esp_matter::command::create(cluster, ReorderNetwork::Id, COMMAND_FLAG_ACCEPTED, NULL);
 }
 
