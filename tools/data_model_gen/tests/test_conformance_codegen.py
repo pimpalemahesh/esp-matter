@@ -66,7 +66,7 @@ class TestFeatureConditions(unittest.TestCase):
         conformance = {"type": "mandatory", "condition": {"feature": "lighting"}}
         result = Conformance(conformance)()
 
-        self.assertEqual("feature_map & feature::lighting::get_id()", result)
+        self.assertEqual("has_feature(lighting)", result)
 
 
 class TestAttributeConditions(unittest.TestCase):
@@ -78,7 +78,7 @@ class TestAttributeConditions(unittest.TestCase):
         result = Conformance(conformance)()
 
         self.assertEqual(
-            "esp_matter::attribute::get(cluster, attribute::HoldTime::Id) != nullptr",
+            "has_attribute(HoldTime)",
             result,
         )
 
@@ -95,7 +95,7 @@ class TestCommandConditions(unittest.TestCase):
         result = Conformance(conformance)()
 
         self.assertEqual(
-            "esp_matter::command::get(cluster, command::SetHoldTime::Id, COMMAND_FLAG_ACCEPTED) != nullptr",
+            "has_command(SetHoldTime, COMMAND_FLAG_ACCEPTED)",
             result,
         )
 
@@ -120,7 +120,7 @@ class TestBooleanOperations(unittest.TestCase):
         result = Conformance(conformance)()
 
         self.assertEqual(
-            "((feature_map & feature::lighting::get_id()) && (feature_map & feature::dead_front_behavior::get_id()))",
+            "((has_feature(lighting)) && (has_feature(dead_front_behavior)))",
             result,
         )
 
@@ -133,7 +133,7 @@ class TestBooleanOperations(unittest.TestCase):
         result = Conformance(conformance)()
 
         self.assertEqual(
-            "((feature_map & feature::hue_saturation::get_id()) || (feature_map & feature::xy::get_id()))",
+            "((has_feature(hue_saturation)) || (has_feature(xy)))",
             result,
         )
 
@@ -145,7 +145,7 @@ class TestBooleanOperations(unittest.TestCase):
         }
         result = Conformance(conformance)()
 
-        self.assertEqual("!(feature_map & feature::off_only::get_id())", result)
+        self.assertEqual("!(has_feature(off_only))", result)
 
     def test_complex_nested_and_or_not(self):
         """Test complex nested: AND(OR(...), NOT(...))"""
@@ -161,7 +161,7 @@ class TestBooleanOperations(unittest.TestCase):
         result = Conformance(conformance)()
 
         self.assertEqual(
-            "((((feature_map & feature::hs::get_id()) || (feature_map & feature::xy::get_id()))) && (!(feature_map & feature::off_only::get_id())))",
+            "((((has_feature(hs)) || (has_feature(xy)))) && (!(has_feature(off_only))))",
             result,
         )
 
@@ -177,7 +177,7 @@ class TestOtherwiseConformance(unittest.TestCase):
         }
         result = Conformance(conformance)()
 
-        self.assertEqual("(feature_map & feature::lighting::get_id())", result)
+        self.assertEqual("(has_feature(lighting))", result)
 
     def test_otherwise_with_deprecated(self):
         """Test otherwise with deprecated sub-condition"""
@@ -190,7 +190,7 @@ class TestOtherwiseConformance(unittest.TestCase):
         }
         result = Conformance(conformance)()
 
-        self.assertEqual("(feature_map & feature::lighting::get_id())", result)
+        self.assertEqual("(has_feature(lighting))", result)
 
     def test_otherwise_all_true(self):
         """Test otherwise where all sub-conditions are True"""
@@ -244,7 +244,7 @@ class TestFeatureConformanceClass(unittest.TestCase):
         conformance = {"type": "mandatory", "condition": {"feature": "lighting"}}
         fc = FeatureConformance(conformance)()
 
-        self.assertEqual("feature_map & feature::lighting::get_id()", fc)
+        self.assertEqual("has_feature(lighting)", fc)
 
     def test_mandatory_parent_feature_name(self):
         """Test extraction of mandatory parent feature name"""
@@ -328,7 +328,7 @@ class TestEdgeCases(unittest.TestCase):
 
         # Should still generate code for valid subcondition
         self.assertIsNotNone(result)
-        self.assertIn("feature::lighting::get_id()", result)
+        self.assertIn("has_feature(lighting)", result)
 
 
 def run_tests():

@@ -151,6 +151,10 @@ esp_err_t add(cluster_t *cluster)
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnError(has_feature(momentary_switch), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
+    event_t *multi_press_ongoing = esp_matter::event::get(cluster, event::MultiPressOngoing::Id);
+    if (multi_press_ongoing) {
+        esp_matter::event::destroy(cluster, multi_press_ongoing);
+    }
 
     return ESP_OK;
 }

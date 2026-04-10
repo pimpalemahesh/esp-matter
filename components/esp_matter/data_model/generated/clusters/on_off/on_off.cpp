@@ -166,6 +166,14 @@ esp_err_t add(cluster_t *cluster)
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnError(!(((has_feature(lighting)) || (has_feature(dead_front_behavior)))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
+    command_t *on = esp_matter::command::get(cluster, command::On::Id, COMMAND_FLAG_ACCEPTED);
+    if (on) {
+        esp_matter::command::destroy(cluster, on);
+    }
+    command_t *toggle = esp_matter::command::get(cluster, command::Toggle::Id, COMMAND_FLAG_ACCEPTED);
+    if (toggle) {
+        esp_matter::command::destroy(cluster, toggle);
+    }
 
     return ESP_OK;
 }

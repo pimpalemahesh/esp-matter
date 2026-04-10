@@ -73,6 +73,11 @@ esp_err_t add(cluster_t *cluster)
     uint32_t feature_map = get_feature_map_value(cluster);
     VerifyOrReturnError(has_feature(two_dimensional_cartesian_zone), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
+    attribute_t *sensitivity =
+        esp_matter::attribute::get(cluster, attribute::Sensitivity::Id);
+    if (sensitivity) {
+        esp_matter::attribute::destroy(cluster, sensitivity);
+    }
 
     return ESP_OK;
 }

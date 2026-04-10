@@ -85,6 +85,14 @@ esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
+    command_t *stop = esp_matter::command::get(cluster, command::Stop::Id, COMMAND_FLAG_ACCEPTED);
+    if (stop) {
+        esp_matter::command::destroy(cluster, stop);
+    }
+    event_t *movement_completed = esp_matter::event::get(cluster, event::MovementCompleted::Id);
+    if (movement_completed) {
+        esp_matter::event::destroy(cluster, movement_completed);
+    }
 
     return ESP_OK;
 }

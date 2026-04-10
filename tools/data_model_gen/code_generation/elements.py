@@ -284,7 +284,7 @@ class Cluster(BaseCluster):
             )
             if (
                 attribute.conformance.is_not_term_present
-                and f"!(feature_map & feature::{feature_name}::get_id())"
+                and f"!(has_feature({feature_name})"
                 in conformance_condition
             ):
                 elements["attributes"].append(attribute)
@@ -297,7 +297,7 @@ class Cluster(BaseCluster):
             )
             if (
                 command.conformance.is_not_term_present
-                and f"!(feature_map & feature::{feature_name}::get_id())"
+                and f"!(has_feature({feature_name})"
                 in conformance_condition
             ):
                 elements["commands"].append(command)
@@ -310,7 +310,7 @@ class Cluster(BaseCluster):
             )
             if (
                 event.conformance.is_not_term_present
-                and f"!(feature_map & feature::{feature_name}::get_id())"
+                and f"!(has_feature({feature_name})"
                 in conformance_condition
             ):
                 elements["events"].append(event)
