@@ -19,7 +19,11 @@ import sys
 import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from xml_processing.attribute_type import AttributeType, attribute_types, attribute_type_map
+from xml_processing.attribute_type import (
+    AttributeType,
+    attribute_types,
+    attribute_type_map,
+)
 
 
 class TestAttributeType(unittest.TestCase):
@@ -78,6 +82,7 @@ class TestAttributeType(unittest.TestCase):
 
     def test_unknown_type_raises(self):
         from utils.exceptions import XmlParseError
+
         at = AttributeType("custom_unknown")
         with self.assertRaises(XmlParseError):
             at.get_attribute_type()
@@ -114,7 +119,16 @@ class TestAttributeTypesDict(unittest.TestCase):
         self.assertEqual(attribute_types.get("temperature"), "int16")
 
     def test_basic_primitives_present(self):
-        for t in ["uint8", "uint16", "uint32", "uint64", "int8", "int16", "int32", "int64"]:
+        for t in [
+            "uint8",
+            "uint16",
+            "uint32",
+            "uint64",
+            "int8",
+            "int16",
+            "int32",
+            "int64",
+        ]:
             self.assertIn(t, attribute_types, f"Missing type: {t}")
 
     def test_string_types(self):
@@ -137,7 +151,11 @@ class TestAttributeTypeMap(unittest.TestCase):
     def test_override_values_are_valid(self):
         for cluster, overrides in attribute_type_map.items():
             for attr_name, type_val in overrides.items():
-                self.assertIsInstance(type_val, (str, dict), f"{cluster}.{attr_name} type should be str or dict")
+                self.assertIsInstance(
+                    type_val,
+                    (str, dict),
+                    f"{cluster}.{attr_name} type should be str or dict",
+                )
 
 
 if __name__ == "__main__":

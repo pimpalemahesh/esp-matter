@@ -26,8 +26,14 @@ class TestAttribute(unittest.TestCase):
     """Test Attribute — flags, default values, type conversion."""
 
     def _make_attr(self, name="test_attr", type_="uint8", default="0", **kwargs):
-        return Attribute(name=name, id="0x0001", type_=type_, default_value=default,
-                         is_mandatory=True, **kwargs)
+        return Attribute(
+            name=name,
+            id="0x0001",
+            type_=type_,
+            default_value=default,
+            is_mandatory=True,
+            **kwargs,
+        )
 
     def test_basic_creation(self):
         attr = self._make_attr()
@@ -39,33 +45,54 @@ class TestAttribute(unittest.TestCase):
         self.assertEqual(attr.get_flag(), "ATTRIBUTE_FLAG_NONE")
 
     def test_flag_writable(self):
-        access = Attribute.Access(read="true", readPrivilege="view", write="true", writePrivilege="operate")
+        access = Attribute.Access(
+            read="true", readPrivilege="view", write="true", writePrivilege="operate"
+        )
         attr = self._make_attr(access=access)
         self.assertIn("ATTRIBUTE_FLAG_WRITABLE", attr.get_flag())
 
     def test_flag_nullable(self):
-        quality = Attribute.Quality(changeOmitted="false", nullable="true", scene="false",
-                                     persistence="volatile", reportable="false")
+        quality = Attribute.Quality(
+            changeOmitted="false",
+            nullable="true",
+            scene="false",
+            persistence="volatile",
+            reportable="false",
+        )
         attr = self._make_attr(quality=quality)
         self.assertTrue(attr.is_nullable)
         self.assertIn("ATTRIBUTE_FLAG_NULLABLE", attr.get_flag())
 
     def test_flag_nonvolatile(self):
-        quality = Attribute.Quality(changeOmitted="false", nullable="false", scene="false",
-                                     persistence="nonVolatile", reportable="false")
+        quality = Attribute.Quality(
+            changeOmitted="false",
+            nullable="false",
+            scene="false",
+            persistence="nonVolatile",
+            reportable="false",
+        )
         attr = self._make_attr(quality=quality)
         self.assertIn("ATTRIBUTE_FLAG_NONVOLATILE", attr.get_flag())
 
     def test_flag_managed_internally(self):
-        access = Attribute.Access(read="true", readPrivilege="view", write="false", writePrivilege="")
+        access = Attribute.Access(
+            read="true", readPrivilege="view", write="false", writePrivilege=""
+        )
         attr = self._make_attr(access=access)
         attr.internally_managed = True
         self.assertIn("ATTRIBUTE_FLAG_MANAGED_INTERNALLY", attr.get_flag())
 
     def test_multiple_flags(self):
-        access = Attribute.Access(read="true", readPrivilege="view", write="true", writePrivilege="operate")
-        quality = Attribute.Quality(changeOmitted="false", nullable="true", scene="false",
-                                     persistence="nonVolatile", reportable="false")
+        access = Attribute.Access(
+            read="true", readPrivilege="view", write="true", writePrivilege="operate"
+        )
+        quality = Attribute.Quality(
+            changeOmitted="false",
+            nullable="true",
+            scene="false",
+            persistence="nonVolatile",
+            reportable="false",
+        )
         attr = self._make_attr(access=access, quality=quality)
         flag = attr.get_flag()
         self.assertIn("ATTRIBUTE_FLAG_WRITABLE", flag)
@@ -141,7 +168,13 @@ class TestCommand(unittest.TestCase):
     """Test Command — flags, callback logic."""
 
     def _make_cmd(self, name="TestCmd", direction="commandToServer", response="Y"):
-        return Command(id="0x0001", name=name, direction=direction, response=response, is_mandatory=True)
+        return Command(
+            id="0x0001",
+            name=name,
+            direction=direction,
+            response=response,
+            is_mandatory=True,
+        )
 
     def test_flag_accepted(self):
         cmd = self._make_cmd(direction="commandToServer")
@@ -160,7 +193,9 @@ class TestCommand(unittest.TestCase):
         self.assertTrue(cmd.callback_required())
 
     def test_callback_not_required_response(self):
-        cmd = self._make_cmd(name="TestResponse", direction="responseFromServer", response="Y")
+        cmd = self._make_cmd(
+            name="TestResponse", direction="responseFromServer", response="Y"
+        )
         self.assertFalse(cmd.callback_required())
 
     def test_callback_not_required_no_response(self):
@@ -168,7 +203,9 @@ class TestCommand(unittest.TestCase):
         self.assertFalse(cmd.callback_required())
 
     def test_callback_not_required_response_name(self):
-        cmd = self._make_cmd(name="GetStatusResponse", direction="commandToServer", response="Y")
+        cmd = self._make_cmd(
+            name="GetStatusResponse", direction="commandToServer", response="Y"
+        )
         self.assertFalse(cmd.callback_required())
 
     def test_callback_skip_by_handler(self):
@@ -177,8 +214,13 @@ class TestCommand(unittest.TestCase):
         self.assertFalse(cmd.callback_required())
 
     def test_command_name_strips_suffix(self):
-        cmd = Command(id="0x0001", name="SetTemp Command", direction="commandToServer",
-                      response="Y", is_mandatory=True)
+        cmd = Command(
+            id="0x0001",
+            name="SetTemp Command",
+            direction="commandToServer",
+            response="Y",
+            is_mandatory=True,
+        )
         self.assertNotIn(" Command", cmd.name)
 
     def test_add_field(self):
@@ -208,14 +250,26 @@ class TestFeature(unittest.TestCase):
 
     def test_add_and_get_attributes(self):
         feat = Feature(name="Lighting", code="LT", id="0x0001")
-        attr = Attribute(name="OnOff", id="0x0001", type_="bool", default_value="false", is_mandatory=True)
+        attr = Attribute(
+            name="OnOff",
+            id="0x0001",
+            type_="bool",
+            default_value="false",
+            is_mandatory=True,
+        )
         feat.add_attribute_list({attr})
         attrs = feat.get_attributes()
         self.assertEqual(len(attrs), 1)
 
     def test_add_and_get_commands(self):
         feat = Feature(name="Lighting", code="LT", id="0x0001")
-        cmd = Command(id="0x0001", name="Toggle", direction="commandToServer", response="Y", is_mandatory=True)
+        cmd = Command(
+            id="0x0001",
+            name="Toggle",
+            direction="commandToServer",
+            response="Y",
+            is_mandatory=True,
+        )
         feat.add_command_list({cmd})
         cmds = feat.get_commands()
         self.assertEqual(len(cmds), 1)
@@ -229,8 +283,20 @@ class TestFeature(unittest.TestCase):
 
     def test_attributes_sorted_by_id(self):
         feat = Feature(name="Lighting", code="LT", id="0x0001")
-        a1 = Attribute(name="Attr3", id="0x0003", type_="uint8", default_value="0", is_mandatory=True)
-        a2 = Attribute(name="Attr1", id="0x0001", type_="uint8", default_value="0", is_mandatory=True)
+        a1 = Attribute(
+            name="Attr3",
+            id="0x0003",
+            type_="uint8",
+            default_value="0",
+            is_mandatory=True,
+        )
+        a2 = Attribute(
+            name="Attr1",
+            id="0x0001",
+            type_="uint8",
+            default_value="0",
+            is_mandatory=True,
+        )
         feat.add_attribute_list({a1, a2})
         attrs = feat.get_attributes()
         self.assertEqual(attrs[0].get_id(), "0x0001")
@@ -311,22 +377,38 @@ class TestCluster(unittest.TestCase):
 
     def test_add_and_get_attributes(self):
         c = self._make_cluster()
-        attr = Attribute(name="OnOff", id="0x0000", type_="bool", default_value="false", is_mandatory=True)
+        attr = Attribute(
+            name="OnOff",
+            id="0x0000",
+            type_="bool",
+            default_value="false",
+            is_mandatory=True,
+        )
         c.attributes.add(attr)
         attrs = c.get_attributes()
         self.assertEqual(len(attrs), 1)
 
     def test_attributes_sorted(self):
         c = self._make_cluster()
-        a1 = Attribute(name="B", id="0x0002", type_="uint8", default_value="0", is_mandatory=True)
-        a2 = Attribute(name="A", id="0x0001", type_="uint8", default_value="0", is_mandatory=True)
+        a1 = Attribute(
+            name="B", id="0x0002", type_="uint8", default_value="0", is_mandatory=True
+        )
+        a2 = Attribute(
+            name="A", id="0x0001", type_="uint8", default_value="0", is_mandatory=True
+        )
         c.attributes = {a1, a2}
         attrs = c.get_attributes()
         self.assertEqual(attrs[0].get_id(), "0x0001")
 
     def test_add_and_get_commands(self):
         c = self._make_cluster()
-        cmd = Command(id="0x0001", name="Off", direction="commandToServer", response="Y", is_mandatory=True)
+        cmd = Command(
+            id="0x0001",
+            name="Off",
+            direction="commandToServer",
+            response="Y",
+            is_mandatory=True,
+        )
         c.commands.add(cmd)
         cmds = c.get_commands()
         self.assertEqual(len(cmds), 1)

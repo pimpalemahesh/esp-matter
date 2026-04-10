@@ -142,16 +142,19 @@ class TestSafeGetAttr(unittest.TestCase):
     def test_existing_attribute(self):
         class Obj:
             x = 42
+
         self.assertEqual(safe_get_attr(Obj(), "x"), 42)
 
     def test_missing_attribute(self):
         class Obj:
             pass
+
         self.assertIsNone(safe_get_attr(Obj(), "missing"))
 
     def test_missing_with_default(self):
         class Obj:
             pass
+
         self.assertEqual(safe_get_attr(Obj(), "missing", "default"), "default")
 
     def test_none_object(self):

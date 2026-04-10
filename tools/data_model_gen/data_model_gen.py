@@ -51,7 +51,6 @@ class DataModelGenConfig:
 
 
 class DataModelGenerator:
-
     def __init__(self, config: DataModelGenConfig):
         self.config = config
         self.logger = logging.getLogger(__name__)

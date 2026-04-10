@@ -73,6 +73,7 @@ class TestSetEspMatterPath(unittest.TestCase):
 
     def test_valid_path(self):
         import tempfile
+
         with tempfile.TemporaryDirectory() as tmpdir:
             set_esp_matter_path(tmpdir)
 
@@ -102,7 +103,9 @@ class TestFileNames(unittest.TestCase):
 
     def test_all_values_are_json(self):
         for fn in FileNames:
-            self.assertTrue(fn.value.endswith(".json"), f"{fn.name} should end with .json")
+            self.assertTrue(
+                fn.value.endswith(".json"), f"{fn.name} should end with .json"
+            )
 
 
 class TestSpecificationVersions(unittest.TestCase):

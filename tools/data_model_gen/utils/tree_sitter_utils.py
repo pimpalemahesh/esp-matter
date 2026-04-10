@@ -26,7 +26,7 @@ def get_function_by_keywords(node, code_bytes, keywords=None):
     if node.type == "function_definition":
         decl_node = node.child_by_field_name("declarator")
         if decl_node:
-            name = code_bytes[decl_node.start_byte : decl_node.end_byte].decode(
+            name = code_bytes[decl_node.start_byte:decl_node.end_byte].decode(
                 "utf8", errors="ignore"
             )
             if any(keyword in name for keyword in keywords):
@@ -48,7 +48,7 @@ def extract_case_labels(node, code_bytes, regex_pattern=None):
     labels = []
 
     if node.type == "case_statement":
-        src = code_bytes[node.start_byte : node.end_byte].decode(
+        src = code_bytes[node.start_byte:node.end_byte].decode(
             "utf8", errors="ignore"
         )
         matches = re.findall(regex_pattern, src)

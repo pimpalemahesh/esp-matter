@@ -24,13 +24,11 @@ from utils.base_elements import (
     BaseCluster,
 )
 from utils.overrides import (
-    should_skip_command_callback,
     should_skip_delegate_callback,
     should_skip_plugin_callback,
     should_include_delegate_callback,
 )
 from utils.conversion_utils import convert_to_int
-from utils.helper import safe_get_attr
 from .serializers import (
     DeviceSerializer,
     EventSerializer,
@@ -208,10 +206,6 @@ class Command(BaseCommand):
 
         # If command is part of a cluster file with multiple cluster ids e.g. ResourceMonitoring
         if self.skip_command_cb:
-            return False
-
-        # If command is in the skip list, then it doesn't need a callback
-        if should_skip_command_callback(self.id):
             return False
 
         # Skip callbacks for client-bound commands
@@ -485,9 +479,7 @@ class Cluster(BaseCluster):
 
     def get_plugin_server_init_callback(self):
         """Get the plugin server init callback for the cluster"""
-        if not self.plugin_init_cb_available or should_skip_plugin_callback(
-            self.id
-        ):
+        if not self.plugin_init_cb_available or should_skip_plugin_callback(self.id):
             return None
         if "_cluster" in self.name.lower():
             cluster_name = self.name.split("_Cluster")[0]
@@ -561,21 +553,6 @@ class Cluster(BaseCluster):
         """Get only mandatory events from the event list"""
         return self._get_mandatory_elements(self.events)
 
-    def get_mandatory_features(self):
-        """Get only mandatory features from the feature list"""
-        pass
-
-    def get_basic_mandatory_attributes(self):
-        """Get only mandatory attributes from the attribute list that are not list, string, or octstr"""
-        basic_mandatory_attributes = list(
-            attribute
-            for attribute in self.get_mandatory_attributes()
-            if attribute.type not in ["list", "string", "octstr"]
-        )
-        if len(basic_mandatory_attributes) > 0:
-            basic_mandatory_attributes.sort(key=lambda x: int(x.get_id(), 16))
-        return basic_mandatory_attributes
-
     def get_function_flags(self):
         """Get the function flags for the cluster"""
         flags = []
@@ -595,14 +572,6 @@ class Cluster(BaseCluster):
         if len(flags) > 0:
             return " | ".join(flags)
         return self.ClusterFlags.CLUSTER_FLAG_NONE
-
-    def get_string_attributes(self):
-        """Get list of string attributes with length constraints"""
-        return [
-            attr
-            for attr in self.attributes
-            if attr.type == "string" and safe_get_attr(attr, "max_length") is not None
-        ]
 
     def to_dict(self):
         """Convert cluster object to dictionary representation"""

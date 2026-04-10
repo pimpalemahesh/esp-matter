@@ -21,15 +21,14 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.base_elements import (
     BaseElement,
-    BaseClusterElement,
     BaseAttribute,
     BaseCommand,
     BaseEvent,
     BaseFeature,
     BaseCluster,
     BaseDevice,
-    get_id_name_lambda,
 )
+from code_generation.elements import get_id_name_lambda
 
 
 # Concrete subclasses for testing abstract classes
@@ -40,8 +39,10 @@ class ConcreteElement(BaseElement):
 class ConcreteFeature(BaseFeature):
     def get_attributes(self):
         return []
+
     def get_commands(self):
         return []
+
     def get_events(self):
         return []
 
@@ -49,10 +50,13 @@ class ConcreteFeature(BaseFeature):
 class ConcreteCluster(BaseCluster):
     def get_attributes(self):
         return []
+
     def get_commands(self):
         return []
+
     def get_events(self):
         return []
+
     def get_features(self):
         return []
 
@@ -84,7 +88,13 @@ class TestBaseElement(unittest.TestCase):
 
     def test_reserved_word_renaming_via_cluster_element(self):
         """Reserved word handling happens in BaseClusterElement, not BaseElement directly."""
-        attr = BaseAttribute(name="auto", id="0x0001", type_="uint8", is_mandatory=True, default_value="0")
+        attr = BaseAttribute(
+            name="auto",
+            id="0x0001",
+            type_="uint8",
+            is_mandatory=True,
+            default_value="0",
+        )
         self.assertIn("Attribute", attr.name)
 
     def test_special_config(self):
@@ -106,11 +116,23 @@ class TestBaseClusterElement(unittest.TestCase):
     """Test BaseClusterElement with reserved word handling."""
 
     def test_reserved_word_attribute(self):
-        attr = BaseAttribute(name="auto", id="0x0001", type_="uint8", is_mandatory=True, default_value="0")
+        attr = BaseAttribute(
+            name="auto",
+            id="0x0001",
+            type_="uint8",
+            is_mandatory=True,
+            default_value="0",
+        )
         self.assertIn("Attribute", attr.name)
 
     def test_reserved_word_command(self):
-        cmd = BaseCommand(name="default", id="0x0001", is_mandatory=True, direction="commandToServer", response="Y")
+        cmd = BaseCommand(
+            name="default",
+            id="0x0001",
+            is_mandatory=True,
+            direction="commandToServer",
+            response="Y",
+        )
         self.assertIn("Command", cmd.name)
 
     def test_reserved_word_event(self):
@@ -118,15 +140,33 @@ class TestBaseClusterElement(unittest.TestCase):
         self.assertIn("Event", evt.name)
 
     def test_non_reserved_word(self):
-        attr = BaseAttribute(name="temperature", id="0x0001", type_="int16", is_mandatory=True, default_value="0")
+        attr = BaseAttribute(
+            name="temperature",
+            id="0x0001",
+            type_="int16",
+            is_mandatory=True,
+            default_value="0",
+        )
         self.assertEqual(attr.func_name, "temperature")
 
     def test_mandatory_flag(self):
-        attr = BaseAttribute(name="test", id="0x0001", type_="uint8", is_mandatory=True, default_value="0")
+        attr = BaseAttribute(
+            name="test",
+            id="0x0001",
+            type_="uint8",
+            is_mandatory=True,
+            default_value="0",
+        )
         self.assertTrue(attr.is_mandatory)
 
     def test_optional_flag(self):
-        attr = BaseAttribute(name="test", id="0x0001", type_="uint8", is_mandatory=False, default_value="0")
+        attr = BaseAttribute(
+            name="test",
+            id="0x0001",
+            type_="uint8",
+            is_mandatory=False,
+            default_value="0",
+        )
         self.assertFalse(attr.is_mandatory)
 
 
@@ -134,15 +174,33 @@ class TestBaseAttribute(unittest.TestCase):
     """Test BaseAttribute initialization."""
 
     def test_type_stored(self):
-        attr = BaseAttribute(name="temp", id="0x0001", type_="int16", is_mandatory=True, default_value="20")
+        attr = BaseAttribute(
+            name="temp",
+            id="0x0001",
+            type_="int16",
+            is_mandatory=True,
+            default_value="20",
+        )
         self.assertEqual(attr.type, "int16")
 
     def test_default_value_stored(self):
-        attr = BaseAttribute(name="temp", id="0x0001", type_="int16", is_mandatory=True, default_value="20")
+        attr = BaseAttribute(
+            name="temp",
+            id="0x0001",
+            type_="int16",
+            is_mandatory=True,
+            default_value="20",
+        )
         self.assertEqual(attr.default_value, "20")
 
     def test_nullable_default_false(self):
-        attr = BaseAttribute(name="temp", id="0x0001", type_="int16", is_mandatory=True, default_value="0")
+        attr = BaseAttribute(
+            name="temp",
+            id="0x0001",
+            type_="int16",
+            is_mandatory=True,
+            default_value="0",
+        )
         self.assertFalse(attr.is_nullable)
 
 
@@ -150,11 +208,23 @@ class TestBaseCommand(unittest.TestCase):
     """Test BaseCommand initialization."""
 
     def test_direction_stored(self):
-        cmd = BaseCommand(name="SetTemp", id="0x0001", is_mandatory=True, direction="commandToServer", response="Y")
+        cmd = BaseCommand(
+            name="SetTemp",
+            id="0x0001",
+            is_mandatory=True,
+            direction="commandToServer",
+            response="Y",
+        )
         self.assertEqual(cmd.direction, "commandToServer")
 
     def test_response_stored(self):
-        cmd = BaseCommand(name="SetTemp", id="0x0001", is_mandatory=True, direction="commandToServer", response="Y")
+        cmd = BaseCommand(
+            name="SetTemp",
+            id="0x0001",
+            is_mandatory=True,
+            direction="commandToServer",
+            response="Y",
+        )
         self.assertEqual(cmd.response, "Y")
 
 
@@ -173,11 +243,15 @@ class TestBaseCluster(unittest.TestCase):
     """Test BaseCluster initialization and callback flags."""
 
     def test_revision(self):
-        cluster = ConcreteCluster(name="OnOff", id="0x0006", revision=6, is_mandatory=True)
+        cluster = ConcreteCluster(
+            name="OnOff", id="0x0006", revision=6, is_mandatory=True
+        )
         self.assertEqual(cluster.get_revision(), 6)
 
     def test_default_flags(self):
-        cluster = ConcreteCluster(name="OnOff", id="0x0006", revision=6, is_mandatory=True)
+        cluster = ConcreteCluster(
+            name="OnOff", id="0x0006", revision=6, is_mandatory=True
+        )
         self.assertFalse(cluster.server_cluster)
         self.assertFalse(cluster.client_cluster)
         self.assertFalse(cluster.init_function_available)
@@ -185,7 +259,9 @@ class TestBaseCluster(unittest.TestCase):
         self.assertIsNone(cluster.role)
 
     def test_abstract_methods(self):
-        cluster = ConcreteCluster(name="OnOff", id="0x0006", revision=6, is_mandatory=True)
+        cluster = ConcreteCluster(
+            name="OnOff", id="0x0006", revision=6, is_mandatory=True
+        )
         self.assertEqual(cluster.get_attributes(), [])
         self.assertEqual(cluster.get_features(), [])
 
@@ -220,10 +296,15 @@ class TestGetIdNameLambda(unittest.TestCase):
             def __init__(self, id_, name):
                 self._id = id_
                 self.name = name
+
             def get_id(self):
                 return self._id
 
-        items = [FakeElem("0x0003", "C"), FakeElem("0x0001", "A"), FakeElem("0x0002", "B")]
+        items = [
+            FakeElem("0x0003", "C"),
+            FakeElem("0x0001", "A"),
+            FakeElem("0x0002", "B"),
+        ]
         sorted_items = sorted(items, key=sorter)
         self.assertEqual([i.name for i in sorted_items], ["A", "B", "C"])
 

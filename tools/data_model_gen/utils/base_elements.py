@@ -19,15 +19,9 @@ from utils.overrides import (
     normalize_cluster_display_name,
     normalize_device_type_name,
     normalize_feature_name,
-    normalize_element_name,
     get_special_config_for_element,
 )
 from utils.helper import chip_name, convert_to_snake_case, esp_name
-
-
-def get_id_name_lambda():
-    """Returns a lambda function for sorting by ID and name"""
-    return lambda x: (int(x.get_id(), 16), x.name)
 
 
 class BaseElement(ABC):
@@ -37,7 +31,6 @@ class BaseElement(ABC):
         assert name, "Name is required"
         self.element_type = element_type
         self.id = id
-        self.name = self._process_name(name)
         self.name = name.replace(" ", "_")
         self.esp_name = esp_name(name)
         self.chip_name = chip_name(name)
@@ -48,16 +41,6 @@ class BaseElement(ABC):
     def get_id(self):
         """Get the ID of the element"""
         return self.id
-
-    def _process_name(self, name):
-        if name and is_cpp_reserved_word(name.lower()):
-            name = f"{name}_{self.element_type}"
-        if name:
-            name = normalize_cluster_display_name(
-                name, cluster_id=self.id if self.element_type == "Cluster" else None
-            )
-            name = normalize_element_name(name)
-        return name
 
     def has_special_config(self) -> bool:
         return self.special_config is not None
@@ -84,7 +67,9 @@ class BaseAttribute(BaseClusterElement):
     """Base class for attributes"""
 
     def __init__(self, name, id, type_, is_mandatory, default_value):
-        super().__init__(name=name, id=id, is_mandatory=is_mandatory, element_type="Attribute")
+        super().__init__(
+            name=name, id=id, is_mandatory=is_mandatory, element_type="Attribute"
+        )
         self.type = type_
         self.default_value = default_value
         self.is_nullable = False
@@ -94,7 +79,9 @@ class BaseCommand(BaseClusterElement):
     """Base class for commands"""
 
     def __init__(self, name, id, is_mandatory, direction, response):
-        super().__init__(name=name, id=id, is_mandatory=is_mandatory, element_type="Command")
+        super().__init__(
+            name=name, id=id, is_mandatory=is_mandatory, element_type="Command"
+        )
         self.direction = direction
         self.response = response
 
@@ -103,7 +90,9 @@ class BaseEvent(BaseClusterElement):
     """Base class for events"""
 
     def __init__(self, name, id, is_mandatory):
-        super().__init__(name=name, id=id, is_mandatory=is_mandatory, element_type="Event")
+        super().__init__(
+            name=name, id=id, is_mandatory=is_mandatory, element_type="Event"
+        )
 
 
 class BaseFeature(BaseClusterElement):
@@ -111,7 +100,9 @@ class BaseFeature(BaseClusterElement):
 
     def __init__(self, name, id, is_mandatory):
         name = normalize_feature_name(name, feature_id=id)
-        super().__init__(name=name, id=id, is_mandatory=is_mandatory, element_type="Feature")
+        super().__init__(
+            name=name, id=id, is_mandatory=is_mandatory, element_type="Feature"
+        )
 
     @abstractmethod
     def get_attributes(self) -> List[BaseAttribute]:
@@ -133,7 +124,9 @@ class BaseCluster(BaseClusterElement):
     """Base class for clusters"""
 
     def __init__(self, name, id, revision, is_mandatory):
-        super().__init__(name=name, id=id, is_mandatory=is_mandatory, element_type="Cluster")
+        super().__init__(
+            name=name, id=id, is_mandatory=is_mandatory, element_type="Cluster"
+        )
         self.revision = revision
         self.server_cluster = False
         self.client_cluster = False

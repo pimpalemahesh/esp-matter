@@ -20,7 +20,7 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from xml_processing.elements import Attribute, Command, Event, Feature, Cluster, Device
-from xml_processing.data_type_parser import Item, Enum, Bitmap, Struct
+from xml_processing.data_type_parser import Item, Enum
 from xml_processing.serializers import DataTypeSerializer
 
 
@@ -28,7 +28,13 @@ class TestAttributeSerialization(unittest.TestCase):
     """Test Attribute.to_dict() serialization."""
 
     def test_basic_attribute_dict(self):
-        attr = Attribute(name="TestAttr", id="0x0000", type_="bool", default_value="false", is_mandatory=True)
+        attr = Attribute(
+            name="TestAttr",
+            id="0x0000",
+            type_="bool",
+            default_value="false",
+            is_mandatory=True,
+        )
         d = attr.to_dict()
         self.assertIn("name", d)
         self.assertEqual(d["id"], "0x0000")
@@ -38,7 +44,13 @@ class TestAttributeSerialization(unittest.TestCase):
         self.assertIn("mandatory", d)
 
     def test_attribute_with_bounds(self):
-        attr = Attribute(name="temp", id="0x0001", type_="int16", default_value="0", is_mandatory=True)
+        attr = Attribute(
+            name="temp",
+            id="0x0001",
+            type_="int16",
+            default_value="0",
+            is_mandatory=True,
+        )
         attr.min_value = -100
         attr.max_value = 100
         d = attr.to_dict()
@@ -46,17 +58,36 @@ class TestAttributeSerialization(unittest.TestCase):
         self.assertEqual(d["max_value"], 100)
 
     def test_attribute_with_access(self):
-        access = Attribute.Access(read="true", readPrivilege="view", write="true", writePrivilege="operate")
-        attr = Attribute(name="test", id="0x0001", type_="uint8", default_value="0",
-                         is_mandatory=True, access=access)
+        access = Attribute.Access(
+            read="true", readPrivilege="view", write="true", writePrivilege="operate"
+        )
+        attr = Attribute(
+            name="test",
+            id="0x0001",
+            type_="uint8",
+            default_value="0",
+            is_mandatory=True,
+            access=access,
+        )
         d = attr.to_dict()
         self.assertIsNotNone(d["access"])
 
     def test_attribute_nullable(self):
-        quality = Attribute.Quality(changeOmitted="false", nullable="true", scene="false",
-                                     persistence="volatile", reportable="false")
-        attr = Attribute(name="test", id="0x0001", type_="uint8", default_value="0",
-                         is_mandatory=True, quality=quality)
+        quality = Attribute.Quality(
+            changeOmitted="false",
+            nullable="true",
+            scene="false",
+            persistence="volatile",
+            reportable="false",
+        )
+        attr = Attribute(
+            name="test",
+            id="0x0001",
+            type_="uint8",
+            default_value="0",
+            is_mandatory=True,
+            quality=quality,
+        )
         d = attr.to_dict()
         self.assertTrue(d["nullable"])
 
@@ -65,7 +96,13 @@ class TestCommandSerialization(unittest.TestCase):
     """Test Command.to_dict() serialization."""
 
     def test_basic_command_dict(self):
-        cmd = Command(id="0x0001", name="Off", direction="commandToServer", response="Y", is_mandatory=True)
+        cmd = Command(
+            id="0x0001",
+            name="Off",
+            direction="commandToServer",
+            response="Y",
+            is_mandatory=True,
+        )
         d = cmd.to_dict()
         self.assertEqual(d["name"], "Off")
         self.assertEqual(d["id"], "0x0001")
@@ -73,8 +110,13 @@ class TestCommandSerialization(unittest.TestCase):
         self.assertIn("flags", d)
 
     def test_command_with_fields(self):
-        cmd = Command(id="0x0001", name="MoveToLevel", direction="commandToServer",
-                      response="Y", is_mandatory=True)
+        cmd = Command(
+            id="0x0001",
+            name="MoveToLevel",
+            direction="commandToServer",
+            response="Y",
+            is_mandatory=True,
+        )
         field = Command.CommandField(id="0x00", name="level", type_="uint8")
         cmd.add_field(field)
         d = cmd.to_dict()
@@ -106,7 +148,13 @@ class TestFeatureSerialization(unittest.TestCase):
 
     def test_feature_with_attributes(self):
         feat = Feature(name="Lighting", code="LT", id="0x0001")
-        attr = Attribute(name="Level", id="0x0002", type_="uint8", default_value="0", is_mandatory=True)
+        attr = Attribute(
+            name="Level",
+            id="0x0002",
+            type_="uint8",
+            default_value="0",
+            is_mandatory=True,
+        )
         feat.add_attribute_list({attr})
         d = feat.to_dict()
         self.assertIn("attributes", d)
@@ -129,8 +177,20 @@ class TestClusterSerialization(unittest.TestCase):
 
     def test_cluster_with_elements(self):
         c = Cluster(name="OnOff", id="0x0006", revision=6)
-        attr = Attribute(name="OnOff", id="0x0000", type_="bool", default_value="false", is_mandatory=True)
-        cmd = Command(id="0x0001", name="Off", direction="commandToServer", response="Y", is_mandatory=True)
+        attr = Attribute(
+            name="OnOff",
+            id="0x0000",
+            type_="bool",
+            default_value="false",
+            is_mandatory=True,
+        )
+        cmd = Command(
+            id="0x0001",
+            name="Off",
+            direction="commandToServer",
+            response="Y",
+            is_mandatory=True,
+        )
         c.attributes.add(attr)
         c.commands.add(cmd)
         d = c.to_dict()

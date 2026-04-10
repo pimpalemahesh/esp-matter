@@ -41,9 +41,15 @@ from xml_processing.parse_context import ClusterParseContext
 # Helpers to build minimal XML trees
 # ---------------------------------------------------------------------------
 
+
 def _make_cluster(name="TestCluster", id_="0x0001", revision=1):
     c = Cluster(name=name, id=id_, revision=revision)
-    c.attribute_types = {"uint8": "uint8", "bool": "bool", "int16": "int16", "uint16": "uint16"}
+    c.attribute_types = {
+        "uint8": "uint8",
+        "bool": "bool",
+        "int16": "int16",
+        "uint16": "uint16",
+    }
     c.data_types = {}
     c.skip_command_cb = False
     c.command_handler_available = False
@@ -100,8 +106,10 @@ def _cluster_root_with_events(*events):
 # ClusterElementBaseParser
 # ---------------------------------------------------------------------------
 
+
 class _ConcreteParser(ClusterElementBaseParser):
     """Concrete subclass for testing the abstract base."""
+
     def parse(self, root):
         pass
 
@@ -164,8 +172,13 @@ class TestClusterElementBaseParser(unittest.TestCase):
         self.assertIn("conformance", reason)
 
     def test_fill_from_base_sets_id(self):
-        base_attr = Attribute(name="BaseAttr", id="0x00AA", type_="uint8",
-                              default_value="0", is_mandatory=True)
+        base_attr = Attribute(
+            name="BaseAttr",
+            id="0x00AA",
+            type_="uint8",
+            default_value="0",
+            is_mandatory=True,
+        )
         p = self._parser(base=[base_attr])
         elem = Element("attribute", name="BaseAttr")
         p._fill_from_base(elem, base_attr)
@@ -176,13 +189,18 @@ class TestClusterElementBaseParser(unittest.TestCase):
 # AttributeParser
 # ---------------------------------------------------------------------------
 
+
 class TestAttributeParser(unittest.TestCase):
     """Test AttributeParser — create, parse, type overrides, internally managed."""
 
     def _parser(self, cluster=None, managed=None, base=None):
         c = cluster or _make_cluster()
-        return AttributeParser(c, feature_map={}, managed_attributes=managed or [],
-                               base_attributes=base or [])
+        return AttributeParser(
+            c,
+            feature_map={},
+            managed_attributes=managed or [],
+            base_attributes=base or [],
+        )
 
     def test_create_basic(self):
         p = self._parser()
@@ -195,8 +213,14 @@ class TestAttributeParser(unittest.TestCase):
     def test_create_with_access(self):
         p = self._parser()
         elem = _attr_xml("Writable", "0x0002", "uint8", "0")
-        SubElement(elem, "access", read="true", readPrivilege="view",
-                   write="true", writePrivilege="operate")
+        SubElement(
+            elem,
+            "access",
+            read="true",
+            readPrivilege="view",
+            write="true",
+            writePrivilege="operate",
+        )
         attr = p.create(elem)
         self.assertIsNotNone(attr.access)
         self.assertEqual(attr.access.write, "true")
@@ -204,8 +228,15 @@ class TestAttributeParser(unittest.TestCase):
     def test_create_with_quality(self):
         p = self._parser()
         elem = _attr_xml("Nullable", "0x0003", "uint8", "0")
-        SubElement(elem, "quality", nullable="true", persistence="nonVolatile",
-                   changeOmitted="false", scene="false", reportable="false")
+        SubElement(
+            elem,
+            "quality",
+            nullable="true",
+            persistence="nonVolatile",
+            changeOmitted="false",
+            scene="false",
+            reportable="false",
+        )
         attr = p.create(elem)
         self.assertIsNotNone(attr.quality)
         self.assertTrue(attr.is_nullable)
@@ -274,8 +305,13 @@ class TestAttributeParser(unittest.TestCase):
 
     def test_parse_merges_base_attributes(self):
         cluster = _make_cluster()
-        base_attr = Attribute(name="BaseOnly", id="0x00FF", type_="uint8",
-                              default_value="0", is_mandatory=True)
+        base_attr = Attribute(
+            name="BaseOnly",
+            id="0x00FF",
+            type_="uint8",
+            default_value="0",
+            is_mandatory=True,
+        )
         p = AttributeParser(cluster, {}, [], base_attributes=[base_attr])
         root = _cluster_root_with_attrs(
             _attr_xml("New", "0x0001", "uint8", "0"),
@@ -294,6 +330,7 @@ class TestAttributeParser(unittest.TestCase):
 # CommandParser
 # ---------------------------------------------------------------------------
 
+
 class TestCommandParser(unittest.TestCase):
     """Test CommandParser — create, parse, fields, access."""
 
@@ -311,7 +348,9 @@ class TestCommandParser(unittest.TestCase):
     def test_create_with_access(self):
         p = self._parser()
         elem = _cmd_xml("Timed", "0x0002")
-        SubElement(elem, "access", invokePrivilege="admin", timed="true", fabricScoped="false")
+        SubElement(
+            elem, "access", invokePrivilege="admin", timed="true", fabricScoped="false"
+        )
         cmd = p.create(elem)
         p._set_access(cmd, elem)
         self.assertIsNotNone(cmd.access)
@@ -344,7 +383,7 @@ class TestCommandParser(unittest.TestCase):
         elem = _cmd_xml("Partial", "0x0005")
         SubElement(elem, "field", id="0x00", name="ok", type="uint8")
         SubElement(elem, "field", id="0x01", name="missing_type")  # no type
-        SubElement(elem, "field", name="no_id", type="uint8")      # no id
+        SubElement(elem, "field", name="no_id", type="uint8")  # no id
         cmd = p.create(elem)
         p._set_fields(cmd, elem)
         self.assertEqual(len(cmd.fields), 1)
@@ -371,8 +410,13 @@ class TestCommandParser(unittest.TestCase):
 
     def test_parse_merges_base_commands(self):
         cluster = _make_cluster()
-        base_cmd = Command(id="0x00FF", name="BaseCmd", direction="commandToServer",
-                           response="Y", is_mandatory=True)
+        base_cmd = Command(
+            id="0x00FF",
+            name="BaseCmd",
+            direction="commandToServer",
+            response="Y",
+            is_mandatory=True,
+        )
         p = CommandParser(cluster, {}, base_commands=[base_cmd])
         root = _cluster_root_with_cmds(_cmd_xml("New", "0x0001"))
         p.parse(root)
@@ -415,6 +459,7 @@ class TestCommandParser(unittest.TestCase):
 # ---------------------------------------------------------------------------
 # EventParser
 # ---------------------------------------------------------------------------
+
 
 class TestEventParser(unittest.TestCase):
     """Test EventParser — create, parse, base event merging."""
@@ -461,6 +506,7 @@ class TestEventParser(unittest.TestCase):
 # FeatureParser
 # ---------------------------------------------------------------------------
 
+
 class TestFeatureParser(unittest.TestCase):
     """Test FeatureParser — feature map creation, feature ID generation, item linking."""
 
@@ -468,7 +514,9 @@ class TestFeatureParser(unittest.TestCase):
         root = Element("cluster", name="Test", id="0x0001", revision="1")
         features_section = SubElement(root, "features")
         for name, code, bit in features_data:
-            feat_el = SubElement(features_section, "feature", name=name, code=code, bit=str(bit))
+            feat_el = SubElement(
+                features_section, "feature", name=name, code=code, bit=str(bit)
+            )
             SubElement(feat_el, "optionalConform")
         return root
 
@@ -513,7 +561,9 @@ class TestFeatureParser(unittest.TestCase):
     def test_feature_map_excludes_restricted(self):
         root = Element("cluster", name="Test", id="0x0001", revision="1")
         features_section = SubElement(root, "features")
-        feat_el = SubElement(features_section, "feature", name="Deprecated", code="DP", bit="0")
+        feat_el = SubElement(
+            features_section, "feature", name="Deprecated", code="DP", bit="0"
+        )
         SubElement(feat_el, "deprecateConform")
         cluster = _make_cluster()
         p = FeatureParser(root, cluster, [])
@@ -530,6 +580,7 @@ class TestFeatureParser(unittest.TestCase):
 # ---------------------------------------------------------------------------
 # ClusterParseContext
 # ---------------------------------------------------------------------------
+
 
 class TestClusterParseContext(unittest.TestCase):
     """Test ClusterParseContext — pre-loaded metadata lookups."""
@@ -548,7 +599,11 @@ class TestClusterParseContext(unittest.TestCase):
         self.assertEqual(ctx.get_allowed_attributes("0x0001"), [])
 
     def test_get_allowed_attributes(self):
-        zap = {"clusters": {"0x0006": {"Attributes": {"OnOff": "0x0000", "Level": "0x0001"}}}}
+        zap = {
+            "clusters": {
+                "0x0006": {"Attributes": {"OnOff": "0x0000", "Level": "0x0001"}}
+            }
+        }
         ctx = self._ctx(zap=zap)
         result = ctx.get_allowed_attributes("0x0006")
         self.assertEqual(len(result), 2)

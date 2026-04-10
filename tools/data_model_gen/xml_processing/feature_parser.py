@@ -58,7 +58,9 @@ class FeatureParser(ClusterElementBaseParser):
         feature = Feature(name=name, code=code, id=feature_id)
         return feature
 
-    def _generate_feature_map(self, root: Element, base_features: List[Feature]) -> dict:
+    def _generate_feature_map(
+        self, root: Element, base_features: List[Feature]
+    ) -> dict:
         """Build valid {code: Feature} map"""
         logger.debug(
             f"Creating feature map for the cluster {root.get('name', 'Unknown')}"

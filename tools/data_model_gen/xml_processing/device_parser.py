@@ -26,7 +26,6 @@ def is_mandatory(element: Element) -> bool:
 
 
 class DeviceParser:
-
     def can_skip(self, element: Element):
         if not element.get("name"):
             return True, "name is missing"
@@ -35,10 +34,6 @@ class DeviceParser:
         if not check_valid_id(element.get("id")):
             return True, "id is not valid"
         return False, "Unknown reason"
-
-    def is_mandatory(self, element: Element):
-        mandatory_conform = element.find("mandatoryConform")
-        return mandatory_conform is not None and len(mandatory_conform) == 0
 
     def parse(self, file_path):
         """Parse a device XML file and return the parsed device object.

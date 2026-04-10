@@ -23,15 +23,16 @@ from utils.exceptions import XmlParseError
 logger = logging.getLogger(__name__)
 
 INT_BOUNDS = {
-    "int8":  (-2**7,  2**7 - 2),
-    "int16": (-2**15, 2**15 - 2),
-    "int32": (-2**31, 2**31 - 2),
-    "int64": (-2**31, 2**31 - 2),
+    "int8": (-(2**7), 2**7 - 2),
+    "int16": (-(2**15), 2**15 - 2),
+    "int32": (-(2**31), 2**31 - 2),
+    "int64": (-(2**31), 2**31 - 2),
     "uint8": (0, 2**8 - 2),
     "uint16": (0, 2**16 - 2),
     "uint32": (0, 2**32 - 2),
     "uint64": (0, 2**32 - 2),
 }
+
 
 def resolve_attribute_type(attribute_elem: Element, attribute_types_dict: dict) -> str:
     """
@@ -159,6 +160,7 @@ def _bounds_from_constraint(attr, attribute_elem: Element) -> None:
             attr.max_value = allowed_value
             attr.min_value = 0
 
+
 def _normalize_bounds(attr) -> None:
     for key in ("min_value", "max_value"):
         v = getattr(attr, key)
@@ -176,7 +178,6 @@ def _normalize_bounds(attr) -> None:
 
 
 def _default_bounds_by_type(attr) -> None:
-
     bounds = INT_BOUNDS.get(attr.type)
     if not bounds:
         return 0, 0

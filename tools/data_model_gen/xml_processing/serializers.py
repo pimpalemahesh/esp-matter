@@ -22,7 +22,6 @@ logger = logging.getLogger(__name__)
 
 
 class DataTypeSerializer:
-
     @staticmethod
     def to_dict(data_types):
         parsed = {}
@@ -35,7 +34,6 @@ class DataTypeSerializer:
 
 
 class AttributeSerializer:
-
     @staticmethod
     def to_dict(attr, attribute_map=None):
         return {
@@ -68,7 +66,6 @@ class AttributeSerializer:
 
 
 class CommandSerializer:
-
     @staticmethod
     def to_dict(cmd, attribute_map=None):
         return {
@@ -94,7 +91,6 @@ class CommandSerializer:
 
 
 class EventSerializer:
-
     @staticmethod
     def to_dict(event, attribute_map=None):
         return {
@@ -111,7 +107,6 @@ class EventSerializer:
 
 
 class FeatureSerializer:
-
     @staticmethod
     def to_dict(feature, attribute_map=None):
         return {
@@ -173,7 +168,6 @@ class FeatureSerializer:
 
 
 class AccessSerializer:
-
     @staticmethod
     def to_dict(access):
         if not access:
@@ -188,7 +182,6 @@ class AccessSerializer:
 
 
 class CommandAccessSerializer:
-
     @staticmethod
     def to_dict(access):
         if not access:
@@ -202,7 +195,6 @@ class CommandAccessSerializer:
 
 
 class QualitySerializer:
-
     @staticmethod
     def to_dict(quality):
         if not quality:
@@ -220,7 +212,6 @@ class QualitySerializer:
 
 
 class ClusterSerializer:
-
     @staticmethod
     def to_dict(cluster):
         attribute_map = {}
@@ -314,7 +305,6 @@ class ClusterSerializer:
 
 
 class DeviceSerializer:
-
     @staticmethod
     def to_dict(device):
         result = {
@@ -355,7 +345,6 @@ class DeviceSerializer:
 
 
 class CommandFieldSerializer:
-
     @staticmethod
     def to_dict(field):
         if not field:

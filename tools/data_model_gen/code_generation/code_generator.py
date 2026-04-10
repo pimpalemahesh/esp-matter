@@ -202,7 +202,8 @@ def generate_header_file(output_file_path: str, objects: List[str]):
     :param objects: A list of cluster or device names.
     """
     os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
-    header_content = ["""// Copyright 2026 Espressif Systems (Shanghai) PTE LTD
+    header_content = [
+        """// Copyright 2026 Espressif Systems (Shanghai) PTE LTD
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -219,7 +220,8 @@ def generate_header_file(output_file_path: str, objects: List[str]):
 /* THIS IS A GENERATED FILE, DO NOT EDIT */
 
 #pragma once
-"""]
+"""
+    ]
     sorted_objects = sorted(objects)
 
     for object_name in sorted_objects:

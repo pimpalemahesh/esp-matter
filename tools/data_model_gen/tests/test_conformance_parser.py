@@ -19,6 +19,7 @@ from connectedhomeip/data_model/1.5/clusters/
 
 import sys
 import os
+
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -33,6 +34,7 @@ from xml_processing.conformance_parser import (
 )
 from utils.helper import convert_to_snake_case
 from utils.conformance import ConformanceDecision
+
 
 class MockFeature:
     """Mock feature object for testing"""

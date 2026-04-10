@@ -25,10 +25,8 @@ from xml.etree.ElementTree import Element, SubElement
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.conformance import (
     ConformanceDecision,
-    ConformanceTAG,
     get_conformance_type,
     Choice,
-    BaseConformance,
     SUPPORTED_CONFORMANCE_TAGS,
 )
 from xml_processing.conformance_parser import (
@@ -37,13 +35,11 @@ from xml_processing.conformance_parser import (
     parse_choice,
     parse_boolean_term,
     parse_element_reference,
-    parse_children,
     is_mandatory,
     is_restricted_by_conformance,
     match_conformance_items,
     replace_references,
     get_restricted_tags,
-    BOOLEAN_TERMS,
 )
 from utils import config
 
@@ -60,33 +56,57 @@ class TestGetConformanceType(unittest.TestCase):
     """Test get_conformance_type() — all conformance type mappings."""
 
     def test_mandatory(self):
-        self.assertEqual(get_conformance_type("mandatoryConform"), ConformanceDecision.MANDATORY)
-        self.assertEqual(get_conformance_type("mandatory"), ConformanceDecision.MANDATORY)
+        self.assertEqual(
+            get_conformance_type("mandatoryConform"), ConformanceDecision.MANDATORY
+        )
+        self.assertEqual(
+            get_conformance_type("mandatory"), ConformanceDecision.MANDATORY
+        )
 
     def test_optional(self):
-        self.assertEqual(get_conformance_type("optionalConform"), ConformanceDecision.OPTIONAL)
+        self.assertEqual(
+            get_conformance_type("optionalConform"), ConformanceDecision.OPTIONAL
+        )
         self.assertEqual(get_conformance_type("optional"), ConformanceDecision.OPTIONAL)
 
     def test_otherwise(self):
-        self.assertEqual(get_conformance_type("otherwiseConform"), ConformanceDecision.OTHERWISE)
+        self.assertEqual(
+            get_conformance_type("otherwiseConform"), ConformanceDecision.OTHERWISE
+        )
 
     def test_deprecated(self):
-        self.assertEqual(get_conformance_type("deprecateConform"), ConformanceDecision.DEPRECATED)
-        self.assertEqual(get_conformance_type("deprecated"), ConformanceDecision.DEPRECATED)
+        self.assertEqual(
+            get_conformance_type("deprecateConform"), ConformanceDecision.DEPRECATED
+        )
+        self.assertEqual(
+            get_conformance_type("deprecated"), ConformanceDecision.DEPRECATED
+        )
 
     def test_disallowed(self):
-        self.assertEqual(get_conformance_type("disallowConform"), ConformanceDecision.DISALLOWED)
-        self.assertEqual(get_conformance_type("disallow"), ConformanceDecision.DISALLOWED)
+        self.assertEqual(
+            get_conformance_type("disallowConform"), ConformanceDecision.DISALLOWED
+        )
+        self.assertEqual(
+            get_conformance_type("disallow"), ConformanceDecision.DISALLOWED
+        )
 
     def test_provisional(self):
-        self.assertEqual(get_conformance_type("provisionalConform"), ConformanceDecision.PROVISIONAL)
-        self.assertEqual(get_conformance_type("provisional"), ConformanceDecision.PROVISIONAL)
+        self.assertEqual(
+            get_conformance_type("provisionalConform"), ConformanceDecision.PROVISIONAL
+        )
+        self.assertEqual(
+            get_conformance_type("provisional"), ConformanceDecision.PROVISIONAL
+        )
 
     def test_described(self):
-        self.assertEqual(get_conformance_type("describedConform"), ConformanceDecision.DESCRIBED)
+        self.assertEqual(
+            get_conformance_type("describedConform"), ConformanceDecision.DESCRIBED
+        )
 
     def test_unknown(self):
-        self.assertEqual(get_conformance_type("unknownConform"), ConformanceDecision.NOT_APPLICABLE)
+        self.assertEqual(
+            get_conformance_type("unknownConform"), ConformanceDecision.NOT_APPLICABLE
+        )
 
 
 class TestSupportedConformanceTags(unittest.TestCase):
@@ -94,8 +114,13 @@ class TestSupportedConformanceTags(unittest.TestCase):
 
     def test_all_tags_present(self):
         expected = {
-            "mandatoryConform", "optionalConform", "otherwiseConform",
-            "deprecateConform", "disallowConform", "provisionalConform", "describedConform",
+            "mandatoryConform",
+            "optionalConform",
+            "otherwiseConform",
+            "deprecateConform",
+            "disallowConform",
+            "provisionalConform",
+            "describedConform",
         }
         self.assertEqual(SUPPORTED_CONFORMANCE_TAGS, expected)
 
@@ -453,6 +478,7 @@ class TestMatchConformanceItems(unittest.TestCase):
     def test_no_conformance(self):
         class MockItem:
             conformance = None
+
         feature = MockFeature("Lighting", "LT", "lighting")
         result = match_conformance_items(feature, [MockItem()])
         self.assertEqual(result, [])
@@ -460,6 +486,7 @@ class TestMatchConformanceItems(unittest.TestCase):
     def test_mandatory_match(self):
         class MockItem:
             pass
+
         item = MockItem()
         fm = {"LT": MockFeature("Lighting", "LT", "lighting")}
         conf = Conformance(fm)
@@ -473,6 +500,7 @@ class TestMatchConformanceItems(unittest.TestCase):
     def test_no_match(self):
         class MockItem:
             pass
+
         item = MockItem()
         fm = {"CT": MockFeature("ColorTemp", "CT", "color_temp")}
         conf = Conformance(fm)

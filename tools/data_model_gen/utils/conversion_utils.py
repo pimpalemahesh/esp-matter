@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 def convert_to_int(value, default=None):
     """Convert a string or int value to an integer. Handles hex (0x...) and decimal strings."""
     if value is None:

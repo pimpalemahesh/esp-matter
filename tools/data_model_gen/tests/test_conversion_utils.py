@@ -19,7 +19,12 @@ import sys
 import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from utils.conversion_utils import convert_to_int, format_hex_value, hex_to_int, is_hex_value
+from utils.conversion_utils import (
+    convert_to_int,
+    format_hex_value,
+    hex_to_int,
+    is_hex_value,
+)
 
 
 class TestConvertToInt(unittest.TestCase):

@@ -61,10 +61,10 @@ class TestIntBounds(unittest.TestCase):
         self.assertEqual(INT_BOUNDS["int16"], (-32768, 32766))
 
     def test_int32_bounds(self):
-        self.assertEqual(INT_BOUNDS["int32"], (-2**31, 2**31 - 2))
+        self.assertEqual(INT_BOUNDS["int32"], (-(2**31), 2**31 - 2))
 
     def test_int64_bounds(self):
-        self.assertEqual(INT_BOUNDS["int64"], (-2**31, 2**31 - 2))
+        self.assertEqual(INT_BOUNDS["int64"], (-(2**31), 2**31 - 2))
 
 
 class TestResolveAttributeType(unittest.TestCase):
@@ -146,6 +146,7 @@ class TestDefaultBoundsByType(unittest.TestCase):
     def _make_attr(self, type_, min_val=None, max_val=None):
         class FakeAttr:
             pass
+
         a = FakeAttr()
         a.type = type_
         a.min_value = min_val
@@ -189,6 +190,7 @@ class TestNormalizeBounds(unittest.TestCase):
     def _make_attr(self, min_val, max_val):
         class FakeAttr:
             pass
+
         a = FakeAttr()
         a.min_value = min_val
         a.max_value = max_val
@@ -229,6 +231,7 @@ class TestBoundsFromConstraint(unittest.TestCase):
     def _make_attr(self):
         class FakeAttr:
             pass
+
         a = FakeAttr()
         a.min_value = None
         a.max_value = None
@@ -239,8 +242,8 @@ class TestBoundsFromConstraint(unittest.TestCase):
         attr = self._make_attr()
         elem = Element("attribute")
         constraint = SubElement(elem, "constraint")
-        min_el = SubElement(constraint, "min", value="10")
-        max_el = SubElement(constraint, "max", value="100")
+        SubElement(constraint, "min", value="10")
+        SubElement(constraint, "max", value="100")
         _bounds_from_constraint(attr, elem)
         self.assertEqual(attr.min_value, "10")
         self.assertEqual(attr.max_value, "100")
@@ -279,6 +282,7 @@ class TestResolveAttributeBounds(unittest.TestCase):
     def _make_attr(self, type_):
         class FakeAttr:
             pass
+
         a = FakeAttr()
         a.type = type_
         a.min_value = None
@@ -288,7 +292,11 @@ class TestResolveAttributeBounds(unittest.TestCase):
     def test_enum_bounds_from_items(self):
         attr = self._make_attr("enum8")
         elem = Element("attribute", type="testenum")
-        items = [Item("A", "0", "", True), Item("B", "1", "", True), Item("C", "2", "", True)]
+        items = [
+            Item("A", "0", "", True),
+            Item("B", "1", "", True),
+            Item("C", "2", "", True),
+        ]
         data_types = {"enums": {"testenum": Enum("TestEnum", "enum8", items)}}
         resolve_attribute_bounds(attr, elem, data_types)
         self.assertEqual(attr.min_value, 0)
@@ -297,8 +305,14 @@ class TestResolveAttributeBounds(unittest.TestCase):
     def test_bitmap_bounds_from_bitfields(self):
         attr = self._make_attr("bitmap8")
         elem = Element("attribute", type="testbitmap")
-        fields = [Item("A", "0", "", True), Item("B", "1", "", True), Item("C", "2", "", True)]
-        data_types = {"bitmaps": {"testbitmap": Bitmap("TestBitmap", "bitmap8", fields)}}
+        fields = [
+            Item("A", "0", "", True),
+            Item("B", "1", "", True),
+            Item("C", "2", "", True),
+        ]
+        data_types = {
+            "bitmaps": {"testbitmap": Bitmap("TestBitmap", "bitmap8", fields)}
+        }
         resolve_attribute_bounds(attr, elem, data_types)
         self.assertEqual(attr.min_value, 0)
         self.assertEqual(attr.max_value, 7)  # 2^3 - 1

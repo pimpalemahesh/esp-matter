@@ -42,6 +42,7 @@ ALLOW_PROVISIONAL = False
 
 DEFAULT_DATA_MODEL_DIR = None
 
+
 def allow_provisional():
     """
     Check if provisional elements are allowed.
@@ -59,6 +60,7 @@ def setup_provisional_mode(allow: bool):
     global ALLOW_PROVISIONAL
     ALLOW_PROVISIONAL = allow
 
+
 def get_default_data_model_dir():
     """
     Get the default data model directory.
@@ -71,6 +73,7 @@ def get_default_data_model_dir():
             suggestion="Set ESP_MATTER_PATH environment variable to the esp-matter repository root.",
         )
     return os.path.join(esp_path, "components", "esp_matter", "data_model", "generated")
+
 
 def set_esp_matter_path(path: str):
     """

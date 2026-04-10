@@ -50,9 +50,6 @@ PLUGIN_CALLBACK_SKIP: FrozenSet[int] = frozenset(
     ]
 )
 
-# List of command callbacks to skip
-CALLBACK_STUB_SKIP: FrozenSet[int] = frozenset()
-
 
 # ── Cluster display name overrides ──────────────────────────────────────────
 # (cluster_id, original_name_key, corrected_name)
@@ -61,8 +58,6 @@ _CLUSTER_NAME_OVERRIDE_DEFS = (
     (0x0096, "Demand Response and Load Control", "Demand Response Load Control"),
     (0x0503, "WakeOnLAN", "Wake on LAN"),
     (0x0006, "OnOff", "On/Off"),
-    (0x0029, "ota_provider", "ota_software_update_provider"),
-    (0x002A, "ota_requestor", "ota_software_update_requestor"),
     (0x005D, "Dishwasher Alarm", "Dish Washer Alarm"),
     (0x0059, "Dishwasher Mode", "Dish Washer Mode"),
 )
@@ -94,9 +89,7 @@ _FEATURE_NAME_OVERRIDES_BY_NAME: Dict[str, str] = {
 
 # ── Device type name overrides ──────────────────────────────────────────────
 # (device_id, original_name, corrected_name)
-_DEVICE_NAME_OVERRIDE_DEFS = (
-    (0x0075, "Dishwasher", "Dish Washer"),
-)
+_DEVICE_NAME_OVERRIDE_DEFS = ((0x0075, "Dishwasher", "Dish Washer"),)
 
 DEVICE_NAME_OVERRIDES: Dict[int, str] = {
     did: corrected for did, _, corrected in _DEVICE_NAME_OVERRIDE_DEFS
@@ -110,7 +103,12 @@ _DEVICE_NAME_OVERRIDES_BY_NAME: Dict[str, str] = {
 # ── Element name overrides (attribute/command/event name corrections) ───────
 # (cluster_id, element_id, original_name, corrected_name)
 _ELEMENT_NAME_OVERRIDE_DEFS = (
-    (0x0101, 0x0033, "RequirePINforRemoteOperation", "require_pin_for_remote_operation"),  # Door Lock
+    (
+        0x0101,
+        0x0033,
+        "RequirePINforRemoteOperation",
+        "require_pin_for_remote_operation",
+    ),  # Door Lock
     (0x0099, 0x0026, "NextChargeTargetSoC", "next_charge_target_soc"),  # Energy EVSE
 )
 
@@ -172,18 +170,63 @@ _SPECIAL_CONFIG_DEFS = (
     # Cluster-level
     (0x0046, None, "icd_management", "CHIP_CONFIG_ENABLE_ICD_SERVER"),
     # Attributes
-    (0x0039, 0x0012, "endpoint_unique_id", "CHIP_CONFIG_USE_ENDPOINT_UNIQUE_ID"),  # Bridged Device Basic Info - UniqueID
-    (0x001F, 0x0005, "commissioning_arl", "CHIP_CONFIG_USE_ACCESS_RESTRICTIONS"),  # Access Control
+    (
+        0x0039,
+        0x0012,
+        "endpoint_unique_id",
+        "CHIP_CONFIG_USE_ENDPOINT_UNIQUE_ID",
+    ),  # Bridged Device Basic Info - UniqueID
+    (
+        0x001F,
+        0x0005,
+        "commissioning_arl",
+        "CHIP_CONFIG_USE_ACCESS_RESTRICTIONS",
+    ),  # Access Control
     (0x001F, 0x0006, "arl", "CHIP_CONFIG_USE_ACCESS_RESTRICTIONS"),  # Access Control
     # Commands
-    (0x001F, 0x0000, "review_fabric_restrictions", "CHIP_CONFIG_USE_ACCESS_RESTRICTIONS"),  # Access Control
+    (
+        0x001F,
+        0x0000,
+        "review_fabric_restrictions",
+        "CHIP_CONFIG_USE_ACCESS_RESTRICTIONS",
+    ),  # Access Control
     # Features
-    (0x0031, 0x0001, "wifi_network_interface", "CHIP_DEVICE_CONFIG_ENABLE_WIFI"),  # Network Commissioning
-    (0x0031, 0x0002, "thread_network_interface", "CHIP_DEVICE_CONFIG_ENABLE_THREAD"),  # Network Commissioning
-    (0x0031, 0x0004, "ethernet_network_interface", "CHIP_DEVICE_CONFIG_ENABLE_ETHERNET"),  # Network Commissioning
-    (0x0046, 0x0004, "long_idle_time_support", "CHIP_CONFIG_ENABLE_ICD_LIT"),  # ICD Management
-    (0x0046, 0x0001, "check_in_protocol_support", "CHIP_CONFIG_ENABLE_ICD_CIP"),  # ICD Management
-    (0x0046, 0x0002, "user_active_mode_trigger", "CHIP_CONFIG_ENABLE_ICD_UAT"),  # ICD Management
+    (
+        0x0031,
+        0x0001,
+        "wifi_network_interface",
+        "CHIP_DEVICE_CONFIG_ENABLE_WIFI",
+    ),  # Network Commissioning
+    (
+        0x0031,
+        0x0002,
+        "thread_network_interface",
+        "CHIP_DEVICE_CONFIG_ENABLE_THREAD",
+    ),  # Network Commissioning
+    (
+        0x0031,
+        0x0004,
+        "ethernet_network_interface",
+        "CHIP_DEVICE_CONFIG_ENABLE_ETHERNET",
+    ),  # Network Commissioning
+    (
+        0x0046,
+        0x0004,
+        "long_idle_time_support",
+        "CHIP_CONFIG_ENABLE_ICD_LIT",
+    ),  # ICD Management
+    (
+        0x0046,
+        0x0001,
+        "check_in_protocol_support",
+        "CHIP_CONFIG_ENABLE_ICD_CIP",
+    ),  # ICD Management
+    (
+        0x0046,
+        0x0002,
+        "user_active_mode_trigger",
+        "CHIP_CONFIG_ENABLE_ICD_UAT",
+    ),  # ICD Management
     # Events (none currently)
 )
 
@@ -272,7 +315,9 @@ def normalize_cluster_display_name(cluster_name: str, cluster_id: str = None) ->
     return _CLUSTER_NAME_OVERRIDES_BY_NAME.get(cluster_name, cluster_name)
 
 
-def normalize_feature_name(feature_name: str, cluster_id: str = None, feature_id: str = None) -> str:
+def normalize_feature_name(
+    feature_name: str, cluster_id: str = None, feature_id: str = None
+) -> str:
     """Normalize a feature name. Uses ID-based lookup when both cluster_id and feature_id
     are provided, falls back to name-based lookup otherwise."""
     if cluster_id is not None and feature_id is not None:
@@ -292,7 +337,9 @@ def normalize_device_type_name(device_type_name: str, device_id: str = None) -> 
     return _DEVICE_NAME_OVERRIDES_BY_NAME.get(device_type_name, device_type_name)
 
 
-def normalize_element_name(element_name: str, cluster_id: str = None, element_id: str = None) -> str:
+def normalize_element_name(
+    element_name: str, cluster_id: str = None, element_id: str = None
+) -> str:
     """Normalize an element name. Uses ID-based lookup when both cluster_id and element_id
     are provided, falls back to name-based lookup otherwise."""
     if cluster_id is not None and element_id is not None:
@@ -308,10 +355,6 @@ def is_cpp_reserved_word(cpp_name: str) -> bool:
 
 def should_skip_cluster_command_callbacks(cluster_id: str) -> bool:
     return convert_to_int(cluster_id) in COMMAND_CALLBACK_SKIP
-
-
-def should_skip_command_callback(command_id: str) -> bool:
-    return convert_to_int(command_id) in CALLBACK_STUB_SKIP
 
 
 def should_skip_delegate_callback(cluster_id: str) -> bool:
@@ -341,7 +384,9 @@ def get_overridden_cluster_init_callback_name(cluster_id: str, chip_name: str) -
     return f"ESPMatter{chip_name}ClusterServerInitCallback"
 
 
-def get_overridden_cluster_shutdown_callback_name(cluster_id: str, chip_name: str) -> str:
+def get_overridden_cluster_shutdown_callback_name(
+    cluster_id: str, chip_name: str
+) -> str:
     cid = convert_to_int(cluster_id)
     entry = CLUSTER_CALLBACK_NAME_OVERRIDES.get(cid)
     if entry:

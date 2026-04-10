@@ -243,27 +243,39 @@ class TestDeviceDeserializer(unittest.TestCase):
         os.unlink(cls.device_json_path)
 
     def test_deserialize_count(self):
-        devices = DeviceDeserializer().deserialize(self.device_json_path, self.cluster_lookup)
+        devices = DeviceDeserializer().deserialize(
+            self.device_json_path, self.cluster_lookup
+        )
         self.assertEqual(len(devices), 1)
 
     def test_device_name(self):
-        devices = DeviceDeserializer().deserialize(self.device_json_path, self.cluster_lookup)
+        devices = DeviceDeserializer().deserialize(
+            self.device_json_path, self.cluster_lookup
+        )
         self.assertIn("on_off_light", devices[0].esp_name.lower())
 
     def test_device_revision(self):
-        devices = DeviceDeserializer().deserialize(self.device_json_path, self.cluster_lookup)
+        devices = DeviceDeserializer().deserialize(
+            self.device_json_path, self.cluster_lookup
+        )
         self.assertEqual(devices[0].get_device_type_version(), 3)
 
     def test_device_clusters(self):
-        devices = DeviceDeserializer().deserialize(self.device_json_path, self.cluster_lookup)
+        devices = DeviceDeserializer().deserialize(
+            self.device_json_path, self.cluster_lookup
+        )
         self.assertEqual(len(devices[0].clusters), 1)
 
     def test_device_cluster_server(self):
-        devices = DeviceDeserializer().deserialize(self.device_json_path, self.cluster_lookup)
+        devices = DeviceDeserializer().deserialize(
+            self.device_json_path, self.cluster_lookup
+        )
         self.assertTrue(devices[0].clusters[0].server_cluster)
 
     def test_device_cluster_mandatory(self):
-        devices = DeviceDeserializer().deserialize(self.device_json_path, self.cluster_lookup)
+        devices = DeviceDeserializer().deserialize(
+            self.device_json_path, self.cluster_lookup
+        )
         self.assertTrue(devices[0].clusters[0].is_mandatory)
 
 

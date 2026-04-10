@@ -23,27 +23,40 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from code_generation.elements import (
-    Cluster, Attribute, Command, Event, Feature, Device,
-    get_choice_group, get_id_name_lambda,
+    Cluster,
+    Attribute,
+    Command,
+    Event,
+    Feature,
+    Device,
+    get_choice_group,
+    get_id_name_lambda,
 )
-from code_generation.conformance_codegen import (
-    Conformance, FeatureConformance, ConformanceDecision,
-)
+from code_generation.conformance_codegen import ConformanceDecision
 
 
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
 
+
 def _make_attr(name, id_, type_="uint8", mandatory=True, default="0"):
-    a = Attribute(name=name, id=id_, type_=type_, is_mandatory=mandatory, default_value=default)
+    a = Attribute(
+        name=name, id=id_, type_=type_, is_mandatory=mandatory, default_value=default
+    )
     a.converted_type = "uint8_t"
     a._flag = "ATTRIBUTE_FLAG_NONE"
     return a
 
 
 def _make_cmd(name, id_, mandatory=True, direction="commandToServer", response="Y"):
-    c = Command(name=name, id=id_, is_mandatory=mandatory, direction=direction, response=response)
+    c = Command(
+        name=name,
+        id=id_,
+        is_mandatory=mandatory,
+        direction=direction,
+        response=response,
+    )
     c._flag = "COMMAND_FLAG_ACCEPTED"
     c.has_callback = True
     return c
@@ -67,6 +80,7 @@ def _make_cluster(name="TestCluster", id_="0x0001", revision=1):
 # ---------------------------------------------------------------------------
 # Attribute (codegen)
 # ---------------------------------------------------------------------------
+
 
 class TestCodegenAttribute(unittest.TestCase):
     """Test code_generation.elements.Attribute."""
@@ -135,6 +149,7 @@ class TestCodegenAttribute(unittest.TestCase):
 # Command (codegen)
 # ---------------------------------------------------------------------------
 
+
 class TestCodegenCommand(unittest.TestCase):
     """Test code_generation.elements.Command."""
 
@@ -156,6 +171,7 @@ class TestCodegenCommand(unittest.TestCase):
 # Event (codegen)
 # ---------------------------------------------------------------------------
 
+
 class TestCodegenEvent(unittest.TestCase):
     """Test code_generation.elements.Event."""
 
@@ -171,6 +187,7 @@ class TestCodegenEvent(unittest.TestCase):
 # ---------------------------------------------------------------------------
 # Feature (codegen)
 # ---------------------------------------------------------------------------
+
 
 class TestCodegenFeature(unittest.TestCase):
     """Test code_generation.elements.Feature."""
@@ -212,6 +229,7 @@ class TestCodegenFeature(unittest.TestCase):
 # ---------------------------------------------------------------------------
 # Cluster (codegen)
 # ---------------------------------------------------------------------------
+
 
 class TestCodegenCluster(unittest.TestCase):
     """Test code_generation.elements.Cluster — sorting, mandatory, choice groups."""
@@ -312,6 +330,7 @@ class TestCodegenCluster(unittest.TestCase):
 # Device (codegen)
 # ---------------------------------------------------------------------------
 
+
 class TestCodegenDevice(unittest.TestCase):
     """Test code_generation.elements.Device."""
 
@@ -373,13 +392,20 @@ class TestCodegenDevice(unittest.TestCase):
 # Deserializer roundtrip helpers
 # ---------------------------------------------------------------------------
 
+
 class TestGetIdNameLambda(unittest.TestCase):
     """Test sorting helper."""
 
     def test_sorts_correctly(self):
-        items = [_make_attr("C", "0x0003"), _make_attr("A", "0x0001"), _make_attr("B", "0x0002")]
+        items = [
+            _make_attr("C", "0x0003"),
+            _make_attr("A", "0x0001"),
+            _make_attr("B", "0x0002"),
+        ]
         sorted_items = sorted(items, key=get_id_name_lambda())
-        self.assertEqual([i.get_id() for i in sorted_items], ["0x0001", "0x0002", "0x0003"])
+        self.assertEqual(
+            [i.get_id() for i in sorted_items], ["0x0001", "0x0002", "0x0003"]
+        )
 
 
 class TestGetChoiceGroup(unittest.TestCase):
@@ -391,7 +417,9 @@ class TestGetChoiceGroup(unittest.TestCase):
 
     def test_no_matching_conformance(self):
         f = _make_feature("A", "0x0001", code="AA")
-        result = get_choice_group("mandatory_parent", ConformanceDecision.OTHERWISE, [f])
+        result = get_choice_group(
+            "mandatory_parent", ConformanceDecision.OTHERWISE, [f]
+        )
         self.assertEqual(result, [])
 
 

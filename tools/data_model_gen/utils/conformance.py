@@ -28,6 +28,7 @@ SUPPORTED_CONFORMANCE_TAGS = {
     "describedConform",
 }
 
+
 class ConformanceException(Exception):
     """Exception raised when conformance parsing fails"""
 

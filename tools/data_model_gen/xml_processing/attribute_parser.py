@@ -119,9 +119,7 @@ class AttributeParser(ClusterElementBaseParser):
             return
         if should_skip_internally_managed_flag(self.cluster.id, attr.id):
             attr.internally_managed = False
-        elif (
-            attr.name and attr.name.lower() in self.managed_attributes
-        ):
+        elif attr.name and attr.name.lower() in self.managed_attributes:
             attr.internally_managed = True
         else:
             attr.internally_managed = False

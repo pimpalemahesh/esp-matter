@@ -60,7 +60,7 @@ def check_if_delegate_method_available(node, code_bytes):
     :returns: True if delegate method is available, False otherwise.
     """
     if node.type == "function_declarator" or node.type == "declaration":
-        text = code_bytes[node.start_byte : node.end_byte].decode(
+        text = code_bytes[node.start_byte:node.end_byte].decode(
             "utf8", errors="ignore"
         )
         if any(method in text for method in DELEGATE_METHODS):
@@ -70,7 +70,7 @@ def check_if_delegate_method_available(node, code_bytes):
             if child.type == "field_declaration_list":
                 for field_declaration in child.children:
                     text = code_bytes[
-                        field_declaration.start_byte : field_declaration.end_byte
+                        field_declaration.start_byte:field_declaration.end_byte
                     ].decode("utf8", errors="ignore")
                     if any(method in text for method in DELEGATE_METHODS):
                         return True
@@ -146,7 +146,7 @@ def find_plugin_init_callbacks(node, code_bytes):
     clusters = []
 
     if node.type == "function_declarator" or node.type == "declaration":
-        text = code_bytes[node.start_byte : node.end_byte].decode(
+        text = code_bytes[node.start_byte:node.end_byte].decode(
             "utf8", errors="ignore"
         )
 
