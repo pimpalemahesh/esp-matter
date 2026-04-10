@@ -55,10 +55,10 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
 
     {% for cluster in device.get_clusters() %}
     {% if cluster.is_mandatory %}
-{% if cluster.has_special_config() %}
-{% if cluster.esp_name == "network_commissioning" or cluster.esp_name == "secondary_network_interface" %}
+{% if cluster.esp_name == "network_commissioning"%}
 #ifndef CONFIG_CUSTOM_NETWORK_CONFIG
 {% endif %}
+{% if cluster.has_special_config() %}
 #if {{ cluster.get_special_config() }}
 {% endif %}
     {% if cluster.esp_name == "network_commissioning" %}

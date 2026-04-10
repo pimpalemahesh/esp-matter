@@ -53,6 +53,7 @@ esp_err_t add(endpoint_t *endpoint, config_t *config)
     esp_err_t err = add_device_type(endpoint, get_device_type_id(), get_device_type_version());
     VerifyOrReturnError(err == ESP_OK, err);
 
+#ifndef CONFIG_CUSTOM_NETWORK_CONFIG
 #if CHIP_DEVICE_CONFIG_ENABLE_WIFI
     config->network_commissioning.feature_flags |= cluster::network_commissioning::feature::wi_fi_network_interface::get_id();
 #elif CHIP_DEVICE_CONFIG_ENABLE_THREAD
