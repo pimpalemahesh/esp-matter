@@ -26,7 +26,7 @@
 // convenience macro for checking if features is enabled or not
 // must be used only from the ::create() API so that it can find config
 // eg: if (has(feature::constant_pressure)) { ... }
-#define has(flags) ((config->feature_flags & flags) ? 1 : 0)
+#define has(feature_name) ((feature_map & feature::feature_name::get_id()) ? 1 : 0)
 
 // Macros to reduce repetitive validation code
 #define VALIDATE_FEATURES_EXACT_ONE(name, ...) \

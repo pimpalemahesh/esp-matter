@@ -375,24 +375,41 @@ class Conformance(BaseConformance, Expr):
         )
 
     def get_optional_condition(self) -> Expr:
-        """Get the conformance condition for optional conformance."""
+        """Get the conformance condition for optional/otherwise conformance."""
+        condition = self.conformance.get(ConformanceTAG.CONDITION.value)
+        if not condition:
+            return None
+
         if self.type == ConformanceDecision.OPTIONAL:
-            condition = self.conformance.get(ConformanceTAG.CONDITION.value, {})
-            if not condition:
-                return None
             return OptionalExpr(parse_expr(condition))()
-        elif self.type == ConformanceDecision.OTHERWISE:
-            optional_condition = self.conformance.get(
-                ConformanceTAG.CONDITION.value, {}
-            ).get(OPTIONAL_CONFORM)
+
+        if self.type == ConformanceDecision.OTHERWISE:
             operands = []
-            if optional_condition:
-                if isinstance(optional_condition, list):
-                    for cond in optional_condition:
-                        operands.append(parse_expr(cond))
-                else:
-                    operands.append(parse_expr(optional_condition))
+
+            def process(cond):
+                if cond is None:
+                    return True
+                if isinstance(cond, bool):
+                    return False
+
+                conds = cond if isinstance(cond, list) else [cond]
+
+                for c in conds:
+                    if isinstance(c, bool):
+                        return False
+                    op = parse_expr(c)
+                    if op() is None:
+                        return False
+                    operands.append(op)
+                return True
+
+            if not process(condition.get(MANDATORY_CONFORM)):
+                return None
+            if not process(condition.get(OPTIONAL_CONFORM)):
+                return None
+
             return OtherwiseExpr(operands)()
+
         return None
 
     def _generate_condition(self, conformance: Dict[str, Any]) -> Expr:

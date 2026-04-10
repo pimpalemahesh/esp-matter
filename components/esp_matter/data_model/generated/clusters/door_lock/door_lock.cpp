@@ -405,7 +405,7 @@ esp_err_t add(cluster_t *cluster, config_t *config)
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
     VerifyOrReturnError(config, ESP_ERR_INVALID_ARG);
     uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError((((feature_map & feature::pin_credential::get_id()) || (feature_map & feature::rfid_credential::get_id()))), ESP_ERR_INVALID_ARG);
+    VerifyOrReturnError((feature_map & feature::aliro_provisioning::get_id() || ((feature_map & feature::pin_credential::get_id()) || (feature_map & feature::rfid_credential::get_id()))), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     if (config) {
         attribute::create_number_of_total_users_supported(cluster, config->number_of_total_users_supported);

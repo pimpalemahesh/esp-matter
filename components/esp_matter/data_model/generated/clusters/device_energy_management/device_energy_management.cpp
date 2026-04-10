@@ -80,8 +80,6 @@ uint32_t get_id()
 esp_err_t add(cluster_t *cluster)
 {
     VerifyOrReturnError(cluster, ESP_ERR_INVALID_ARG);
-    uint32_t feature_map = get_feature_map_value(cluster);
-    VerifyOrReturnError((!(feature_map & feature::power_adjustment::get_id())), ESP_ERR_INVALID_ARG);
     update_feature_map(cluster, get_id());
     attribute::create_forecast(cluster, NULL, 0, 0);
 
@@ -392,15 +390,13 @@ cluster_t *create(endpoint_t *endpoint, config_t *config, uint8_t flags)
         }
 
         uint32_t feature_map = config->feature_flags;
-        if ((!(feature_map & feature::power_adjustment::get_id()))) {
-            VALIDATE_FEATURES_EXACT_ONE("PowerForecastReporting,StateForecastReporting",
-                                        feature::power_forecast_reporting::get_id(), feature::state_forecast_reporting::get_id());
-            if (feature_map & feature::power_forecast_reporting::get_id()) {
-                VerifyOrReturnValue(feature::power_forecast_reporting::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
-            }
-            if (feature_map & feature::state_forecast_reporting::get_id()) {
-                VerifyOrReturnValue(feature::state_forecast_reporting::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
-            }
+        VALIDATE_FEATURES_EXACT_ONE("PowerForecastReporting,StateForecastReporting",
+                                    feature::power_forecast_reporting::get_id(), feature::state_forecast_reporting::get_id());
+        if (feature_map & feature::power_forecast_reporting::get_id()) {
+            VerifyOrReturnValue(feature::power_forecast_reporting::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
+        }
+        if (feature_map & feature::state_forecast_reporting::get_id()) {
+            VerifyOrReturnValue(feature::state_forecast_reporting::add(cluster) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
         }
         if (feature_map & feature::power_adjustment::get_id()) {
             VerifyOrReturnValue(feature::power_adjustment::add(cluster, &(config->features.power_adjustment)) == ESP_OK, ABORT_CLUSTER_CREATE(cluster));
